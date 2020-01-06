@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Duty Scheduler</title>
+    <link href="images/icons/Developer-Fav-Icon-16x16.ico" rel="shortcut icon" type="images/icon">    
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+          <div class=" sidebar-nav sidebar-expanded d-none d-md-block" id="sidebarMenu">
+            <ul class="menu-list">
+              <li class="list-item">
+                <div class="d-flex agency-logo align-items-center menu-item w-100">
+                  
+                </div>
+              </li>
+              <li class="list-item submenu-item flex-column align-items-start" data-target="#submenu1" data-toggle="collapse" aria-expanded="false">
+                <div class="d-flex  align-items-center menu-item w-100">
+                  <span class="menu-icon"><i class="far fa-home"></i></span>
+                  <span class="menu-text menu-collapsed">Master</span>
+                  <span class="submenu-icon ml-auto"></span>
+                </div>
+                <!-- Submenu content -->
+                <div id='submenu1' class="collapse sidebar-submenu w-100">
+                <ul class="submenu-list">
+                  <li><a routerLink='/staff'>Staff</a></li>
+                  <li><a routerLink='/vaccancies'>Vaccancies</a></li>
+                  <li><a href="#!" class="menu-collapsed">Sub menu 3</a></li>
+                </ul>
+              </div>
+              </li>
+
+              <li class="list-item">
+                <div class="d-flex  align-items-center menu-item w-100">
+                  <span class="menu-icon"><i class="far fa-user"></i></span>
+                  <span class="menu-text menu-collapsed">Candidated</span>
+                </div>
+              </li>
+              <li class="list-item">
+                <div class="d-flex  align-items-center menu-item w-100">
+                  <span class="menu-icon"><i class="far fa-clock"></i></span>
+                  <span class="menu-text menu-collapsed">Timesheets</span>
+                </div>
+              </li>
+              <li class="list-item">
+                <div class="d-flex  align-items-center menu-item w-100">
+                  <span class="menu-icon"><i class="far fa-calendar-check"></i></span>
+                  <span class="menu-text menu-collapsed">Bookings</span>
+                </div>
+              </li>
+              <li class="list-item">
+                <div class="d-flex  align-items-center menu-item w-100">
+                  <span class="menu-icon"><i class="far fa-history"></i></span>
+                  <span class="menu-text menu-collapsed">Historical</span>
+                </div>
+              </li>
+              <li class="list-item submenu-item flex-column align-items-start" data-target="#submenu1" data-toggle="collapse" aria-expanded="false">
+                <div class="d-flex  align-items-center menu-item w-100">
+                  <span class="menu-icon"><i class="far fa-dollar-sign"></i></span>
+                  <span class="menu-text menu-collapsed">Invoice</span>
+                  <span class="submenu-icon ml-auto"></span>
+                </div>
+                <!-- Submenu content -->
+                <div id='submenu1' class="collapse sidebar-submenu w-100">
+                <ul class="submenu-list">
+                  <li><a href="#!" class="menu-collapsed">Sub menu 1</a></li>
+                  <li><a href="#!" class="menu-collapsed">Sub menu 2</a></li>
+                  <li><a href="#!" class="menu-collapsed">Sub menu 3</a></li>
+                </ul>
+              </div>
+              </li>
+              <li class="list-item">
+                <div class="d-flex  align-items-center menu-item w-100">
+                  <span class="menu-icon"><i class="far fa-user-tie"></i></span>
+                  <span class="menu-text menu-collapsed">Vacancies</span>
+                </div>
+              </li>
+              <li class="list-item submenu-item flex-column align-items-start" data-target="#submenu1" data-toggle="collapse" aria-expanded="false">
+                <div class="d-flex  align-items-center menu-item w-100">
+                  <span class="menu-icon"><i class="far fa-file"></i></span>
+                  <span class="menu-text menu-collapsed">Reports</span>
+                  <span class="submenu-icon ml-auto"></span>
+                </div>
+                <!-- Submenu content -->
+                <div id='submenu1' class="collapse sidebar-submenu w-100">
+                <ul class="submenu-list">
+                  <li><a href="#!" class="menu-collapsed">Sub menu 1</a></li>
+                  <li><a href="#!" class="menu-collapsed">Sub menu 2</a></li>
+                  <li><a href="#!" class="menu-collapsed">Sub menu 3</a></li>
+                </ul>
+              </div>
+              </li>
+              <li class="list-item">
+                <div data-toggle="sidebar-colapse" class="d-flex  align-items-center menu-item w-100">
+                  <span id="collapse-icon"><i class="far fa-angle-double-left"></i></span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        <div class="col p-0 main-content-wrapper">
+          <div class="col-12 p-0 d-flex page-header">
+            <div class="col p-0">
+              <div class="form-group mb-0 header-search">
+                <input type="text" class="form-control" placeholder="Search" />
+              </div>
+            </div>
+            <div class="col-auto d-flex justify-content-end align-items-center">
+              <div class="notification-icon"><span class="icon"><i class="far fa-bell"></i></span><sup><i class="fas fa-circle"></i></sup></div>
+              <a href="#!" class="btn btn-primary btn-schedule"><i class="far fa-plus"></i> Schedule</a>
+              <div class="user-info d-flex align-items-center justify-content-end">
+                <div class="col display-picture"></div>
+                <h5 class="col-auto user-name">Mathew Thomas</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 d-flex flex-column page-wrapper">
+			<router-outlet></router-outlet>
+		  </div>            
+        </div>
+    </div>
+    </div>
+  <script>
+		var horizontalBarChartData1 = {
+			labels: ['week 1', 'week 2', 'week 3', 'week 4'],
+			datasets: [{
+				backgroundColor: '#fab96c',
+				borderColor: '#fab96c',
+				data: [300,299,200,300]
+			}, {
+				backgroundColor: '#c06063',
+				borderColor: '#c06063',
+				data: [99,199,300,200]
+			},
+			{
+				backgroundColor: '#7ecf89',
+				borderColor: '#7ecf89',
+				data: [99,99,200,300]
+			}]
+
+		};
+
+    var horizontalBarChartData2 = {
+			labels: ['week 1', 'week 2', 'week 3', 'week 4'],
+			datasets: [{
+				backgroundColor: '#70d1f6',
+				borderColor: '#70d1f6',
+				data: [300,299,200,300]
+			}, {
+				backgroundColor: '#9b76b7',
+				borderColor: '#9b76b7',
+				data: [99,199,300,200]
+			},
+			{
+				backgroundColor: '#c05996',
+				borderColor: '#c05996',
+				data: [99,99,200,300]
+			}]
+
+		};
+
+		window.onload = function() {
+			var ctx1 = document.getElementById('invoiceChart').getContext('2d');
+			window.myHorizontalBar = new Chart(ctx1, {
+				type: 'horizontalBar',
+				data: horizontalBarChartData1,
+				options: {
+					elements: {
+						rectangle: {
+							borderWidth: 1,
+						}
+					},
+
+					responsive: true,
+					legend: {
+						display:false,
+						position: 'right',
+					},
+					title: {
+						display: false
+					},
+
+					scales: {
+						xAxes: [{
+            gridLines: {
+                display:false
+            }
+        }],
+        yAxes: [{
+					barPercentage: 0.6,
+    			categoryPercentage: 0.7,
+						position: 'top',
+            ticks: {
+                beginAtZero: true,
+            },
+						gridLines: {
+                display:false
+            }
+        }]
+    }
+				}
+			});
+
+      var ctx2 = document.getElementById('profitlossChart').getContext('2d');
+			window.myHorizontalBar1 = new Chart(ctx2, {
+				type: 'horizontalBar',
+				data: horizontalBarChartData2,
+				options: {
+					elements: {
+						rectangle: {
+							borderWidth: 1,
+						}
+					},
+
+					responsive: true,
+					legend: {
+						display:false,
+						position: 'right',
+					},
+					title: {
+						display: false
+					},
+
+					scales: {
+						xAxes: [{
+            gridLines: {
+                display:false
+            }
+        }],
+        yAxes: [{
+					barPercentage: 0.6,
+    			categoryPercentage: 0.7,
+						position: 'top',
+            ticks: {
+                beginAtZero: true,
+            },
+						gridLines: {
+                display:false
+            }
+        }]
+    }
+				}
+			});
+
+		};
+	</script>
+
+  </body>
+</html>
