@@ -147,13 +147,29 @@ html, body{
 	flex-grow: 1;
 flex-basis:0;
 }
+.page-wrapper .top-header{
+	border:1px solid #d7dde1;
+	background:#fff;
+}
+.page-wrapper .top-header .title{
+	padding:10px 10px;
+	font-size: 14px;
+	color: #000;
+}
+.page-wrapper .top-header .header-right .btn{
+	font-size: 11px;
+    height: 25px;
+    padding: 3px 10px;
+    margin: 6px 0;
+}
 .page-wrapper .page-row{
 	margin-bottom:10px;
 }
 .page-wrapper .card{
 	width:100%;
 	-webkit-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.1);
--moz-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.1);
+-moz-box-shadow: 2px 2px 3px 0px rgba(0,0:1px solid #d7dde1;
+	background:#fff;,0,0.1);
 box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.1);
 border:0;
 -moz-border-radius: 4px;
@@ -294,7 +310,149 @@ border-radius: 4px;
 	margin-left:5px;
 }
 
+.table-wrapper{
+	position: relative;
+}
 
+.customisation-btn-wrapper {
+	position: absolute;
+    height: 29px;
+    right: 1px;
+    top: 7px;
+	z-index: 12;
+	background: #fff;
+}
+.customisation-btn {
+    position: relative;
+    /*background: url(images/customisation-icon.png); */
+    background-repeat: no-repeat;
+    background-position: center;
+    border-right: none;
+    width: 30px;
+    height: 29px;
+    display: inline-block;
+    border-left: 1px solid #efefef;
+    -moz-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+		text-align: center;
+    padding: 5px 0;
+}
+.customisation-btn-wrapper .customisation-dropdown {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: #fff;
+    width: 300px;
+    padding: 10px 15px;
+    padding-bottom: 5px;
+    text-align: left;
+    background-color: #fff;
+    box-shadow: 0px 1px 5px 0px #E3E3E3;
+    -webkit-box-shadow: 0px 1px 5px 0px #E3E3E3;
+    -moz-box-shadow: 0px 1px 5px 0px #E3E3E3;
+    -o-box-shadow: 0px 1px 5px 0px #E3E3E3;
+    z-index: 99;
+}
+.customisation-btn-wrapper.active .customisation-dropdown{
+  display: block;
+}
+.customisation-btn-wrapper.active .customisation-btn{
+  background-color: #e3f0f2;
+  color: #fff;
+}
+.customisation-btn:hover{
+  background-color: #e3f0f2;
+}
+.customisation-btn-wrapper .customisation-dropdown li{
+  width: 50%;
+  float: left;
+  padding: 5px 0;
+}
+.customisation-btn-wrapper .customisation-dropdown li .checkbox {
+    width: 80%;
+    display: inline-block;
+    font-size: 12px;
+    vertical-align: middle;
+    line-height: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.customisation-btn-wrapper input[type=checkbox]~.text {
+    padding-left: 2px;
+    color: #9199a5;
+    font-size: 12px;
+}
+.customisation-btn-wrapper input[type=checkbox]~.text:before{
+  top: -1px;
+  width: 13px;
+  height: 13px;
+  font-size: 13px;
+  color: #143153;
+}
+.customisation-btn-wrapper input[type=checkbox]:checked~.text{
+  font-weight: 600;
+  color: #143153;
+}
+.customisation-btn-wrapper input[type=checkbox]:checked~.text:before{
+  color: #238693;
+}
+.customisation-btn-wrapper li .drag-icon {
+    background: url(../images/cus-drag-icon.png);
+    background-repeat: no-repeat;
+    background-position: 0px 13px;
+    width: 12px;
+    height: 13px;
+    display: inline-block;
+    padding: 0;
+    margin-top: 3px;
+    margin-right: 2px;
+    float: left;
+    cursor: pointer;
+    background-position-y: center;
+}
+.table-wrapper .table{
+	border-collapse: collapse!important;
+}
+.table-wrapper .table tbody td{
+	vertical-align: middle;
+	    font-weight: 600;
+	    padding: 7px 10px;
+	    border-top: none;
+	    border-bottom: 1px solid #eef4f9;
+			font-size: 11px;
+			color: #000;
+			border-right: 0;
+}
+.table-wrapper .table thead th.w-xs{
+	width:50px!important;
+	min-width: 50px!important;
+}
+.table-wrapper .table tbody tr:nth-child(even){
+	background: #f2f2f2;
+}
+.table-wrapper .table th.sorting_asc,
+.table-wrapper .table th.sorting_desc{
+	background: transperant!important;
+}
+.table-wrapper .table thead th{
+	border-top: 1px solid #d7dee5!important;
+	border-right: 0!important;
+}
+.table-wrapper .table>thead>tr>th:last-child{
+	border-right:1px solid #d7dee5!important;
+}
+div.dataTables_wrapper div.dataTables_length label:after,
+.previous a:after, .next a:after{
+	font-family: 'Font Awesome 5 Pro';
+}
+.previous a:after, .next a:after{
+	content: '';
+}
+.table-wrapper .dataTables_wrapper .dataTables_length select.custom-select{
+	float: left;
+}
 /*.page-wrapper {
 @include make-container();
 }

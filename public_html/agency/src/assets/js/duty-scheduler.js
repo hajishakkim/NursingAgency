@@ -8,14 +8,67 @@
  Author     : ansar
  */
 $(function () {
+  /*-- Listing table --*/
+       $('#listing-table').DataTable({
+            paging: true,
+            fixedHeader: {
+                header: true,
+                footer: false
+            },
+            "columnDefs": [{
+              "targets": "no-sort",
+              "orderable": false
+            }],
+            "pagingType": "full_numbers",
+            "searching": false,
+            "dom": '<"top"f>rt<"bottom"ilp><"clear">',
+            destroy: true,
+            "colReorder" : true
+
+        });
+             table = $('.listing-table').DataTable({
+                    paging: true,
+                   fixedHeader: {
+                        header: true,
+                        footer: false
+                    },
+                    "columnDefs": [{
+                      "targets": "no-sort",
+                    "orderable": false,
+                    }],
+                    "pagingType": "full_numbers",
+                    "searching": false,
+                    "dom": '<"top"f>rt<"bottom"ilp><"clear">',
+                    destroy: true,
+                    "order": [[0, "asc"]],
+                    "colReorder" : true
+               });
+        if ($('.handles').length) {
+               $('.handles').sortable({
+                   handle: 'span',
+                    items: 'li:not(.drag-false)',
+                    stop: function(event, ui) {
+                        var tbl = $('.listing-table');
+                        end_pos = ui.item.index();
+                        moveColumn(tbl, start_pos, end_pos);
+                    },
+                    start: function(event, ui) {
+                       start_pos = ui.item.index();
+                    }
+                });
+            }
+
+        $(document).on('click','.customisation-btn',function(){
+          $('.customisation-dropdown').slideToggle();
+        });
 
   //jQuery UI Datepicker
-  $(".custom-datepicker .form-control").datepicker({
+  /*$(".custom-datepicker .form-control").datepicker({
     changeMonth: true,
     changeYear: true,
     dateFormat: 'dd/mm/yy',
     container: 'body'
-  });
+  });*/
 
   //$('.scrolltab-list').scrollingTabs({bootstrapVersion: 4});
 
@@ -28,9 +81,31 @@ $('#sidebarMenu .collapse').collapse('hide');
   $('[data-toggle=sidebar-colapse]').click(function() {
       SidebarCollapse();
   });
-  
+
   //formwrapperHeight();
-  
+
+
+
+
+
+////    $(".customisation-btn").click(function() {
+////        $(".customisation-btn-wrapper").toggleClass("active");
+////    });
+//    if ($('.handles').length) {
+//        $('.handles').sortable({
+//            handle: 'span',
+//            items: 'li:not(.drag-false)',
+//            stop: function(event, ui) {
+//                var tbl = $('.listing-table');
+//                end_pos = ui.item.index();
+//                moveColumn(tbl, start_pos, end_pos);
+//            },
+//            start: function(event, ui) {
+//                start_pos = ui.item.index();
+//            }
+//        });
+//    }
+
 });
 
 
