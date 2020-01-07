@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListComponent } from './vaccancies/list/list.component';
 import { StaffListComponent } from './staffs/staff-list/staff-list.component';
+import { StaffFormComponent } from './staffs/staff-form/staff-form.component';
 
 const routes: Routes = [
   { path: 'staff', component: StaffListComponent },
