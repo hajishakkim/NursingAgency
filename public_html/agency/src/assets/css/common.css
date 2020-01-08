@@ -1319,7 +1319,7 @@ table.ui-timepicker {
   -o-transition: opacity 0.3s linear, right 0.3s ease-out;
   transition: opacity 0.3s linear, right 0.3s ease-out;
 }
-.custom-popup.right.fade.in .modal-dialog {
+.custom-popup.right.fade.show .modal-dialog {
   right: 0;
 }
 /*common right slider popup styels*/
@@ -1699,13 +1699,13 @@ table.ui-timepicker {
   background-repeat: no-repeat;
 }
 .table-wrap table.listing-table thead th.sorting {
-  /*background-image: url(../img/sort_both.png);*/
+  background-image: url(../images/sort_both.png);
 }
 .table-wrap table.listing-table thead th.sorting_asc {
-  /*background-image: url(../img/sort_asc.png);*/
+  background-image: url(../images/sort_asc.png);
 }
 .table-wrap table.listing-table thead th.sorting_desc {
-  /*background-image: url(../img/sort_desc.png);*/
+  background-image: url(../images/sort_desc.png);
 }
 /*Table common space style*/
 .table-wrap {
@@ -1872,13 +1872,13 @@ table.ui-timepicker {
   background-position: top 0px right -5px;
 }
 .table-wrapper table.dataTable thead .sorting .texts {
-  /*background-image: url(../img/sort_both.png);*/
+  background-image: url(../images/sort_both.png);
 }
 .table-wrapper table.dataTable thead .sorting_asc .texts {
-  /*background-image: url(../img/sort_asc.png);*/
+  background-image: url(../images/sort_asc.png);
 }
 .table-wrapper table.dataTable thead .sorting_desc .texts {
-  /*background-image: url(../img/sort_desc.png);*/
+  background-image: url(../images/sort_desc.png);
 }
 .table-wrapper table.dataTable thead .no-sort {
   background-image: none;
@@ -1930,7 +1930,7 @@ table.ui-timepicker {
   content: '';
   width: 55px;
   height: 58px;
-  /*background: url(../../../images/no-data-img.png) no-repeat;*/
+  background: url(../images/no-data-icon.png) no-repeat;
   display: block;
   margin: 0 auto;
   margin-bottom: 5px;
@@ -2219,7 +2219,7 @@ table.ui-timepicker {
   content: '';
   width: 55px;
   height: 58px;
-  /*background: url(../../../images/no-data-img.png) no-repeat;*/
+  background: url(../images/no-data-icon.png) no-repeat;
   display: block;
   margin: 0 auto;
   margin-bottom: 8px;

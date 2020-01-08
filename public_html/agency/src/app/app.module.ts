@@ -13,6 +13,12 @@ import { StaffRateModule } from './staff-rate/staff-rate.module';
 import { DocumentTypeModule } from './document-type/document-type.module';
 import { HolidaysModule } from './holidays/holidays.module';
 import { VacanciesModule } from './vacancies/vacancies.module';
+import { CandidatesModule } from './candidates/candidates.module';
+import { TimeSheetsModule } from './time-sheets/time-sheets.module';
+import { BookingsModule } from './bookings/bookings.module';
+import { HistoryModule } from './history/history.module';
+import { InvoiceModule } from './invoice/invoice.module';
+import { ReportsModule } from './reports/reports.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,13 @@ import { VacanciesModule } from './vacancies/vacancies.module';
     StaffRateModule,
     DocumentTypeModule,
     HolidaysModule,
-    VacanciesModule
+    VacanciesModule,
+    CandidatesModule,
+    TimeSheetsModule,
+    BookingsModule,
+    HistoryModule,
+    InvoiceModule,
+    ReportsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
