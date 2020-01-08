@@ -26,23 +26,6 @@ $(function () {
             "colReorder" : true
 
         });
-             table = $('.listing-table').DataTable({
-                    paging: true,
-                   fixedHeader: {
-                        header: true,
-                        footer: false
-                    },
-                    "columnDefs": [{
-                      "targets": "no-sort",
-                    "orderable": false,
-                    }],
-                    "pagingType": "full_numbers",
-                    "searching": false,
-                    "dom": '<"top"f>rt<"bottom"ilp><"clear">',
-                    destroy: true,
-                    "order": [[0, "asc"]],
-                    "colReorder" : true
-               });
         if ($('.handles').length) {
                $('.handles').sortable({
                    handle: 'span',

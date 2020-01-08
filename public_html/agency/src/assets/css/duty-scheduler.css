@@ -396,7 +396,7 @@ border-radius: 4px;
   color: #143153;
 }
 .customisation-btn-wrapper input[type=checkbox]:checked~.text:before{
-  color: #238693;
+  color: #0054a6;
 }
 .customisation-btn-wrapper li .drag-icon {
     background: url(../images/cus-drag-icon.png);
@@ -432,9 +432,11 @@ border-radius: 4px;
 .table-wrapper .table tbody tr:nth-child(even){
 	background: #f2f2f2;
 }
-.table-wrapper .table th.sorting_asc,
-.table-wrapper .table th.sorting_desc{
-	background: transperant!important;
+table.dataTable thead>tr>th.sorting_asc,
+table.dataTable thead>tr>th.sorting_desc,
+table.dataTable thead>tr>td.sorting_asc,
+table.dataTable thead>tr>td.sorting_desc{
+	background: #f7fbfc!important;
 }
 .table-wrapper .table thead th{
 	border-top: 1px solid #d7dee5!important;
@@ -452,6 +454,19 @@ div.dataTables_wrapper div.dataTables_length label:after,
 }
 .table-wrapper .dataTables_wrapper .dataTables_length select.custom-select{
 	float: left;
+}
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .no-sort:before,
+table.dataTable thead .no-sort:after{
+	content: '';
+}
+table.dataTable thead th.actions-th{
+	padding-right: 40px!important;
 }
 /*.page-wrapper {
 @include make-container();
@@ -476,10 +491,11 @@ div.dataTables_wrapper div.dataTables_length label:after,
 @media only screen and (max-width: 992px) {
 
 }
-
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-
+	.modal-dialog {
+	    max-width: 100%;
+	}
 }
 
 /* Medium devices (landscape tablets, 768px and up) */

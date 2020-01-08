@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as $ from 'node_modules/jquery/dist/jquery';
+
 
 @Component({
   selector: 'app-staff-list',
