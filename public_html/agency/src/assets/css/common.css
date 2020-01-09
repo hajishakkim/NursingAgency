@@ -80,16 +80,18 @@ and open the template in the editor.
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
   background: #e7e7e7;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d1d3d5;
-  border: 0;
+  background: #f2f6fa;
+  border-radius:16px;
+  border:5px solid #f2f6fa;
 }
+
 
 /* Placeholder */
 ::-webkit-input-placeholder {

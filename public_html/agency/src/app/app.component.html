@@ -5,22 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Duty Scheduler</title>
-    <link href="images/icons/Developer-Fav-Icon-16x16.ico" rel="shortcut icon" type="images/icon">    
+    <title>Duty Scheduler</title>   
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
           <div class=" sidebar-nav sidebar-expanded d-none d-md-block" id="sidebarMenu">
+            <div class="d-flex logo-wrap w-100">
+              <img src="../assets/images/logo.png" alt="logo" />
+            </div>
             <ul class="menu-list">
               <li class="list-item">
-                <div class="d-flex agency-logo align-items-center menu-item w-100">
+                <div class="d-flex agency-logo align-items-center menu-item">
                   <span class="menu-icon"><i class="far fa-home"></i></span>
                   <span class="menu-text menu-collapsed">Home</span>
                 </div>
               </li>
-              <li class="list-item submenu-item flex-column align-items-start" data-target="#submenu1" data-toggle="collapse" aria-expanded="false">
-                <div class="d-flex  align-items-center menu-item w-100">
+              <li class="list-item submenu-item flex-column" data-target="#submenu1" data-toggle="collapse" aria-expanded="false">
+                <div class="d-flex  align-items-center menu-item">
                   <span class="menu-icon"><i class="far fa-home"></i></span>
                   <span class="menu-text menu-collapsed">Master</span>
                   <span class="submenu-icon ml-auto"></span>
@@ -42,31 +44,31 @@
               </li>
 
               <li class="list-item">
-                <div class="d-flex  align-items-center menu-item w-100">
+                <div class="d-flex  align-items-center menu-item">
                   <span class="menu-icon"><i class="far fa-user"></i></span>
                   <span class="menu-text menu-collapsed" routerLink='/candidates' >Candidates</span>
                 </div>
               </li>
               <li class="list-item">
-                <div class="d-flex  align-items-center menu-item w-100">
+                <div class="d-flex  align-items-center menu-item">
                   <span class="menu-icon"><i class="far fa-clock"></i></span>
                   <span class="menu-text menu-collapsed" routerLink='/time-sheets' >Timesheets</span>
                 </div>
               </li>
               <li class="list-item">
-                <div class="d-flex  align-items-center menu-item w-100">
+                <div class="d-flex  align-items-center menu-item">
                   <span class="menu-icon"><i class="far fa-calendar-check"></i></span>
                   <span class="menu-text menu-collapsed" routerLink='/bookings'>Bookings</span>
                 </div>
               </li>
               <li class="list-item">
-                <div class="d-flex  align-items-center menu-item w-100">
+                <div class="d-flex  align-items-center menu-item">
                   <span class="menu-icon"><i class="far fa-history"></i></span>
                   <span class="menu-text menu-collapsed" routerLink='/history'>Historical</span>
                 </div>
               </li>
-              <li class="list-item submenu-item flex-column align-items-start" data-target="#submenu1" data-toggle="collapse" aria-expanded="false">
-                <div class="d-flex  align-items-center menu-item w-100">
+              <li class="list-item submenu-item flex-column" data-target="#submenu1" data-toggle="collapse" aria-expanded="false">
+                <div class="d-flex  align-items-center menu-item">
                   <span class="menu-icon"><i class="far fa-dollar-sign"></i></span>
                   <span class="menu-text menu-collapsed" routerLink='/invoice'>Invoice</span>
                   <span class="submenu-icon ml-auto"></span>
@@ -81,13 +83,13 @@
               </div>
               </li>
               <li class="list-item">
-                <div class="d-flex  align-items-center menu-item w-100">
+                <div class="d-flex  align-items-center menu-item">
                   <span class="menu-icon"><i class="far fa-user-tie"></i></span>
                   <span class="menu-text menu-collapsed" routerLink='/vacancies' >Vacancies</span>
                 </div>
               </li>
-              <li class="list-item submenu-item flex-column align-items-start" data-target="#submenu1" data-toggle="collapse" aria-expanded="false">
-                <div class="d-flex  align-items-center menu-item w-100">
+              <li class="list-item submenu-item flex-column" data-target="#submenu1" data-toggle="collapse" aria-expanded="false">
+                <div class="d-flex  align-items-center menu-item">
                   <span class="menu-icon"><i class="far fa-file"></i></span>
                   <span class="menu-text menu-collapsed" routerLink='/reports'>Reports</span>
                   <span class="submenu-icon ml-auto"></span>
@@ -101,12 +103,20 @@
                 </ul>
               </div>
               </li>
-              <li class="list-item">
-                <div data-toggle="sidebar-colapse" class="d-flex  align-items-center menu-item w-100">
-                  <span id="collapse-icon"><i class="far fa-angle-double-left"></i></span>
-                </div>
-              </li>
             </ul>
+
+            <div class="sidebar-toggle">
+              <label class="switch">
+                <input type="checkbox" data-toggle='collapse' class="sidebar-colapse">
+                <span class="slider"></span>
+              </label>
+              <!----<div class="checkbox">
+                <input type="checkbox">
+                <label></label>
+              </div>-->
+            </div>
+            
+
           </div>
         <div class="col p-0 main-content-wrapper">
           <div class="col-12 p-0 d-flex page-header">
