@@ -45,7 +45,9 @@
         "src/assets/js/dataTables.min.js",
         "src/assets/js/jquery.dataTables.min.js",
         "src/assets/js/dataTables.bootstrap4.min.js",
-        "src/assets/js/jquery.sortable.min.js"
+        "src/assets/js/jquery.sortable.min.js",
+        "src/assets/js/common.js"
+
 			]
           },
           "configurations": {

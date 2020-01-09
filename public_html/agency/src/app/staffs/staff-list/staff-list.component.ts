@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'node_modules/jquery/dist/jquery';
-
-
+declare function setDataTable(options:any,table: string): void;
 @Component({
   selector: 'app-staff-list',
   templateUrl: './staff-list.component.html',
@@ -12,6 +10,7 @@ export class StaffListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    setDataTable(null,'');
   }
 
 }

@@ -14,15 +14,18 @@ $(document).ready(function() {
   //});
 
   //tooltip initialization
-  $('[data-toggle="tooltip"]').tooltip({
-    container: 'body',
-    trigger: 'hover'
-  });
-
+  try{
+    $('[data-toggle="tooltip"]').tooltip({
+      container: 'body',
+      trigger: 'hover'
+    });
+  }catch(e){}
   // Bootstrap Select
-  $('.selectpicker').selectpicker({
-    container: 'body'
-  });
+  try{
+    $('.selectpicker').selectpicker({
+      container: 'body'
+    });
+  }catch(e){}
 
   // Bootstrap multi-Selectpicker
   //$('.mulitselectpicker').multiselectpicker({
@@ -282,3 +285,25 @@ function fixedHeaderTable(ths) {
     ths.find('.table-header-inner').scrollLeft(e.target.scrollLeft);
   });
 };
+function setDataTable(options,table){
+  var default_options = {
+    paging: true,
+    fixedHeader: {
+        header: true,
+        footer: false
+    },
+    "columnDefs": [{
+      "targets": "no-sort",
+      "orderable": false
+    }],
+    "pagingType": "full_numbers",
+    "searching": false,
+    "dom": '<"top"f>rt<"bottom"ilp><"clear">',
+    destroy: true,
+    "colReorder" : true
+
+  };
+  options = (options != null) ? options : default_options
+  table = (table!='') ? table : '#listing-table';
+  $(table).DataTable(options);
+}

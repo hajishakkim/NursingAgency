@@ -8,24 +8,7 @@
  Author     : ansar
  */
 $(function () {
-  /*-- Listing table --*/
-       $('#listing-table').DataTable({
-            paging: true,
-            fixedHeader: {
-                header: true,
-                footer: false
-            },
-            "columnDefs": [{
-              "targets": "no-sort",
-              "orderable": false
-            }],
-            "pagingType": "full_numbers",
-            "searching": false,
-            "dom": '<"top"f>rt<"bottom"ilp><"clear">',
-            destroy: true,
-            "colReorder" : true
-
-        });
+  /*-- Listing table --*/       
         if ($('.handles').length) {
                $('.handles').sortable({
                    handle: 'span',
