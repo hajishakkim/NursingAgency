@@ -24,28 +24,76 @@ html, body{
 .main-wrapper{
   padding: 10px;
 }
+#sidebarMenu .logo-wrap{
+  height: 60px;
+}
 .sidebar-nav{
   min-height: 100vh;
   background: #0054a6;
   padding: 0;
   transition:0.3s;
   left:0;
-
+  position: relative;
 }
-.menu-list .menu-item{
+.sidebar-expanded .menu-list {
+  float: left;
+  width: 100%;
+  height: calc(100vh - 120px);
+  overflow: auto;
+}
+.sidebar-expanded .menu-list .list-item{
+  float: left;
+  width: 100%;
+  transition:all 0.5s ease-in;
+}
+.sidebar-expanded .menu-list .menu-item{
   height: 50px;
   padding: 15px;
   font-size: 15px;
   color: #fff;
   cursor:pointer;
+}
+.sidebar-expanded .menu-list .list-item:hover,
+.sidebar-expanded .menu-list .list-item:focus,
+.sidebar-expanded .menu-list .list-item.active{
+	background:#1a74cc;
+}
+
+.sidebar-collapsed .menu-list .list-item{
+  float: left;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+    display: flex;
+    justify-content: center;
   transition:all 0.5s ease-in;
 }
-.menu-list .menu-item:hover,
-.menu-list .menu-item:focus
-.menu-list .menu-item.active{
-	background:#1a74cc;
-
+.sidebar-collapsed .menu-list .menu-item{
+  width:33px;
+  height: 33px;
+  display: inline-block;
+  background: transparent;
+  border: 1px solid transparent;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  padding: 15px;
+  font-size: 15px;
+  color: #fff;
+  cursor:pointer;
+  -moz-transition:all 0.5s ease-in;
+  -webkit-transition:all 0.5s ease-in;
+  transition:all 0.5s ease-in;
 }
+.sidebar-collapsed .menu-list .list-item:hover .menu-item,
+.sidebar-collapsed .menu-list .list-item:focus .menu-item,
+.sidebar-collapsed .menu-list .list-item.active .menu-item{
+  background:#fff;
+  border-color: #fff;
+  color: #0054a6;
+}
+
+
 .sidebar-collapsed .menu-list .menu-item{
 	justify-content:center;
 }
@@ -54,7 +102,7 @@ html, body{
 }
 /* Sidebar sizes when expanded and collapsed */
 .sidebar-expanded {
-    width: 150px;
+    width: 200px;
 }
 .sidebar-collapsed {
     width: 70px;
@@ -62,10 +110,14 @@ html, body{
 .sidebar-submenu .submenu-list{
   list-style-type: none;
 }
+.sidebar-submenu .submenu-list{
+  float:left;
+  width:100%
+}
 .sidebar-submenu .submenu-list li a{
   float:left;
   width:100%;
-  padding: 5px 15px;
+  padding: 10px 15px;
   font-size: 13px;
   color: #fff;
   background:#065db2;
@@ -87,6 +139,76 @@ html, body{
   text-align: right;
   padding-left: 10px;
 }
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin-bottom: 0;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.sidebar-toggle{
+  position: absolute;
+    bottom: 20px;
+    right: 0;
+    left: 0;
+    text-align: center;
+}
+.sidebar-toggle .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #266db3;
+  border:1px solid #266db3;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.sidebar-toggle .slider:before {
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 4px;
+  left: 4px;
+  bottom: 3px;
+  background-color: #00ffff;
+  border:1px solid #00ffff;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.sidebar-toggle input:checked + .slider {
+  background-color: #266db3;
+}
+
+.sidebar-toggle input:focus + .slider {
+  box-shadow: 0 0 1px #266db3;
+}
+
+.sidebar-toggle input:checked + .slider:before {
+  -webkit-transform: translateX(11px);
+  -ms-transform: translateX(11px);
+  transform: translateX(11px);
+}
+
 
 .main-content-wrapper{
   background:#fff;

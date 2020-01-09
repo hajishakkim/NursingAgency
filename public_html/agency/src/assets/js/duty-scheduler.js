@@ -44,6 +44,10 @@ $(function () {
         $(document).on('click','.customisation-btn',function(){
           $('.customisation-dropdown').slideToggle();
         });
+        $(document).on('click','.sidebar-colapse',function(){
+          //alert('hi');
+            SidebarCollapse();
+        });
 
   //jQuery UI Datepicker
   /*$(".custom-datepicker .form-control").datepicker({
@@ -61,9 +65,7 @@ $(function () {
 $('#sidebarMenu .collapse').collapse('hide');
 
   // Collapse click
-  $('[data-toggle=sidebar-colapse]').click(function() {
-      SidebarCollapse();
-  });
+
 
   //formwrapperHeight();
 
