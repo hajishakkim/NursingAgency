@@ -1,0 +1,110 @@
+
+    <div class="d-flex top-header">
+      <div class="col title"><h5>Jobs</h5></div>
+      <div class="col-auto header-right float-right"><a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a></div>
+    </div>
+    <div class="col-12 p-0 table-wrapper">
+      <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
+        <a href="#" class="customisation-btn"></a>
+        <div class="customisation-dropdown animated fadeIn">
+          <ul class="handles list ui-sortable">
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Sl No</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Category</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Document Type</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Actions</span>
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <table class="table table-responsive listing-table" id="listing-table">
+        <thead>
+          <tr>
+            <th class="w-xs no-sort"><span>Sl No</span></th>
+            <th class="sorting"><span class="texts">Category</span></th>
+            <th class="sorting"><span class="texts">Document Type</span></th>
+            <th class="no-sort actions-th"><span>Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><span class="text">Adress Proof1</span></td>
+            <td><span class="text">Bank staement</span></td>
+            <td>
+              <a href="#!"><i class="far fa-pencil"></i></a>
+              <a href="#!"><i class="far fa-trash-alt"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Adress Proof2</td>
+            <td>Bank Statement</td>
+            <td>
+              <a href="#!"><i class="far fa-pencil"></i></a>
+              <a href="#!"><i class="far fa-trash-alt"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Adress Proof3</td>
+            <td>Bank Statement</td>
+            <td>
+              <a href="#!"><i class="far fa-pencil"></i></a>
+              <a href="#!"><i class="far fa-trash-alt"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- right modal -->
+    <div class="modal fade custom-popup right" id="addnew-modal" role="dialog" tabindex='-1'>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Add jobs</h4>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+          </div>
+          <div class="modal-body">
+            <app-jobs-form></app-jobs-form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-primary" type="button">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- right modal -->
+  
