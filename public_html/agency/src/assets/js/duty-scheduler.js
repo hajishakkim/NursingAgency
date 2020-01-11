@@ -27,10 +27,31 @@ $(function () {
         $(document).on('click','.customisation-btn',function(){
           $('.customisation-dropdown').slideToggle();
         });
+
+        $(document).on('click','.user-info',function(){
+          $('.user-settings-list').slideToggle();
+        });
+        
+        $(document).on('click','.submenu-list',function(e){
+          e.preventDefault();
+          $(this).toggleClass('opened');
+          $(this).closest('.submenu-list').find('.sidebar-submenu').slideToggle();
+        });
+
+        $(document).on('click','.submenu-item', function (e) {
+          return false;
+        });
+        
+
+
         $(document).on('click','.sidebar-colapse',function(){
           //alert('hi');
             SidebarCollapse();
         });
+
+        
+        
+
 
   //jQuery UI Datepicker
   /*$(".custom-datepicker .form-control").datepicker({
