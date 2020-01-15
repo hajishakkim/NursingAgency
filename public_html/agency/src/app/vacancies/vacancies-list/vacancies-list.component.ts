@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { VacanciesFormComponent } from '../vacancies-form/vacancies-form.component';
 declare function setDataTable(options:any,table: string): void;
 @Component({
   selector: 'app-vacancies-list',
@@ -6,7 +7,7 @@ declare function setDataTable(options:any,table: string): void;
   styleUrls: ['./vacancies-list.component.css']
 })
 export class VacanciesListComponent implements OnInit {
-
+  @ViewChild('app_vacancies_form', {static: false}) app_vacancies_form:VacanciesFormComponent;
   constructor() { }
 
   ngOnInit() {
@@ -15,5 +16,10 @@ export class VacanciesListComponent implements OnInit {
   ngAfterContentInit(){    
     
   }
-
+  saveForm(formData:any) {
+    console.log(formData);
+  }
+  formSubmit(){
+    this.app_vacancies_form.saveForm();
+  }
 }

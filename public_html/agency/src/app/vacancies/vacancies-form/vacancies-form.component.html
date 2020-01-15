@@ -1,22 +1,22 @@
-<form >
+<form [formGroup]="form">
                  <div class="col-12 form-wrapper">
                      <div class="row">
                         <div class="col-4">
                             <div class="form-group">
                                 <label>Referance no</label>
-                                <input [(ngModel)]="vaccancy_ref_number" type="text" class="form-control" />
+                                <input name="vaccancy_ref_number" formControlName="vaccancy_ref_number" [(ngModel)]="vaccancy.vaccancy_ref_number" type="text" class="form-control" />
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
                                 <label>Date</label>
-                                <input [(ngModel)]="vaccancy_date" type="text" class="form-control" />
+                                <input name="vaccancy_date" formControlName="vaccancy_date" [(ngModel)]="vaccancy.vaccancy_date" type="text" class="form-control" />
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
                                 <label>Client</label>
-                                <select [(ngModel)]="vaccancy_cilent" class="form-control selectpicker" data-container="body">
+                                <select name="vaccancy_cilent" formControlName="vaccancy_cilent" [(ngModel)]="vaccancy.vaccancy_cilent" class="form-control selectpicker" data-container="body">
                                    <option>Option1</option>
                                    <option>Option2</option>
                                    <option>Option3</option>
@@ -29,7 +29,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label>Businees Unit</label>
-                                <select [(ngModel)]="vaccancy_business" class="form-control selectpicker" data-container="body">
+                                <select name="vaccancy_business" formControlName="vaccancy_business" [(ngModel)]="vaccancy.vaccancy_business" class="form-control selectpicker" data-container="body">
                                    <option>Option1</option>
                                    <option>Option2</option>
                                    <option>Option3</option>
@@ -42,7 +42,7 @@
                        <div class="col-4">
                         <div class="form-group">
                             <label>Shift Type</label>
-                            <select [(ngModel)]="vaccancy_staff_shift" class="form-control selectpicker" data-container="body">
+                            <select name="vaccancy_staff_shift" formControlName="vaccancy_staff_shift" [(ngModel)]="vaccancy.vaccancy_staff_shift" class="form-control selectpicker" data-container="body">
                                <option>Option1</option>
                                <option>Option2</option>
                                <option>Option3</option>
@@ -55,7 +55,7 @@
                        <div class="col-4">
                         <div class="form-group">
                             <label>Job</label>
-                            <select [(ngModel)]="vaccancy_job"class="form-control selectpicker" data-container="body">
+                            <select name="vaccancy_job" formControlName="vaccancy_job" [(ngModel)]="vaccancy.vaccancy_job" class="form-control selectpicker" data-container="body">
                             <option>Option1</option>
                             <option>Option2</option>
                             <option>Option3</option>
@@ -68,25 +68,25 @@
                        <div class="col-4">
                             <div class="form-group">
                             <label>Break Time</label>
-                            <input [(ngModel)]="vaccancy_break_time" type="text" class="form-control" />
+                            <input name="vaccancy_break_time" formControlName="vaccancy_break_time" [(ngModel)]="vaccancy.vaccancy_break_time" type="text" class="form-control" />
                             </div>
                         </div>                        
                         <div class="col-4">
                             <div class="form-group">
                                <label>Space</label>
-                               <input [(ngModel)]="vaccancy_space" type="text" class="form-control" />
+                               <input name="vaccancy_space" formControlName="vaccancy_space" [(ngModel)]="vaccancy.vaccancy_space" type="text" class="form-control" />
                             </div>
                         </div>                  
                          <div class="col-4">
                              <div class="form-group">
                                 <label>Location</label>
-                                <input [(ngModel)]="vaccancy_location" type="text" class="form-control" />
+                                <input name="vaccancy_location" formControlName="vaccancy_location" [(ngModel)]="vaccancy.vaccancy_location" type="text" class="form-control" />
                              </div>
                          </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Details</label>
-                                <input [(ngModel)]="vaccancy_details" type="text" class="form-control" />
+                                <input name="vaccancy_details" formControlName="vaccancy_details" [(ngModel)]="vaccancy.vaccancy_details" type="text" class="form-control" />
                             </div>
                         </div>                         
                     </div>
