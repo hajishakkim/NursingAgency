@@ -32,7 +32,8 @@ const routes: Routes = [
   { path: 'history', component: HistoryListComponent },
   { path: 'invoice', component: InvoiceListComponent },
   { path: 'reports', component: ReportsListComponent },
-  { path: '',   redirectTo: '', pathMatch: 'full' },
+  //{ path: '',   redirectTo: '', pathMatch: 'full' },
+  { path: '',   component: VacanciesListComponent },
 ];
 
 @NgModule({

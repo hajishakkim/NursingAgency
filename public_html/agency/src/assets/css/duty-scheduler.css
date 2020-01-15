@@ -37,8 +37,11 @@ html, body{
   align-items: center;
   justify-content: center;
 }
-#sidebarMenu .logo-wrap img{
-  width:38px;
+.sidebar-expanded .expanded-logo img{
+  width: 114px;
+  height: 46px;
+}
+.sidebar-collapsed .collapsed-logo img{
   height: 46px;
 }
 .sidebar-nav{
@@ -49,6 +52,15 @@ html, body{
   left:0;
   position: relative;
 }
+.sidebar-expanded .collapsed-logo,
+.sidebar-collapsed .expanded-logo{
+  display: none;
+}
+.sidebar-expanded .expanded-logo,
+.sidebar-collapsed .collapsed-logo{
+  display: block;
+}
+
 .sidebar-expanded .menu-list {
   float: left;
   width: 100%;

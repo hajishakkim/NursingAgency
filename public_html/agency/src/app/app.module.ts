@@ -45,7 +45,8 @@ import { ReportsModule } from './reports/reports.module';
     BookingsModule,
     HistoryModule,
     InvoiceModule,
-    ReportsModule
+    ReportsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
