@@ -286,24 +286,18 @@ function fixedHeaderTable(ths) {
   });
 };
 function setDataTable(options,table){
+  console.log(options);
   var default_options = {
     paging: true,
-    fixedHeader: {
-        header: true,
-        footer: false
-    },
-    "columnDefs": [{
-      "targets": "no-sort",
-      "orderable": false
-    }],
-    "pagingType": "full_numbers",
-    "searching": false,
-    "dom": '<"top"f>rt<"bottom"ilp><"clear">',
-    destroy: true,
-    "colReorder" : true
+    
+
 
   };
-  options = (options != null) ? options : default_options
+  options = (options != null) ? options : default_options;
   table = (table!='') ? table : '#listing-table';
   $(table).DataTable(options);
+}
+function setDataTableInit(table){
+  table = (table!='') ? table : '#listing-table';
+  $(table).DataTable();
 }

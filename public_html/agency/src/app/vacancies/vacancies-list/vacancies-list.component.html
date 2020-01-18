@@ -22,7 +22,7 @@
               <div class="checkbox">
                 <label>
                   <input type="checkbox">
-                  <span class="text">Category</span>
+                  <span class="text">Referance no</span>
                 </label>
               </div>
             </li>
@@ -51,39 +51,39 @@
         <thead>
           <tr>
             <th class="w-xs no-sort"><span>Sl No</span></th>
-            <th class="sorting"><span class="texts">Category</span></th>
-            <th class="sorting"><span class="texts">Document Type</span></th>
+            <th class="sorting"><span class="texts">Referance no</span></th>
+            <th class="sorting"><span class="texts">Date</span></th>
+            <th class="sorting"><span class="texts">Client</span></th>
+            <th class="sorting"><span class="texts">Buisiness Unit</span></th>
+            <th class="sorting"><span class="texts">Shift Type</span></th>
+            <th class="sorting"><span class="texts">Job</span></th>
+            <th class="sorting"><span class="texts">Break Time</span></th>
+            <th class="sorting"><span class="texts">Space</span></th>
+            <th class="sorting"><span class="texts">Location</span></th>
+            <th class="sorting"><span class="texts">Details</span></th>
             <th class="no-sort actions-th"><span>Actions</span></th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td><span class="text">Adress Proof1</span></td>
-            <td><span class="text">Bank staement</span></td>
+          <tr *ngFor="let data of vacancy_data let rowIndex=index">
+            <td>{{rowIndex+1}}</td>
+            <td><span class="text">{{data.vaccancy_ref_number}}</span></td>
+            <td><span class="text">{{data.vaccancy_date}}</span></td>
+            <td><span class="text">{{data.vaccancy_cilent}}</span></td>
+            <td><span class="text">{{data.vaccancy_business}}</span></td>
+            <td><span class="text">{{data.vaccancy_staff_shift}}</span></td>
+            <td><span class="text">{{data.vaccancy_job}}</span></td>
+            <td><span class="text">{{data.vaccancy_break_time}}</span></td>
+            <td><span class="text">{{data.vaccancy_space}}</span></td>
+            <td><span class="text">{{data.vaccancy_location}}</span></td>
+            <td><span class="text">{{data.vaccancy_details}}</span></td>
             <td>
               <a href="#!"><i class="far fa-pencil"></i></a>
               <a href="#!"><i class="far fa-trash-alt"></i></a>
             </td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Adress Proof2</td>
-            <td>Bank Statement</td>
-            <td>
-              <a href="#!"><i class="far fa-pencil"></i></a>
-              <a href="#!"><i class="far fa-trash-alt"></i></a>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Adress Proof3</td>
-            <td>Bank Statement</td>
-            <td>
-              <a href="#!"><i class="far fa-pencil"></i></a>
-              <a href="#!"><i class="far fa-trash-alt"></i></a>
-            </td>
-          </tr>
+          
+          
         </tbody>
       </table>
     </div>
@@ -101,7 +101,7 @@
           </div>
           <div class="modal-footer">
             <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
-            <button class="btn btn-primary" type="button" (click)="formSubmit()">Save</button>
+            <button class="btn btn-primary" type="button" data-dismiss="modal" (click)="formSubmit()">Save</button>
           </div>
         </div>
       </div>
