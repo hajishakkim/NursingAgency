@@ -224,9 +224,6 @@ function dataTableDraw() {
     searching: false,
     dom: '<"top"f>rt<"bottom"ilp><"clear">',
     destroy: true,
-    "columnDefs": [
-      {targets: 'no-sort', orderable: false}
-    ],
     pageLength: 25,
     lengthMenu: [10, 25, 50, 100],
     responsive: true,

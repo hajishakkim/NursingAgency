@@ -10,7 +10,7 @@ export class StaffRateListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    setDataTable(null,'');
+    //setDataTable(null,'');
   }
 
 }

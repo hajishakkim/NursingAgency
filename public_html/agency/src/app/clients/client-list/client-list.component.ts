@@ -10,7 +10,7 @@ export class ClientListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    setDataTable(null,'');
+    //setDataTable(null,'');
   }
 
 }

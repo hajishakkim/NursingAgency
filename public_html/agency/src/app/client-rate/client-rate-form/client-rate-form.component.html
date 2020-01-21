@@ -1,10 +1,10 @@
-<form >
+<form [formGroup]="form">
                  <div class="col-12 form-wrapper">
                      <div class="row">
                          <div class="col-4">
                              <div class="form-group">
                                  <label>Select Client</label>
-                                 <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
+                                 <select class="form-control selectpicker"  formControlName="client" [(ngModel)]="clientRate.client"data-selected-text-format="count > 3" data-container="body">
                                     <option>Option1</option>
                                     <option>Option2</option>
                                     <option>Option3</option>
@@ -17,7 +17,7 @@
                          <div class="col-4">
                              <div class="form-group">
                                  <label>Select Business Unit</label>
-                                 <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
+                                 <select class="form-control selectpicker"  formControlName="business_unit" [(ngModel)]="clientRate.business_unit" data-selected-text-format="count > 3" data-container="body">
                                     <option>Option1</option>
                                     <option>Option2</option>
                                     <option>Option3</option>
@@ -30,7 +30,7 @@
                          <div class="col-4">
                              <div class="form-group">
                                  <label>select Job</label>
-                                 <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
+                                 <select class="form-control selectpicker"  formControlName="job" [(ngModel)]="clientRate.job" data-selected-text-format="count > 3" data-container="body">
                                  <option>Option1</option>
                                  <option>Option2</option>
                                  <option>Option3</option>
@@ -46,19 +46,19 @@
                          <div class="col-4">
                              <div class="form-group">
                                  <label>week Days</label>
-                                 <input type="text" class="form-control" />
+                                 <input type="text" formControlName="week_days" [(ngModel)]="clientRate.week_days" class="form-control" />
                              </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group">
                                 <label>Night Time</label>
-                                <input type="text" class="form-control" />
+                                <input type="text" formControlName="night_time" [(ngModel)]="clientRate.night_time" class="form-control" />
                              </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group">
                                  <label>Friday Night</label>
-                                 <input type="text" class="form-control" />
+                                 <input type="text" formControlName="friday_night" [(ngModel)]="clientRate.friday_night" class="form-control" />
                              </div>
                          </div>
                      </div>
@@ -66,19 +66,19 @@
                          <div class="col-4">
                             <div class="form-group">
                                 <label>Saturday Day</label>
-                                <input type="text" class="form-control" />
+                                <input type="text" formControlName="saturday_day" [(ngModel)]="clientRate.saturday_day" class="form-control" />
                             </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group">
                                 <label>Saturday Night</label>
-                                <input type="text" class="form-control" />
+                                <input type="text" formControlName="saturday_night" [(ngModel)]="clientRate.saturday_night" class="form-control" />
                              </div>
                          </div>
                          <div class="col-4">
                             <div class="form-group">
                                <label>Sunday Day</label>
-                               <input type="text" class="form-control" />
+                               <input type="text" formControlName="sunday_day" [(ngModel)]="clientRate.sunday_day" class="form-control" />
                             </div>
                         </div>
                      </div>
@@ -86,19 +86,19 @@
                             <div class="col-4">
                                <div class="form-group">
                                    <label>Sunday Night</label>
-                                   <input type="text" class="form-control" />
+                                   <input type="text" formControlName="sunday_night" [(ngModel)]="clientRate.sunday_night" class="form-control" />
                                </div>
                             </div> 
                             <div class="col-4">
                                 <div class="form-group">
                                     <label>Public Holiday Day</label>
-                                    <input type="text" class="form-control" />
+                                    <input type="text" formControlName="public_hodliday_day" [(ngModel)]="clientRate.public_hodliday_day" class="form-control" />
                                 </div>
                              </div> 
                              <div class="col-4">
                                 <div class="form-group">
                                     <label>Public Holiday Night</label>
-                                    <input type="text" class="form-control" />
+                                    <input type="text" formControlName="public_hodliday_night" [(ngModel)]="clientRate.public_hodliday_night" class="form-control" />
                                 </div>
                              </div> 
                         </div>
