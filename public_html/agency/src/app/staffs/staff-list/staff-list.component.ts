@@ -4,6 +4,7 @@ import { StaffList } from './staff-list';
 import { Observable, of } from 'rxjs';
 import * as $ from 'jquery';
 declare function setDataTable(options:any,table: string): void;
+declare function fixedHeaderTable(ele:any): void;
 @Component({
   selector: 'app-staff-list',
   templateUrl: './staff-list.component.html',
@@ -17,6 +18,7 @@ export class StaffListComponent implements OnInit {
 
   ngOnInit() {
     this.getStaffData();
+    
   }
   getStaffData() {
     this.api.getStaffData()
@@ -29,7 +31,8 @@ export class StaffListComponent implements OnInit {
         this.staff_data.push(data);
       }
       setTimeout( function(){
-        setDataTable(null,'');
+        fixedHeaderTable($('.listing-table-wrapper'));
+        //$('[data-toggle="tooltip"]').tooltip();
       },100);
     });
   }
