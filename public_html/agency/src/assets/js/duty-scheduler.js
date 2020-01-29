@@ -23,7 +23,7 @@ $(function () {
                    handle: 'span',
                     items: 'li:not(.drag-false)',
                     stop: function(event, ui) {
-                        var tbl = $('.listing-table');
+                        var tbl = $('.listing-table-wrap .table');
                         end_pos = ui.item.index();
                         moveColumn(tbl, start_pos, end_pos);
                     },
@@ -155,7 +155,7 @@ function fixedHeaderTable(ths) {
   var bodyWdth = ths.find('.table-body .table').outerWidth();
   ths.find('.table-header .table, .table-body .table').outerWidth(bodyWdth);
   var bodyTableHgt = ths.find('.table-body .table').outerHeight();
-  ths.find('.table-body').css('height', bodyHgt);
+  ths.find('.table-body').css('max-height', bodyHgt);
   
   if (bodyHgt < bodyTableHgt) {
     var scrollBarwdth = ths.find('.table-body')[0].offsetWidth - ths.find('.table-body')[0].clientWidth;

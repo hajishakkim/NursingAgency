@@ -3,9 +3,10 @@
       <div class="col title"><h5>Client Rate</h5></div>
       <div class="col-auto header-right float-right"><a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a></div>
     </div>
-    <div class="col-12 p-0 table-wrapper">
+
+    <div class="col-12 p-0 table-wrapper listing-table-wrapper">
       <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
-        <a href="#" class="customisation-btn"></a>
+        <a href="#!" class="customisation-btn"></a>
         <div class="customisation-dropdown animated fadeIn">
           <ul class="handles list ui-sortable">
             <li>
@@ -22,7 +23,7 @@
               <div class="checkbox">
                 <label>
                   <input type="checkbox">
-                  <span class="text">Category</span>
+                  <span class="text">Reference</span>
                 </label>
               </div>
             </li>
@@ -31,7 +32,43 @@
               <div class="checkbox">
                 <label>
                   <input type="checkbox">
-                  <span class="text">Document Type</span>
+                  <span class="text">Client</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Break Time</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Space</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Location</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Details</span>
                 </label>
               </div>
             </li>
@@ -47,49 +84,92 @@
           </ul>
         </div>
       </div>
-      <table class="table-responsive listing-table" id="listing-table">
-        <thead>
-          <tr>
-            <th class="w-xs no-sort"><span>Sl No</span></th>
-            <th class="sorting"><span class="texts">Client</span></th>
-            <th class="sorting"><span class="texts">Business Unit</span></th>
-            <th class="sorting"><span class="texts">Job</span></th>
-            <th class="sorting"><span class="texts">Week Days</span></th>
-            <th class="sorting"><span class="texts">Night Time</span></th>
-            <th class="sorting"><span class="texts">Friday Night</span></th>
-            <th class="sorting"><span class="texts">Saturday Day</span></th>
-            <th class="sorting"><span class="texts">Saturday Night</span></th>
-            <th class="sorting"><span class="texts">Sunday Day</span></th>
-            <th class="sorting"><span class="texts">Sunday Night</span></th>
-            <th class="sorting"><span class="texts">Public Holiday Day</span></th>
-            <th class="sorting"><span class="texts">Public Holiday Night</span></th>
-            <th class="no-sort actions-th"><span>Actions</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of client_rate_data let rowIndex=index">
-            <td>{{rowIndex+1}}</td>
-            <td><span class="text">{{data.client}}</span></td>
-            <td><span class="text">{{data.business_unit}}</span></td>
-            <td><span class="text">{{data.job}}</span></td>
-            <td><span class="text">{{data.week_days}}</span></td>
-            <td><span class="text">{{data.night_time}}</span></td>
-            <td><span class="text">{{data.friday_night}}</span></td>
-            <td><span class="text">{{data.saturday_day}}</span></td>
-            <td><span class="text">{{data.saturday_night}}</span></td>
-            <td><span class="text">{{data.sunday_day}}</span></td>
-            <td><span class="text">{{data.sunday_night}}</span></td>
-            <td><span class="text">{{data.public_hodliday_day}}</span></td>
-            <td><span class="text">{{data.public_hodliday_night}}</span></td>
-            <td>
-              <a href="#!"><i class="far fa-pencil"></i></a>
-              <a href="#!"><i class="far fa-trash-alt"></i></a>
-            </td>
-          </tr>
-          <tr>
-        </tbody>
-      </table>
+      <div class="table-header">
+        <div class="table-header-inner">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="no-sort"><span>Sl No</span></th>
+                <th class="sorting"><span class="texts">Client</span></th>
+                <th class="sorting"><span class="texts">Business Unit</span></th>
+                <th class="sorting"><span class="texts">Job</span></th>
+                <th class="sorting"><span class="texts">Week Days</span></th>
+                <th class="sorting"><span class="texts">Night Time</span></th>
+                <th class="sorting"><span class="texts">Friday Night</span></th>
+                <th class="sorting"><span class="texts">Saturday Day</span></th>
+                <th class="sorting"><span class="texts">Saturday Night</span></th>
+                <th class="sorting"><span class="texts">Sunday Day</span></th>
+                <th class="sorting"><span class="texts">Sunday Night</span></th>
+                <th class="sorting"><span class="texts">Public Holiday Day</span></th>
+                <th class="sorting"><span class="texts">Public Holiday Night</span></th>
+                <th class="no-sort actions-th"><span>Actions</span></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="table-body">
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let data of client_rate_data let rowIndex=index">
+              <td>{{rowIndex+1}}</td>
+              <td><span class="text">{{data.client}}</span></td>
+              <td><span class="text">{{data.business_unit}}</span></td>
+              <td><span class="text">{{data.job}}</span></td>
+              <td><span class="text">{{data.week_days}}</span></td>
+              <td><span class="text">{{data.night_time}}</span></td>
+              <td><span class="text">{{data.friday_night}}</span></td>
+              <td><span class="text">{{data.saturday_day}}</span></td>
+              <td><span class="text">{{data.saturday_night}}</span></td>
+              <td><span class="text">{{data.sunday_day}}</span></td>
+              <td><span class="text">{{data.sunday_night}}</span></td>
+              <td><span class="text">{{data.public_hodliday_day}}</span></td>
+              <td><span class="text">{{data.public_hodliday_night}}</span></td>
+              <td>
+                <a href="#!"><i class="far fa-pencil"></i></a>
+                <a href="#!"><i class="far fa-trash-alt"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="table-footer">
+          <div class="float-left results-text">Showing <span>01-10</span> of <span>10</span> results</div>
+          <div class="float-right pagination-wrapper">
+            <div class="form-group goto">
+              <label>Go to page</label>
+              <input type="text" class="form-control" value="01">
+            </div>
+            <div class="pagination">
+              <nav>
+                <ul>
+                  <li><a href="#" class="first"> &lt;&lt; </a></li>
+                  <li><a href="#" class="prev">First</a></li>
+                  <li><a href="#" class="page">01</a></li>
+                  <li><a href="#" class="page">02</a></li>
+                  <li><a href="#" class="page active">03</a></li>
+                  <li><a href="#" class="page">04</a></li>
+                  <li><a href="#" class="page">05</a></li>
+                  <li><a href="#" class="prev">Last</a></li>
+                  <li><a href="#" class="first"> &gt;&gt; </a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="form-group result-per">
+              <label>Results Per Page</label>
+              <select class="form-control selectpicker">
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+                <option>100</option>
+              </select>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+      
     </div>
+
   
     <!-- right modal -->
     <div class="modal fade custom-popup right" id="addnew-modal" role="dialog" tabindex='-1'>

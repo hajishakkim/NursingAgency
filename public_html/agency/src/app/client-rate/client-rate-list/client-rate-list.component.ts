@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import * as $ from 'jquery';
 
 declare function setDataTable(options:any,table: string): void;
+declare function fixedHeaderTable(ele:any): void;
 @Component({
   selector: 'app-client-rate-list',
   templateUrl: './client-rate-list.component.html',
@@ -36,6 +37,7 @@ export class ClientRateListComponent implements OnInit {
       }
       
       setTimeout( function(){
+        fixedHeaderTable($('.listing-table-wrapper'));
         //setDataTable(null,'');
       },1000);
     });

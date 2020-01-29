@@ -100,6 +100,11 @@ and open the template in the editor.
   border:2px solid #1a74cc;
 }
 
+.table-wrapper::-webkit-scrollbar-thumb{
+  background: #f7fbfc;
+  border:2px solid #f7fbfc;
+}
+
 /* Placeholder */
 ::-webkit-input-placeholder {
   color: #b0b0b0 !important;

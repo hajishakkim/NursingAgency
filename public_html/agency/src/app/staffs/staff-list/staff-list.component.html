@@ -1,179 +1,181 @@
 
-  <div class="d-flex top-header">
-    <div class="col title"><h5>Super Admin</h5></div>
-    <div class="col-auto header-right float-right"><a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a></div>
-  </div>
-  
-  <div class="col-12 p-0 table-wrapper listing-table-wrapper">
-    <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
-      <a href="#!" class="customisation-btn"></a>
-      <div class="customisation-dropdown animated fadeIn">
-        <ul class="handles list ui-sortable">
-          <li>
-            <span class="drag-icon"></span>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox">
-                <span class="text">Sl No</span>
-              </label>
-            </div>
-          </li>
-          <li>
-            <span class="drag-icon"></span>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox">
-                <span class="text">Referance</span>
-              </label>
-            </div>
-          </li>
-          <li>
-            <span class="drag-icon"></span>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox">
-                <span class="text">Client</span>
-              </label>
-            </div>
-          </li>
-          <li>
-            <span class="drag-icon"></span>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox">
-                <span class="text">Break Time</span>
-              </label>
-            </div>
-          </li>
-          <li>
-            <span class="drag-icon"></span>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox">
-                <span class="text">Space</span>
-              </label>
-            </div>
-          </li>
-          <li>
-            <span class="drag-icon"></span>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox">
-                <span class="text">Location</span>
-              </label>
-            </div>
-          </li>
-          <li>
-            <span class="drag-icon"></span>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox">
-                <span class="text">Details</span>
-              </label>
-            </div>
-          </li>
-          <li>
-            <span class="drag-icon"></span>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox">
-                <span class="text">Actions</span>
-              </label>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="table-header">
-      <div class="table-header-inner">
-        <table class="table">
-          <thead>
-            <tr>
-              <th class="w-xs no-sort"><span>Sl No</span></th>
-              <th class="sorting"><span class="texts">Referance</span></th>
-              <th class="sorting"><span class="texts">Client</span></th>
-              <th class="sorting"><span class="texts">Break Time</span></th>
-              <th class="sorting"><span class="texts">Space</span></th>
-              <th class="sorting"><span class="texts">Location</span></th>
-              <th class="sorting"><span class="texts">Details</span></th>
-              <th class="no-sort actions-th text-right"><span>Actions</span></th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-    </div>
-    <div class="table-body">
-      <table class="table listing-table">
-        <tbody>
-          <tr *ngFor="let data of staff_data let rowIndex=index">
-            <td>{{rowIndex+1}}</td>
-            <td><span class="text">{{data.reference}}</span></td>
-            <td><span class="text">{{data.client}}</span></td>
-            <td><span class="text">{{data.break_time}}</span></td>
-            <td><span class="text">{{data.space}}</span></td>
-            <td><span class="text">{{data.location}}</span></td>
-            <td><span class="text">111</span></td>
-            <td class="actions-td text-right">
-              <a href="#!"><i class="far fa-pencil" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
-              <a href="#!"><i class="far fa-trash-alt" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="table-footer">
-        <div class="float-left results-text">Showing <span>01-10</span> of <span>10</span> results</div>
-        <div class="float-right pagination-wrapper">
-          <div class="form-group goto">
-            <label>Go to page</label>
-            <input type="text" class="form-control" value="01">
-          </div>
-          <div class="pagination">
-            <nav>
-              <ul>
-                <li><a href="#" class="first"> &lt;&lt; </a></li>
-                <li><a href="#" class="prev">First</a></li>
-                <li><a href="#" class="page">01</a></li>
-                <li><a href="#" class="page">02</a></li>
-                <li><a href="#" class="page active">03</a></li>
-                <li><a href="#" class="page">04</a></li>
-                <li><a href="#" class="page">05</a></li>
-                <li><a href="#" class="prev">Last</a></li>
-                <li><a href="#" class="first"> &gt;&gt; </a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="form-group result-per">
-            <label>Results Per Page</label>
-            <select class="form-control selectpicker">
-              <option>10</option>
-              <option>20</option>
-              <option>50</option>
-              <option>100</option>
-            </select>
-          </div>
-  
-        </div>
-      </div>
-    </div>
-    
-  </div>
 
-  <!-- right modal -->
-  <div class="modal fade custom-popup right" id="addnew-modal" role="dialog" tabindex='-1'>
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Add super admin</h4>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+    <div class="d-flex top-header">
+      <div class="col title"><h5>Super Admin</h5></div>
+      <div class="col-auto header-right float-right"><a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a></div>
+    </div>
+
+    <div class="col-12 p-0 table-wrapper listing-table-wrapper">
+      <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
+        <a href="#!" class="customisation-btn"></a>
+        <div class="customisation-dropdown animated fadeIn">
+          <ul class="handles list ui-sortable">
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Sl No</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Reference</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Client</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Break Time</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Space</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Location</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Details</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Actions</span>
+                </label>
+              </div>
+            </li>
+          </ul>
         </div>
-        <div class="modal-body">
-          <app-staff-form></app-staff-form>
+      </div>
+      <div class="table-header">
+        <div class="table-header-inner">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="w-xs no-sort"><span>Sl No</span></th>
+                <th class="sorting"><span class="texts">Referance</span></th>
+                <th class="sorting"><span class="texts">Client</span></th>
+                <th class="sorting"><span class="texts">Break Time</span></th>
+                <th class="sorting"><span class="texts">Space</span></th>
+                <th class="sorting"><span class="texts">Location</span></th>
+                <th class="sorting"><span class="texts">Details</span></th>
+                <th class="no-sort actions-th text-right"><span>Actions</span></th>
+              </tr>
+            </thead>
+          </table>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
-          <button class="btn btn-primary" type="button">Save</button>
+      </div>
+      <div class="table-body">
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let data of staff_data let rowIndex=index">
+              <td>{{rowIndex+1}}</td>
+              <td><span class="text">{{data.reference}}</span></td>
+              <td><span class="text">{{data.client}}</span></td>
+              <td><span class="text">{{data.break_time}}</span></td>
+              <td><span class="text">{{data.space}}</span></td>
+              <td><span class="text">{{data.location}}</span></td>
+              <td><span class="text">111</span></td>
+              <td class="actions-td text-right">
+                <a href="#!"><i class="far fa-pencil" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
+                <a href="#!"><i class="far fa-trash-alt" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="table-footer">
+          <div class="float-left results-text">Showing <span>01-10</span> of <span>10</span> results</div>
+          <div class="float-right pagination-wrapper">
+            <div class="form-group goto">
+              <label>Go to page</label>
+              <input type="text" class="form-control" value="01">
+            </div>
+            <div class="pagination">
+              <nav>
+                <ul>
+                  <li><a href="#" class="first"> &lt;&lt; </a></li>
+                  <li><a href="#" class="prev">First</a></li>
+                  <li><a href="#" class="page">01</a></li>
+                  <li><a href="#" class="page">02</a></li>
+                  <li><a href="#" class="page active">03</a></li>
+                  <li><a href="#" class="page">04</a></li>
+                  <li><a href="#" class="page">05</a></li>
+                  <li><a href="#" class="prev">Last</a></li>
+                  <li><a href="#" class="first"> &gt;&gt; </a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="form-group result-per">
+              <label>Results Per Page</label>
+              <select class="form-control selectpicker">
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+                <option>100</option>
+              </select>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+  
+    <!-- right modal -->
+    <div class="modal fade custom-popup right" id="addnew-modal" role="dialog" tabindex='-1'>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Add super admin</h4>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+          </div>
+          <div class="modal-body">
+            <app-staff-form></app-staff-form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-primary" type="button">Save</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- right modal -->
+    <!-- right modal -->

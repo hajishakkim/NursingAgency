@@ -65,7 +65,8 @@ html, body{
   float: left;
   width: 100%;
   height: calc(100vh - 120px);
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .sidebar-expanded .menu-list .list-item{
   float: left;
@@ -94,34 +95,31 @@ html, body{
     justify-content: center;
   transition:all 0.5s ease-in;
 }
-.sidebar-collapsed .menu-list .menu-item{
+.menu-list .menu-item .menu-icon{
+  align-items: center;
+    justify-content: center;
+    display: flex;
   width:33px;
   height: 33px;
-  display: inline-block;
+  display: inline-block; 
   background: transparent;
   border: 1px solid transparent;
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   border-radius: 100%;
-  padding: 15px;
+  padding: 4px 7px;
   font-size: 15px;
   color: #fff;
-  cursor:pointer;
-  -moz-transition:all 0.5s ease-in;
-  -webkit-transition:all 0.5s ease-in;
-  transition:all 0.5s ease-in;
+  cursor: pointer;
+  transition: all 0.5s ease-in;
+  text-align: center;
 }
-.sidebar-collapsed .menu-list .list-item:hover .menu-item,
-.sidebar-collapsed .menu-list .list-item:focus .menu-item,
-.sidebar-collapsed .menu-list .list-item.active .menu-item{
+.menu-list .list-item:hover .menu-item .menu-icon,
+.menu-list .list-item:focus .menu-item .menu-icon,
+.menu-list .list-item.active .menu-item .menu-icon{
   background:#fff;
   border-color: #fff;
   color: #0054a6;
-}
-
-
-.sidebar-collapsed .menu-list .menu-item{
-	justify-content:center;
 }
 .menu-item .menu-text{
   padding-left: 10px;
@@ -251,6 +249,7 @@ html, body{
 
 .main-content-wrapper{
   background:#fff;
+  width: calc(100% - 200px);
 }
 .page-header{
   background: #fff;
@@ -521,7 +520,8 @@ border-radius: 4px;
 }
 
 .table-wrapper{
-	position: relative;
+  position: relative;
+  overflow: auto;
 }
 
 .customisation-btn-wrapper {
