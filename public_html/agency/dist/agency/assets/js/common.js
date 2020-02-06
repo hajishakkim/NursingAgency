@@ -224,9 +224,6 @@ function dataTableDraw() {
     searching: false,
     dom: '<"top"f>rt<"bottom"ilp><"clear">',
     destroy: true,
-    "columnDefs": [
-      {targets: 'no-sort', orderable: false}
-    ],
     pageLength: 25,
     lengthMenu: [10, 25, 50, 100],
     responsive: true,
@@ -286,24 +283,64 @@ function fixedHeaderTable(ths) {
   });
 };
 function setDataTable(options,table){
+  console.log(options);
   var default_options = {
     paging: true,
-    fixedHeader: {
-        header: true,
-        footer: false
-    },
-    "columnDefs": [{
-      "targets": "no-sort",
-      "orderable": false
-    }],
-    "pagingType": "full_numbers",
-    "searching": false,
-    "dom": '<"top"f>rt<"bottom"ilp><"clear">',
-    destroy: true,
-    "colReorder" : true
+    
+
 
   };
-  options = (options != null) ? options : default_options
+  options = (options != null) ? options : default_options;
   table = (table!='') ? table : '#listing-table';
   $(table).DataTable(options);
 }
+function setDataTableInit(table){
+  table = (table!='') ? table : '#listing-table';
+  $(table).DataTable();
+}
+function refreshSelectpicker(){
+  $('.selectpicker').selectpicker('refresh');
+  $('.custom-datepicker input').datepicker();
+}
+// Fixed Table Header
+function fixedHeaderTable(ths) {
+  var widthArray = [];
+  ths.find('.table').css('width', '');
+  
+  ths.find('.table-header').css('padding-right', '');
+
+  ths.find('.table-body .table tr:first td').each(function() {
+    widthArray.push($(this).outerWidth());
+  });
+  ths.find('.table-header .table th').each(function(e) {
+    widthArray[e] = ($(this).outerWidth() < widthArray[e]) ? widthArray[e] :$(this).outerWidth();
+    $(this).css({
+      'width': widthArray[e],
+      'min-width': widthArray[e]
+    });
+  });
+  ths.find('.table-body .table tr:first td').each(function(e) {
+    $(this).css({
+      'width': widthArray[e],
+      'min-width': widthArray[e]
+    });
+  });
+  var bodyWdth = ths.find('.table-body .table').outerWidth();
+  var bodyHgt = $(window).height() - 200;
+  var bodyTableHgt = ths.find('.table-body .table').outerHeight();
+  console.log(bodyWdth)
+  ths.find('.table-header .table, .table-body .table').outerWidth(bodyWdth);
+  ths.find('.table-body').css('max-height', bodyHgt);
+  if (bodyHgt < bodyTableHgt) {
+    var scrollBarwdth = $('.table-body')[0].offsetWidth - $('.table-body')[0].clientWidth;
+    ths.find('.table-header').addClass('scrolling');
+    ths.find('.table-header').css('padding-right', scrollBarwdth);
+  } else {
+    ths.find('.table-header').removeClass('scrolling');
+    ths.find('.table-header').css('padding-right', '');
+  }
+  ths.find('.table-body').scroll(function(e) {
+    ths.find('.table-header-inner').scrollLeft(e.target.scrollLeft);
+  });
+  
+};

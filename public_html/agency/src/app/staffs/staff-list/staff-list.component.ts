@@ -33,7 +33,7 @@ export class StaffListComponent implements OnInit {
       setTimeout( function(){
         fixedHeaderTable($('.listing-table-wrapper'));
         //$('[data-toggle="tooltip"]').tooltip();
-      },100);
+      },1000);
     });
   }
 

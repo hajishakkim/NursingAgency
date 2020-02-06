@@ -1,61 +1,106 @@
 
     <div class="d-flex top-header">
-        <div class="col title"><h5>Document Types</h5></div>
-        <div class="col-auto header-right float-right"><a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a></div>
-      </div>
-      <div class="col-12 p-0 table-wrapper">
-        <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
-          <a href="#" class="customisation-btn"></a>
-          <div class="customisation-dropdown animated fadeIn">
-            <ul class="handles list ui-sortable">
-              <li>
-                <span class="drag-icon"></span>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    <span class="text">Sl No</span>
-                  </label>
-                </div>
-              </li>
-              <li>
-                <span class="drag-icon"></span>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    <span class="text">Category</span>
-                  </label>
-                </div>
-              </li>
-              <li>
-                <span class="drag-icon"></span>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    <span class="text">Document Type</span>
-                  </label>
-                </div>
-              </li>
-              <li>
-                <span class="drag-icon"></span>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    <span class="text">Actions</span>
-                  </label>
-                </div>
-              </li>
-            </ul>
-          </div>
+      <div class="col title"><h5>Document Types</h5></div>
+      <div class="col-auto header-right float-right"><a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a></div>
+    </div>
+
+    <div class="col-12 p-0 table-wrapper listing-table-wrapper">
+      <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
+        <a href="javascript:void(0)" class="customisation-btn"></a>
+        <div class="customisation-dropdown animated fadeIn">
+          <ul class="handles list ui-sortable">
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Sl No</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Reference</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Client</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Break Time</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Space</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Location</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Details</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="drag-icon"></span>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="text">Actions</span>
+                </label>
+              </div>
+            </li>
+          </ul>
         </div>
-        <table class="table table-responsive listing-table" id="listing-table">
-          <thead>
-            <tr>
-              <th class="w-xs no-sort"><span>Sl No</span></th>
-              <th class="sorting"><span class="texts">Category</span></th>
-              <th class="sorting"><span class="texts">Document Type</span></th>
-              <th class="no-sort actions-th"><span>Actions</span></th>
-            </tr>
-          </thead>
+      </div>
+      <div class="table-wrapper-inner">
+      <div class="table-header">
+        <div class="table-header-inner">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="w-xs no-sort"><span>Sl No</span></th>
+                <th class="sorting"><span class="texts">Category</span></th>
+                <th class="sorting"><span class="texts">Document Type</span></th>
+                <th class="no-sort actions-th"><span>Actions</span></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="table-body">
+        <table class="table">
           <tbody>
             <tr>
               <td>1</td>
@@ -66,45 +111,65 @@
                 <a href="#!"><i class="far fa-trash-alt"></i></a>
               </td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td>Adress Proof2</td>
-              <td>Bank Statement</td>
-              <td>
-                <a href="#!"><i class="far fa-pencil"></i></a>
-                <a href="#!"><i class="far fa-trash-alt"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Adress Proof3</td>
-              <td>Bank Statement</td>
-              <td>
-                <a href="#!"><i class="far fa-pencil"></i></a>
-                <a href="#!"><i class="far fa-trash-alt"></i></a>
-              </td>
-            </tr>
           </tbody>
         </table>
+        
+        </div>
       </div>
-    
-      <!-- right modal -->
-      <div class="modal fade custom-popup right" id="addnew-modal" role="dialog" tabindex='-1'>
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Add Document Type</h4>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
-            </div>
-            <div class="modal-body">
-              <app-document-type-form></app-document-type-form>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
-              <button class="btn btn-primary" type="button">Save</button>
-            </div>
+      <div class="table-footer">
+        <div class="float-left results-text">Showing <span>01-10</span> of <span>10</span> results</div>
+        <div class="float-right pagination-wrapper">
+          <div class="form-group goto">
+            <label>Go to page</label>
+            <input type="text" class="form-control" value="01">
+          </div>
+          <div class="pagination">
+            <nav>
+              <ul>
+                <li><a href="javascript:void(0)" class="first"> &lt;&lt; </a></li>
+                <li><a href="javascript:void(0)" class="prev">First</a></li>
+                <li><a href="javascript:void(0)" class="page">01</a></li>
+                <li><a href="javascript:void(0)" class="page">02</a></li>
+                <li><a href="javascript:void(0)" class="page active">03</a></li>
+                <li><a href="javascript:void(0)" class="page">04</a></li>
+                <li><a href="javascript:void(0)" class="page">05</a></li>
+                <li><a href="javascript:void(0)" class="prev">Last</a></li>
+                <li><a href="javascript:void(0)" class="first"> &gt;&gt; </a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="form-group result-per">
+            <label>Results Per Page</label>
+            <select class="form-control selectpicker">
+              <option>10</option>
+              <option>20</option>
+              <option>50</option>
+              <option>100</option>
+            </select>
+          </div>
+  
+        </div>
+      </div>
+      
+    </div>
+
+  
+    <!-- right modal -->
+    <div class="modal fade custom-popup right" id="addnew-modal" role="dialog" tabindex='-1'>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Add Document Type</h4>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+          </div>
+          <div class="modal-body">
+            <app-document-type-form></app-document-type-form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-primary" type="button">Save</button>
           </div>
         </div>
       </div>
-      <!-- right modal -->
-    
+    </div>
+    <!-- right modal -->

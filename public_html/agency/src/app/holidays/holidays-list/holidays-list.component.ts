@@ -10,7 +10,7 @@ export class HolidaysListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    setDataTable(null,'');
+    //setDataTable(null,'');
   }
 
 }

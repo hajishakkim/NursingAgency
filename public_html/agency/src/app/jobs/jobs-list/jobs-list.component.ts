@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery';
+
 declare function setDataTable(options:any,table: string): void;
+declare function fixedHeaderTable(ele:any): void;
 @Component({
   selector: 'app-jobs-list',
   templateUrl: './jobs-list.component.html',
@@ -10,7 +13,9 @@ export class JobsListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    setDataTable(null,'');
+    setTimeout( function(){ 
+      fixedHeaderTable($('.listing-table-wrapper'));  
+    },1000);
   }
 
 }

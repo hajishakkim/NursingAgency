@@ -248,6 +248,7 @@ function calcTableHeight() {
 
 // Fixed Table Header
 function fixedHeaderTable(ths) {
+  alert(1)
   var widthArray = [];
   ths.find('.table, .table-header .table th, .table-body .table tr td').css('width', '');
   var bodyHgt = $(window).height() - 200;
@@ -281,4 +282,5 @@ function fixedHeaderTable(ths) {
   ths.find('.table-body').scroll(function(e) {
     ths.find('.table-header-inner').scrollLeft(e.target.scrollLeft);
   });
+  
 };

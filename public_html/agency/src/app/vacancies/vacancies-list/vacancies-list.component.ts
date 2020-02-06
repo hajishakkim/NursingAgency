@@ -5,6 +5,7 @@ import { Vaccancies } from './vaccancies-list';
 import { Observable, of } from 'rxjs';
 import * as $ from 'jquery';
 declare function setDataTable(options:any,table: string): void;
+declare function fixedHeaderTable(ele:any): void;
 
 @Component({
   selector: 'app-vacancies-list',
@@ -39,8 +40,8 @@ export class VacanciesListComponent implements OnInit {
         this.vacancy_data.push(data);
       }
       
-      setTimeout( function(){
-        //setDataTable(null,'');
+      setTimeout( function(){ 
+        fixedHeaderTable($('.listing-table-wrapper'));  
       },1000);
     });
     

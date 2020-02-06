@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as $ from 'jquery';
+declare function refreshSelectpicker(): void;
 @Component({
   selector: 'app-jobs-form',
   templateUrl: './jobs-form.component.html',
@@ -10,6 +11,7 @@ export class JobsFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    refreshSelectpicker();
   }
 
 }

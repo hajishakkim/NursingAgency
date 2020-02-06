@@ -100,8 +100,8 @@ and open the template in the editor.
   border:2px solid #1a74cc;
 }
 
-.table-wrapper::-webkit-scrollbar-thumb{
-  background: #f7fbfc;
+.table-wrapper-inner::-webkit-scrollbar-thumb{
+  background: #d7dadc;
   border:2px solid #f7fbfc;
 }
 

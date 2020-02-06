@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {FormGroup, FormBuilder } from '@angular/forms';
 //import {VaccancyModel} from '../vaccancies.model';
+import * as $ from 'jquery';
+declare function refreshSelectpicker(): void;
 @Component({
   selector: 'app-vacancies-form',
   templateUrl: './vacancies-form.component.html',
@@ -38,6 +40,7 @@ export class VacanciesFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    refreshSelectpicker();
   }
   saveForm(){
     this.formData.emit(this.vaccancy);
