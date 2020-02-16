@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {FormGroup, FormBuilder } from '@angular/forms';
-//import {VaccancyModel} from '../vaccancies.model';
+import {Vaccancies} from '../vaccancies.model';
 import * as $ from 'jquery';
 declare function refreshSelectpicker(): void;
 @Component({
@@ -10,33 +10,12 @@ declare function refreshSelectpicker(): void;
 })
 export class VacanciesFormComponent implements OnInit {
   form: FormGroup;  
-  vaccancy = {
-    vaccancy_ref_number: '',
-    vaccancy_date:'',
-    vaccancy_cilent:'',
-    vaccancy_business:'',
-    vaccancy_staff_shift:'',
-    vaccancy_job:'',
-    vaccancy_break_time:'',
-    vaccancy_space : '',
-    vaccancy_location:'',
-    vaccancy_details:'',
-
-  };
+  vaccancy : {};
   @Output() formData = new EventEmitter<Object>();
   constructor(builder: FormBuilder) {
-    this.form = builder.group({
-      vaccancy_ref_number: '',
-      vaccancy_date:'',
-      vaccancy_cilent:'',
-      vaccancy_business:'',
-      vaccancy_staff_shift:'',
-      vaccancy_job:'',
-      vaccancy_break_time:'',
-      vaccancy_space : '',
-      vaccancy_location:'',
-      vaccancy_details:'',
-    })
+    this.vaccancy = new Vaccancies();
+    console.log(this.vaccancy);
+    this.form = builder.group(this.vaccancy)
   }
 
   ngOnInit() {

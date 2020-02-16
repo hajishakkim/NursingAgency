@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { VacanciesFormComponent } from '../vacancies-form/vacancies-form.component';
-import { ApiService } from './api.service';
-import { Vaccancies } from './vaccancies-list';
+import { ApiService } from '../../services/api.service'
+import {Vaccancies} from '../vaccancies.model';
 import { Observable, of } from 'rxjs';
 import * as $ from 'jquery';
 declare function setDataTable(options:any,table: string): void;
@@ -18,33 +18,16 @@ export class VacanciesListComponent implements OnInit {
 
   @ViewChild('app_vacancies_form', {static: false}) app_vacancies_form:VacanciesFormComponent;
   log: any;
-  constructor(public api: ApiService) {}
+  constructor(public API: ApiService) {}
 
   ngOnInit() {
-      this.getVaccancyData();
+      var data = [];
+      this.getVaccanies({data:[]});
       //setDataTable(null,'');
   }
   
   ngAfterContentInit(){    
-    
-  }
-  getVaccancyData() {
-    this.api.getVaccancyData()
-    .subscribe(resp => {
-      const keys = resp.headers.keys();
-      this.headers = keys.map(key =>
-        `${key}: ${resp.headers.get(key)}`);
-  
-      for (const data of resp.body) {
-        //console.log(data)
-        this.vacancy_data.push(data);
-      }
-      
-      setTimeout( function(){ 
-        fixedHeaderTable($('.listing-table-wrapper'));  
-      },1000);
-    });
-    
+    //this.getVaccanies();
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -55,10 +38,37 @@ export class VacanciesListComponent implements OnInit {
       return of(result as T);
     };
   }
-  
   saveForm(formData: Vaccancies) {
-    this.vacancy_data.push(formData);    
+    this.API.post('vaccancies.php',{data:formData})
+    .subscribe(data => {
+      this.vacancy_data.push(formData);   
+    });
   }
+  getVaccanies(data:any) {
+    this.API.post('vaccancies.php',data)
+    .subscribe(data => {
+      this.vacancy_data = data.data;
+    });
+  }
+  // saveForm(formData: Vaccancies) {
+  //   console.log(formData)
+  //   //this.vacancy_data.push(formData);   
+  //   this.API.post(formData,'http://localhost/nursingAgency/apis/index.php')
+  //   .subscribe(resp => {
+  //     const keys = resp.headers.keys();
+  //     this.headers = keys.map(key =>
+  //       `${key}: ${resp.headers.get(key)}`);
+  
+  //     for (const data of resp.body) {
+  //       //console.log(data)
+  //       this.vacancy_data.push(data);
+  //     }
+      
+  //     setTimeout( function(){ 
+  //       fixedHeaderTable($('.listing-table-wrapper'));  
+  //     },1000);
+  //   }); 
+  // }
   formSubmit(){
     this.app_vacancies_form.saveForm();
   }

@@ -1,4 +1,5 @@
 <form [formGroup]="form">
+    <input name="vaccancy_id" formControlName="vaccancy_id" [(ngModel)]="vaccancy.vaccancy_id" type="text" class="form-control" />
                  <div class="col-12 form-wrapper">
                      <div class="row">
                         <div class="col-4">
@@ -16,7 +17,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label>Client</label>
-                                <select name="vaccancy_cilent" formControlName="vaccancy_cilent" [(ngModel)]="vaccancy.vaccancy_cilent" class="form-control selectpicker" data-container="body">
+                                <select name="vaccancy_client" formControlName="vaccancy_client" [(ngModel)]="vaccancy.vaccancy_client" class="form-control selectpicker" data-container="body">
                                    <option>Option1</option>
                                    <option>Option2</option>
                                    <option>Option3</option>
@@ -29,7 +30,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label>Businees Unit</label>
-                                <select name="vaccancy_business" formControlName="vaccancy_business" [(ngModel)]="vaccancy.vaccancy_business" class="form-control selectpicker" data-container="body">
+                                <select name="vaccancy_business_group" formControlName="vaccancy_business_group" [(ngModel)]="vaccancy.vaccancy_business_group" class="form-control selectpicker" data-container="body">
                                    <option>Option1</option>
                                    <option>Option2</option>
                                    <option>Option3</option>
@@ -42,7 +43,7 @@
                        <div class="col-4">
                         <div class="form-group">
                             <label>Shift Type</label>
-                            <select name="vaccancy_staff_shift" formControlName="vaccancy_staff_shift" [(ngModel)]="vaccancy.vaccancy_staff_shift" class="form-control selectpicker" data-container="body">
+                            <select name="vaccancy_shift_type" formControlName="vaccancy_shift_type" [(ngModel)]="vaccancy.vaccancy_shift_type" class="form-control selectpicker" data-container="body">
                                <option>Option1</option>
                                <option>Option2</option>
                                <option>Option3</option>
