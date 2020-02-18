@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 class Database
 {
 
@@ -21,26 +22,18 @@ class Database
     public function query($sql, $params = array())
     {
       $stmt = $this->prepareStatement($sql, $params);
-      //echo $this->getQuery($sql,$params);
       $stmt->execute();
       return $stmt;
     }
     public function prepareStatement($sql, $params = array())
     {
         $stmt = $this->mysql_connection->prepare($sql);
-        $bind_param_type = array();
-        $bind_params = '';
         if(!empty($params)){
-            foreach($params as $key => $value){
-                array_push($bind_param_type,'s');
-                $bind_params = preg_replace('/\?/',("'".$params[$key]."'"),$bind_params,1);
+            $bind_param_type = '';
+            foreach ($params as $key => $index){
+                $bind_param_type .= 's';
             }
-            $bind_param_string = ("'".implode("",$bind_param_type)."'");
-            //$bind_param_string = implode("",$bind_param_type);
-            $bind_params = ("'".implode("','",$bind_param_type)."'");
-            //$bind_params = ("'".implode("','",$params)."'");
-            echo ' $stmt->bind_param('.$bind_param_string.','.$bind_params.')';
-            $stmt->bind_param($bind_param_string,$bind_params);
+            call_user_func_array(array($stmt, "bind_param"), array_merge(array($bind_param_type), array_map( function( &$item ) { return $item; }, $params ) ));
         }        
         return $stmt;
     }

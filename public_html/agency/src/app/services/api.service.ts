@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable,of } from 'rxjs';
 import {catchError} from 'rxjs/internal/operators';
 import {environment} from '../../environments/environment';
 @Injectable({
@@ -24,7 +24,12 @@ export class ApiService {
     url = environment.APIUrl + '/' + url;
     return this.http.post<any>(url, post_data, httpOptions);
   }
-  handleError(){
-    
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      console.log(`${operation} failed: ${error.message}`);
+  
+      return of(result as T);
+    };
   }
 }

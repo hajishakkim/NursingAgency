@@ -4,6 +4,7 @@ import { ApiService } from '../../services/api.service'
 import {Vaccancies} from '../vaccancies.model';
 import { Observable, of } from 'rxjs';
 import * as $ from 'jquery';
+
 declare function setDataTable(options:any,table: string): void;
 declare function fixedHeaderTable(ele:any): void;
 
@@ -26,22 +27,16 @@ export class VacanciesListComponent implements OnInit {
       //setDataTable(null,'');
   }
   
-  ngAfterContentInit(){    
-    //this.getVaccanies();
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      this.log(`${operation} failed: ${error.message}`);
-  
-      return of(result as T);
-    };
-  }
+  ngAfterContentInit(){  
+  }  
   saveForm(formData: Vaccancies) {
     this.API.post('vaccancies.php',{data:formData})
     .subscribe(data => {
-      this.vacancy_data.push(formData);   
+      if(data.status == "success") {
+        this.vacancy_data.push(formData);   
+      }else{
+
+      }
     });
   }
   getVaccanies(data:any) {

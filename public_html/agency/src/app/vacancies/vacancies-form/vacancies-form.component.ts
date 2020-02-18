@@ -14,7 +14,7 @@ export class VacanciesFormComponent implements OnInit {
   @Output() formData = new EventEmitter<Object>();
   constructor(builder: FormBuilder) {
     this.vaccancy = new Vaccancies();
-    console.log(this.vaccancy);
+    //console.log(this.vaccancy);
     this.form = builder.group(this.vaccancy)
   }
 
