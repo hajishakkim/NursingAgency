@@ -39,10 +39,9 @@ if($db){
             $data['vaccancy_break_time'],
             $data['vaccancy_space'],
             $data['vaccancy_location'],
-            $data['vaccancy_details']);
-            
+            $data['vaccancy_details']);            
             $db->add($sql, $params); 
-            echo "success";
+            echo json_encode(array("status"=>"success"));
         }
         if(trim($data['vaccancy_id']) != ""){
 
