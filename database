@@ -1,0 +1,26 @@
+CREATE TABLE `vaccancy` (
+ `vaccancy_id` int(11) NOT NULL,
+ `vaccancy_ref_number` int(11) NOT NULL,
+ `vaccancy_date` date NOT NULL,
+ `vaccancy_client` int(11) NOT NULL,
+ `vaccancy_business_group` int(11) NOT NULL,
+ `vaccancy_shift_type` int(11) NOT NULL,
+ `vaccancy_job` int(11) NOT NULL,
+ `vaccancy_break_time` date NOT NULL,
+ `vaccancy_space` varchar(255) NOT NULL,
+ `vaccancy_location` varchar(255) NOT NULL,
+ `vaccancy_details` varchar(255) NOT NULL,
+ `vaccancy_created_time` date NOT NULL,
+ `vaccancy_updated_time` date NOT NULL,
+ `vaccancy_created_by` int(11) NOT NULL,
+ `vaccancy_updated_by` date NOT NULL,
+ `vaccancy_active` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `agency`.`jobs` 
+( `job_id` INT(11) NOT NULL AUTO_INCREMENT , 
+`job_title` VARCHAR(500) NOT NULL , `job_client_id` INT(11) NOT NULL , 
+`job_business_unit_id` INT(11) NOT NULL , `created_date` DATETIME NOT NULL , 
+`job_status` TINYINT(1) NOT NULL DEFAULT '0' , PRIMARY KEY (`job_id`))
+ ENGINE = InnoDB;
+

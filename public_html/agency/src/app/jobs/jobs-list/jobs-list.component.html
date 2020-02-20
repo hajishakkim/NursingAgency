@@ -102,15 +102,17 @@
       </div>
       <div class="table-body">
         <table class="table">
+          
           <tbody>
             <tr>
-              <td>1</td>
-              <td><span class="text">New Client</span></td>
-              <td><span class="text">New One</span></td>
-              <td><span class="text">Provider</span></td>
+              <tr *ngFor="let data of jobs_data let rowIndex=index">
+                <td>{{rowIndex+1}}</td>
+                <td><span class="text">{{data.job_client_id}}</span></td>
+                <td><span class="text">{{data.job_business_unit_id}}</span></td>
+                <td><span class="text">{{data.job_title}}</span></td>
               <td>
-                <a href="#!"><i class="far fa-pencil"></i></a>
-                <a href="#!"><i class="far fa-trash-alt"></i></a>
+                <a href="#!" (click)="editForm(data)" data-toggle="modal" data-target="#addnew-modal"><i class="far fa-pencil"></i></a>
+                <a  (click)="deleteRow(data)"><i class="far fa-trash-alt"></i></a>
               </td>
             </tr>
           </tbody>
@@ -165,11 +167,11 @@
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
           </div>
           <div class="modal-body">
-            <app-jobs-form></app-jobs-form>
+            <app-jobs-form #app_jobs_form (formData)="saveForm($event)" [clients_list] = "clients_list"></app-jobs-form>
           </div>
           <div class="modal-footer">
             <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
-            <button class="btn btn-primary" type="button">Save</button>
+            <button class="btn btn-primary " type="button" data-dismiss="modal" (click)="formSubmit()">Save</button>
           </div>
         </div>
       </div>
