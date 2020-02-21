@@ -1,22 +1,22 @@
-<form>
+<form [formGroup]="form">
     <div class="col-12 form-wrapper">
         <div class="row">
             <div class="col-4">
                 <div class="form-group">
                     <label>First Name</label>
-                    <input type="text"  class="form-control" />
+                    <input type="text"  class="form-control" formControlName="first_name" [(ngModel)]="candidate.first_name"/>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
                     <label>Middle Name</label>
-                    <input type="text"  class="form-control" />
+                    <input type="text"  class="form-control" formControlName="middle_name" [(ngModel)]="candidate.middle_name"/>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
                     <label>Sur Name</label>
-                    <input type="text"  class="form-control" />
+                    <input type="text"  class="form-control" formControlName="sur_name" [(ngModel)]="candidate.sur_name"/>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
             <div class="col-4">
                 <div class="form-group">
                     <label>Gender</label>
-                    <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
+                    <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="gender" [(ngModel)]="candidate.gender">
                        <option>Unassigned</option>
                        <option>Male</option>
                        <option>Female</option>
@@ -36,14 +36,14 @@
                 <div class="form-group">
                     <label>Date of Birth</label>
                     <div class="custom-datepicker">
-                        <input type="text" class="form-control datepicker" placeholder="dd/mm/yyyy" />
+                        <input type="text" class="form-control datepicker" placeholder="dd/mm/yyyy" formControlName="dob" [(ngModel)]="candidate.dob" />
                     </div>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
                     <label>Address Line 1</label>
-                    <input type="text"  class="form-control" />
+                    <input type="text"  class="form-control" formControlName="address1" [(ngModel)]="candidate.address1"/>
                 </div>
             </div>
         </div>
@@ -51,19 +51,19 @@
             <div class="col-4">
                <div class="form-group">
                    <label>Address Line 2</label>
-                   <input type="text"  class="form-control" />
+                   <input type="text"  class="form-control" formControlName="address2" [(ngModel)]="candidate.address2"/>
                </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
                    <label>Address Line 3</label>
-                   <input type="text"  class="form-control" />
+                   <input type="text"  class="form-control" formControlName="address3" [(ngModel)]="candidate.address3"/>
                 </div>
             </div>
             <div class="col-4">
                <div class="form-group">
                     <label>Country</label>
-                    <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
+                    <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="country" [(ngModel)]="candidate.country">
                         <option>Unassigned</option>
                         <option>India</option>
                         <option>America</option>
@@ -76,13 +76,13 @@
             <div class="col-4">
                 <div class="form-group">
                    <label>Postcode</label>
-                   <input type="text"  class="form-control" />
+                   <input type="text"  class="form-control" formControlName="postcode" [(ngModel)]="candidate.postcode"/>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
                      <label>Designation</label>
-                     <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
+                     <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="designation" [(ngModel)]="candidate.designation">
                          <option>Unassigned</option>
                          <option>India</option>
                          <option>America</option>
@@ -93,7 +93,7 @@
             <div class="col-4">
                 <div class="form-group">
                    <label>DBS/PVG Number</label>
-                   <input type="text"  class="form-control" />
+                   <input type="text"  class="form-control" formControlName="dbs_pvg_number" [(ngModel)]="candidate.dbs_pvg_number"/>
                 </div>
             </div>
         </div>
@@ -101,19 +101,19 @@
             <div class="form-group">
                 <label>DBS/PVG Issue Date</label>
                 <div class="custom-datepicker">
-                    <input type="text" class="form-control datepicker" placeholder="dd/mm/yyyy" />
+                    <input type="text" class="form-control datepicker" placeholder="dd/mm/yyyy" formControlName="dbs_pvg_issue_date" [(ngModel)]="candidate.dbs_pvg_issue_date"/>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
                    <label>Staff ID</label>
-                   <input type="text"  class="form-control" />
+                   <input type="text"  class="form-control" formControlName="staff_id" [(ngModel)]="candidate.staff_id"/>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
                    <label>Payroll ID</label>
-                   <input type="text"  class="form-control" />
+                   <input type="text"  class="form-control" formControlName="payroll_id" [(ngModel)]="candidate.payroll_id"/>
                 </div>
             </div>
         </div>
@@ -121,19 +121,19 @@
             <div class="col-4">
                 <div class="form-group">
                    <label>Email Address</label>
-                   <input type="email"  class="form-control" />
+                   <input type="email"  class="form-control" formControlName="email" [(ngModel)]="candidate.email"/>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
                    <label>Pin Number</label>
-                   <input type="text"  class="form-control" />
+                   <input type="text"  class="form-control" formControlName="pin" [(ngModel)]="candidate.pin"/>
                 </div>
             </div>
             <div class="form-group">
                 <label>Pin Expiry Date</label>
                 <div class="custom-datepicker">
-                    <input type="text" class="form-control datepicker" placeholder="dd/mm/yyyy" />
+                    <input type="text" class="form-control datepicker" placeholder="dd/mm/yyyy" formControlName="pin_expire_date" [(ngModel)]="candidate.pin_expire_date"/>
                 </div>
             </div>
         </div>
@@ -141,19 +141,19 @@
             <div class="col-4">
                 <div class="form-group">
                    <label>Phone Country Code</label>
-                   <input type="text"  class="form-control" />
+                   <input type="text"  class="form-control" formControlName="phone_country_code" [(ngModel)]="candidate.phone_country_code"/>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
                    <label>Phone Number</label>
-                   <input type="text"  class="form-control" />
+                   <input type="text"  class="form-control" formControlName="phone" [(ngModel)]="candidate.phone"/>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
                    <label>Mobile Country Code</label>
-                   <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
+                   <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="mobile_country_code" [(ngModel)]="candidate.mobile_country_code">
                         <option>Unassigned</option>
                         <option>India (+91)</option>
                         <option>United Kingdom (+44)</option>
@@ -165,13 +165,13 @@
             <div class="col-4">
                 <div class="form-group">
                    <label>Mobile Number</label>
-                   <input type="text"  class="form-control" />
+                   <input type="text"  class="form-control" formControlName="mobile" [(ngModel)]="candidate.mobile"/>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
                    <label>Employment Type</label>
-                   <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
+                   <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="employment_type" [(ngModel)]="candidate.employment_type">
                         <option>Unassigned</option>
                         <option>PAYE</option>
                     </select>
@@ -180,7 +180,7 @@
             <div class="col-4">
                 <div class="form-group">
                    <label>Status</label>
-                   <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
+                   <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="status" [(ngModel)]="candidate.status">
                         <option>Unassigned</option>
                         <option>Active</option>
                         <option>Inactive</option>
@@ -192,19 +192,19 @@
             <div class="col-4">
                 <div class="form-group">
                    <label>NI Number</label>
-                   <input type="text"  class="form-control" />
+                   <input type="text"  class="form-control" formControlName="ni_number" [(ngModel)]="candidate.ni_number"/>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
                    <label>Passport Number</label>
-                   <input type="text"  class="form-control" />
+                   <input type="text"  class="form-control" formControlName="passport_number" [(ngModel)]="candidate.passport_number"/>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
                    <label>Issueing Country</label>
-                   <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
+                   <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="issuing_country" [(ngModel)]="candidate.issuing_country">
                         <option>Unassigned</option>
                         <option>India</option>
                         <option>Usa</option>
@@ -214,7 +214,7 @@
             <div class="col-4">
                 <div class="form-group">
                    <label>Visa Type</label>
-                   <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
+                   <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="visa_type" [(ngModel)]="candidate.visa_type">
                         <option>Unassigned</option>
                         <option>Citizen</option>
                         <option>Tourist</option>
