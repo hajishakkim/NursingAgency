@@ -1,16 +1,11 @@
-<form>
+<form [formGroup]="form">
                  <div class="col-12 form-wrapper">                    
                      <div class="row">
                          <div class="col-4">
                              <div class="form-group">
                                  <label>Select client</label>
-                                 <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
-                                     <option>Option1</option>
-                                     <option>Option2</option>
-                                     <option>Option3</option>
-                                     <option>Option4</option>
-                                     <option>Option5</option>
-                                     <option>Option6</option>
+                                 <select class="form-control selectpicker" name="job_client_id" formControlName="job_client_id" [(ngModel)]="jobs.job_client_id"  data-selected-text-format="count > 3" data-container="body">
+                                    <option *ngFor="let client of clients_list;"  value="{{ client.job_client_id }}">{{ client.name }}</option>
                                  </select>
                              </div>
                          </div>
@@ -28,9 +23,9 @@
                              </div>
                          </div>
                          <div class="col-4">
-                             <div class="form-group">
+                             <div class="form-group" >
                                  <label>Job Title</label>
-                                 <input type="text" class="form-control" />
+                                 <input type="text" class="form-control" name="job_title" formControlName="job_title" [(ngModel)]="jobs.job_title" />
                              </div>
                          </div>
                      </div>
