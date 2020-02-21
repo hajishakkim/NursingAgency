@@ -26,6 +26,6 @@ export class VacanciesFormComponent implements OnInit {
   }
   editItem(item:any){
     console.log(item);
-    this.vaccancy = item;
+    this.vaccancy = JSON.parse(item);
   }
 }

@@ -61,7 +61,7 @@ export class VacanciesListComponent implements OnInit {
       
   //     setTimeout( function(){ 
   //       fixedHeaderTable($('.listing-table-wrapper'));  
-  //     },1000);
+  //     },1000); 
   //   }); 
   // }
   formSubmit(){
