@@ -16,7 +16,7 @@ declare function fixedHeaderTable(ele:any): void;
 export class VacanciesListComponent implements OnInit {
   vacancy_data: Vaccancies[] = [];
   headers: string[];
-
+  formData : {};
   @ViewChild('app_vacancies_form', {static: false}) app_vacancies_form:VacanciesFormComponent;
   log: any;
   constructor(public API: ApiService) {}
@@ -66,5 +66,8 @@ export class VacanciesListComponent implements OnInit {
   // }
   formSubmit(){
     this.app_vacancies_form.saveForm();
+  }
+  editItem(item:any){    
+    this.app_vacancies_form.editItem(item);
   }
 }

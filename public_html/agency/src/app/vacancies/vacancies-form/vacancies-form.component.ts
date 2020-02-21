@@ -24,5 +24,8 @@ export class VacanciesFormComponent implements OnInit {
   saveForm(){
     this.formData.emit(this.vaccancy);
   }
-
+  editItem(item:any){
+    console.log(item);
+    this.vaccancy = item;
+  }
 }

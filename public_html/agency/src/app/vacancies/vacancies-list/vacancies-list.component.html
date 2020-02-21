@@ -124,8 +124,8 @@
               <td><span class="text">{{data.vaccancy_location}}</span></td>
               <td><span class="text">{{data.vaccancy_details}}</span></td>
               <td>
-                <a href="#!"><i class="far fa-pencil"></i></a>
-                <a href="#!"><i class="far fa-trash-alt"></i></a>
+                <a href="javascript:void(0)" (click)="editItem(data)" data-toggle="modal" data-target="#addnew-modal"><i class="far fa-pencil"></i></a>
+                <a href="javascript:void(0)" (click)="removeItem(data)"><i class="far fa-trash-alt"></i></a>
               </td>
             </tr>
           </tbody>
