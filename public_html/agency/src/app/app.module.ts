@@ -20,6 +20,8 @@ import { BookingsModule } from './bookings/bookings.module';
 import { HistoryModule } from './history/history.module';
 import { InvoiceModule } from './invoice/invoice.module';
 import { ReportsModule } from './reports/reports.module';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { ReportsModule } from './reports/reports.module';
     HistoryModule,
     InvoiceModule,
     ReportsModule,
-    FormsModule
+    FormsModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]
