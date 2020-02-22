@@ -42,7 +42,7 @@ export class HolidaysListComponent implements OnInit {
 
   viewDate: Date = new Date();
 
-  events$: Observable<Array<CalendarEvent<{ film: Film }>>>;
+  events$: Observable<Array<CalendarEvent<any>>>;
 
   activeDayIsOpen: boolean = false;
 
@@ -116,10 +116,7 @@ export class HolidaysListComponent implements OnInit {
     }
   }
 
-  eventClicked(event: CalendarEvent<{ film: Film }>): void {
-    window.open(
-      `https://www.themoviedb.org/movie/${event.meta.film.id}`,
-      '_blank'
-    );
+  eventClicked(event: CalendarEvent<any>): void {
+
   }
 }

@@ -124,6 +124,9 @@ html, body{
 .menu-item .menu-text{
   padding-left: 10px;
 }
+.menu-item .menu-text:focus{
+  outline:none;
+}
 /* Sidebar sizes when expanded and collapsed */
 .sidebar-expanded {
     width: 200px;

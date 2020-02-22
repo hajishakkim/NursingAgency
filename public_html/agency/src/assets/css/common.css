@@ -2240,3 +2240,16 @@ table.ui-timepicker {
   position: static;
 }
 /*no data styles end*/
+
+
+/*-- error validation style --*/
+
+.validation-error-class .form-control{
+  border-bottom-color: #f00;
+}
+.validation-error-class .error{
+  position: absolute;
+  right:5px;
+  font-size:11px;
+  color: #f00;
+}
