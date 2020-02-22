@@ -43,7 +43,7 @@ CREATE TABLE `vaccancy` (
   `vaccancy_active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `candidates1`(
+CREATE TABLE `candidates`(
     `candidate_id` INT(11) NOT NULL AUTO_INCREMENT,
     `candidate_fname` CHAR(10) NULL,
     `candidate_lname` CHAR(100) NULL,
