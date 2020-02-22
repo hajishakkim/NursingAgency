@@ -37,12 +37,12 @@ export class AuthService {
     return this.http.post<AuthResponseData>(this.baseUrl + '/register',data)
     .pipe(
       catchError(this.handleError),
-      tap(resData => {
+      tap((resData : any) => {
         this.handleAuthentication(
-          resData.data.email,
-          resData.data.userName,
-          resData.data.userId,
-          resData.data.token,
+          resData.email,
+          resData.userName,
+          resData.userId,
+          resData.token,
         );
       })
     );
@@ -50,15 +50,15 @@ export class AuthService {
 
   onlogin(data : LoginModel)
   {
-    return this.http.post<AuthResponseData>(this.baseUrl + '/login',data)
+    return this.http.post<AuthResponseData>(this.baseUrl + '/apis/modules/login.php',data)
     .pipe(
       catchError(this.handleError),
-      tap(resData => {
+      tap((resData : any) => {
         this.handleAuthentication(
-          resData.data.email,
-          resData.data.userName,
-          resData.data.userId,
-          resData.data.token,
+          resData.email,
+          resData.userName,
+          resData.userId,
+          resData.token,
         );
       })
     );

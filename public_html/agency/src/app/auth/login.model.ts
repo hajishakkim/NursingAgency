@@ -1,3 +1,6 @@
 export class LoginModel{
-    constructor(private email : string ,private password : string){}
+    constructor( 
+        private agency        : string,
+        private userIdentity  : string ,
+        private password      : string){}
 }

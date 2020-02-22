@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule }   from '@angular/forms';    
 import { ModulesRoutingModule } from './modules-routing.module';
 import { ModulesComponent } from './modules.component';
@@ -20,6 +20,7 @@ import { HistoryModule } from './history/history.module';
 import { InvoiceModule } from './invoice/invoice.module';
 import { ReportsModule } from './reports/reports.module';
 import { CommonModule } from '@angular/common';
+import { AuthInterceptorService } from '../auth/auth-intercepeters.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,13 @@ import { CommonModule } from '@angular/common';
     ReportsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptorService,
+      multi : true
+    }
+  ],
   bootstrap: [ModulesComponent]
 })
 export class ModulesModule { }
