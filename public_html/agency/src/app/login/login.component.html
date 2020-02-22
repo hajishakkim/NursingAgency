@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <div class="row">
+       
+      <div class="landingpage-wrap">
+        <div class="landing-inner-wrap">
+          <div class="landing-form-outer">
+          <div class="logo"><img src="images/care-bee-logo.png" alt="carebee-login" /></div>
+          <div class="landing-form-wrapper">
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control" id="agency_name" placeholder="Agency" required/>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="user_name" placeholder="Username" required/>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="password" placeholder="Password" required/>
+                <span class="show-hide-password"><i class="far fa-eye-slash"></i></span>
+              </div>
+              <div class="form-group">
+                <button type="button" onclick="loginFn()" class="btn btn-primary btn-login">Login</button>
+              </div>
+              <div class="forgot-password"><a href="">Forgot Password?</a></div>
+            </form>
+          </div>
+        </div>
+        <div class="terms-conditions"><p>Copyright © 2020. Care Crew Global. All Rights Reserved</p></div>
+      </div>
+      </div>
+      
+    </div>
+  </div>
+    <script>
+        function loginFn(){
+            baseUrl = window.location.pathname;
+            if($("#agency_name").val()=="carebee" && $("#user_name").val()=="admin" && $("#password").val()=="pass"){
+            url = baseUrl.replace("login.html","agency/index.html");
+            window.location.href = url}
+            else{
+            alert("invalid")
+        }}
+    </script>

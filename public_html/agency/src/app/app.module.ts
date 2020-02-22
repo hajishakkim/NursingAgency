@@ -4,49 +4,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule }   from '@angular/forms';    
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StaffsModule } from './staffs/staffs.module';
-import { DashboardModule } from './dashboard/dashboard.module';
-import { ClientsModule } from './clients/clients.module';
-import { JobRolesModule } from './job-roles/job-roles.module';
-import { JobsModule } from './jobs/jobs.module';
-import { ClientRateModule } from './client-rate/client-rate.module';
-import { StaffRateModule } from './staff-rate/staff-rate.module';
-import { DocumentTypeModule } from './document-type/document-type.module';
-import { HolidaysModule } from './holidays/holidays.module';
-import { VacanciesModule } from './vacancies/vacancies.module';
-import { CandidatesModule } from './candidates/candidates.module';
-import { TimeSheetsModule } from './time-sheets/time-sheets.module';
-import { BookingsModule } from './bookings/bookings.module';
-import { HistoryModule } from './history/history.module';
-import { InvoiceModule } from './invoice/invoice.module';
-import { ReportsModule } from './reports/reports.module';
+import { LoginComponent } from './login/login.component';
+import { ModulesComponent } from './modules/modules.component';
+import { ModulesModule } from './modules/modules.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    StaffsModule,
-    DashboardModule,
-    ClientsModule,
-    JobRolesModule,
-    JobsModule,
-    ClientRateModule,
-    StaffRateModule,
-    DocumentTypeModule,
-    HolidaysModule,
-    VacanciesModule,
-    CandidatesModule,
-    TimeSheetsModule,
-    BookingsModule,
-    HistoryModule,
-    InvoiceModule,
-    ReportsModule,
-    FormsModule
+    FormsModule,
+    ModulesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
