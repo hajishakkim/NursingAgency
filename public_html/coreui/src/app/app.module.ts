@@ -40,7 +40,9 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AuthInterceptorService } from './auth/auth-intercepeters.service';
 
 @NgModule({
   imports: [
@@ -56,7 +58,8 @@ import { HttpClientModule } from '@angular/common/http';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,
@@ -69,6 +72,10 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
+  },{
+    provide : HTTP_INTERCEPTORS,
+    useClass : AuthInterceptorService,
+    multi : true
   }],
   bootstrap: [ AppComponent ]
 })
