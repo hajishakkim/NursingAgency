@@ -1,0 +1,95 @@
+<form [formGroup]="form">
+    <input name="vaccancy_id" formControlName="vaccancy_id" [(ngModel)]="vaccancy.vaccancy_id" type="hidden" class="form-control" />
+                 <div class="col-12 form-wrapper">
+                     <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label>Referance no</label>
+                                <input name="vaccancy_ref_number" formControlName="vaccancy_ref_number" [(ngModel)]="vaccancy.vaccancy_ref_number" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group custom-datepicker">
+                                <label>Date</label>
+                                <input name="vaccancy_date" formControlName="vaccancy_date" [(ngModel)]="vaccancy.vaccancy_date" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label>Client</label>
+                                <select name="vaccancy_client" formControlName="vaccancy_client" [(ngModel)]="vaccancy.vaccancy_client" class="form-control selectpicker" data-container="body">
+                                   <option>Option1</option>
+                                   <option>Option2</option>
+                                   <option>Option3</option>
+                                   <option>Option4</option>
+                                   <option>Option5</option>
+                                   <option>Option6</option>
+                               </select>
+                            </div>
+                        </div> 
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label>Businees Unit</label>
+                                <select name="vaccancy_business_group" formControlName="vaccancy_business_group" [(ngModel)]="vaccancy.vaccancy_business_group" class="form-control selectpicker" data-container="body">
+                                   <option>Option1</option>
+                                   <option>Option2</option>
+                                   <option>Option3</option>
+                                   <option>Option4</option>
+                                   <option>Option5</option>
+                                   <option>Option6</option>
+                               </select>
+                            </div>
+                       </div>
+                       <div class="col-4">
+                        <div class="form-group">
+                            <label>Shift Type</label>
+                            <select name="vaccancy_shift_type" formControlName="vaccancy_shift_type" [(ngModel)]="vaccancy.vaccancy_shift_type" class="form-control selectpicker" data-container="body">
+                               <option>Option1</option>
+                               <option>Option2</option>
+                               <option>Option3</option>
+                               <option>Option4</option>
+                               <option>Option5</option>
+                               <option>Option6</option>
+                           </select>
+                        </div>
+                       </div>
+                       <div class="col-4">
+                        <div class="form-group">
+                            <label>Job</label>
+                            <select name="vaccancy_job" formControlName="vaccancy_job" [(ngModel)]="vaccancy.vaccancy_job" class="form-control selectpicker" data-container="body">
+                            <option>Option1</option>
+                            <option>Option2</option>
+                            <option>Option3</option>
+                            <option>Option4</option>
+                            <option>Option5</option>
+                            <option>Option6</option>
+                        </select>                            
+                        </div>
+                       </div>
+                       <div class="col-4">
+                            <div class="form-group">
+                            <label>Break Time</label>
+                            <input name="vaccancy_break_time" formControlName="vaccancy_break_time" [(ngModel)]="vaccancy.vaccancy_break_time" type="text" class="form-control" />
+                            </div>
+                        </div>                        
+                        <div class="col-4">
+                            <div class="form-group">
+                               <label>Space</label>
+                               <input name="vaccancy_space" formControlName="vaccancy_space" [(ngModel)]="vaccancy.vaccancy_space" type="text" class="form-control" />
+                            </div>
+                        </div>                  
+                         <div class="col-4">
+                             <div class="form-group">
+                                <label>Location</label>
+                                <input name="vaccancy_location" formControlName="vaccancy_location" [(ngModel)]="vaccancy.vaccancy_location" type="text" class="form-control" />
+                             </div>
+                         </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Details</label>
+                                <input name="vaccancy_details" formControlName="vaccancy_details" [(ngModel)]="vaccancy.vaccancy_details" type="text" class="form-control" />
+                            </div>
+                        </div>                         
+                    </div>
+                 </div>
+     </form>
