@@ -1,188 +1,190 @@
-    <ol class="breadcrumb main-top-head">
-      <li class="breadcrumb-item" ng-reflect-klass="breadcrumb-item">
-        <a ng-reflect-router-link="/" href="#/">Home</a>
-      </li>
-      <li class="breadcrumb-item active" ng-reflect-klass="breadcrumb-item">
-        <span tabindex="0" ng-reflect-router-link="//dashboard/">Dashboard</span>
-      </li>
-      <li class="breadcrumb-menu d-md-down-none">
-        <div aria-label="Button group with nested dropdown" class="btn-group" role="group">
-          <a class="btn" href="#"><i class="icon-speech"></i></a>
-          <a class="btn" ng-reflect-router-link="/dashboard" href="#/dashboard"><i class="icon-graph"></i> &nbsp;Dashboard</a>
-          <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+    <div class="breadcrumb main-top-head">
+      <div class="main-top-left">
+        <div class="breadcrumb-item" ng-reflect-klass="breadcrumb-item">
+          <a ng-reflect-router-link="/" href="#/">Home</a>
         </div>
-      </li>     
-    </ol> 
-    <div class="d-flex top-header">
-      <div class="col title"><h5>Vacancies</h5></div>
-      <div class="col-auto header-right float-right"><a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a></div>
-    </div>
-
-    <div class="col-12 p-0 table-wrapper listing-table-wrapper">
-      <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
-        <a href="javascript:void(0)" class="customisation-btn"></a>
-        <div class="customisation-dropdown animated fadeIn">
-          <ul class="handles list ui-sortable">
-            <li>
-              <span class="drag-icon"></span>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox">
-                  <span class="text">Sl No</span>
-                </label>
-              </div>
-            </li>
-            <li>
-              <span class="drag-icon"></span>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox">
-                  <span class="text">Reference</span>
-                </label>
-              </div>
-            </li>
-            <li>
-              <span class="drag-icon"></span>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox">
-                  <span class="text">Client</span>
-                </label>
-              </div>
-            </li>
-            <li>
-              <span class="drag-icon"></span>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox">
-                  <span class="text">Break Time</span>
-                </label>
-              </div>
-            </li>
-            <li>
-              <span class="drag-icon"></span>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox">
-                  <span class="text">Space</span>
-                </label>
-              </div>
-            </li>
-            <li>
-              <span class="drag-icon"></span>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox">
-                  <span class="text">Location</span>
-                </label>
-              </div>
-            </li>
-            <li>
-              <span class="drag-icon"></span>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox">
-                  <span class="text">Details</span>
-                </label>
-              </div>
-            </li>
-            <li>
-              <span class="drag-icon"></span>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox">
-                  <span class="text">Actions</span>
-                </label>
-              </div>
-            </li>
-          </ul>
+        <div class="breadcrumb-item active" ng-reflect-klass="breadcrumb-item">
+          <span tabindex="0" ng-reflect-router-link="//dashboard/">Vacancies</span>
         </div>
       </div>
-      <div class="table-wrapper-inner">
-      <div class="table-header">
-        <div class="table-header-inner">
+      <div class="breadcrumb-menu d-md-down-none main-top-right">
+          <div class="form-group custom-search">
+              <input type="text" class="form-control" placeholder="Search" />
+          </div>
+          
+          <div class="icon-block">
+            <a href="#!" class="icon filter-icon" data-toggle="tooltip" data-placement="left" data-container="body" title="Advance Search"><i class="fas fa-filter"></i></a>
+          </div>
+          <a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a>
+      </div>     
+    </div> 
+    
+    <div class="col-12 page-wrapper">
+      <div class="col-12 p-0 table-wrapper listing-table-wrapper">
+        <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
+          <a href="javascript:void(0)" class="customisation-btn"></a>
+          <div class="customisation-dropdown animated fadeIn">
+            <ul class="handles list ui-sortable">
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Sl No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Reference</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Client</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Break Time</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Space</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Location</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Details</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Actions</span>
+                  </label>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="table-wrapper-inner">
+        <div class="table-header">
+          <div class="table-header-inner">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="w-xs no-sort"><span>Sl No</span></th>
+                  <th class="sorting"><span class="texts">Referance no</span></th>
+                  <th class="sorting"><span class="texts">Date</span></th>
+                  <th class="sorting"><span class="texts">Client</span></th>
+                  <th class="sorting"><span class="texts">Buisiness Unit</span></th>
+                  <th class="sorting"><span class="texts">Shift Type</span></th>
+                  <th class="sorting"><span class="texts">Job</span></th>
+                  <th class="sorting"><span class="texts">Break Time</span></th>
+                  <th class="sorting"><span class="texts">Space</span></th>
+                  <th class="sorting"><span class="texts">Location</span></th>
+                  <th class="sorting"><span class="texts">Details</span></th>
+                  <th class="no-sort actions-th"><span>Actions</span></th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+        <div class="table-body">
           <table class="table">
-            <thead>
-              <tr>
-                <th class="w-xs no-sort"><span>Sl No</span></th>
-                <th class="sorting"><span class="texts">Referance no</span></th>
-                <th class="sorting"><span class="texts">Date</span></th>
-                <th class="sorting"><span class="texts">Client</span></th>
-                <th class="sorting"><span class="texts">Buisiness Unit</span></th>
-                <th class="sorting"><span class="texts">Shift Type</span></th>
-                <th class="sorting"><span class="texts">Job</span></th>
-                <th class="sorting"><span class="texts">Break Time</span></th>
-                <th class="sorting"><span class="texts">Space</span></th>
-                <th class="sorting"><span class="texts">Location</span></th>
-                <th class="sorting"><span class="texts">Details</span></th>
-                <th class="no-sort actions-th"><span>Actions</span></th>
+            <tbody>
+              <tr *ngFor="let data of vacancy_data let rowIndex=index">
+                <td>{{rowIndex+1}}</td>
+                <td><span class="text">{{data.vaccancy_ref_number}}</span></td>
+                <td><span class="text">{{data.vaccancy_date}}</span></td>
+                <td><span class="text">{{data.vaccancy_cilent}}</span></td>
+                <td><span class="text">{{data.vaccancy_business}}</span></td>
+                <td><span class="text">{{data.vaccancy_staff_shift}}</span></td>
+                <td><span class="text">{{data.vaccancy_job}}</span></td>
+                <td><span class="text">{{data.vaccancy_break_time}}</span></td>
+                <td><span class="text">{{data.vaccancy_space}}</span></td>
+                <td><span class="text">{{data.vaccancy_location}}</span></td>
+                <td><span class="text">{{data.vaccancy_details}}</span></td>
+                <td>
+                  <a href="javascript:void(0)" (click)="editItem(data)" data-toggle="modal" data-target="#addnew-modal"><i class="far fa-pencil"></i></a>
+                  <a href="javascript:void(0)" (click)="removeItem(data)"><i class="far fa-trash-alt"></i></a>
+                </td>
               </tr>
-            </thead>
+            </tbody>
           </table>
+          
+          </div>
         </div>
-      </div>
-      <div class="table-body">
-        <table class="table">
-          <tbody>
-            <tr *ngFor="let data of vacancy_data let rowIndex=index">
-              <td>{{rowIndex+1}}</td>
-              <td><span class="text">{{data.vaccancy_ref_number}}</span></td>
-              <td><span class="text">{{data.vaccancy_date}}</span></td>
-              <td><span class="text">{{data.vaccancy_cilent}}</span></td>
-              <td><span class="text">{{data.vaccancy_business}}</span></td>
-              <td><span class="text">{{data.vaccancy_staff_shift}}</span></td>
-              <td><span class="text">{{data.vaccancy_job}}</span></td>
-              <td><span class="text">{{data.vaccancy_break_time}}</span></td>
-              <td><span class="text">{{data.vaccancy_space}}</span></td>
-              <td><span class="text">{{data.vaccancy_location}}</span></td>
-              <td><span class="text">{{data.vaccancy_details}}</span></td>
-              <td>
-                <a href="javascript:void(0)" (click)="editItem(data)" data-toggle="modal" data-target="#addnew-modal"><i class="far fa-pencil"></i></a>
-                <a href="javascript:void(0)" (click)="removeItem(data)"><i class="far fa-trash-alt"></i></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-footer">
+          <div class="float-left results-text">Showing <span>01-10</span> of <span>10</span> results</div>
+          <div class="float-right pagination-wrapper">
+            <div class="form-group goto">
+              <label>Go to page</label>
+              <input type="text" class="form-control" value="01">
+            </div>
+            <div class="pagination">
+              <nav>
+                <ul>
+                  <li><a href="javascript:void(0)" class="first"> &lt;&lt; </a></li>
+                  <li><a href="javascript:void(0)" class="prev">First</a></li>
+                  <li><a href="javascript:void(0)" class="page">01</a></li>
+                  <li><a href="javascript:void(0)" class="page">02</a></li>
+                  <li><a href="javascript:void(0)" class="page active">03</a></li>
+                  <li><a href="javascript:void(0)" class="page">04</a></li>
+                  <li><a href="javascript:void(0)" class="page">05</a></li>
+                  <li><a href="javascript:void(0)" class="prev">Last</a></li>
+                  <li><a href="javascript:void(0)" class="first"> &gt;&gt; </a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="form-group result-per">
+              <label>Results Per Page</label>
+              <select class="form-control selectpicker">
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+                <option>100</option>
+              </select>
+            </div>
+    
+          </div>
+        </div>
         
-        </div>
       </div>
-      <div class="table-footer">
-        <div class="float-left results-text">Showing <span>01-10</span> of <span>10</span> results</div>
-        <div class="float-right pagination-wrapper">
-          <div class="form-group goto">
-            <label>Go to page</label>
-            <input type="text" class="form-control" value="01">
-          </div>
-          <div class="pagination">
-            <nav>
-              <ul>
-                <li><a href="javascript:void(0)" class="first"> &lt;&lt; </a></li>
-                <li><a href="javascript:void(0)" class="prev">First</a></li>
-                <li><a href="javascript:void(0)" class="page">01</a></li>
-                <li><a href="javascript:void(0)" class="page">02</a></li>
-                <li><a href="javascript:void(0)" class="page active">03</a></li>
-                <li><a href="javascript:void(0)" class="page">04</a></li>
-                <li><a href="javascript:void(0)" class="page">05</a></li>
-                <li><a href="javascript:void(0)" class="prev">Last</a></li>
-                <li><a href="javascript:void(0)" class="first"> &gt;&gt; </a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="form-group result-per">
-            <label>Results Per Page</label>
-            <select class="form-control selectpicker">
-              <option>10</option>
-              <option>20</option>
-              <option>50</option>
-              <option>100</option>
-            </select>
-          </div>
-  
-        </div>
-      </div>
-      
     </div>
-
   
     <!-- right modal -->
     <div class="modal fade custom-popup right" id="addnew-modal" role="dialog" tabindex='-1'>

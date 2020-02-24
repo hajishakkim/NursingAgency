@@ -29,6 +29,96 @@ html, body{
 .main-wrapper{
   padding: 10px;
 }
+
+
+.main .container-fluid{
+  padding: 0;
+}
+.main .dashboard-wrapper{
+  padding: 10px;
+  height:calc(100vh - 157px);
+  overflow-y: auto;
+  overflow-x:hidden;
+}
+.main .main-top-head{
+  margin-bottom: 0;
+  border-radius: 0;
+  padding:0;
+}
+.main .main-top-head .main-top-left{
+  float: left;
+  padding: 8px 10px;
+}
+.main .main-top-head .main-top-right{
+  float: right;
+}
+.main .main-top-head .main-top-right .btn {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16px;
+  padding: 6px 10px;
+  outline: none !important;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  margin:4px 0;
+  float: left;
+}
+
+.main .main-top-head .main-top-right .btn.btn-primary{
+  color:#fff;
+}
+.main .main-top-head .main-top-right .form-group.custom-search{
+  float: left;
+  margin-bottom: 0;
+  margin: 0;
+  height: 35px;
+  margin-right: 10px;
+}
+.main .main-top-head .main-top-right .form-group.custom-search:after{
+  bottom:8px;
+}
+.main .main-top-head .main-top-right .form-group.custom-search .form-control{
+  height: 35px;
+  border-top: 0;
+  border-bottom: 0;
+  background: transparent;
+}
+.main .main-top-head .main-top-right .icon-block{
+  float: left;
+    margin: 3px 10px 3px 0;
+}
+.main .main-top-head .main-top-right .icon-block .icon{
+  float: left;
+  width :29px;
+  height: 29px;
+  padding: 5px 0;
+  text-align: center;
+  border: 1px solid #d7dde1;
+  transition: all 0.2s ease-in;
+  color: #0054a6;
+}
+.main .main-top-head .main-top-right .icon-block .icon:hover{
+  background: #0054a6;
+  border-color: #0054a6;
+  color: #fff;
+}
+.page-wrapper{
+  padding: 10px;
+}
+.sidebar .nav-link.active{
+  color: #fff;
+  background: #20a8d8;
+}
+.sidebar .nav-link.active .nav-icon{
+  color: #fff;
+}
 #sidebarMenu .logo-wrap{
   height: 60px;
   padding:7px 10px;
@@ -775,3 +865,4 @@ border-radius: 4px;
 @media only screen and (min-width: 1200px) {
 
 }
+

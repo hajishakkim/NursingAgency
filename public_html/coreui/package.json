@@ -14,9 +14,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",   
-    "devagency" : "ng build --dev /nursingAgency/public_html/coreui/dist/coreui /nursingAgency/public_html/agency/dev",
-    "prodagency" : "ng build --base-href /nursingAgency/public_html/coreui/dist/index.html"
+    "e2e": "ng e2e",
+    "devagency": "ng build --dev /nursingAgency/public_html/coreui/dist/coreui /nursingAgency/public_html/agency/dev",
+    "prodagency": "ng build --base-href /nursingAgency/public_html/coreui/dist/index.html"
   },
   "private": true,
   "dependencies": {
