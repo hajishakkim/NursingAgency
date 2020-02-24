@@ -10,12 +10,13 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
     "start": "ng serve",
-    "build": "ng build --prod --aot --buildOptimizer --commonChunk --vendorChunk --optimization --progress",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",   
+    "devagency" : "ng build --dev /nursingAgency/public_html/coreui/dist/coreui /nursingAgency/public_html/agency/dev",
+    "prodagency" : "ng build --base-href /nursingAgency/public_html/coreui/dist/index.html"
   },
   "private": true,
   "dependencies": {
