@@ -61,6 +61,10 @@ export const routes: Routes = [
         loadChildren: () => import('./vacancies/vacancies.module').then(m => m.VacanciesModule)
       },
       {
+        path: 'staff',
+        loadChildren: () => import('./staffs/staffs.module').then(m => m.StaffsModule)
+      },
+      {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
