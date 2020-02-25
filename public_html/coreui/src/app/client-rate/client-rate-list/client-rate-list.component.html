@@ -1,12 +1,11 @@
 
-  
     <div class="breadcrumb main-top-head">
       <div class="main-top-left">
         <div class="breadcrumb-item" ng-reflect-klass="breadcrumb-item">
           <a ng-reflect-router-link="/" href="#/">Home</a>
         </div>
         <div class="breadcrumb-item active" ng-reflect-klass="breadcrumb-item">
-          <span tabindex="0" ng-reflect-router-link="//dashboard/">Super Admin</span>
+          <span tabindex="0" ng-reflect-router-link="//dashboard/">Client Rate</span>
         </div>
       </div>
       <div class="breadcrumb-menu d-md-down-none main-top-right">
@@ -20,6 +19,7 @@
           <a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a>
       </div>     
     </div>
+
 
     <div class="col-12 p-0 table-wrapper listing-table-wrapper">
       <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
@@ -108,12 +108,19 @@
             <thead>
               <tr>
                 <th class="no-sort"><span>Sl No</span></th>
-                <th class="sorting"><span class="texts">Reference</span></th>
                 <th class="sorting"><span class="texts">Client</span></th>
-                <th class="sorting"><span class="texts">Break Time</span></th>
-                <th class="sorting"><span class="texts">Space</span></th>
-                <th class="sorting"><span class="texts">Location</span></th>
-                <th class="no-sort actions-th text-right"><span>Actions</span></th>
+                <th class="sorting"><span class="texts">Business Unit</span></th>
+                <th class="sorting"><span class="texts">Job</span></th>
+                <th class="sorting"><span class="texts">Week Days</span></th>
+                <th class="sorting"><span class="texts">Night Time</span></th>
+                <th class="sorting"><span class="texts">Friday Night</span></th>
+                <th class="sorting"><span class="texts">Saturday Day</span></th>
+                <th class="sorting"><span class="texts">Saturday Night</span></th>
+                <th class="sorting"><span class="texts">Sunday Day</span></th>
+                <th class="sorting"><span class="texts">Sunday Night</span></th>
+                <th class="sorting"><span class="texts">Public Holiday Day</span></th>
+                <th class="sorting"><span class="texts">Public Holiday Night</span></th>
+                <th class="no-sort actions-th"><span>Actions</span></th>
               </tr>
             </thead>
           </table>
@@ -122,16 +129,23 @@
       <div class="table-body">
         <table class="table">
           <tbody>
-            <tr *ngFor="let data of staff_data let rowIndex=index">
+            <tr *ngFor="let data of client_rate_data let rowIndex=index">
               <td>{{rowIndex+1}}</td>
-              <td><span class="text">{{data.reference}}</span></td>
               <td><span class="text">{{data.client}}</span></td>
-              <td><span class="text">{{data.break_time}}</span></td>
-              <td><span class="text">{{data.space}}</span></td>
-              <td><span class="text">{{data.location}}</span></td>
-              <td class="actions-td text-right">
-                <a href="#!"><i class="far fa-pencil" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
-                <a href="#!"><i class="far fa-trash-alt" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+              <td><span class="text">{{data.business_unit}}</span></td>
+              <td><span class="text">{{data.job}}</span></td>
+              <td><span class="text">{{data.week_days}}</span></td>
+              <td><span class="text">{{data.night_time}}</span></td>
+              <td><span class="text">{{data.friday_night}}</span></td>
+              <td><span class="text">{{data.saturday_day}}</span></td>
+              <td><span class="text">{{data.saturday_night}}</span></td>
+              <td><span class="text">{{data.sunday_day}}</span></td>
+              <td><span class="text">{{data.sunday_night}}</span></td>
+              <td><span class="text">{{data.public_hodliday_day}}</span></td>
+              <td><span class="text">{{data.public_hodliday_night}}</span></td>
+              <td>
+                <a href="#!"><i class="far fa-pencil"></i></a>
+                <a href="#!"><i class="far fa-trash-alt"></i></a>
               </td>
             </tr>
           </tbody>
@@ -182,17 +196,18 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Add super admin</h4>
+            <h4 class="modal-title">Add Client Rate</h4>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
           </div>
           <div class="modal-body">
-            <app-staff-form></app-staff-form>
+            <app-client-rate-form #app_client_rate_form (formData)="saveForm($event)"></app-client-rate-form>
           </div>
           <div class="modal-footer">
             <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
-            <button class="btn btn-primary" type="button">Save</button>
+            <button class="btn btn-primary" type="button" data-dismiss="modal" (click)="formSubmit()">Save</button>
           </div>
         </div>
       </div>
     </div>
     <!-- right modal -->
+  

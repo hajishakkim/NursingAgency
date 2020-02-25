@@ -1,0 +1,41 @@
+    <div class="breadcrumb main-top-head">
+      <div class="main-top-left">
+        <div class="breadcrumb-item" ng-reflect-klass="breadcrumb-item">
+          <a ng-reflect-router-link="/" href="#/">Home</a>
+        </div>
+        <div class="breadcrumb-item active" ng-reflect-klass="breadcrumb-item">
+          <span tabindex="0" ng-reflect-router-link="//dashboard/">Candidate</span>
+        </div>
+      </div>
+      <div class="breadcrumb-menu d-md-down-none main-top-right">
+          <div class="form-group custom-search">
+              <input type="text" class="form-control" placeholder="Search" />
+          </div>
+          
+          <div class="icon-block">
+            <a href="#!" class="icon filter-icon" data-toggle="tooltip" data-placement="left" data-container="body" title="Advance Search"><i class="fas fa-filter"></i></a>
+          </div>
+          <a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a>
+      </div>     
+    </div> 
+    
+    
+    <!-- right modal -->
+    <div class="modal fade custom-popup right" id="addnew-modal" role="dialog" tabindex='-1'>
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Add Candidate</h4>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+              <app-candidates-form #app_candidates_form (formData)="saveForm($event)"></app-candidates-form>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
+              <button class="btn btn-primary" type="button" data-dismiss="modal" (click)="formSubmit()">Save</button>
+            </div>
+          </div>
+        </div>
+    </div>
+      <!-- right modal -->

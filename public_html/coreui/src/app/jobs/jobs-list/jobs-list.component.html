@@ -1,12 +1,12 @@
 
-  
+
     <div class="breadcrumb main-top-head">
       <div class="main-top-left">
         <div class="breadcrumb-item" ng-reflect-klass="breadcrumb-item">
           <a ng-reflect-router-link="/" href="#/">Home</a>
         </div>
         <div class="breadcrumb-item active" ng-reflect-klass="breadcrumb-item">
-          <span tabindex="0" ng-reflect-router-link="//dashboard/">Super Admin</span>
+          <span tabindex="0" ng-reflect-router-link="//dashboard/">Jobs</span>
         </div>
       </div>
       <div class="breadcrumb-menu d-md-down-none main-top-right">
@@ -107,13 +107,11 @@
           <table class="table">
             <thead>
               <tr>
-                <th class="no-sort"><span>Sl No</span></th>
-                <th class="sorting"><span class="texts">Reference</span></th>
+                <th class="w-xs no-sort"><span>Sl No</span></th>
                 <th class="sorting"><span class="texts">Client</span></th>
-                <th class="sorting"><span class="texts">Break Time</span></th>
-                <th class="sorting"><span class="texts">Space</span></th>
-                <th class="sorting"><span class="texts">Location</span></th>
-                <th class="no-sort actions-th text-right"><span>Actions</span></th>
+                <th class="sorting"><span class="texts">Business Unit</span></th>
+                <th class="sorting"><span class="texts">Job Title</span></th>
+                <th class="no-sort actions-th"><span>Actions</span></th>
               </tr>
             </thead>
           </table>
@@ -121,17 +119,17 @@
       </div>
       <div class="table-body">
         <table class="table">
+          
           <tbody>
-            <tr *ngFor="let data of staff_data let rowIndex=index">
-              <td>{{rowIndex+1}}</td>
-              <td><span class="text">{{data.reference}}</span></td>
-              <td><span class="text">{{data.client}}</span></td>
-              <td><span class="text">{{data.break_time}}</span></td>
-              <td><span class="text">{{data.space}}</span></td>
-              <td><span class="text">{{data.location}}</span></td>
-              <td class="actions-td text-right">
-                <a href="#!"><i class="far fa-pencil" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
-                <a href="#!"><i class="far fa-trash-alt" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+            <tr>
+              <tr *ngFor="let data of jobs_data let rowIndex=index">
+                <td>{{rowIndex+1}}</td>
+                <td><span class="text">{{data.job_client_id}}</span></td>
+                <td><span class="text">{{data.job_business_unit_id}}</span></td>
+                <td><span class="text">{{data.job_title}}</span></td>
+              <td>
+                <a href="#!" (click)="editForm(data)" data-toggle="modal" data-target="#addnew-modal"><i class="far fa-pencil"></i></a>
+                <a  (click)="deleteRow(data)"><i class="far fa-trash-alt"></i></a>
               </td>
             </tr>
           </tbody>
@@ -182,15 +180,15 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Add super admin</h4>
+            <h4 class="modal-title">Add jobs</h4>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
           </div>
           <div class="modal-body">
-            <app-staff-form></app-staff-form>
+            <app-jobs-form #app_jobs_form (formData)="saveForm($event)" [clients_list] = "clients_list"></app-jobs-form>
           </div>
           <div class="modal-footer">
             <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
-            <button class="btn btn-primary" type="button">Save</button>
+            <button class="btn btn-primary " type="button" data-dismiss="modal" (click)="formSubmit()">Save</button>
           </div>
         </div>
       </div>

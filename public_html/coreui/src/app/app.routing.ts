@@ -65,6 +65,50 @@ export const routes: Routes = [
         loadChildren: () => import('./staffs/staffs.module').then(m => m.StaffsModule)
       },
       {
+        path: 'candidates',
+        loadChildren: () => import('./candidates/candidates.module').then(m => m.CandidatesModule)
+      },
+      {
+        path: 'client-rate',
+        loadChildren: () => import('./client-rate/client-rate.module').then(m => m.ClientRateModule)
+      },
+      {
+        path: 'clients',
+        loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule)
+      },
+      {
+        path: 'history',
+        loadChildren: () => import('./history/history.module').then(m => m.HistoryModule)
+      },
+      {
+        path: 'holidays',
+        loadChildren: () => import('./holidays/holidays.module').then(m => m.HolidaysModule)
+      },
+      {
+        path: 'invoice',
+        loadChildren: () => import('./invoice/invoice.module').then(m => m.InvoiceModule)
+      },
+      {
+        path: 'job-roles',
+        loadChildren: () => import('./job-roles/job-roles.module').then(m => m.JobRolesModule)
+      },
+      {
+        path: 'jobs',
+        loadChildren: () => import('./jobs/jobs.module').then(m => m.JobsModule)
+      },
+      {
+        path: 'reports',
+        loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule)
+      },
+      {
+        path: 'staff-rate',
+        loadChildren: () => import('./staff-rate/staff-rate.module').then(m => m.StaffRateModule)
+      },
+      {
+        path: 'time-sheets',
+        loadChildren: () => import('./time-sheets/time-sheets.module').then(m => m.TimeSheetsModule)
+      },
+      {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
