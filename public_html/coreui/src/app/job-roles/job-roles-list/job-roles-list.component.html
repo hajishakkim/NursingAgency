@@ -1,12 +1,12 @@
 
-  
+
     <div class="breadcrumb main-top-head">
       <div class="main-top-left">
         <div class="breadcrumb-item" ng-reflect-klass="breadcrumb-item">
           <a ng-reflect-router-link="/" href="#/">Home</a>
         </div>
         <div class="breadcrumb-item active" ng-reflect-klass="breadcrumb-item">
-          <span tabindex="0" ng-reflect-router-link="//dashboard/">Super Admin</span>
+          <span tabindex="0" ng-reflect-router-link="//dashboard/">Job Roles</span>
         </div>
       </div>
       <div class="breadcrumb-menu d-md-down-none main-top-right">
@@ -20,6 +20,7 @@
           <a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a>
       </div>     
     </div>
+
 
     <div class="col-12 p-0 table-wrapper listing-table-wrapper">
       <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
@@ -107,13 +108,10 @@
           <table class="table">
             <thead>
               <tr>
-                <th class="no-sort"><span>Sl No</span></th>
-                <th class="sorting"><span class="texts">Reference</span></th>
-                <th class="sorting"><span class="texts">Client</span></th>
-                <th class="sorting"><span class="texts">Break Time</span></th>
-                <th class="sorting"><span class="texts">Space</span></th>
-                <th class="sorting"><span class="texts">Location</span></th>
-                <th class="no-sort actions-th text-right"><span>Actions</span></th>
+                <th class="w-xs no-sort"><span>Sl No</span></th>
+                <th class="sorting"><span class="texts">Category</span></th>
+                <th class="sorting"><span class="texts">Job Role</span></th>
+                <th class="no-sort actions-th"><span>Actions</span></th>
               </tr>
             </thead>
           </table>
@@ -122,16 +120,13 @@
       <div class="table-body">
         <table class="table">
           <tbody>
-            <tr *ngFor="let data of staff_data let rowIndex=index">
-              <td>{{rowIndex+1}}</td>
-              <td><span class="text">{{data.reference}}</span></td>
-              <td><span class="text">{{data.client}}</span></td>
-              <td><span class="text">{{data.break_time}}</span></td>
-              <td><span class="text">{{data.space}}</span></td>
-              <td><span class="text">{{data.location}}</span></td>
-              <td class="actions-td text-right">
-                <a href="#!"><i class="far fa-pencil" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
-                <a href="#!"><i class="far fa-trash-alt" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+            <tr>
+              <td>1</td>
+              <td><span class="text">Nurse</span></td>
+              <td><span class="text">Lab Nurse</span></td>
+              <td>
+                <a href="#!"><i class="far fa-pencil"></i></a>
+                <a href="#!"><i class="far fa-trash-alt"></i></a>
               </td>
             </tr>
           </tbody>
@@ -182,11 +177,11 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Add super admin</h4>
+            <h4 class="modal-title">Add job roles</h4>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
           </div>
           <div class="modal-body">
-            <app-staff-form></app-staff-form>
+            <app-job-roles-form></app-job-roles-form>
           </div>
           <div class="modal-footer">
             <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
