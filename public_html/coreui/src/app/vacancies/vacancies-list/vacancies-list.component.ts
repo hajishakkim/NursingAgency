@@ -45,25 +45,6 @@ export class VacanciesListComponent implements OnInit {
       this.vacancy_data = data.data;
     });
   }
-  // saveForm(formData: Vaccancies) {
-  //   console.log(formData)
-  //   //this.vacancy_data.push(formData);   
-  //   this.API.post(formData,'http://localhost/nursingAgency/apis/index.php')
-  //   .subscribe(resp => {
-  //     const keys = resp.headers.keys();
-  //     this.headers = keys.map(key =>
-  //       `${key}: ${resp.headers.get(key)}`);
-  
-  //     for (const data of resp.body) {
-  //       //console.log(data)
-  //       this.vacancy_data.push(data);
-  //     }
-      
-  //     setTimeout( function(){ 
-  //       fixedHeaderTable($('.listing-table-wrapper'));  
-  //     },1000); 
-  //   }); 
-  // }
   formSubmit(){
     this.app_vacancies_form.saveForm();
   }
