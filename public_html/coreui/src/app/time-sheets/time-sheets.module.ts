@@ -4,8 +4,6 @@ import { TimeSheetsListComponent } from './time-sheets-list/time-sheets-list.com
 import { TimeSheetsFormComponent } from './time-sheets-form/time-sheets-form.component';
 import { TimeSheetsRoutingModule } from './time-sheets-routing.module';
 
-
-
 @NgModule({
   declarations: [TimeSheetsListComponent, TimeSheetsFormComponent],
   imports: [

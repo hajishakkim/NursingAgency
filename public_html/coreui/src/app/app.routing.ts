@@ -109,6 +109,10 @@ export const routes: Routes = [
         loadChildren: () => import('./time-sheets/time-sheets.module').then(m => m.TimeSheetsModule)
       },
       {
+        path: 'timeline',
+        loadChildren: () => import('./timeline/timeline.module').then(m => m.TimelineModule)
+      },
+      {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
