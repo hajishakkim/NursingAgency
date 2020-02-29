@@ -13,17 +13,16 @@
           </div>
           
           <div class="icon-block">
-            <a href="#" class="icon filter-icon" data-toggle="tooltip" data-placement="left" data-container="body" title="Advance Search"><i class="fas fa-filter"></i></a>
+            <a href="javascript:void(0)" class="icon filter-icon" (click)="showSearch()" data-toggle="tooltip" data-placement="left" title="Advance Search"><i class="fas fa-filter"></i></a>
           </div>
-          <a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New1</a>
+          <a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a>
       </div>     
     </div> 
     
     <div class="col-12 page-wrapper">
-      <div class="col-12 d-flex flex-column advanced-filter-search">
-        <div class="row">
-
-        
+      <div class="col-12 p-0 d-flex flex-column advanced-filter-search" *ngIf="advanced_filter_search == 0">
+        *{{advanced_filter_search}}
+        <div class="row m-0">
         <div class="col-2">
           <div class="form-group">
             <label>Referance no</label>
@@ -79,7 +78,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row m-0">
         <div class="col-2">
           <div class="form-group">
             <label>Break Time</label>
@@ -96,6 +95,14 @@
           <div class="form-group">
             <label>Location</label>
             <input type="text" class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 filter-footer">
+          <div class="btn-group">
+            <a href="#" class="btn btn-default">Cancel</a>
+            <a href="#" class="btn btn-primary">Save</a>
           </div>
         </div>
       </div>

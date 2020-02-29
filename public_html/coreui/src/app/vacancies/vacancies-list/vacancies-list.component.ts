@@ -19,6 +19,7 @@ export class VacanciesListComponent implements OnInit {
   formData : {};
   @ViewChild('app_vacancies_form', {static: false}) app_vacancies_form:VacanciesFormComponent;
   log: any;
+  advanced_filter_search : any = 0;
   constructor(public API: ApiService) {}
 
   ngOnInit() {
@@ -29,6 +30,10 @@ export class VacanciesListComponent implements OnInit {
   
   ngAfterContentInit(){  
   }  
+  showSearch(){    
+    this.advanced_filter_search = (this.advanced_filter_search) ? 0 : 1;
+    return;
+  }
   saveForm(formData: Vaccancies) {
     this.API.post('vaccancies.php',{data:formData})
     .subscribe(data => {

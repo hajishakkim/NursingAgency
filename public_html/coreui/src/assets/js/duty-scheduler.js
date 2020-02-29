@@ -59,7 +59,7 @@ $(function () {
         });
 
         $(document).on('click','.filter-icon',function(){
-            $(this).addClass('active');
+            $('.advanced-filter-search').slideToggle();
         });
         
         
