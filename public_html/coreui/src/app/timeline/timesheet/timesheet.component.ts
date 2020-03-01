@@ -83,6 +83,7 @@ export class TimesheetComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     var from = this.timesheet.control.visibleStart();
+    alert(from)
     var to = this.timesheet.control.visibleEnd();
     this.ds.getEvents(from, to).subscribe(result => {
       this.events = result;

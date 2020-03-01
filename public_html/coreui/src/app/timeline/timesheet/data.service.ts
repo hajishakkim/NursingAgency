@@ -3,7 +3,9 @@ import {Observable} from "rxjs";
 import {DayPilot} from "daypilot-pro-angular";
 import {HttpClient} from "@angular/common/http";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DataService {
 
   events: any[] = [
