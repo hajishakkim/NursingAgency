@@ -84,7 +84,7 @@ export const navItems: INavData[] = [
     name: 'Time Sheet',
     url: '/time-sheets',
     icon: 'icon-drop'
-  },  
+  },
   {
     name: 'Base',
     url: '/base',
