@@ -19,6 +19,7 @@ export class VacanciesListComponent implements OnInit {
   formData : {};
   @ViewChild('app_vacancies_form', {static: false}) app_vacancies_form:VacanciesFormComponent;
   log: any;
+  advanced_filter_search : boolean = false;
   constructor(public API: ApiService) {}
 
   ngOnInit() {
@@ -50,5 +51,8 @@ export class VacanciesListComponent implements OnInit {
   }
   editItem(item:any){    
     this.app_vacancies_form.editItem(item);
+  }
+  showAdvancedSearch(){
+    this.advanced_filter_search = (this.advanced_filter_search) ? false: true;
   }
 }

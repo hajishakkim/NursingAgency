@@ -727,7 +727,9 @@ border-radius: 4px;
   background-image: url(../images/sort_desc.png);
 }
 
-
+.advanced-filter-search.hidden{
+  display: none!important;
+}
 
 /*.page-wrapper {
 @include make-container();
