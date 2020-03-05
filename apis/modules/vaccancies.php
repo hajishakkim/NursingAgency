@@ -5,8 +5,15 @@ if($db){
     $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
     $data = array();
+    $page = 1;
+    $row_per_page = 10;
     try{
-        if($request) $data = (array)$request->data;
+        if($request) 
+        {
+            $data = (array)$request->data;
+            $page = $request->page ? $request->page : 1;
+            $row_per_page = $request->row_per_page ? $request->row_per_page : 10;
+        }
     }catch(\Exception $e){}
     if(count($data)>0){
         
@@ -55,9 +62,20 @@ if($db){
         }
     }
     else{
-        $sql = "SELECT * FROM `vaccancy`";
+        $start_limit = ($page-1)*$row_per_page;
+        $end_limit   = $row_per_page;
+        $sql = "SELECT SQL_CALC_FOUND_ROWS  * FROM `vaccancy` LIMIT $start_limit,$end_limit";
         $result  = $db->select($sql); 
-        echo json_encode(array('data'=>$result));
+        $countSql = "SELECT FOUND_ROWS() as total";
+        $totalCntRes  = $db->select($countSql); 
+        $totalCnt     = $totalCntRes[0]['total'];  
+        $totalPages   = $totalCnt%$row_per_page==0 ?  $totalCnt/$row_per_page : ($totalCnt/$row_per_page)+1;
+        $totalPagesArr = array();
+        for($i=1;$i<=$totalPages;$i++){
+            array_push($totalPagesArr,$i);    
+        }
+        $totalPagesArrEncoded = json_encode($totalPagesArr);
+        echo json_encode(array('data'=>$result,'totalCnt'=>$totalCnt ,'totalPagesArr' => $totalPagesArr));
     }
 }
 ?>
