@@ -107,7 +107,7 @@
           <table class="table">
             <thead>
               <tr>
-                <th class="no-sort"><span>Sl No</span></th>
+                <th class="no-sort"><span class="texts">Sl No</span></th>
                 <th class="sorting"><span class="texts">Client</span></th>
                 <th class="sorting"><span class="texts">Business Unit</span></th>
                 <th class="sorting"><span class="texts">Job</span></th>
@@ -130,24 +130,27 @@
       <div class="table-body">
         <table class="table">
           <tbody>
-            <tr>
-              <td>1</td>
-              <td><span class="text">Adress Proof1</span></td>
-              <td><span class="text">Bank staement</span></td>
-              <td><span class="text">Adress Proof1</span></td>
-              <td><span class="text">Bank staement</span></td>
-              <td><span class="text">Adress Proof1</span></td>
-              <td><span class="text">Bank staement</span></td>
-              <td><span class="text">Adress Proof1</span></td>
-              <td><span class="text">Bank staement</span></td>
-              <td><span class="text">Adress Proof1</span></td>
-              <td><span class="text">Bank staement</span></td>
-              <td><span class="text">Adress Proof1</span></td>
-              <td><span class="text">Bank staement</span></td>
-              <td><span class="text">Adress Proof1</span></td>
-              <td class="actions-td">
-                <a href="javascript:void(0)"><i class="far fa-pencil"></i></a>
-                <a href="javascript:void(0)"><i class="far fa-trash-alt"></i></a>
+            <tr *ngIf="staff_rate_data.length==0">
+              <td colspan=12><span>No Records Found</span></td>
+            </tr>
+            <tr *ngFor="let data of staff_rate_data let rowIndex=index">
+              <td><span class="text">{{((page-1)*row_per_page)+1+rowIndex}}</span></td>
+              <td><span class="text">{{data.client}}</span></td>
+              <td><span class="text">{{data.business_unit}}</span></td>
+              <td><span class="text">{{data.job}}</span></td>
+              <td><span class="text">{{data.employee_type}}</span></td>
+              <td><span class="text">{{data.week_days}}</span></td>
+              <td><span class="text">{{data.night_time}}</span></td>
+              <td><span class="text">{{data.friday_night}}</span></td>
+              <td><span class="text">{{data.saturday_day}}</span></td>
+              <td><span class="text">{{data.saturday_night}}</span></td>
+              <td><span class="text">{{data.sunday_day}}</span></td>
+              <td><span class="text">{{data.sunday_night}}</span></td>
+              <td><span class="text">{{data.public_hodliday_day}}</span></td>
+              <td><span class="text">{{data.public_hodliday_night}}</span></td>
+              <td>
+                <a href="#!"><i class="far fa-pencil"></i></a>
+                <a href="#!"><i class="far fa-trash-alt"></i></a>
               </td>
             </tr>
           </tbody>
@@ -156,34 +159,31 @@
         </div>
       </div>
       <div class="table-footer">
-        <div class="float-left results-text">Showing <span>01-10</span> of <span>10</span> results</div>
+        <div class="float-left results-text">Showing <span>{{((page-1)*row_per_page)+1}}-{{page*row_per_page < row_count ? page*row_per_page : row_count }}</span> of <span>{{row_count}}</span> results</div>
         <div class="float-right pagination-wrapper">
           <div class="form-group goto">
             <label>Go to page</label>
-            <input type="text" class="form-control" value="01">
+            <input type="text" class="form-control" (blur)="getCurrentPage($event.target.value,'page')" >
           </div>
           <div class="pagination">
             <nav>
               <ul>
-                <li><a href="javascript:void(0)" class="first"> &lt;&lt; </a></li>
-                <li><a href="javascript:void(0)" class="prev">First</a></li>
-                <li><a href="javascript:void(0)" class="page">01</a></li>
-                <li><a href="javascript:void(0)" class="page">02</a></li>
-                <li><a href="javascript:void(0)" class="page active">03</a></li>
-                <li><a href="javascript:void(0)" class="page">04</a></li>
-                <li><a href="javascript:void(0)" class="page">05</a></li>
-                <li><a href="javascript:void(0)" class="prev">Last</a></li>
-                <li><a href="javascript:void(0)" class="first"> &gt;&gt; </a></li>
+                <li ><a href="javascript:void(0)" class="first" (click)="getCurrentPage(page >1 ? page-1 : 1,'page')"> &lt;&lt; </a></li>
+                <li><a href="javascript:void(0)" [ngClass]="{'active' : page === 1}" class="prev" (click)="getCurrentPage(1,'page')">First</a></li>
+                
+                <li *ngFor="let pg of totalPagesArr"><a  href="javascript:void(0)" (click)="getCurrentPage(pg,'page')" [ngClass]="{'active' : page === pg}" class="page">{{pg}}</a></li>
+                <li><a href="javascript:void(0)" class="prev" (click)="getCurrentPage(totalPagesArr.length,'page')">Last</a></li>
+                <li><a href="javascript:void(0)" class="first" (click)="getCurrentPage(page < totalPagesArr.length ? page+1 : totalPagesArr.length,'page')"> &gt;&gt; </a></li>
               </ul>
             </nav>
           </div>
           <div class="form-group result-per">
             <label>Results Per Page</label>
-            <select class="form-control selectpicker">
-              <option>10</option>
-              <option>20</option>
-              <option>50</option>
-              <option>100</option>
+            <select class="form-control selectpicker" (change)="getCurrentPage($event.target.value,'rpp')" >
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
             </select>
           </div>
   
@@ -202,11 +202,11 @@
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
           </div>
           <div class="modal-body">
-            <app-staff-rate-form></app-staff-rate-form>
+            <app-staff-rate-form #app_staff_rate_form (formData)="saveForm($event)"></app-staff-rate-form>
           </div>
           <div class="modal-footer">
             <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
-            <button class="btn btn-primary" type="button">Save</button>
+            <button class="btn btn-primary" type="button" data-dismiss="modal" (click)="formSubmit()">Save</button>
           </div>
         </div>
       </div>
