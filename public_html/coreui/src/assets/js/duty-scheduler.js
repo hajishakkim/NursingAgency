@@ -58,6 +58,9 @@ $(function () {
             SidebarCollapse();
         });
 
+        $(document).on('click','.filter-icon',function(){
+            $('.advanced-filter-search').slideToggle();
+        });
         
         
 

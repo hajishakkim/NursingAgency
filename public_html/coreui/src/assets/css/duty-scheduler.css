@@ -92,12 +92,12 @@ html, body{
 }
 .main .main-top-head .main-top-right .icon-block{
   float: left;
-    margin: 3px 10px 3px 0;
+    margin: 4px 10px 3px 0;
 }
 .main .main-top-head .main-top-right .icon-block .icon{
   float: left;
-  width :29px;
-  height: 29px;
+  width :28px;
+  height: 28px;
   padding: 5px 0;
   text-align: center;
   border: 1px solid #d7dde1;
@@ -111,6 +111,7 @@ html, body{
 }
 .page-wrapper{
   padding: 10px;
+  position: relative;
 }
 .sidebar .nav-link.active{
   color: #fff;
@@ -817,6 +818,33 @@ border-radius: 4px;
   background-image: url(../images/sort_desc.png);
 }
 
+.advanced-filter-search{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fff;
+  padding: 10px;
+  z-index: 99;
+  -ms-box-shadow: 0 4px 6px rgba(0,0,0,.16);
+  -o-box-shadow: 0 4px 6px rgba(0,0,0,.16);
+  box-shadow: 0 4px 6px rgba(0,0,0,.16);
+}
+.filter-footer{
+  float: left;
+  width: 100%;
+  background: #f2f2f2;
+  padding: 7px 10px;
+} 
+.filter-footer .btn-group{
+  float: right;
+}
+.filter-footer .btn-group .btn{
+  width: 100px;
+  margin: 0  0 0 10px;
+}
+/* .advanced-filter-search.active{
+  display: flex!important;
+} */
 
 
 /*.page-wrapper {
