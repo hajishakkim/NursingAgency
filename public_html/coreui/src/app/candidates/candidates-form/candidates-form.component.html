@@ -2,19 +2,19 @@
     <div class="col-12 form-wrapper">
         <div class="row">
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('first_name').errors}" >
                     <label>First Name</label>
                     <input type="text"  class="form-control" formControlName="first_name" [(ngModel)]="candidate.first_name"/>
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('middle_name').errors}">
                     <label>Middle Name</label>
                     <input type="text"  class="form-control" formControlName="middle_name" [(ngModel)]="candidate.middle_name"/>
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('sur_name').errors}">
                     <label>Sur Name</label>
                     <input type="text"  class="form-control" formControlName="sur_name" [(ngModel)]="candidate.sur_name"/>
                 </div>
@@ -22,7 +22,7 @@
         </div>
         <div class="row">
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('gender').errors}">
                     <label>Gender</label>
                     <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="gender" [(ngModel)]="candidate.gender">
                        <option>Unassigned</option>
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('dob').errors}">
                     <label>Date of Birth</label>
                     <div class="custom-datepicker">
                         <input type="text" class="form-control datepicker" placeholder="dd/mm/yyyy" formControlName="dob" [(ngModel)]="candidate.dob" />
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('address1').errors}">
                     <label>Address Line 1</label>
                     <input type="text"  class="form-control" formControlName="address1" [(ngModel)]="candidate.address1"/>
                 </div>
@@ -49,19 +49,19 @@
         </div>
         <div class="row">
             <div class="col-4">
-               <div class="form-group">
+               <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('address2').errors}">
                    <label>Address Line 2</label>
                    <input type="text"  class="form-control" formControlName="address2" [(ngModel)]="candidate.address2"/>
                </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('address3').errors}">
                    <label>Address Line 3</label>
                    <input type="text"  class="form-control" formControlName="address3" [(ngModel)]="candidate.address3"/>
                 </div>
             </div>
             <div class="col-4">
-               <div class="form-group">
+               <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('country').errors}">
                     <label>Country</label>
                     <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="country" [(ngModel)]="candidate.country">
                         <option>Unassigned</option>
@@ -74,13 +74,13 @@
         </div>
         <div class="row">    
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('postcode').errors}">
                    <label>Postcode</label>
                    <input type="text"  class="form-control" formControlName="postcode" [(ngModel)]="candidate.postcode"/>
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('designation').errors}">
                      <label>Designation</label>
                      <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="designation" [(ngModel)]="candidate.designation">
                          <option>Unassigned</option>
@@ -91,27 +91,27 @@
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('dbs_pvg_number').errors}">
                    <label>DBS/PVG Number</label>
                    <input type="text"  class="form-control" formControlName="dbs_pvg_number" [(ngModel)]="candidate.dbs_pvg_number"/>
                 </div>
             </div>
         </div>
         <div class="row">    
-            <div class="form-group">
+            <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('dbs_pvg_issue_date').errors}">
                 <label>DBS/PVG Issue Date</label>
                 <div class="custom-datepicker">
                     <input type="text" class="form-control datepicker" placeholder="dd/mm/yyyy" formControlName="dbs_pvg_issue_date" [(ngModel)]="candidate.dbs_pvg_issue_date"/>
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('staff_id').errors}">
                    <label>Staff ID</label>
                    <input type="text"  class="form-control" formControlName="staff_id" [(ngModel)]="candidate.staff_id"/>
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('payroll_id').errors}">
                    <label>Payroll ID</label>
                    <input type="text"  class="form-control" formControlName="payroll_id" [(ngModel)]="candidate.payroll_id"/>
                 </div>
@@ -119,18 +119,18 @@
         </div>
         <div class="row">    
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted  && form.get('email').errors}">
                    <label>Email Address</label>
                    <input type="email"  class="form-control" formControlName="email" [(ngModel)]="candidate.email"/>
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('pin').errors}">
                    <label>Pin Number</label>
                    <input type="text"  class="form-control" formControlName="pin" [(ngModel)]="candidate.pin"/>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('pin_expire_date').errors}">
                 <label>Pin Expiry Date</label>
                 <div class="custom-datepicker">
                     <input type="text" class="form-control datepicker" placeholder="dd/mm/yyyy" formControlName="pin_expire_date" [(ngModel)]="candidate.pin_expire_date"/>
@@ -139,19 +139,19 @@
         </div>
         <div class="row">    
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('phone_country_code').errors}">
                    <label>Phone Country Code</label>
                    <input type="text"  class="form-control" formControlName="phone_country_code" [(ngModel)]="candidate.phone_country_code"/>
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('phone').errors}">
                    <label>Phone Number</label>
                    <input type="text"  class="form-control" formControlName="phone" [(ngModel)]="candidate.phone"/>
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('mobile_country_code').errors}">
                    <label>Mobile Country Code</label>
                    <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="mobile_country_code" [(ngModel)]="candidate.mobile_country_code">
                         <option>Unassigned</option>
@@ -163,13 +163,13 @@
         </div>
         <div class="row">    
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('mobile').errors}">
                    <label>Mobile Number</label>
                    <input type="text"  class="form-control" formControlName="mobile" [(ngModel)]="candidate.mobile"/>
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('employment_type').errors}">
                    <label>Employment Type</label>
                    <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="employment_type" [(ngModel)]="candidate.employment_type">
                         <option>Unassigned</option>
@@ -178,7 +178,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': submitted && form.get('status').errors}">
                    <label>Status</label>
                    <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="status" [(ngModel)]="candidate.status">
                         <option>Unassigned</option>
@@ -190,19 +190,19 @@
         </div>
         <div class="row">    
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': form.get('ni_number').errors}">
                    <label>NI Number</label>
                    <input type="text"  class="form-control" formControlName="ni_number" [(ngModel)]="candidate.ni_number"/>
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': form.get('passport_number').errors}">
                    <label>Passport Number</label>
                    <input type="text"  class="form-control" formControlName="passport_number" [(ngModel)]="candidate.passport_number"/>
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': form.get('issuing_country').errors}">
                    <label>Issueing Country</label>
                    <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="issuing_country" [(ngModel)]="candidate.issuing_country">
                         <option>Unassigned</option>
@@ -212,7 +212,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <div class="form-group">
+                <div class="form-group" [ngClass]="{'validation-error-class': form.get('visa_type').errors}">
                    <label>Visa Type</label>
                    <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="visa_type" [(ngModel)]="candidate.visa_type">
                         <option>Unassigned</option>
