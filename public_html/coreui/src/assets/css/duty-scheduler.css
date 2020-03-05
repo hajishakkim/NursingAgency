@@ -845,6 +845,12 @@ border-radius: 4px;
 .advanced-filter-search.hidden{
   display: none!important;
 }
+.advanced-filter-search .row.form{
+  padding:0 10px 0 10px!important;
+}
+.advanced-filter-search .row.form.first-row{
+  padding-top:10px!important;
+}
 /* .advanced-filter-search.active{
   display: flex!important;
 } */
