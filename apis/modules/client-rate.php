@@ -16,47 +16,56 @@ if($db){
         }
     }catch(\Exception $e){}
     if(count($data)>0){
-        
-        if(trim($data['id']) == ""){
-            
-            $sql = "INSERT INTO `client_rate` 
-                    SET `client_rate_client`                = ?,
-                        `client_rate_business_unit`         = ?,
-                        `client_rate_job`                   = ?,
-                        `client_rate_week_days`             = ?,
-                        `client_rate_night_time`            = ?,
-                        `client_rate_friday_night`          = ?,
-                        `client_rate_saturday_day`          = ?,
-                        `client_rate_saturday_night`        = ?,
-                        `client_rate_sunday_day`            = ?,
-                        `client_rate_sunday_night`          = ?,
-                        `client_rate_public_holiday_day`    = ?,
-                        `client_rate_public_holiday_night`  = ?,
-                        `client_rate_created_date`          = NOW()";    
+        if($data['action'] != 'delete'){
+            $set = "`client_rate_client`                = ?,
+                    `client_rate_business_unit`         = ?,
+                    `client_rate_job`                   = ?,
+                    `client_rate_week_days`             = ?,
+                    `client_rate_night_time`            = ?,
+                    `client_rate_friday_night`          = ?,
+                    `client_rate_saturday_day`          = ?,
+                    `client_rate_saturday_night`        = ?,
+                    `client_rate_sunday_day`            = ?,
+                    `client_rate_sunday_night`          = ?,
+                    `client_rate_public_holiday_day`    = ?,
+                    `client_rate_public_holiday_night`  = ?,";
 
             $params  =  array(  $data['client'],
-                                $data['business_unit'],
-                                $data['job'],
-                                $data['week_days'],
-                                $data['night_time'],
-                                $data['friday_night'],
-                                $data['saturday_day'],
-                                $data['saturday_night'],
-                                $data['sunday_day'],
-                                $data['sunday_night'],
-                                $data['public_hodliday_day'],
-                                $data['public_hodliday_night']
-                        );                   
+                        $data['business_unit'],
+                        $data['job'],
+                        $data['week_days'],
+                        $data['night_time'],
+                        $data['friday_night'],
+                        $data['saturday_day'],
+                        $data['saturday_night'],
+                        $data['sunday_day'],
+                        $data['sunday_night'],
+                        $data['public_hodliday_day'],
+                        $data['public_hodliday_night']
+            );
+        }
+        if(trim($data['id']) == ""){
+            $sql = "INSERT INTO `client_rate` 
+                    SET ".$set."
+                        `client_rate_created_date` = NOW()";   
             $db->add($sql, $params); 
             echo json_encode(array("status"=>"success"));
         }
         if(trim($data['id']) != ""){
-
             if($data['action'] == "edit"){
-            
+                array_push($params,$data['id']);
+                $sql = "UPDATE `client_rate` 
+                    SET ".$set."
+                        `client_rate_updated_time` = NOW() WHERE client_rate_id = ? AND client_rate_activity = 1";   
+                $db->add($sql, $params); 
+                echo json_encode(array("status"=>"success"));
+
             }
             if($data['action'] == "delete"){
-            
+                $sql = "UPDATE `client_rate` SET client_rate_activity = ?, `client_rate_updated_time` = NOW() WHERE client_rate_id = ? AND client_rate_activity = ?";
+                $params = array(0,$data['id'],1);
+                $db->add($sql, $params); 
+                echo json_encode(array("status"=>"success"));
             }
 
         }
@@ -64,7 +73,7 @@ if($db){
     else{
         $start_limit = ($page-1)*$row_per_page;
         $end_limit   = $row_per_page;
-        $sql = "SELECT SQL_CALC_FOUND_ROWS  * FROM `client_rate` LIMIT $start_limit,$end_limit";
+        $sql = "SELECT SQL_CALC_FOUND_ROWS  * FROM `client_rate` WHERE `client_rate_activity` = 1 LIMIT $start_limit,$end_limit";
         $result  = $db->select($sql);
         $formatted_result = array();
         foreach($result as $each_result){

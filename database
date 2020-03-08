@@ -74,6 +74,8 @@ CREATE TABLE `client_rate`(
     `client_rate_public_holiday_day` varchar(25) NULL,
     `client_rate_public_holiday_night` varchar(25) NULL,
     `client_rate_created_date` TIMESTAMP NULL,
+    `client_rate_updated_time` TIMESTAMP NULL,
+    `client_rate_activity` TINYINT(1) NULL DEFAULT '1',
     PRIMARY KEY(`client_rate_id`)
 ) ENGINE = INNODB DEFAULT CHARSET=utf8mb4;
 
@@ -94,6 +96,8 @@ CREATE TABLE `staff_rate`(
     `staff_rate_public_holiday_day` varchar(25) NULL,
     `staff_rate_public_holiday_night` varchar(25) NULL,
     `staff_rate_created_date` TIMESTAMP NULL,
+    `staff_rate_updated_time` TIMESTAMP NULL,
+    `staff_rate_activity` TINYINT(1) NULL DEFAULT '1',
     PRIMARY KEY(`staff_rate_id`)
 ) ENGINE = INNODB DEFAULT CHARSET=utf8mb4;
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ClientRateFormComponent} from '../client-rate-form/client-rate-form.component';
 import { ApiService } from '../../services/api.service'
 import { ClientRate } from './client-rate-list';
@@ -19,10 +19,14 @@ export class ClientRateListComponent implements OnInit {
   page : number;
   formData : {};
   totalPages :number;
+  id:number;
   totalPagesArr : [];
 
   @ViewChild('app_client_rate_form', {static: false}) app_client_rate_form:ClientRateFormComponent;
+  @ViewChild('getModal') getModal: ElementRef<HTMLElement>;  
+  @ViewChild('getModalDelete') getModalDelete: ElementRef<HTMLElement>;  
   log: any;
+  params: {};
   constructor(public API: ApiService) {}
 
   ngOnInit() {
@@ -67,6 +71,33 @@ export class ClientRateListComponent implements OnInit {
      this.page = from == "rpp" ? 1 : rows;
      this.row_per_page = from == "rpp" ?  rows : this.row_per_page;
      this.getClientRate({data:[]},this.page,this.row_per_page);
-    } 
+    }
+  
+  
+  editClientRate(data:any) {
+    let el: HTMLElement = this.getModal.nativeElement;
+    el.click();
+    this.app_client_rate_form.editForm(data);
+  }
+  
+  deleteClientRate(id:any){
+    this.id = id;
+    let el: HTMLElement = this.getModalDelete.nativeElement;
+    el.click();
+  }
+
+  confirmDelete(){
+    this.params = {'id':this.id,'action':'delete'};
+    this.deleteClientRateData(this.params);
+  }
+
+  deleteClientRateData(params: any) {
+    this.API.post('client-rate.php',{data:params})
+    .subscribe(data => {
+      if(data.status == "success") {
+        this.getClientRate({data:[]},this.page,this.row_per_page);  
+      }
+    }); 
+  }
 
 }
