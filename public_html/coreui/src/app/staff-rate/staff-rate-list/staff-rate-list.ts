@@ -1,4 +1,5 @@
 export class StaffRate {
+  id : string = '';
   client: string = '';
   business_unit:string = '';
   job:string = '';
@@ -12,6 +13,7 @@ export class StaffRate {
   sunday_night:string = '';
   public_hodliday_day:string = '';
   public_hodliday_night:string = '';
+  action:string = '';
 }
 
 

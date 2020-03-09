@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { StaffRateFormComponent} from '../staff-rate-form/staff-rate-form.component';
 import { ApiService } from '../../services/api.service'
 import { StaffRate } from './staff-rate-list';
@@ -21,9 +21,13 @@ export class StaffRateListComponent implements OnInit {
   formData : {};
   totalPages :number;
   totalPagesArr : [];
+  id:number;
 
   @ViewChild('app_staff_rate_form', {static: false}) app_staff_rate_form:StaffRateFormComponent;
+  @ViewChild('getModal') getModal: ElementRef<HTMLElement>;  
+  @ViewChild('getModalDelete') getModalDelete: ElementRef<HTMLElement>;  
   log: any;
+  params: {};
   constructor(public API: ApiService) {}
 
   ngOnInit() {
@@ -69,5 +73,32 @@ export class StaffRateListComponent implements OnInit {
     this.row_per_page = from == "rpp" ?  rows : this.row_per_page;
     this.getStaffRate({data:[]},this.page,this.row_per_page);
   } 
+
+  editStaffRate(data:any) {
+    console.log(data);
+    let el: HTMLElement = this.getModal.nativeElement;
+    el.click();
+    this.app_staff_rate_form.editForm(data);
+  }
+  
+  deleteStaffRate(id:any){
+    this.id = id;
+    let el: HTMLElement = this.getModalDelete.nativeElement;
+    el.click();
+  }
+
+  confirmDelete(){
+    this.params = {'id':this.id,'action':'delete'};
+    this.deleteStaffRateData(this.params);
+  }
+
+  deleteStaffRateData(params: any) {
+    this.API.post('staff-rate.php',{data:params})
+    .subscribe(data => {
+      if(data.status == "success") {
+        this.getStaffRate({data:[]},this.page,this.row_per_page);  
+      }
+    }); 
+  }
 
 }

@@ -10,6 +10,7 @@ declare function refreshSelectpicker(): void;
 export class StaffRateFormComponent implements OnInit {
   form: FormGroup;
   staffRate = {
+    id:'',
     client: '',
     business_unit:'',
     job:'',
@@ -23,11 +24,13 @@ export class StaffRateFormComponent implements OnInit {
     sunday_night:'',
     public_hodliday_day:'',
     public_hodliday_night:'',
+    action:'',
 
   };
   @Output() formData = new EventEmitter<Object>();
   constructor(builder: FormBuilder) {
     this.form = builder.group({
+      id:'',
       client: '',
       business_unit:'',
       job:'',
@@ -41,6 +44,7 @@ export class StaffRateFormComponent implements OnInit {
       sunday_night:'',
       public_hodliday_day:'',
       public_hodliday_night:'',
+      action:'',
     })
   }
 
@@ -49,6 +53,32 @@ export class StaffRateFormComponent implements OnInit {
   }
   saveForm(){
     this.formData.emit(this.staffRate);
+  }
+
+  editForm(data:any){
+    this.resetForm();
+    this.staffRate = data;
+    this.staffRate.action = 'edit';
+  }
+
+  resetForm(){
+    this.staffRate = {
+      id:'',
+      client: '',
+      business_unit:'',
+      job:'',
+      employee_type:'',
+      week_days:'',
+      night_time:'',
+      friday_night:'',
+      saturday_day:'',
+      saturday_night : '',
+      sunday_day:'',
+      sunday_night:'',
+      public_hodliday_day:'',
+      public_hodliday_night:'',
+      action:'',
+    };
   }
 
 }
