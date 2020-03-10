@@ -19,6 +19,19 @@ class Database
             die("ERROR: Unable to connect: " . $this->mysql_connection->connect_error);
         }
     }
+
+    function getDBConnection(){
+        $this->mysql_connection = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
+
+        if ($this->mysql_connection->connect_error) {
+            die("ERROR: Unable to connect: " . $this->mysql_connection->connect_error);
+        }
+    }
+
+    function resetDBConnection(){
+        $this->mysql_connection = null;
+    }
+
     public function query($sql, $params = array())
     {
       $stmt = $this->prepareStatement($sql, $params);
@@ -26,7 +39,8 @@ class Database
       return $stmt;
     }
     public function prepareStatement($sql, $params = array())
-    {
+    {        
+        self::getDBConnection();
         $stmt = $this->mysql_connection->prepare($sql);
         if(!empty($params)){
             $bind_param_type = '';

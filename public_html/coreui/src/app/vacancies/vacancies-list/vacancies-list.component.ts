@@ -30,6 +30,7 @@ export class VacanciesListComponent implements OnInit {
   ngOnInit() {
       var data = [];
       this.getVaccanies({data:[]},1,10);
+      this.getListItems();
       //setDataTable(null,'');
   }
   
@@ -47,6 +48,18 @@ export class VacanciesListComponent implements OnInit {
       }else{
 
       }
+    });
+  }
+  getListItems(){
+    var data = {
+      'request_items': {
+        'list_items': ['shift_type'],
+        'modules': ['client','business_unit','shift_type'],
+      }
+    };
+    this.API.post('vaccancies.php',data)
+    .subscribe(data => {
+      console.log(data);
     });
   }
   getVaccanies(data:any,page_no=0,row_per_page=0) {
