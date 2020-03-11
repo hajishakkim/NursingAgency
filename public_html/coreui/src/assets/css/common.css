@@ -1307,12 +1307,20 @@ table.ui-timepicker {
 .custom-popup.right .modal-dialog {
   position: fixed;
   margin: auto;
-  width: 90%!important;
   height: 100%;
   -webkit-transform: translate3d(0%, 0, 0);
   -ms-transform: translate3d(0%, 0, 0);
   -o-transform: translate3d(0%, 0, 0);
   transform: translate3d(0%, 0, 0);
+}
+.custom-popup.right.large .modal-dialog{
+  width: 90%!important;
+}
+.custom-popup.right.medium .modal-dialog{
+  width: 50%!important;
+}
+.custom-popup.right.small .modal-dialog{
+  width: 30%!important;
 }
 .custom-popup.right .modal-content {
   height: 100%;
