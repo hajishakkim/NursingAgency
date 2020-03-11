@@ -85,7 +85,7 @@ export class AuthService {
   handleAuthentication(email,userName,userId,token)
   {
     const user = new UserModel(email, userName ,userId, token);
-    localStorage.setItem('userData', JSON.stringify(user));
+    sessionStorage.setItem('userData', JSON.stringify(user));
     this.user.next(user);
   }
 
@@ -95,7 +95,7 @@ export class AuthService {
       userId  : number;
       userName: string;
       _token   : string;
-    } = JSON.parse(localStorage.getItem('userData'));
+    } = JSON.parse(sessionStorage.getItem('userData'));
 
     if (!userData) {
       return;
@@ -116,6 +116,6 @@ export class AuthService {
   logout() {
     this.user.next(null);
     this.router.navigate(['/login']);
-    localStorage.removeItem('userData');
+    sessionStorage.removeItem('userData');
   }
 }
