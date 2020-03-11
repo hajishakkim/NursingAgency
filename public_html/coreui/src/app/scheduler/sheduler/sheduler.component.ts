@@ -27,7 +27,7 @@ export class ShedulerComponent implements AfterViewInit {
     allowEventOverlap: true,
     resources: this.resource,
     cellWidth: 120,
-    height: 500,rowMinHeight : 120,
+    height: 500,rowMinHeight : 60,
 
     timeRangeSelectedHandling: "Enabled",
     onTimeRangeSelected: args => {
