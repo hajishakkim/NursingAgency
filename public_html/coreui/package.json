@@ -36,6 +36,7 @@
     "@fullcalendar/core": "^4.4.0",
     "@fullcalendar/daygrid": "^4.4.0",
     "@fullcalendar/resource-timeline": "^4.4.0",
+    "@ng-select/ng-select": "^3.7.3",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.9.2",
     "core-js": "^2.6.11",

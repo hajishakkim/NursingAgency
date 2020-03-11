@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -59,7 +60,8 @@ import { AuthInterceptorService } from './auth/auth-intercepeters.service';
     TabsModule.forRoot(),
     ChartsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgSelectModule
   ],
   declarations: [
     AppComponent,

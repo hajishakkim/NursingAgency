@@ -40,10 +40,17 @@
           <div class="form-group">
             <label>Client</label>
             <select class="form-control selectpicker">
-              <option>option 1</option>
-              <option>option 2</option>
-              <option>option 3</option>
+              <option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
+               {{client.label}}
+              </option>
             </select>
+
+            <!-- <ng-select [items]="list_items_data['modules'].client"
+              bindLabel="label"
+              bindValue="id"
+              [(ngModel)]="selectedPersonId">
+              </ng-select> -->
+
           </div>
         </div>
         <div class="col-2">
@@ -60,9 +67,10 @@
           <div class="form-group">
             <label>Shift Type</label>
             <select class="form-control selectpicker">
-              <option>option 1</option>
-              <option>option 2</option>
-              <option>option 3</option>
+              <option value="">Un Assigned</option>
+              <option *ngFor="let shift_type of list_items_data['list_items']['shift_type']" value={{shift_type.list_item_id}}>
+                {{shift_type.list_item_title}}
+              </option>
             </select>
           </div>
         </div>
@@ -281,7 +289,7 @@
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
           </div>
           <div class="modal-body">
-            <app-vacancies-form #app_vacancies_form (formData)="saveForm($event)"></app-vacancies-form>
+            <app-vacancies-form #app_vacancies_form (formData)="saveForm($event)" [list_items_data]="list_items_data"></app-vacancies-form>
           </div>
           <div class="modal-footer">
             <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>

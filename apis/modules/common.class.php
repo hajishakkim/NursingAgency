@@ -5,8 +5,8 @@ class Common extends Database
     public $mysql_connection = null;
     public $module_list_items = array(
         'client' => array('table'=>'clients','list_item'=>array('id'=>'client_id','label'=>'client_name')),
-        'shift_type' => array('table'=>'jobs','list_item'=>array('id'=>'job_id','label'=>'job_title')),
-        'business_unit' => array('table'=>'clients','list_item'=>array('id'=>'client_id','label'=>'client_name')),
+        'jobs' => array('table'=>'jobs','list_item'=>array('id'=>'job_id','label'=>'job_title')),
+        'business_unit' => array('table'=>'business_unit','list_item'=>array('id'=>'business_unit_id','label'=>'business_unit_name')),
     );
     function __construct()
     {
