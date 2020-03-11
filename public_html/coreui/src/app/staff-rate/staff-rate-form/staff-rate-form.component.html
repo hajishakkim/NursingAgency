@@ -1,123 +1,121 @@
-<form >
-                 <div class="col-12 form-wrapper">
-                     <div class="row">
-                         <div class="col-4">
-                             <div class="form-group">
-                                 <label>Select Client</label>
-                                 <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
-                                    <option>Option1</option>
-                                    <option>Option2</option>
-                                    <option>Option3</option>
-                                    <option>Option4</option>
-                                    <option>Option5</option>
-                                    <option>Option6</option>
-                                </select>
-                             </div>
-                         </div>
-                         <div class="col-4">
-                             <div class="form-group">
-                                 <label>Select Business Unit</label>
-                                 <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
-                                    <option>Option1</option>
-                                    <option>Option2</option>
-                                    <option>Option3</option>
-                                    <option>Option4</option>
-                                    <option>Option5</option>
-                                    <option>Option6</option>
-                                </select>
-                             </div>
-                         </div>
-                         <div class="col-4">
-                             <div class="form-group">
-                                 <label>select Job</label>
-                                 <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
-                                 <option>Option1</option>
-                                 <option>Option2</option>
-                                 <option>Option3</option>
-                                 <option>Option4</option>
-                                 <option>Option5</option>
-                                 <option>Option6</option>
-                             </select>
-                                 
-                             </div>
-                         </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label>Employment Type </label>
-                                <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body">
-                                <option>Option1</option>
-                                <option>Option2</option>
-                                <option>Option3</option>
-                                <option>Option4</option>
-                                <option>Option5</option>
-                                <option>Option6</option>
-                            </select>
-                                
-                            </div>
-                        </div>
-                         <div class="col-4">
-                             <div class="form-group">
-                                 <label>week Days</label>
-                                 <input type="text" class="form-control" />
-                             </div>
-                         </div>
-                         <div class="col-4">
-                             <div class="form-group">
-                                <label>Night Time</label>
-                                <input type="text" class="form-control" />
-                             </div>
-                         </div>
-                         
-                     </div>
-                     <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label>Friday Night</label>
-                                <input type="text" class="form-control" />
-                            </div>
-                        </div>
-                         <div class="col-4">
-                            <div class="form-group">
-                                <label>Saturday Day</label>
-                                <input type="text" class="form-control" />
-                            </div>
-                         </div>
-                         <div class="col-4">
-                             <div class="form-group">
-                                <label>Saturday Night</label>
-                                <input type="text" class="form-control" />
-                             </div>
-                         </div>                         
-                     </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-group">
-                                   <label>Sunday Day</label>
-                                   <input type="text" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="col-4">
-                               <div class="form-group">
-                                   <label>Sunday Night</label>
-                                   <input type="text" class="form-control" />
-                               </div>
-                            </div> 
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label>Public Holiday Day</label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                             </div> 
-                        </div>                    
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label>Public Holiday Night</label>
-                                <input type="text" class="form-control" />
-                            </div>
-                         </div> 
-                    </div>
-                 </div>
-     </form>
+<form [formGroup]="form">
+    <div class="col-12 form-wrapper">
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Select Client</label>
+                    <select class="form-control selectpicker"  formControlName="client" [(ngModel)]="staffRate.client"data-selected-text-format="count > 3" data-container="body">
+                       <option>Option1</option>
+                       <option>Option2</option>
+                       <option>Option3</option>
+                       <option>Option4</option>
+                       <option>Option5</option>
+                       <option>Option6</option>
+                   </select>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Select Business Unit</label>
+                    <select class="form-control selectpicker"  formControlName="business_unit" [(ngModel)]="staffRate.business_unit" data-selected-text-format="count > 3" data-container="body">
+                       <option>Option1</option>
+                       <option>Option2</option>
+                       <option>Option3</option>
+                       <option>Option4</option>
+                       <option>Option5</option>
+                       <option>Option6</option>
+                   </select>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>select Job</label>
+                    <select class="form-control selectpicker"  formControlName="job" [(ngModel)]="staffRate.job" data-selected-text-format="count > 3" data-container="body">
+                    <option>Option1</option>
+                    <option>Option2</option>
+                    <option>Option3</option>
+                    <option>Option4</option>
+                    <option>Option5</option>
+                    <option>Option6</option>
+                </select>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Employment Type </label>
+                    <select class="form-control selectpicker"  formControlName="employee_type" [(ngModel)]="staffRate.employee_type" data-selected-text-format="count > 3" data-container="body">
+                    <option>Option1</option>
+                    <option>Option2</option>
+                    <option>Option3</option>
+                    <option>Option4</option>
+                    <option>Option5</option>
+                    <option>Option6</option>
+                </select>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>week Days</label>
+                    <input type="text" formControlName="week_days" [(ngModel)]="staffRate.week_days" class="form-control" />
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                   <label>Night Time</label>
+                   <input type="text" formControlName="night_time" [(ngModel)]="staffRate.night_time" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Friday Night</label>
+                    <input type="text" formControlName="friday_night" [(ngModel)]="staffRate.friday_night" class="form-control" />
+                </div>
+            </div>
+            <div class="col-4">
+               <div class="form-group">
+                   <label>Saturday Day</label>
+                   <input type="text" formControlName="saturday_day" [(ngModel)]="staffRate.saturday_day" class="form-control" />
+               </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                   <label>Saturday Night</label>
+                   <input type="text" formControlName="saturday_night" [(ngModel)]="staffRate.saturday_night" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                   <label>Sunday Day</label>
+                   <input type="text" formControlName="sunday_day" [(ngModel)]="staffRate.sunday_day" class="form-control" />
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Sunday Night</label>
+                    <input type="text" formControlName="sunday_night" [(ngModel)]="staffRate.sunday_night" class="form-control" />
+                </div>
+            </div> 
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Public Holiday Day</label>
+                    <input type="text" formControlName="public_hodliday_day" [(ngModel)]="staffRate.public_hodliday_day" class="form-control" />
+                </div>
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Public Holiday Night</label>
+                    <input type="text" formControlName="public_hodliday_night" [(ngModel)]="staffRate.public_hodliday_night" class="form-control" />
+                </div>
+            </div> 
+        </div>
+    </div>
+</form>

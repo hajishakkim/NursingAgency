@@ -18,12 +18,10 @@
                             <div class="form-group">
                                 <label>Client</label>
                                 <select name="vaccancy_client" formControlName="vaccancy_client" [(ngModel)]="vaccancy.vaccancy_client" class="form-control selectpicker" data-container="body">
-                                   <option>Option1</option>
-                                   <option>Option2</option>
-                                   <option>Option3</option>
-                                   <option>Option4</option>
-                                   <option>Option5</option>
-                                   <option>Option6</option>
+                                   <option value="">Un Assigned</option>
+                                   <option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
+                                    {{client.label}}
+                                   </option>
                                </select>
                             </div>
                         </div> 

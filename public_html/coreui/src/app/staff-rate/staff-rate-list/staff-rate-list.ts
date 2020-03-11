@@ -1,8 +1,9 @@
-export class ClientRate {
+export class StaffRate {
   id : string = '';
   client: string = '';
   business_unit:string = '';
   job:string = '';
+  employee_type:string = '';
   week_days:string = '';
   night_time:string = '';
   friday_night:string = '';
