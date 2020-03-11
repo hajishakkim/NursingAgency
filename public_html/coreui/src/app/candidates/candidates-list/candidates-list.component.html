@@ -19,7 +19,198 @@
       </div>     
     </div> 
     
+    <div class="col-12 page-wrapper">
+      <div class="col-12 p-0 table-wrapper listing-table-wrapper">
+        <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
+          <a href="javascript:void(0)" class="customisation-btn"></a>
+          <div class="customisation-dropdown animated fadeIn">
+            <ul class="handles list ui-sortable">
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Sl No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Reference</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Client</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Break Time</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Space</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Location</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Details</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="drag-icon"></span>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                    <span class="text">Actions</span>
+                  </label>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="table-wrapper-inner">
+        <div class="table-header">
+          <div class="table-header-inner">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="w-xs no-sort"><span>Sl No</span></th>
+                  <th class="sorting"><span class="texts">Name</span></th>
+                  <th class="sorting"><span class="texts">Gender</span></th>
+                  <th class="sorting"><span class="texts">DOB</span></th>
+                  <th class="sorting"><span class="texts">Address</span></th>
+                  <th class="sorting"><span class="texts">Country</span></th>
+                  <th class="sorting"><span class="texts">Post Code</span></th>
+                  <th class="sorting"><span class="texts">Designation</span></th>
+                  <th class="sorting"><span class="texts">DBS/PVG Number</span></th>
+                  <th class="sorting"><span class="texts">DBS/PVG Issue Date</span></th>
+                  <th class="sorting"><span class="texts">Staff ID</span></th>
+                  <th class="sorting"><span class="texts">Payroll ID</span></th>
+                  <th class="sorting"><span class="texts">Email Address</span></th>
+                  <th class="sorting"><span class="texts">Pin Number</span></th>
+
+                  <th class="sorting"><span class="texts">Pin Expiry Date</span></th>
+                  <th class="sorting"><span class="texts">Phone Number</span></th>
+                  <th class="sorting"><span class="texts">Mobile Number</span></th>
+                  <th class="sorting"><span class="texts">Employment Type</span></th>
+                  <th class="sorting"><span class="texts">Status</span></th>
+                  <th class="sorting"><span class="texts">NI Number</span></th>
+                  <th class="sorting"><span class="texts">Passport Number</span></th>
+                  <th class="sorting"><span class="texts">Issueing Country</span></th>
+                  <th class="sorting"><span class="texts">Visa Type</span></th>
+                  <th class="no-sort actions-th"><span>Actions</span></th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+        <div class="table-body">
+          <table class="table">
+            <tbody>
+              <tr *ngIf="candidates_data.length==0">
+                <td colspan="24">No Records Found</td>
+              </tr>
+              <tr *ngFor="let data of candidates_data let rowIndex=index">
+                <td>{{((page-1)*row_per_page)+(rowIndex+1)}}</td>
+                <td><span class="text">{{data.candidate_title}} {{data.candidate_fname}} {{data.candidate_lname}}</span></td>
+                <td><span class="text">{{data.candidate_gender}}</span></td>
+                <td><span class="text">{{data.candidate_dob}}</span></td>
+                <td><span class="text">{{data.candidate_address1}},{{data.candidate_address2}},{{data.candidate_address3}}</span></td>
+                <td><span class="text">{{data.candidate_country}}</span></td>
+                <td><span class="text">{{data.candidate_postcode}}</span></td>
+                <td><span class="text">{{data.candidate_designation}}</span></td>
+                <td><span class="text">{{data.candidate_dbs_pvg_number}}</span></td>
+                <td><span class="text">{{data.candidate_dbs_pvg_issue_date}}</span></td>
+                <td><span class="text">{{data.candidate_staff_id}}</span></td>
+                <td><span class="text">{{data.candidate_payroll_id}}</span></td>
+                <td><span class="text">{{data.candidate_email}}</span></td>
+                <td><span class="text">{{data.candidate_pin}}</span></td>
+                <td><span class="text">{{data.candidate_pin_expiry_date}}</span></td>
+                <td><span class="text">{{data.candidate_phone_country_code}}-{{data.candidate_phone_number}}</span></td>
+                <td><span class="text">{{data.candidate_mobile_country_code}}-{{data.candidate_mobile_phone_number}}</span></td>
+                <td><span class="text">{{data.candidate_employment_type}}</span></td>
+                <td><span class="text">{{data.candidate_status}}</span></td>
+                <td><span class="text">{{data.candidate_ni_number}}</span></td>
+                <td><span class="text">{{data.candidate_passport_number}}</span></td>
+                <td><span class="text">{{data.candidate_issueing_country}}</span></td>
+                <td><span class="text">{{data.candidate_visa_type}}</span></td>
+                <td>
+                  <a href="javascript:void(0)" (click)="editItem(data)" data-toggle="modal" data-target="#addnew-modal"><i class="far fa-pencil"></i></a>
+                  <a href="javascript:void(0)" (click)="removeItem(data)"><i class="far fa-trash-alt"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+          </div>
+        </div>
+        <div class="table-footer">
+          <div class="float-left results-text">Showing <span>{{((page-1)*row_per_page)+1}}-{{page*row_per_page < row_count ? page*row_per_page : row_count }}</span> of <span>{{row_count}}</span> results</div>
+          <div class="float-right pagination-wrapper">
+            <div class="form-group goto">
+              <label>Go to page</label>
+              <input type="text" class="form-control" (blur)="getCurrentPage($event.target.value,'page')" >
+            </div>
+            <div class="pagination">
+              <nav>
+                <ul>
+                  <li ><a href="javascript:void(0)" class="first" (click)="getCurrentPage(page >1 ? page-1 : 1,'page')"> &lt;&lt; </a></li>
+                  <li><a href="javascript:void(0)" [ngClass]="{'active' : page === 1}" class="prev" (click)="getCurrentPage(1,'page')">First</a></li>
+                  
+                  <li *ngFor="let pg of totalPagesArr"><a  href="javascript:void(0)" (click)="getCurrentPage(pg,'page')" [ngClass]="{'active' : page === pg}" class="page">{{pg}}</a></li>
+                  <li><a href="javascript:void(0)" class="prev" (click)="getCurrentPage(totalPagesArr.length,'page')">Last</a></li>
+                  <li><a href="javascript:void(0)" class="first" (click)="getCurrentPage(page < totalPagesArr.length ? page+1 : totalPagesArr.length,'page')"> &gt;&gt; </a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="form-group result-per">
+              <label>Results Per Page</label>
+              <select class="form-control selectpicker" (change)="getCurrentPage($event.target.value,'rpp')" >
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </div>
     
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
     <!-- right modal -->
     <div class="modal fade custom-popup right" id="addnew-modal" role="dialog" tabindex='-1'>
         <div class="modal-dialog">
