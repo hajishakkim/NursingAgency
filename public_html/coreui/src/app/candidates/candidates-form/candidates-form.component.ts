@@ -33,7 +33,7 @@ export class CandidatesFormComponent implements OnInit {
     mobile_country_code:'',
     mobile:'',
     employment_type:'',
-    status:'',
+    cand_status:'',
     ni_number:'',
     passport_number: '',
     issuing_country:'',
@@ -66,7 +66,7 @@ export class CandidatesFormComponent implements OnInit {
       mobile_country_code:'',
       mobile:'',
       employment_type:'',
-      status:'',
+      cand_status:'',
       ni_number:'',
       passport_number: '',
       issuing_country:'',
@@ -78,8 +78,11 @@ export class CandidatesFormComponent implements OnInit {
     refreshSelectpicker();
   }
   saveForm(){
-    console.log(this.candidate);
-    //this.formData.emit(this.candidate);
+    this.formData.emit(this.candidate);
+  }
+  editItem(item:any){
+    console.log(item);
+    this.candidate = JSON.parse(item);
   }
 
 }

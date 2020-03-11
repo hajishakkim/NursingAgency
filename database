@@ -1,29 +1,19 @@
-CREATE TABLE `agency`.`jobs` 
+DROP TABLE IF EXISTS `jobs`;
+CREATE TABLE `jobs` 
 ( `job_id` INT(11) NOT NULL AUTO_INCREMENT , 
-`job_title` VARCHAR(500) NOT NULL , `job_client_id` INT(11) NOT NULL , 
-`job_business_unit_id` INT(11) NOT NULL , `created_date` DATETIME NOT NULL , 
-`job_status` TINYINT(1) NOT NULL DEFAULT '0' , PRIMARY KEY (`job_id`))
- ENGINE = InnoDB;
+`job_title` VARCHAR(500) NOT NULL , 
+`job_client_id` INT(11) NOT NULL , 
+`job_business_unit_id` INT(11) NOT NULL , 
+`job_created_by` int(10) DEFAULT 0,
+`job_created_date` date NOT NULL,
+`job_updated_date` date NOT NULL,
+`job_updated_by` int(11) DEFAULT 0, 
+`job_status` TINYINT(1) NOT NULL DEFAULT '0' , 
+ PRIMARY KEY (`job_id`))
+ ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `vaccancy` (
-  `vaccancy_id` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY (`vaccancy_id`),
-  `vaccancy_ref_number` int(11) NOT NULL,
-  `vaccancy_date` date NOT NULL,
-  `vaccancy_client` int(11) NOT NULL,
-  `vaccancy_business_group` int(11) NOT NULL,
-  `vaccancy_shift_type` int(11) NOT NULL,
-  `vaccancy_job` int(11) NOT NULL,
-  `vaccancy_break_time` date NOT NULL,
-  `vaccancy_space` varchar(255) NOT NULL,
-  `vaccancy_location` varchar(255) NOT NULL,
-  `vaccancy_details` varchar(255) NOT NULL,
-  `vaccancy_created_time` date NOT NULL,
-  `vaccancy_updated_time` date NOT NULL,
-  `vaccancy_created_by` int(11) NOT NULL,
-  `vaccancy_updated_by` date NOT NULL,
-  `vaccancy_active` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS `candidates`;
 CREATE TABLE `candidates`(
     `candidate_id` INT(11) NOT NULL AUTO_INCREMENT,
     `candidate_fname` varchar(10) NULL,
@@ -38,25 +28,156 @@ CREATE TABLE `candidates`(
     `candidate_postcode` INT(15) NULL DEFAULT '0',
     `candidate_designation` varchar(25) NULL,
     `candidate_dbs_pvg_number` INT(11) NULL DEFAULT '0',
-    `candidate_dbs_pvg_date` DATE NULL ,
+    `candidate_dbs_pvg_issue_date` DATE NULL ,
     `candidate_staff_id` varchar(25) NULL,
     `candidate_payroll_id` varchar(25) NULL,
     `candidate_email` varchar(50) NULL,
-    `candidate_pin_number` INT(25) NULL DEFAULT '0',
+    `candidate_pin` INT(25) NULL DEFAULT '0',
     `candidate_pin_expiry_date` DATE NULL,
     `candidate_phone_country_code` INT(10) NULL DEFAULT '0',
     `candidate_phone_number` INT(14) NULL DEFAULT '0',
     `candidate_mobile_country_code` INT(10) NULL DEFAULT '0',
     `candidate_mobile_phone_number` INT(14) NULL DEFAULT '0',
-    `candidate_employment _type` varchar(20) NULL,
+    `candidate_employment_type` varchar(20) NULL,
     `candidate_status` TINYINT(1) NULL DEFAULT '1',
     `candidate_ni_number` INT(15) NULL DEFAULT '0',
     `candidate_passport_number` varchar(25) NULL,
-    `candidate_issueing _country` CHAR(25) NULL,
+    `candidate_issueing_country` CHAR(25) NULL,
     `candidate_visit_type` varchar(25) NULL,
     `created_date` TIMESTAMP NULL,
     PRIMARY KEY(`candidate_id`)
 ) ENGINE = INNODB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS `staffs`;
+CREATE TABLE `staffs` (
+  `staff_id` int(11) NOT NULL AUTO_INCREMENT,
+  `staff_ref_id` varchar(50)  DEFAULT NULL,
+  `staff_client_id` int(11) DEFAULT NULL,
+  `staff_doj` date DEFAULT NULL,
+  `staff_shift_type` int(10) DEFAULT NULL,
+  `staff_business_unit_id` int(10) DEFAULT NULL,
+  `staff_space` varchar(255) DEFAULT NULL,
+  `staff_location` varchar(255) DEFAULT NULL,
+  `staff_details` varchar(255) DEFAULT NULL,
+  `staff_activity` tinyint(1)  DEFAULT 1,
+  `staff_created_by` int(10) DEFAULT 0,
+  `staff_created_date` date NOT NULL,
+  `staff_updated_date` date NOT NULL,
+  `staff_updated_by` int(11) DEFAULT 0,
+   PRIMARY KEY(`staff_id`)
+) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS `client_rates`;
+CREATE TABLE `client_rates` ( 
+  `cr_id` INT(11) NULL AUTO_INCREMENT ,
+  `cr_client_id` INT(11) NULL ,
+  `cr_business_id` INT(11) NULL ,
+  `cr_jobid` INT(5) NULL ,
+  `cr_week_days_rate` FLOAT(10) NULL ,
+  `cr_night_time_rate` FLOAT(10) NULL ,
+  `cr_friday_night_time_rate` FLOAT(10) NULL ,
+  `cr_saturday_day_time_rate` FLOAT(10) NULL , 
+  `cr_saturday_night_time_rate` FLOAT(10) NULL ,
+  `cr_sunday_day_time_rate` FLOAT(10) NULL ,
+  `cr_sunday_night_time_rate` FLOAT(10) NULL ,
+  `cr_holiday_day_time_rate` FLOAT(10) NULL , 
+  `cr_holiday_night_time_rate` FLOAT(10) NULL ,
+  `cr_created_by` int(10) DEFAULT 0,
+  `cr_created_date` date NOT NULL,
+  `cr_updated_date` date NOT NULL,
+  `cr_updated_by` int(11) DEFAULT 0,
+  PRIMARY KEY (`cr_id`)) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+
+  DROP TABLE IF EXISTS `staff_rates`;
+  CREATE TABLE `staff_rates` ( 
+  `sr_id` INT(11) NULL AUTO_INCREMENT ,
+  `sr_client_id` INT(11) NULL ,
+  `sr_business_id` INT(11) NULL ,
+  `sr_jobid` INT(5) NULL ,
+  `sr_week_days_rate` FLOAT(10) NULL ,
+  `sr_night_time_rate` FLOAT(10) NULL ,
+  `sr_friday_night_time_rate` FLOAT(10) NULL ,
+  `sr_saturday_day_time_rate` FLOAT(10) NULL , 
+  `sr_saturday_night_time_rate` FLOAT(10) NULL ,
+  `sr_sunday_day_time_rate` FLOAT(10) NULL ,
+  `sr_sunday_night_time_rate` FLOAT(10) NULL ,
+  `sr_holiday_day_time_rate` FLOAT(10) NULL , 
+  `sr_holiday_night_time_rate` FLOAT(10) NULL ,
+  `sr_created_by` int(10) DEFAULT 0,
+  `sr_created_date` date NOT NULL,
+  `sr_updated_date` date NOT NULL,
+  `sr_updated_by` int(11) DEFAULT 0,
+  PRIMARY KEY (`sr_id`)) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+
+  DROP TABLE IF EXISTS `document_categories`;
+  CREATE TABLE `document_categories` ( 
+  `dc_id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `dc_category_id` INT(5) NOT NULL DEFAULT '0' ,
+  `dc_doc_type_id` INT(10) NOT NULL DEFAULT '0' , 
+  `dc_created_by` int(10) DEFAULT 0,
+  `dc_created_date` date NOT NULL,
+  `dc_updated_date` date NOT NULL,
+  `dc_updated_by` int(11) DEFAULT 0,
+  `dc_activity` TINYINT(1) NOT NULL DEFAULT '1' ,
+   PRIMARY KEY (`dc_id`)) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS `clients`;
+CREATE TABLE `clients` (
+ `client_id` int(11) NOT NULL,
+ `client_name` varchar(255) NOT NULL,
+  `client_mapped_agency_id` int(11) NOT NULL, 
+ `client_authorized_person` varchar(255) NOT NULL,
+ `client_email` varchar(100) NOT NULL,
+ `client_address_line1` varchar(255) NOT NULL,
+ `client_address_line2` varchar(255) NOT NULL,
+ `client_postal_code` varchar(10) NOT NULL,
+ `client_phone_number` varchar(20) NOT NULL,
+ `client_mobile_number` varchar(20) NOT NULL,
+ `client_about_info` varchar(255) NOT NULL,
+ `client_business_unit` int(11) NOT NULL,
+ `client_created_date` date NOT NULL,
+ `client_created_by` int(11) NOT NULL,
+ `client_updated_date` date NOT NULL,
+ `client_updated_by` int(11) NOT NULL,
+ `client_status` int(11) NOT NULL DEFAULT 1
+) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `agencies`;
+CREATE TABLE `agencies` (
+ `agency_id` int(11) AUTO_INCREMENT,
+ `agency_name` varchar(255)  NULL,
+ `agency_authorized_person` varchar(255)  NULL,
+ `agency_email` varchar(100)  NULL,
+ `agency_address_line1` varchar(255)  NULL,
+ `agency_address_line2` varchar(255)  NULL,
+ `agency_postal_code` varchar(10) NULL,
+ `agency_phone_number` varchar(20)  NULL,
+ `agency_mobile_number` varchar(20)  NULL,
+ `agency_website_id` varchar(255)  NULL,
+ `agency_timesheet_email` int(11)  NULL,
+ `agency_created_date` date  NULL,
+ `agency_created_by` int(11)  NULL,
+ `agency_updated_date` date  NULL,
+ `agency_updated_by` int(11)  NULL,
+ `agency_status` int(11) DEFAULT 1
+) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `lists`
+ ( `list_id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `list_title` VARCHAR(255) NULL ,
+  `list_created_date` DATE  NULL , 
+  `list_created_by` INT(10) NULL ,
+  `list_activity` TINYINT(1) NULL DEFAULT '1' ,
+  PRIMARY KEY (`list_id`)) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `list_options`
+ ( `lo_id` INT(11)  NULL AUTO_INCREMENT ,
+  `lo_list_id` INT(11) NOT NULL
+  `lo_opton_title` VARCHAR(255) NULL ,
+  `list_created_date` DATE  NULL , 
+  `list_created_by` INT(10) NULL ,
+  `list_activity` TINYINT(1) NULL DEFAULT '1' ,
+  PRIMARY KEY (`list_id`)) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+
 
 
 CREATE TABLE `client_rate`(
