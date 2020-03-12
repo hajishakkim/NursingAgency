@@ -39,10 +39,10 @@
         <div class="col-2">
           <div class="form-group">
             <label>Client</label>
-            <select class="form-control selectpicker">
-              <option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
-               {{client.label}}
-              </option>
+            <select class="form-control selectpicker" *ngIf="list_items_data['modules']">
+                <option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
+                {{client.label}}
+                </option>
             </select>
 
             <!-- <ng-select [items]="list_items_data['modules'].client"
@@ -66,7 +66,7 @@
         <div class="col-2">
           <div class="form-group">
             <label>Shift Type</label>
-            <select class="form-control selectpicker">
+            <select class="form-control selectpicker" *ngIf="list_items_data['list_items']">
               <option value="">Un Assigned</option>
               <option *ngFor="let shift_type of list_items_data['list_items']['shift_type']" value={{shift_type.list_item_id}}>
                 {{shift_type.list_item_title}}

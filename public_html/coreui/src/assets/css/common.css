@@ -1734,9 +1734,11 @@ table.ui-timepicker {
   width: 100%;
   float: left;
 }
-.table-wrap .table-body {
-  max-height: 227px;
+.table-wrapper .table-body {
   overflow: auto;
+}
+.table-wrapper .table-header-inner{
+  overflow: hidden;
 }
 .table-wrap .table-head {
   overflow: hidden;
