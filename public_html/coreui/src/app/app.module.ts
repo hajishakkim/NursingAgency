@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { BnNgIdleService } from 'bn-ng-idle';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -78,7 +79,8 @@ import { AuthInterceptorService } from './auth/auth-intercepeters.service';
     provide : HTTP_INTERCEPTORS,
     useClass : AuthInterceptorService,
     multi : true
-  }],
+  },
+  BnNgIdleService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
