@@ -13,12 +13,11 @@ export class JobsFormComponent implements OnInit {
   jobs : {};
   
   @Input('clients_list') clients_list; 
+  @Input('job_business_unit_list') job_business_unit_list;
   @Output() formData = new EventEmitter<Object>();
   constructor(builder: FormBuilder) {
     this.jobs = new Jobs();
-    console.log("inside Form");
-    //console.log(this.jobs);
-    //this.clients_list =[ {id:1,name:'Django'},{id:2,name:'Django1'}];
+    console.log(this.clients_list);
     this.form = builder.group(this.jobs)
   }
 
@@ -31,10 +30,20 @@ export class JobsFormComponent implements OnInit {
   editForm(data:any){
     data.action = "edit";
     this.jobs = data;
+    setTimeout( function(){ 
+      refreshSelectpicker(); 
+    },500);
   }
   deleteRow(data:any){
     data.action = "delete";
     this.jobs = data; 
     this.saveForm();
+  }
+  resetForm(){
+    this.jobs = {};
+   // this.form.reset();
+    setTimeout( function(){ 
+      refreshSelectpicker(); 
+    },500);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './api.service';
+import { ApiService } from '../../services/api.service'
 import { StaffList } from './staff-list';
 import { Observable, of } from 'rxjs';
 import * as $ from 'jquery';
@@ -14,29 +14,52 @@ export class StaffListComponent implements OnInit {
 
   staff_data: StaffList[] = [];
   headers: string[];
-  constructor(public api: ApiService) {}
+  row_count   : 0;
+  row_per_page : number;
+  page : number;
+  formData : {};
+  totalPages :number;
+  id:number;
+  totalPagesArr : [];
+
+  constructor(public API: ApiService) {}
 
   ngOnInit() {
-    this.getStaffData();
+    var data = [];
+    this.getStaffData({data:[]},1,10);
     
   }
-  getStaffData() {
-    this.api.getStaffData()
-    .subscribe(resp => {
-      const keys = resp.headers.keys();
-      this.headers = keys.map(key =>
-        `${key}: ${resp.headers.get(key)}`);
-  
-      for (const data of resp.body) {
-        this.staff_data.push(data);
+
+  saveForm(formData: StaffList) {
+    this.API.post('staff.php',{data:formData})
+    .subscribe(data => {
+      if(data.status == "success") {
+        this.getStaffData({data:[]},this.page,this.row_per_page);  
+      }else{
+
       }
-      setTimeout( function(){
-        fixedHeaderTable($('.listing-table-wrapper'));
-        //$('[data-toggle="tooltip"]').tooltip();
-      },1000);
-    });
+    }); 
   }
 
+  //formSubmit(){
+    //this.app_client_rate_form.saveForm();
+  //}
+  getStaffData(data:any,page_no=0,row_per_page=0) {
+    data.page = page_no;
+    data.row_per_page = row_per_page;
+    data.totalPagesArr = [];
+    this.API.post('staff.php',data)
+    .subscribe(data => {
+      this.staff_data = data.data;
+      this.row_count = data.totalCnt;
+      this.page = page_no;
+      this.row_per_page  = row_per_page;
+      this.totalPagesArr = data.totalPagesArr; 
+    });
+    setTimeout( function(){
+      fixedHeaderTable($('.listing-table-wrapper'));
+    },1000);
+  }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
