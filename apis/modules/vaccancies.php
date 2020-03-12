@@ -1,6 +1,7 @@
 <?php
 include './common.class.php';
 $common = new Common();
+$common->setCORS();
 if(file_get_contents("php://input")){
 $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);

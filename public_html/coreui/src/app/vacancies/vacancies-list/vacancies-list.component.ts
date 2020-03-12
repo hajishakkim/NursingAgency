@@ -79,6 +79,9 @@ export class VacanciesListComponent implements OnInit {
       this.row_per_page = row_per_page;
       this.totalPagesArr = data.totalPagesArr; 
     });
+    setTimeout( function(){
+      fixedHeaderTable($('.listing-table-wrapper'));
+    },1000);
   }
   
   getCurrentPage(rows: 0,from=''){

@@ -67,7 +67,7 @@ html, body{
   -ms-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   transition: all 0.4s ease;
-  margin:4px 0;
+  margin:4px 10px 4px 0;
   float: left;
 }
 
@@ -443,7 +443,7 @@ html, body{
 .page-wrapper{
 	background: #f5f6f8;
 	padding: 10px;
-	height: calc(100vh - 61px);
+	height: calc(100vh - 142px);
 	overflow: auto;
 	flex-grow: 1;
 flex-basis:0;
@@ -615,7 +615,6 @@ border-radius: 4px;
 }
 .table-wrapper-inner{
   position: relative;
-  overflow: auto;
 }
 .customisation-btn-wrapper {
 	position: absolute;
@@ -902,4 +901,6 @@ border-radius: 4px;
 @media only screen and (min-width: 1200px) {
 
 }
-
+.table-wrapper .table-body {
+  overflow: auto;
+}
