@@ -11,6 +11,7 @@ class Common extends Database
     function __construct()
     {
         //$this->mysql_connection = super::mysql_connection;
+        self::setCORS();
 
     }
     public function getListItems($data)
