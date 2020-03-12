@@ -105,7 +105,7 @@ export const routes: Routes = [
         loadChildren: () => import('./staff-rate/staff-rate.module').then(m => m.StaffRateModule)
       },
       {
-        path: 'time-sheets',
+        path: 'timeline',
         loadChildren: () => import('./scheduler/scheduler.module').then(m => m.SchedulerModule)
       },
       {

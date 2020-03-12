@@ -7,6 +7,7 @@ import * as $ from 'jquery';
 
 declare function setDataTable(options:any,table: string): void;
 declare function fixedHeaderTable(ele:any): void;
+declare function refreshSelectpicker(): void;
 
 @Component({
   selector: 'app-vacancies-list',
@@ -25,11 +26,13 @@ export class VacanciesListComponent implements OnInit {
   @ViewChild('app_vacancies_form', {static: false}) app_vacancies_form:VacanciesFormComponent;
   log: any;
   advanced_filter_search : boolean = false;
+  list_items_data : [];
   constructor(public API: ApiService) {}
 
   ngOnInit() {
       var data = [];
       this.getVaccanies({data:[]},1,10);
+      this.getListItems();
       //setDataTable(null,'');
   }
   
@@ -47,6 +50,21 @@ export class VacanciesListComponent implements OnInit {
       }else{
 
       }
+    });
+  }
+  getListItems(){
+    var data = {
+      'request_items': {
+        'list_items': ['shift_type'],
+        'modules': ['client','business_unit','jobs'],
+      }
+    };
+    this.API.post('vaccancies.php',data)
+    .subscribe(data => {
+      this.list_items_data = data;
+      setTimeout(function(){
+        refreshSelectpicker();
+      },1000)
     });
   }
   getVaccanies(data:any,page_no=0,row_per_page=0) {

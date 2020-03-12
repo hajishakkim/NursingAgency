@@ -1,5 +1,6 @@
 import {Component } from '@angular/core';
 import { navItems } from '../../_nav';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,5 +12,20 @@ export class DefaultLayoutComponent {
 
   toggleMinimize(e) {
     this.sidebarMinimized = e;
+  }
+
+  constructor(
+    private authService : AuthService
+  ){
+  }
+
+  onLogout()
+  {
+    this.authService.logout();
+  }
+
+  onLockScreen()
+  {
+
   }
 }
