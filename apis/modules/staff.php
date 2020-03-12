@@ -5,7 +5,6 @@ if($db){
     $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
     $data = array();
-    $data = array();
     $page = 1;
     $row_per_page = 10;
     try{
@@ -15,33 +14,22 @@ if($db){
     }catch(\Exception $e){}
     if(count($data)>0){
         
-        if(trim($data['candidate_id']) == ""){
+        if(trim($data['staff_id']) == ""){
             
-            $sql = "INSERT INTO `candidates` 
-            (`candidate_fname`, 
-            `candidate_lname`, 
-            `candidate_title`, 
-            `candidate_gender`, 
-            `candidate_dob`, 
-            `candidate_address1`, 
-            `candidate_address2`, 
-            `candidate_address3`, 
-            `candidate_country`, 
-            `candidate_postcode`, 
-            `candidate_designation`, 
-            `candidate_dbs_pvg_number`, 
-            `candidate_dbs_pvg_issue_date`, 
-            `candidate_staff_id`, 
-            `candidate_payroll_id`,
-            `candidate_email`,
-            `candidate_pin`,
-            `candidate_pin_expiry_date`,
-            `candidate_phone_country_code`,`candidate_phone_number`,
-            `candidate_mobile_country_code`,`candidate_mobile_phone_number`,
-            `candidate_employment_type`,`candidate_status`,`candidate_ni_number`,
-            `candidate_passport_number`,`candidate_issueing_country`,
-            `candidate_visa_type`,`created_date`) VALUES 
-            (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW())";
+            $sql = "INSERT INTO `staffs` 
+			( `staff_ref_id`, 
+			`staff_client_id`,
+			`staff_doj`,
+			`staff_shift_type`,
+			`staff_business_unit_id`,
+			`staff_space`,
+			`staff_location`,
+			`staff_details`,
+			`date`,
+			`staff_activity`,
+			`created_by`)
+			VALUES (?, ?, ?, ?, ?,?, ?, ?, NOW(),?, ?)";
+			//VALUES (12, 12, 2020-03-21, "Night", 23,"120SQFT", "EKM", "GOOD", NOW(),'1', 14)";
             //print_r($data);
             $params = array($data['first_name'],
             $data['middle_name'],
@@ -88,7 +76,7 @@ if($db){
     else{
         $start_limit = ($page-1)*$row_per_page;
         $end_limit   = $row_per_page;
-        $sql = "SELECT SQL_CALC_FOUND_ROWS  * FROM `candidates` LIMIT $start_limit,$end_limit";
+        $sql = "SELECT SQL_CALC_FOUND_ROWS  * FROM `staffs` LIMIT $start_limit,$end_limit";
         $result  = $db->select($sql); 
         $countSql = "SELECT FOUND_ROWS() as total";
         $totalCntRes  = $db->select($countSql); 
