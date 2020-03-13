@@ -44,7 +44,6 @@ $postdata = file_get_contents("php://input");
                     `vaccancy_updated_by`, 
                     `vaccancy_active`) VALUES 
                     (?,?,?,?,?,?,?,?,?,?,NOW(),NOW(),1,1,1)";
-                    //print_r($data);
                     $params = array($data['vaccancy_ref_number'],
                     $data['vaccancy_date'],
                     $data['vaccancy_client'],
@@ -54,8 +53,8 @@ $postdata = file_get_contents("php://input");
                     $data['vaccancy_break_time'],
                     $data['vaccancy_space'],
                     $data['vaccancy_location'],
-                    $data['vaccancy_details']);            
-                    $db->add($sql, $params); 
+                    $data['vaccancy_details']);   
+                    $common->add($sql, $params); 
                     echo json_encode(array("status"=>"success"));
                 }
                 if(trim($data['vaccancy_id']) != ""){
@@ -72,11 +71,16 @@ $postdata = file_get_contents("php://input");
             else{
                 $start_limit = ($page-1)*$row_per_page;
                 $end_limit   = $row_per_page;
-                $sql = "SELECT SQL_CALC_FOUND_ROWS  * FROM `vaccancy` LIMIT $start_limit,$end_limit";
+                $sql = "SELECT * FROM `vaccancy` LIMIT $start_limit,$end_limit";
                 $result  = $common->select($sql); 
-                $countSql = "SELECT FOUND_ROWS() as total";
-                $totalCntRes  = $common->select($countSql); 
-                $totalCnt     = $totalCntRes[0]['total'];  
+                if($start_limit == '0'){
+                    $countSql = "SELECT COUNT(*) AS total FROM `vaccancy`";
+                    $totalCntRes  = $common->select($countSql); 
+                    $totalCnt     = $totalCntRes[0]['total'];
+                    $_SESSION['modules']['vaccancy']['list_count'] = $totalCnt;
+                }else{
+                    $totalCnt = $_SESSION['modules']['vaccancy']['list_count'];
+                }
                 $totalPages   = $totalCnt%$row_per_page==0 ?  $totalCnt/$row_per_page : ($totalCnt/$row_per_page)+1;
                 $totalPagesArr = array();
                 for($i=1;$i<=$totalPages;$i++){

@@ -79,6 +79,9 @@ export class VacanciesListComponent implements OnInit {
       this.row_per_page = row_per_page;
       this.totalPagesArr = data.totalPagesArr; 
     });
+    setTimeout( function(){
+      fixedHeaderTable($('.listing-table-wrapper'));
+    },1000);
   }
   
   getCurrentPage(rows: 0,from=''){
@@ -113,5 +116,10 @@ export class VacanciesListComponent implements OnInit {
   }
   showAdvancedSearch(){
     this.advanced_filter_search = (this.advanced_filter_search) ? false: true;
+  }
+  filterSearch(){
+    alert(123);
+    console.log(this.params);
+    //this.getVaccanies({data:[]},this.page,this.row_per_page);
   }
 }

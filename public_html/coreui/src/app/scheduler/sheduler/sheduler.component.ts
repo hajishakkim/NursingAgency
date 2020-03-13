@@ -2,6 +2,7 @@ import {Component, ViewChild, AfterViewInit} from "@angular/core";
 import {DayPilot, DayPilotSchedulerComponent} from "daypilot-pro-angular";
 import {DataService} from "./data.service";
 import SchedulerPropsAndEvents = DayPilot.SchedulerPropsAndEvents;
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-sheduler',
@@ -15,6 +16,7 @@ export class ShedulerComponent implements AfterViewInit {
 
   events: any[] = [];
   resource : any[] = [];
+  showPopUp : boolean = false;
 
   config: SchedulerPropsAndEvents = {
     locale: "en-us",
@@ -32,17 +34,19 @@ export class ShedulerComponent implements AfterViewInit {
     timeRangeSelectedHandling: "Enabled",
     onTimeRangeSelected: args => {
       const dp = this.timesheet.control;
-      DayPilot.Modal.prompt("Create a new event:", "Event 1").then(modal => {
-        dp.clearSelection();
-        if (!modal.result) { return; }
-        dp.events.add(new DayPilot.Event({
-          start: args.start,
-          end: args.end,
-          id: DayPilot.guid(),
-          resource: args.resource,
-          text: modal.result
-        }));
-      });
+      this.showPopUp = true;
+
+      // DayPilot.Modal.prompt("Create a new event:", "Event 1").then(modal => {
+      //   dp.clearSelection();
+      //   if (!modal.result) { return; }
+      //   dp.events.add(new DayPilot.Event({
+      //     start: args.start,
+      //     end: args.end,
+      //     id: DayPilot.guid(),
+      //     resource: args.resource,
+      //     text: modal.result
+      //   }));
+      // });
     },
   };
 
