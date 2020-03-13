@@ -443,7 +443,7 @@ html, body{
 .page-wrapper{
 	background: #f5f6f8;
 	padding: 10px;
-	height: calc(100vh - 61px);
+	height: calc(100vh - 142px);
 	overflow: auto;
 	flex-grow: 1;
 flex-basis:0;
@@ -615,7 +615,7 @@ border-radius: 4px;
 }
 .table-wrapper-inner{
   position: relative;
-  overflow: auto;
+  overflow: hidden;
 }
 .customisation-btn-wrapper {
 	position: absolute;

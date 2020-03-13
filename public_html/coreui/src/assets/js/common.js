@@ -250,7 +250,10 @@ function calcTableHeight() {
 function fixedHeaderTable(ths) {
   var widthArray = [];
   ths.find('.table, .table-header .table th, .table-body .table tr td').css('width', '');
-  var bodyHgt = $(window).height() - 200;
+  var tophdrhght = $('.main-top-head').outerHeight();
+  var tablehdrhght = $('.table-header').outerHeight();
+  var tablefooterhght = $('.table-footer').outerHeight(); 
+ // var bodyHgt = $(window).height() - tophdrhght - tablehdrhght - tablefooterhght - 37;
   
   ths.find('.table-body .table tr:last td').each(function() {
     widthArray.push($(this).outerWidth());
