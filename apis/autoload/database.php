@@ -63,6 +63,13 @@ class Database
         return $this->getQueryResult($stmt);
         //$result -> free_result();
     }
+    public function result($sql, $params = array())
+    {
+        $result = $this->query($sql);
+        print_r($this->getQueryResult($result));
+        die();
+       
+    }
     public function getQueryResult($stmt)
     {
         $records = array();

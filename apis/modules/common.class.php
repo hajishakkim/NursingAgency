@@ -12,6 +12,7 @@ class Common extends Database
     {
         //$this->mysql_connection = super::mysql_connection;
         self::setCORS();
+        session_start();
 
     }
     public function getListItems($data)
