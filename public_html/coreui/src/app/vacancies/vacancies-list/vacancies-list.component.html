@@ -67,7 +67,7 @@
           <div class="form-group">
             <label>Shift Type</label>
             <select class="form-control selectpicker" *ngIf="list_items_data['list_items']">
-              <option value="">Un Assigned</option>
+              <option value="">Unassigned</option>
               <option *ngFor="let shift_type of list_items_data['list_items']['shift_type']" value={{shift_type.list_item_id}}>
                 {{shift_type.list_item_title}}
               </option>
