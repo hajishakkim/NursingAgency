@@ -44,7 +44,6 @@ $postdata = file_get_contents("php://input");
                     `vaccancy_updated_by`, 
                     `vaccancy_active`) VALUES 
                     (?,?,?,?,?,?,?,?,?,?,NOW(),NOW(),1,1,1)";
-                    //print_r($data);
                     $params = array($data['vaccancy_ref_number'],
                     $data['vaccancy_date'],
                     $data['vaccancy_client'],
@@ -54,8 +53,8 @@ $postdata = file_get_contents("php://input");
                     $data['vaccancy_break_time'],
                     $data['vaccancy_space'],
                     $data['vaccancy_location'],
-                    $data['vaccancy_details']);            
-                    $db->add($sql, $params); 
+                    $data['vaccancy_details']);   
+                    $common->add($sql, $params); 
                     echo json_encode(array("status"=>"success"));
                 }
                 if(trim($data['vaccancy_id']) != ""){
