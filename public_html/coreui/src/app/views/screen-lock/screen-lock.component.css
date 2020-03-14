@@ -1,0 +1,120 @@
+.landingpage-wrap{
+    float: left;
+    background: url("assets/images/login-bg.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .landing-inner-wrap{
+    width: 370px;
+  }
+  .landing-inner-wrap .landing-form-outer{
+    float: left;
+    width: 100%;
+    background: #fff;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 35px 50px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+  }
+  .landing-inner-wrap .logo{
+    float: left;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .landing-inner-wrap .landing-form-wrapper{
+    float: left;
+    width: 100%;
+  }
+  .landing-inner-wrap .landing-form-wrapper .form-group{
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+    position: relative;
+  }
+  .landing-inner-wrap .landing-form-wrapper .form-group .show-hide-password{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #EFEFEF;
+    background: #EFEFEF;
+    border-left: 0;
+    -moz-border-top-right-radius: 50px;
+    -webkit-border-top-right-radius: 50px;
+    -moz-border-bottom-right-radius: 50px;
+    -webkit-border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    padding: 10px 5px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .show-hide-password i{
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 13px;
+  }
+  .landing-inner-wrap .landing-form-wrapper .form-group .form-control{
+    float: left;
+    width: 100%;
+    height: 40px;
+    background: #EFEFEF;
+    border: 1px solid #EFEFEF;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    font-size: 13px;
+  }
+  .landing-inner-wrap .landing-form-wrapper .form-group .form-control:focus{
+    background: #fff;
+    transition: all 0.2s ease-in;
+  }
+  .landing-inner-wrap .landing-form-wrapper .form-group .form-control::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+  }
+  .landing-inner-wrap .landing-form-wrapper .form-group .btn{
+    width: 100%;
+    height: 40px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .forgot-password{
+    float: left;
+    width: 100%;
+    text-align: center;
+  }
+  .forgot-password a{
+    font-size: 13px;
+    color: #0054A5;
+  }
+  .landing-inner-wrap .terms-conditions{
+    float: left;
+    width: 100%;
+    text-align: center;
+  }
+  .landing-inner-wrap .terms-conditions p{
+    color: #fff;
+    font-size: 13px;
+  }

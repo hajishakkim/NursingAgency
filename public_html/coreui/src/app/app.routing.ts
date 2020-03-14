@@ -9,6 +9,7 @@ import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { AuthGuard } from './auth/auth.guards';
+import { ScreenLockComponent } from './views/screen-lock/screen-lock.component';
 
 export const routes: Routes = [
   {

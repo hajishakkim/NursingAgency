@@ -48,6 +48,10 @@ export class ShedulerComponent implements AfterViewInit {
       //   }));
       // });
     },
+    onEventClick : arg => {
+      debugger;
+      console.log(arg);
+    }
   };
 
   constructor(private ds: DataService) {

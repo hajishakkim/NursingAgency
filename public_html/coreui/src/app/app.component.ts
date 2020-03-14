@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { BnNgIdleService } from 'bn-ng-idle';
 
 @Component({
   // tslint:disable-next-line
@@ -10,13 +9,8 @@ import { BnNgIdleService } from 'bn-ng-idle';
 })
 export class AppComponent implements OnInit {
   constructor(
-    private router: Router,
-    private bnIdle : BnNgIdleService) { 
-      this.bnIdle.startWatching(30).subscribe((res) => {
-        if(res) {
-          
-        }
-      });
+    private router: Router) { 
+
     }
 
   ngOnInit() {

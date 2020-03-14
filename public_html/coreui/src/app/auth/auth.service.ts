@@ -43,6 +43,7 @@ export class AuthService {
           resData.userName,
           resData.userId,
           resData.token,
+          resData.angency
         );
       })
     );
@@ -56,9 +57,10 @@ export class AuthService {
       tap((resData : any) => {
         this.handleAuthentication(
           resData.email,
-          resData.userName,
           resData.userId,
+          resData.userName,
           resData.token,
+          resData.angency
         );
       })
     );
@@ -82,9 +84,9 @@ export class AuthService {
     return throwError(errorMessage);
   }
 
-  handleAuthentication(email,userName,userId,token)
+  handleAuthentication(email,userId,userName,token,angency)
   {
-    const user = new UserModel(email, userName ,userId, token);
+    const user = new UserModel(email ,userId, userName, token, angency);
     sessionStorage.setItem('userData', JSON.stringify(user));
     this.user.next(user);
   }
@@ -95,6 +97,7 @@ export class AuthService {
       userId  : number;
       userName: string;
       _token   : string;
+      agency : string
     } = JSON.parse(sessionStorage.getItem('userData'));
 
     if (!userData) {
@@ -105,7 +108,8 @@ export class AuthService {
       userData.email,
       userData.userId,
       userData.userName,
-      userData._token
+      userData._token,
+      userData.agency
     );
 
     if (loadedUser.token) {
@@ -113,9 +117,12 @@ export class AuthService {
     }
   }
 
-  logout() {
+  logout(navToLogin = true) {
     this.user.next(null);
-    this.router.navigate(['/login']);
     sessionStorage.removeItem('userData');
+
+    if(navToLogin){
+      this.router.navigate(['/login']);
+    }
   }
 }
