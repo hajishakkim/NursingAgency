@@ -6,6 +6,8 @@ import * as $ from 'jquery';
 
 declare function setDataTable(options:any,table: string): void;
 declare function fixedHeaderTable(ele:any): void;
+declare function refreshSelectpicker(): void;
+
 @Component({
   selector: 'app-client-rate-list',
   templateUrl: './client-rate-list.component.html',
@@ -26,13 +28,21 @@ export class ClientRateListComponent implements OnInit {
   @ViewChild('getModal') getModal: ElementRef<HTMLElement>;  
   @ViewChild('getModalDelete') getModalDelete: ElementRef<HTMLElement>;  
   log: any;
+  advanced_filter_search : boolean = false;
   params: {};
+  list_items_data : [];
   constructor(public API: ApiService) {}
 
   ngOnInit() {
     var data = [];
     this.getClientRate({data:[]},1,10);
+    this.getListItems();
     //setDataTable(null,'');
+  }
+
+  showSearch(){    
+    this.advanced_filter_search = (this.advanced_filter_search) ? false : true;
+    return;
   }
 
   saveForm(formData: ClientRate) {
@@ -98,6 +108,28 @@ export class ClientRateListComponent implements OnInit {
         this.getClientRate({data:[]},this.page,this.row_per_page);  
       }
     }); 
+  }
+
+  showAdvancedSearch(){
+    alert(1);
+    this.advanced_filter_search = (this.advanced_filter_search) ? false: true;
+    console.log(this.advanced_filter_search);
+  }
+
+  getListItems(){
+    var data = {
+      'request_items': {
+        'list_items': ['shift_type'],
+        'modules': ['client','business_unit','jobs'],
+      }
+    };
+    this.API.post('client-rate.php',data)
+    .subscribe(data => {
+      this.list_items_data = data;
+      setTimeout(function(){
+        refreshSelectpicker();
+      },1000)
+    });
   }
 
 }

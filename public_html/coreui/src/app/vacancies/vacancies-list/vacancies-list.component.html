@@ -39,10 +39,10 @@
         <div class="col-2">
           <div class="form-group">
             <label>Client</label>
-            <select class="form-control selectpicker">
-              <option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
-               {{client.label}}
-              </option>
+            <select class="form-control selectpicker" *ngIf="list_items_data['modules']">
+                <option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
+                {{client.label}}
+                </option>
             </select>
 
             <!-- <ng-select [items]="list_items_data['modules'].client"
@@ -56,18 +56,19 @@
         <div class="col-2">
           <div class="form-group">
             <label>Business Unit</label>
-            <select class="form-control selectpicker">
-              <option>option 1</option>
-              <option>option 2</option>
-              <option>option 3</option>
-            </select>
+            <select class="form-control selectpicker"  *ngIf="list_items_data['modules']">
+              <option value="">Un Assigned</option>
+              <option *ngFor="let business_unit of list_items_data['modules']['business_unit']" value={{business_unit.id}}>
+                {{business_unit.label}}
+              </option>
+              </select>
           </div>
         </div>
         <div class="col-2">
           <div class="form-group">
             <label>Shift Type</label>
-            <select class="form-control selectpicker">
-              <option value="">Un Assigned</option>
+            <select class="form-control selectpicker" *ngIf="list_items_data['list_items']">
+              <option value="">Unassigned</option>
               <option *ngFor="let shift_type of list_items_data['list_items']['shift_type']" value={{shift_type.list_item_id}}>
                 {{shift_type.list_item_title}}
               </option>
@@ -77,10 +78,11 @@
         <div class="col-2">
           <div class="form-group">
             <label>Job</label>
-            <select class="form-control selectpicker">
-              <option>option 1</option>
-              <option>option 2</option>
-              <option>option 3</option>
+            <select class="form-control selectpicker" *ngIf="list_items_data['list_items']">
+              <option value="">Un Assigned</option>
+              <option *ngFor="let jobs of list_items_data['modules']['jobs']" value={{jobs.id}}>
+                {{jobs.label}}
+              </option>
             </select>
           </div>
         </div>
@@ -109,7 +111,7 @@
         <div class="col-12 filter-footer">
           <div class="btn-group">
             <a href="#" class="btn btn-default">Reset</a>
-            <a href="#" class="btn btn-primary">Search</a>
+            <a  class="btn btn-primary" (click)="filterSearch()" >Search</a>
           </div>
         </div>
       </div>
@@ -235,7 +237,7 @@
                 <td><span class="text">{{data.vaccancy_space}}</span></td>
                 <td><span class="text">{{data.vaccancy_location}}</span></td>
                 <td><span class="text">{{data.vaccancy_details}}</span></td>
-                <td>
+                <td class="actions-td">
                   <a href="javascript:void(0)" (click)="editItem(data)" data-toggle="modal" data-target="#addnew-modal"><i class="far fa-pencil"></i></a>
                   <a href="javascript:void(0)" (click)="removeItem(data)"><i class="far fa-trash-alt"></i></a>
                 </td>

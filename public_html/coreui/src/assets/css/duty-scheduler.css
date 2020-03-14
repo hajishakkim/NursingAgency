@@ -67,7 +67,7 @@ html, body{
   -ms-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   transition: all 0.4s ease;
-  margin:4px 0;
+  margin:4px 10px 4px 0;
   float: left;
 }
 
@@ -136,7 +136,6 @@ html, body{
   height: 46px;
 }
 .sidebar-nav{
-  min-height: 100vh;
   background: #0054a6;
   padding: 0;
   transition:0.3s;
@@ -443,7 +442,7 @@ html, body{
 .page-wrapper{
 	background: #f5f6f8;
 	padding: 10px;
-	height: calc(100vh - 61px);
+	height: calc(100vh - 142px);
 	overflow: auto;
 	flex-grow: 1;
 flex-basis:0;
@@ -615,12 +614,12 @@ border-radius: 4px;
 }
 .table-wrapper-inner{
   position: relative;
-  overflow: auto;
+  overflow: hidden;
 }
 .customisation-btn-wrapper {
 	position: absolute;
   height: 31px;
-  right: 1px;
+  right: 8px;
   top: 4px;
 	z-index: 12;
 	background: #f7fbfc;
@@ -913,4 +912,9 @@ border-radius: 4px;
 @media only screen and (min-width: 1200px) {
 
 }
-
+.table-wrapper .table-body {
+  overflow: auto;
+}
+.sidebar .nav-link .badge{
+  display: none;
+}
