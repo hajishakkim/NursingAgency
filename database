@@ -67,47 +67,48 @@ CREATE TABLE `staffs` (
    PRIMARY KEY(`staff_id`)
 ) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS `client_rates`;
-CREATE TABLE `client_rates` ( 
-  `cr_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `cr_client_id` INT(11) NULL ,
-  `cr_business_id` INT(11) NULL ,
-  `cr_jobid` INT(5) NULL ,
-  `cr_week_days_rate` FLOAT(10) NULL ,
-  `cr_night_time_rate` FLOAT(10) NULL ,
-  `cr_friday_night_time_rate` FLOAT(10) NULL ,
-  `cr_saturday_day_time_rate` FLOAT(10) NULL , 
-  `cr_saturday_night_time_rate` FLOAT(10) NULL ,
-  `cr_sunday_day_time_rate` FLOAT(10) NULL ,
-  `cr_sunday_night_time_rate` FLOAT(10) NULL ,
-  `cr_holiday_day_time_rate` FLOAT(10) NULL , 
-  `cr_holiday_night_time_rate` FLOAT(10) NULL ,
-  `cr_created_by` int(10) DEFAULT 0,
-  `cr_created_date` date NOT NULL,
-  `cr_updated_date` date NOT NULL,
-  `cr_updated_by` int(11) DEFAULT 0,
-  PRIMARY KEY (`cr_id`)) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `client_rate`;
+CREATE TABLE `client_rate` (
+  `client_rate_id` int(11) NOT NULL AUTO_INCREMENT,
+  `client_rate_client` varchar(100) DEFAULT NULL,
+  `client_rate_business_unit` varchar(100) DEFAULT NULL,
+  `client_rate_job` varchar(100) DEFAULT NULL,
+  `client_rate_week_days` varchar(25) DEFAULT NULL,
+  `client_rate_night_time` varchar(25) DEFAULT NULL,
+  `client_rate_friday_night` varchar(25) DEFAULT NULL,
+  `client_rate_saturday_day` varchar(25) DEFAULT NULL,
+  `client_rate_saturday_night` varchar(25) DEFAULT NULL,
+  `client_rate_sunday_day` varchar(25) DEFAULT NULL,
+  `client_rate_sunday_night` varchar(25) DEFAULT NULL,
+  `client_rate_public_holiday_day` varchar(25) DEFAULT NULL,
+  `client_rate_public_holiday_night` varchar(25) DEFAULT NULL,
+  `client_rate_created_date` timestamp NULL DEFAULT NULL,
+  `client_rate_updated_time` datetime DEFAULT NULL,
+  `client_rate_activity` int(2) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`client_rate_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-  DROP TABLE IF EXISTS `staff_rates`;
-  CREATE TABLE `staff_rates` ( 
-  `sr_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `sr_client_id` INT(11) NULL ,
-  `sr_business_id` INT(11) NULL ,
-  `sr_jobid` INT(5) NULL ,
-  `sr_week_days_rate` FLOAT(10) NULL ,
-  `sr_night_time_rate` FLOAT(10) NULL ,
-  `sr_friday_night_time_rate` FLOAT(10) NULL ,
-  `sr_saturday_day_time_rate` FLOAT(10) NULL , 
-  `sr_saturday_night_time_rate` FLOAT(10) NULL ,
-  `sr_sunday_day_time_rate` FLOAT(10) NULL ,
-  `sr_sunday_night_time_rate` FLOAT(10) NULL ,
-  `sr_holiday_day_time_rate` FLOAT(10) NULL , 
-  `sr_holiday_night_time_rate` FLOAT(10) NULL ,
-  `sr_created_by` int(10) DEFAULT 0,
-  `sr_created_date` date NOT NULL,
-  `sr_updated_date` date NOT NULL,
-  `sr_updated_by` int(11) DEFAULT 0,
-  PRIMARY KEY (`sr_id`)) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+  DROP TABLE IF EXISTS `staff_rate`;
+  CREATE TABLE `staff_rate` (
+  `staff_rate_id` int(11) NOT NULL AUTO_INCREMENT,
+  `staff_rate_client` varchar(100) DEFAULT NULL,
+  `staff_rate_business_unit` varchar(100) DEFAULT NULL,
+  `staff_rate_job` varchar(100) DEFAULT NULL,
+  `staff_rate_employee_type` varchar(100) DEFAULT NULL,
+  `staff_rate_week_days` varchar(25) DEFAULT NULL,
+  `staff_rate_night_time` varchar(25) DEFAULT NULL,
+  `staff_rate_friday_night` varchar(25) DEFAULT NULL,
+  `staff_rate_saturday_day` varchar(25) DEFAULT NULL,
+  `staff_rate_saturday_night` varchar(25) DEFAULT NULL,
+  `staff_rate_sunday_day` varchar(25) DEFAULT NULL,
+  `staff_rate_sunday_night` varchar(25) DEFAULT NULL,
+  `staff_rate_public_holiday_day` varchar(25) DEFAULT NULL,
+  `staff_rate_public_holiday_night` varchar(25) DEFAULT NULL,
+  `staff_rate_created_date` timestamp NULL DEFAULT NULL,
+  `staff_rate_updated_time` timestamp NULL DEFAULT NULL,
+  `staff_rate_activity` tinyint(1) DEFAULT 1,
+  PRIMARY KEY (`staff_rate_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
   DROP TABLE IF EXISTS `document_categories`;
   CREATE TABLE `document_categories` ( 
@@ -119,7 +120,8 @@ CREATE TABLE `client_rates` (
   `dc_updated_date` date NOT NULL,
   `dc_updated_by` int(11) DEFAULT 0,
   `dc_activity` TINYINT(1) NOT NULL DEFAULT '1' ,
-   PRIMARY KEY (`dc_id`)) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+   PRIMARY KEY (`dc_id`)
+   ) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `clients`;
 CREATE TABLE `clients` (
@@ -138,7 +140,7 @@ CREATE TABLE `clients` (
  `client_created_by` int(11) NOT NULL,
  `client_updated_date` date NOT NULL,
  `client_updated_by` int(11) NOT NULL,
- `client_status` int(11) NOT NULL DEFAULT 1,
+ `client_status` TINYINT(1) NULL DEFAULT '1',
 PRIMARY KEY (`client_id`)) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `vaccancy`;
@@ -158,7 +160,7 @@ CREATE TABLE `vaccancy` (
   `vaccancy_updated_time` date NOT NULL,
   `vaccancy_created_by` int(11) NOT NULL,
   `vaccancy_updated_by` date NOT NULL,
-  `vaccancy_active` int(11) NOT NULL
+  `vaccancy_active` TINYINT(1) NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `agencies`;
@@ -178,7 +180,8 @@ CREATE TABLE `agencies` (
  `agency_created_by` int(11)  NULL,
  `agency_updated_date` date  NULL,
  `agency_updated_by` int(11)  NULL,
- `agency_status` int(11) DEFAULT 1
+ `agency_status` TINYINT(1) NULL DEFAULT '1',
+  PRIMARY KEY (`agency_id`)
 ) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
 
 
@@ -188,7 +191,8 @@ CREATE TABLE `lists`
   `list_created_date` DATE  NULL , 
   `list_created_by` INT(10) NULL ,
   `list_activity` TINYINT(1) NULL DEFAULT '1' ,
-  PRIMARY KEY (`list_id`)) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`list_id`)
+  ) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
   
 DROP TABLE IF EXISTS `list_items`;
 CREATE TABLE `list_items`
@@ -198,7 +202,8 @@ CREATE TABLE `list_items`
   `list_item_created_date` DATE  NULL , 
   `list_item_created_by` INT(10) NULL ,
   `list_item_activity` TINYINT(1) NULL DEFAULT '1' ,
-  PRIMARY KEY (`list_items_id`)) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`list_items_id`)
+  ) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
 
 
 DROP TABLE IF EXISTS `client_rate`;
@@ -249,3 +254,28 @@ CREATE TABLE `business_unit`
  ( `business_unit_id` INT(11) NOT NULL AUTO_INCREMENT , 
  `business_unit_name` VARCHAR(255) NULL ,
  PRIMARY KEY (`business_unit_id`)) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4;
+ 
+DROP TABLE IF EXISTS `job_role`;
+ CREATE TABLE `job_role`(
+    `job_role_id` INT(11) NOT NULL AUTO_INCREMENT,
+    `job_role_category` varchar(100) NULL,
+    `job_role_job_role` varchar(100) NULL,
+    `job_role_created_date` TIMESTAMP NULL,
+    `job_role_updated_time` TIMESTAMP NULL,
+    `job_role_activity` TINYINT(1) NULL DEFAULT '1',
+    PRIMARY KEY(`job_role_id`)
+) ENGINE = INNODB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS `jobs`;
+CREATE TABLE `jobs` (
+  `jobs_id` int(11) NOT NULL AUTO_INCREMENT,
+  `jobs_client` varchar(50)  DEFAULT NULL,
+  `jobs_business_unit` varchar(255) DEFAULT NULL,
+  `jobs_title` varchar(255) DEFAULT NULL,
+  `jobs_activity` tinyint(1)  DEFAULT 1,
+  `jobs_created_by` int(10) DEFAULT 0,
+  `jobs_created_date` date NOT NULL,
+  `jobs_updated_date` date NOT NULL,
+  `jobs_updated_by` int(11) DEFAULT 0,
+   PRIMARY KEY(`jobs_id`)
+) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;

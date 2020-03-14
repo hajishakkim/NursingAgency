@@ -105,7 +105,10 @@ export class ClientListComponent implements OnInit {
   showAdvancedSearch(){
     alert(1);
     this.advanced_filter_search = (this.advanced_filter_search) ? false: true;
-    console.log(this.advanced_filter_search);
+    setTimeout(function(){
+      refreshSelectpicker();
+    },1000)
+
   }
 
   getListItems(){
