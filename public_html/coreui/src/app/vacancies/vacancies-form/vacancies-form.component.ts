@@ -26,7 +26,6 @@ export class VacanciesFormComponent implements OnInit {
     this.formData.emit(this.vaccancy);
   }
   editItem(item:any){
-    console.log(item);
     this.vaccancy = JSON.parse(item);
   }
 }

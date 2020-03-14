@@ -1,29 +1,42 @@
 <?php
 include './common.class.php';
 $common = new Common();
+
+$filters = array('value' => array('vaccancy_id',
+            'vaccancy_ref_number',
+            'vaccancy_date',
+            'vaccancy_break_time',
+            'vaccancy_space',
+            'vaccancy_location',
+            'vaccancy_details'),
+    'ref' => array('vaccancy_client',
+            'vaccancy_business_group',
+            'vaccancy_shift_type',
+            'vaccancy_shift_type',
+            'vaccancy_job'));
+   
 if(file_get_contents("php://input")){
-$postdata = file_get_contents("php://input");
-    $request = json_decode($postdata);
-    $data = (array)$request;
+    $request = json_decode(file_get_contents("php://input"));
     try{
-        if(isset($data['request_items']))
+        if(isset($request->request_items))
         {
-            $data = (array)$request->request_items;
-            $result = $common->getListItems($data);
+            $params = (array)$request->request_items;
+            $result = $common->getListItems($params);
             echo json_encode($result);
             exit;
-        }else{$data = array();
-            $page = 1;
-            $row_per_page = 10;
+        }else{
+            $data = array();
+            $row_per_page = $common->pagination_limit;
             try{
                 if($request) 
                 {
                     $data = (array)$request->data;
+                    $action = isset($request->action) ? $request->action : 'index';
                     $page = $request->page ? $request->page : 1;
                     $row_per_page = $request->row_per_page ? $request->row_per_page : 10;
                 }
             }catch(\Exception $e){}
-            if(count($data)>0){
+            if(count($data)>0 && $action == "save"){
                 
                 if(trim($data['vaccancy_id']) == ""){
                     
@@ -68,14 +81,30 @@ $postdata = file_get_contents("php://input");
         
                 }
             }
-            else{
+            else{              
                 $start_limit = ($page-1)*$row_per_page;
                 $end_limit   = $row_per_page;
-                $sql = "SELECT * FROM `vaccancy` LIMIT $start_limit,$end_limit";
-                $result  = $common->select($sql); 
+                $search_condition = "";
+                $params = array();
+                if($action == "search"){
+                    foreach($data as $item => $value){
+                        if(trim($value) == "") continue;
+                        if(in_array($filters['value'],$item) === false) {
+                            $search_condition .= ($search_condition) ? "," . $item . " = ? " : $item . " = ? ";
+                        } else {
+                            $search_condition .= ($search_condition) ? "," . $item . " LIKE CONCAT( '%',?,'%')" : $item . " LIKE  CONCAT( '%',?,'%')";
+                        }
+                        
+                        array_push($params,$value);
+                    }
+                    $search_condition = " WHERE ".$search_condition;
+                    $sql = "SELECT * FROM `vaccancy` {$search_condition} LIMIT $start_limit,$end_limit";
+                }
+                $sql = "SELECT * FROM `vaccancy` {$search_condition} LIMIT $start_limit,$end_limit";
+                $result  = $common->select($sql,$params); 
                 if($start_limit == '0'){
-                    $countSql = "SELECT COUNT(*) AS total FROM `vaccancy`";
-                    $totalCntRes  = $common->select($countSql); 
+                    $countSql = "SELECT COUNT(*) AS total FROM `vaccancy` {$search_condition}";
+                    $totalCntRes  = $common->select($countSql,$params); 
                     $totalCnt     = $totalCntRes[0]['total'];
                     $_SESSION['modules']['vaccancy']['list_count'] = $totalCnt;
                 }else{

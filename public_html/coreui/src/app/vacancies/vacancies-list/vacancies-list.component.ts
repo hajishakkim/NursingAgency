@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import {FormGroup, FormBuilder } from '@angular/forms';
 import { VacanciesFormComponent } from '../vacancies-form/vacancies-form.component';
 import { ApiService } from '../../services/api.service'
 import {Vaccancies} from '../vaccancies.model';
-import { Observable, of } from 'rxjs';
 import * as $ from 'jquery';
 
 declare function setDataTable(options:any,table: string): void;
@@ -27,7 +27,13 @@ export class VacanciesListComponent implements OnInit {
   log: any;
   advanced_filter_search : boolean = false;
   list_items_data : [];
-  constructor(public API: ApiService) {}
+  form: FormGroup;  
+  vaccancy : {};
+  constructor(public API: ApiService,builder: FormBuilder) {
+      this.vaccancy = new Vaccancies();
+      //console.log(this.vaccancy);
+      this.form = builder.group(this.vaccancy)
+  }
 
   ngOnInit() {
       var data = [];
@@ -43,7 +49,7 @@ export class VacanciesListComponent implements OnInit {
     return;
   }
   saveForm(formData: Vaccancies) {
-    this.API.post('vaccancies.php',{data:formData})
+    this.API.post('vaccancies.php',{data:formData,'action':'save'})
     .subscribe(data => {
       if(data.status == "success") {
         this.vacancy_data.push(formData);   
@@ -118,8 +124,6 @@ export class VacanciesListComponent implements OnInit {
     this.advanced_filter_search = (this.advanced_filter_search) ? false: true;
   }
   filterSearch(){
-    alert(123);
-    console.log(this.params);
-    //this.getVaccanies({data:[]},this.page,this.row_per_page);
+    this.getVaccanies({data:this.vaccancy,action:'search'},0,this.row_per_page);
   }
 }
