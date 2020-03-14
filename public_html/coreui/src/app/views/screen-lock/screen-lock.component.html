@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row">
+       
+      <div class="landingpage-wrap">
+        <div class="landing-inner-wrap">
+          <div class="landing-form-outer">
+          <div class="logo"><img src="assets/images/care-bee-logo.png" alt="carebee-login" /></div>
+          <div class="landing-form-wrapper">
+            <form>
+              <div class="form-group">
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    id="password" 
+                    placeholder="Password"
+                    [(ngModel)] = "password" 
+                    required/>
+                <span class="show-hide-password"><i class="far fa-eye-slash"></i></span>
+              </div>
+              <div class="form-group">
+                <button 
+                    type="button" 
+                    (click)="onLogin()" 
+                    class="btn btn-primary btn-login">Login
+                </button>
+              </div>
+              <div class="forgot-password"><a (click)="onLogout()">Logout</a></div>
+            </form>
+          </div>
+        </div>
+        <div class="terms-conditions"><p>Copyright © 2020. Team Alpha. All Rights Reserved</p></div>
+      </div>
+      </div>
+      
+    </div>
+  </div>

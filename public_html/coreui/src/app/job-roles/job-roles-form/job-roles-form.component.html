@@ -1,12 +1,25 @@
-<form >
+<form [formGroup]="form">
                  <div class="col-12 form-wrapper">
                      <div class="row">
                          <div class="col-8">
                              <div class="form-group">
                                  <label>Job Role</label>
-                                 <input type="text" class="form-control" />
+                                 <input type="text" class="form-control" formControlName="category" [(ngModel)]="JobRoles.category"/>
                              </div>
                          </div>
+                         <div class="col-4">
+                            <div class="form-group">
+                                <label>Job</label>
+                                <select name="job_role" formControlName="job_role" [(ngModel)]="JobRoles.job_role" class="form-control selectpicker" data-container="body">
+                                   <option>Option1</option>
+                                   <option>Option2</option>
+                                   <option>Option3</option>
+                                   <option>Option4</option>
+                                   <option>Option5</option>
+                                   <option>Option6</option>
+                               </select>
+                            </div>
+                       </div>
                          
                      </div>
                      

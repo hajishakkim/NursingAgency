@@ -5,6 +5,7 @@ export class UserModel{
         private userId          : number,
         private userName        : string,
         private _token          : string,
+        private angency         : string
     ){}
 
     get token()
