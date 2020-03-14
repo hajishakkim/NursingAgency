@@ -30,6 +30,7 @@ export class JobsFormComponent implements OnInit {
   editForm(data:any){
     data.action = "edit";
     this.jobs = data;
+    this.saveForm();
     setTimeout( function(){ 
       refreshSelectpicker(); 
     },500);

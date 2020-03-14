@@ -44,6 +44,7 @@ CREATE TABLE `candidates`(
     `candidate_passport_number` varchar(25) NULL,
     `candidate_issueing_country` CHAR(25) NULL,
     `candidate_visit_type` varchar(25) NULL,
+	`candidate_activity` TINYINT(1) NULL DEFAULT '1',
     `created_date` TIMESTAMP NULL,
     PRIMARY KEY(`candidate_id`)
 ) ENGINE = INNODB DEFAULT CHARSET=utf8mb4;

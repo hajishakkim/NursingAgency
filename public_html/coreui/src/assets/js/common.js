@@ -301,10 +301,10 @@ function calcTableHeight() {
 //   table = (table!='') ? table : '#listing-table';
 //   $(table).DataTable();
 // }
-// function refreshSelectpicker(){
-//   $('.selectpicker').selectpicker('refresh');
-//   $('.custom-datepicker input').datepicker();
-// }
+function refreshSelectpicker(){
+  $('.selectpicker').selectpicker('refresh');
+  $('.custom-datepicker input').datepicker();
+ }
 
 // Fixed Table Header
 function fixedHeaderTable(ths) {
