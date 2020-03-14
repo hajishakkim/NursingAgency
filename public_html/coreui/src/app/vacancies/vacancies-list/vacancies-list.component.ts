@@ -118,8 +118,8 @@ export class VacanciesListComponent implements OnInit {
     this.advanced_filter_search = (this.advanced_filter_search) ? false: true;
   }
   filterSearch(){
-    alert(123);
-    console.log(this.params);
+   // alert(123);
+    //console.log(this.params);
     //this.getVaccanies({data:[]},this.page,this.row_per_page);
   }
 }

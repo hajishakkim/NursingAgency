@@ -620,7 +620,7 @@ border-radius: 4px;
 .customisation-btn-wrapper {
 	position: absolute;
   height: 31px;
-  right: 1px;
+  right: 8px;
   top: 4px;
 	z-index: 12;
 	background: #f7fbfc;
