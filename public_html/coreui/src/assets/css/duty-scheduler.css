@@ -851,6 +851,17 @@ border-radius: 4px;
 .advanced-filter-search .row.form.first-row{
   padding-top:10px!important;
 }
+
+/*--- Event popup styles ---*/
+
+.event-popup .modal-dialog{
+  width: 80%;
+}
+.event-popup .modal-body .row [class^="col-"]{
+	padding-left:5px;
+	padding-right:5px;
+}
+
 /* .advanced-filter-search.active{
   display: flex!important;
 } */
