@@ -89,27 +89,25 @@ if(file_get_contents("php://input")){
                 if($action == "search"){
                     foreach($data as $item => $value){
                         if(trim($value) == "") continue;
-                        if(in_array($filters['value'],$item) === false) {
-                            $search_condition .= ($search_condition) ? "," . $item . " = ? " : $item . " = ? ";
+                        if(in_array($item, $filters['value']) === false) {
+                            $search_condition .= ($search_condition) ? " AND " . $item . " = ? " : $item . " = ? ";
                         } else {
-                            $search_condition .= ($search_condition) ? "," . $item . " LIKE CONCAT( '%',?,'%')" : $item . " LIKE  CONCAT( '%',?,'%')";
+                            $search_condition .= ($search_condition) ? " AND " . $item . " LIKE CONCAT( '%',?,'%')" : $item . " LIKE  CONCAT( '%',?,'%')";
                         }
                         
                         array_push($params,$value);
                     }
-                    $search_condition = " WHERE ".$search_condition;
-                    $sql = "SELECT * FROM `vaccancy` {$search_condition} LIMIT $start_limit,$end_limit";
+                    $search_condition = ($search_condition) ? " WHERE ". $search_condition : '';
                 }
                 $sql = "SELECT * FROM `vaccancy` {$search_condition} LIMIT $start_limit,$end_limit";
+                //echo $common->getQuery($sql,$params);
                 $result  = $common->select($sql,$params); 
-                if($start_limit == '0'){
-                    $countSql = "SELECT COUNT(*) AS total FROM `vaccancy` {$search_condition}";
-                    $totalCntRes  = $common->select($countSql,$params); 
-                    $totalCnt     = $totalCntRes[0]['total'];
-                    $_SESSION['modules']['vaccancy']['list_count'] = $totalCnt;
-                }else{
-                    $totalCnt = $_SESSION['modules']['vaccancy']['list_count'];
-                }
+
+                $countSql = "SELECT COUNT(*) AS total FROM `vaccancy` {$search_condition}";
+                $totalCntRes  = $common->select($countSql,$params); 
+                $totalCnt     = $totalCntRes[0]['total'];
+                //$_SESSION['modules']['vaccancy']['list_count'] = $totalCnt;
+
                 $totalPages   = $totalCnt%$row_per_page==0 ?  $totalCnt/$row_per_page : ($totalCnt/$row_per_page)+1;
                 $totalPagesArr = array();
                 for($i=1;$i<=$totalPages;$i++){

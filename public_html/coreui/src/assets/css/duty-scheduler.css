@@ -136,7 +136,6 @@ html, body{
   height: 46px;
 }
 .sidebar-nav{
-  min-height: 100vh;
   background: #0054a6;
   padding: 0;
   transition:0.3s;
@@ -615,11 +614,12 @@ border-radius: 4px;
 }
 .table-wrapper-inner{
   position: relative;
+  overflow: hidden;
 }
 .customisation-btn-wrapper {
 	position: absolute;
   height: 31px;
-  right: 1px;
+  right: 8px;
   top: 4px;
 	z-index: 12;
 	background: #f7fbfc;
@@ -915,4 +915,10 @@ border-radius: 4px;
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
 
+}
+.table-wrapper .table-body {
+  overflow: auto;
+}
+.sidebar .nav-link .badge{
+  display: none;
 }

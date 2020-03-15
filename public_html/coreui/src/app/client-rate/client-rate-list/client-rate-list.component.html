@@ -14,14 +14,14 @@
           </div>
           
           <div class="icon-block">
-            <a href="#!" class="icon filter-icon" data-toggle="tooltip" data-placement="left" data-container="body" title="Advance Search"><i class="fas fa-filter"></i></a>
+            <a href="javascript:void(0)" (click)="showAdvancedSearch()" class="icon filter-icon" data-toggle="tooltip" data-placement="left" data-container="body" title="Advance Search"><i class="fas fa-filter"></i></a>
           </div>
           <a href="#!" class="btn btn-primary" #getModal data-toggle="modal" data-target="#addnew-modal">Add New</a>
       </div>     
     </div>
 
     <div class="col-12 page-wrapper">
-      <!-- <div class="col-12 p-0 d-flex flex-column advanced-filter-search"  [ngClass]="{'hidden':advanced_filter_search == false}">
+     <div class="col-12 p-0 d-flex flex-column advanced-filter-search"  [ngClass]="{'hidden':advanced_filter_search == false}">
          <div class="row m-0 form first-row">
         <div class="col-2">
           <div class="form-group">
@@ -46,11 +46,11 @@
               </option>
             </select>
 
-             <ng-select [items]="list_items_data['modules'].client"
+             <!-- <ng-select [items]="list_items_data['modules'].client"
               bindLabel="label"
               bindValue="id"
               [(ngModel)]="selectedPersonId">
-              </ng-select> 
+              </ng-select> -->
 
           </div>
         </div>
@@ -114,7 +114,7 @@
           </div>
         </div>
       </div>
-      </div> -->
+      </div>
     <div class="col-12 p-0 table-wrapper listing-table-wrapper">
       <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
         <a href="javascript:void(0)" class="customisation-btn"></a>

@@ -86,34 +86,15 @@ export class VacanciesListComponent implements OnInit {
       this.totalPagesArr = data.totalPagesArr; 
     });
     setTimeout( function(){
-      fixedHeaderTable($('.listing-table-wrapper'));
+      //fixedHeaderTable($('.listing-table-wrapper'));
     },1000);
   }
   
   getCurrentPage(rows: 0,from=''){
      this.page = from == "rpp" ? 1 : rows;
      this.row_per_page = from == "rpp" ?  rows : this.row_per_page;
-     this.getVaccanies({data:[]},this.page,this.row_per_page);
-    }  
-  // saveForm(formData: Vaccancies) {
-  //   console.log(formData)
-  //   //this.vacancy_data.push(formData);   
-  //   this.API.post(formData,'http://localhost/nursingAgency/apis/index.php')
-  //   .subscribe(resp => {
-  //     const keys = resp.headers.keys();
-  //     this.headers = keys.map(key =>
-  //       `${key}: ${resp.headers.get(key)}`);
-  
-  //     for (const data of resp.body) {
-  //       //console.log(data)
-  //       this.vacancy_data.push(data);
-  //     }
-      
-  //     setTimeout( function(){ 
-  //       fixedHeaderTable($('.listing-table-wrapper'));  
-  //     },1000); 
-  //   }); 
-  // }
+     this.getVaccanies({data:this.vaccancy,action:'search'},this.page,this.row_per_page);
+    }
   formSubmit(){
     this.app_vacancies_form.saveForm();
   }
@@ -124,6 +105,10 @@ export class VacanciesListComponent implements OnInit {
     this.advanced_filter_search = (this.advanced_filter_search) ? false: true;
   }
   filterSearch(){
-    this.getVaccanies({data:this.vaccancy,action:'search'},0,this.row_per_page);
+    this.getVaccanies({data:this.vaccancy,action:'search'},1,this.row_per_page);
+  }
+  clearSearch(){
+    this.form.reset();
+    refreshSelectpicker();
   }
 }

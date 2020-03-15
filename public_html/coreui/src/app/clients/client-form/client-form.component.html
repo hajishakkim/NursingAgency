@@ -1,22 +1,22 @@
-<form >
+<form [formGroup]="form">
                  <div class="col-12 form-wrapper">
                      <div class="row">
                          <div class="col-4">
                              <div class="form-group">
                                  <label>Agency Name</label>
-                                 <input type="text" class="form-control" />
+                                 <input type="text" class="form-control" formControlName="agency" [(ngModel)]="client.agency" />
                              </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group">
                                  <label>Name of the authorized person</label>
-                                 <input type="text" class="form-control" />
+                                 <input type="text" class="form-control" formControlName="authorized_person" [(ngModel)]="client.authorized_person" />
                              </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group">
                                  <label>E-mail</label>
-                                     <input type="text" class="form-control" />
+                                     <input type="text" class="form-control" formControlName="email" [(ngModel)]="client.email"/>
                                  
                              </div>
                          </div>
@@ -25,19 +25,19 @@
                          <div class="col-4">
                              <div class="form-group">
                                  <label>Address1</label>
-                                 <input type="text" class="form-control" />
+                                 <input type="text" class="form-control" formControlName="address1" [(ngModel)]="client.address1"/>
                              </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group">
                                 <label>Address2</label>
-                                <input type="text" class="form-control" />
+                                <input type="text" class="form-control" formControlName="address2" [(ngModel)]="client.address2"/>
                              </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group">
                                  <label>Post Code</label>
-                                 <input type="text" class="form-control" />
+                                 <input type="text" class="form-control" formControlName="post_code" [(ngModel)]="client.post_code"/>
                              </div>
                          </div>
                      </div>
@@ -45,13 +45,13 @@
                          <div class="col-4">
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input type="text" class="form-control" />
+                                <input type="text" class="form-control" formControlName="phone" [(ngModel)]="client.phone"/>
                             </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group">
                                 <label>Mobile Number</label>
-                                <input type="text" class="form-control" />
+                                <input type="text" class="form-control" formControlName="mobile" [(ngModel)]="client.mobile"/>
                              </div>
                          </div>
                          

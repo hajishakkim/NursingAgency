@@ -40,7 +40,8 @@
             <div class="col-2">
               <div class="form-group">
                 <label>Client</label>
-                <select class="form-control selectpicker" *ngIf="list_items_data['modules']">
+                <select class="form-control selectpicker" formControlName="vaccancy_client" *ngIf="list_items_data['modules']" [(ngModel)]="vaccancy.vaccancy_client">
+                    <option value="">Unassigned</option>
                     <option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
                     {{client.label}}
                     </option>
@@ -51,8 +52,8 @@
             <div class="col-2">
               <div class="form-group">
                 <label>Business Unit</label>
-                <select class="form-control selectpicker"  *ngIf="list_items_data['modules']">
-                  <option value="">Un Assigned</option>
+                <select class="form-control selectpicker" formControlName="vaccancy_business_group" *ngIf="list_items_data['modules']" [(ngModel)]="vaccancy.vaccancy_business_group">
+                  <option value="">Unassigned</option>
                   <option *ngFor="let business_unit of list_items_data['modules']['business_unit']" value={{business_unit.id}}>
                     {{business_unit.label}}
                   </option>
@@ -62,7 +63,7 @@
             <div class="col-2">
               <div class="form-group">
                 <label>Shift Type</label>
-                <select class="form-control selectpicker" *ngIf="list_items_data['list_items']">
+                <select class="form-control selectpicker" formControlName="vaccancy_shift_type" *ngIf="list_items_data['list_items']" [(ngModel)]="vaccancy.vaccancy_shift_type">
                   <option value="">Unassigned</option>
                   <option *ngFor="let shift_type of list_items_data['list_items']['shift_type']" value={{shift_type.list_item_id}}>
                     {{shift_type.list_item_title}}
@@ -73,8 +74,8 @@
             <div class="col-2">
               <div class="form-group">
                 <label>Job</label>
-                <select class="form-control selectpicker" *ngIf="list_items_data['list_items']">
-                  <option value="">Un Assigned</option>
+                <select class="form-control selectpicker" formControlName="vaccancy_job" *ngIf="list_items_data['list_items']" [(ngModel)]="vaccancy.vaccancy_job">
+                  <option value="">Unassigned</option>
                   <option *ngFor="let jobs of list_items_data['modules']['jobs']" value={{jobs.id}}>
                     {{jobs.label}}
                   </option>
@@ -85,27 +86,21 @@
           <div class="row m-0 form">
             <div class="col-2">
               <div class="form-group">
-                <label>Break Time</label>
-                <input type="text" class="form-control" />
-              </div>
-            </div>
-            <div class="col-2">
-              <div class="form-group">
                 <label>Space</label>
-                <input type="text" class="form-control" />
+                <input type="text" name="vaccancy_space" formControlName="vaccancy_space" [(ngModel)]="vaccancy.vaccancy_space" class="form-control" />
               </div>
             </div>
             <div class="col-2">
               <div class="form-group">
                 <label>Location</label>
-                <input type="text" class="form-control" />
+                <input type="text" name="vaccancy_location" formControlName="vaccancy_location" [(ngModel)]="vaccancy.vaccancy_location" class="form-control" />
               </div>
             </div>
           </div>
             <div class="filter-footer">
               <div class="btn-group">
-                <a href="#" class="btn btn-default">Reset</a>
-                <a  class="btn btn-primary" (click)="filterSearch()" >Search</a>
+                <a (click)="clearSearch()" class="btn btn-default">Reset</a>
+                <a class="btn btn-primary" (click)="filterSearch()" >Search</a>
               </div>
             </div>
         </form>
@@ -231,7 +226,7 @@
                 <td><span class="text">{{data.vaccancy_space}}</span></td>
                 <td><span class="text">{{data.vaccancy_location}}</span></td>
                 <td><span class="text">{{data.vaccancy_details}}</span></td>
-                <td>
+                <td class="actions-td">
                   <a href="javascript:void(0)" (click)="editItem(data)" data-toggle="modal" data-target="#addnew-modal"><i class="far fa-pencil"></i></a>
                   <a href="javascript:void(0)" (click)="removeItem(data)"><i class="far fa-trash-alt"></i></a>
                 </td>

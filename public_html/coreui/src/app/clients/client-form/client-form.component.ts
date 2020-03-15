@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {FormGroup, FormBuilder } from '@angular/forms';
+//import { Client } from '../client-list/client-list';
 import * as $ from 'jquery';
 declare function refreshSelectpicker(): void;
 @Component({
@@ -7,11 +9,63 @@ declare function refreshSelectpicker(): void;
   styleUrls: ['./client-form.component.css']
 })
 export class ClientFormComponent implements OnInit {
+  form: FormGroup;
+  client = {
+    id : '',
+    agency:  '',
+    authorized_person: '',
+    email: '',
+    address1: '',
+    address2: '',
+    post_code: '',
+    phone: '',
+    mobile :  '',
+    action: '',
 
-  constructor() { }
+  };
+  @Output() formData = new EventEmitter<Object>();
+  constructor(builder: FormBuilder) {
+    this.form = builder.group({
+      id : '',
+      agency:  '',
+      authorized_person: '',
+      email: '',
+      address1: '',
+      address2: '',
+      post_code: '',
+      phone: '',
+      mobile :  '',
+      action: '',
+    })
+  }
 
   ngOnInit() {
     refreshSelectpicker();
+  }
+  saveForm(){
+    console.log(12345);
+    this.formData.emit(this.client);
+  }
+
+  editForm(data:any){
+    this.resetForm();
+    this.client = data;
+    this.client.action = 'edit';
+  }
+
+  resetForm(){
+    this.client = {
+      id : '',
+      agency:  '',
+      authorized_person: '',
+      email: '',
+      address1: '',
+      address2: '',
+      post_code: '',
+      phone: '',
+      mobile :  '',
+      action: '',
+    };
   }
 
 }
