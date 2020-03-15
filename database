@@ -44,6 +44,7 @@ CREATE TABLE `candidates`(
     `candidate_passport_number` varchar(25) NULL,
     `candidate_issueing_country` CHAR(25) NULL,
     `candidate_visit_type` varchar(25) NULL,
+	`candidate_activity` TINYINT(1) NULL DEFAULT '1',
     `created_date` TIMESTAMP NULL,
     PRIMARY KEY(`candidate_id`)
 ) ENGINE = INNODB DEFAULT CHARSET=utf8mb4;
@@ -143,6 +144,17 @@ CREATE TABLE `clients` (
  `client_status` TINYINT(1) NULL DEFAULT '1',
 PRIMARY KEY (`client_id`)) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `clients`
+--
+
+INSERT INTO `clients` (`client_id`, `client_name`, `client_authorized_person`, `client_email`, `client_address_line1`, `client_address_line2`, `client_postal_code`, `client_phone_number`, `client_mobile_number`, `client_about_info`, `client_business_unit`, `client_created_date`, `client_created_by`, `client_updated_date`, `client_updated_by`, `client_status`) VALUES
+(1, 'Client 1', '', '', '', '', '', '', '', '', 0, '0000-00-00', 0, '0000-00-00', 0, 1),
+(2, 'Client 2', '', '', '', '', '', '', '', '', 0, '0000-00-00', 0, '0000-00-00', 0, 1);
+
+-- --------------------------------------------------------
+
+
 DROP TABLE IF EXISTS `vaccancy`;
 CREATE TABLE `vaccancy` (
   `vaccancy_id` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY (`vaccancy_id`),
@@ -184,7 +196,7 @@ CREATE TABLE `agencies` (
   PRIMARY KEY (`agency_id`)
 ) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
 
-
+DROP TABLE IF EXISTS lists
 CREATE TABLE `lists`
  ( `list_id` INT(11) NOT NULL AUTO_INCREMENT ,
   `list_title` VARCHAR(255) NULL ,
@@ -193,6 +205,21 @@ CREATE TABLE `lists`
   `list_activity` TINYINT(1) NULL DEFAULT '1' ,
   PRIMARY KEY (`list_id`)
   ) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+  
+  
+--
+-- Dumping data for table `lists`
+--
+
+INSERT INTO `lists` (`list_id`, `list_type`, `list_title`, `list_description`, `list_active`) VALUES
+(1, 'shift_type', 'Shift Type', '', 1);
+INSERT INTO `lists` (`list_id`, `list_type`, `list_title`, `list_description`, `list_active`) VALUES
+(2, 'gender', 'Gender', '', 1);
+INSERT INTO `lists` (`list_id`, `list_type`, `list_title`, `list_description`, `list_active`) VALUES
+(3, 'countries', 'Countries', '', 1);
+
+-- --------------------------------------------------------
+
   
 DROP TABLE IF EXISTS `list_items`;
 CREATE TABLE `list_items`
@@ -204,6 +231,12 @@ CREATE TABLE `list_items`
   `list_item_activity` TINYINT(1) NULL DEFAULT '1' ,
   PRIMARY KEY (`list_items_id`)
   ) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+  
+  INSERT INTO `list_items` (`list_item_id`, `list_id`, `list_item_title`, `list_item_description`, `list_item_active`) VALUES
+(1, 1, 'Day Time', '', 1),
+(2, 1, 'Night ', '', 1),
+(3, 2, 'Male', '', 1),
+(4, 2, 'Female', '', 1);
 
 
 DROP TABLE IF EXISTS `client_rate`;
@@ -279,3 +312,410 @@ CREATE TABLE `jobs` (
   `jobs_updated_by` int(11) DEFAULT 0,
    PRIMARY KEY(`jobs_id`)
 ) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Table structure for table `business_unit`
+--
+DROP TABLE IF EXISTS `business_unit`;
+CREATE TABLE `business_unit` (
+  `business_unit_id` int(11) NOT NULL,
+  `business_unit_name` varchar(255) NOT NULL,
+  `business_unit_authorized_person` varchar(255) NOT NULL,
+  `business_unit_email` varchar(100) NOT NULL,
+  `business_unit_address_line1` varchar(255) NOT NULL,
+  `business_unit_address_line2` varchar(255) NOT NULL,
+  `business_unit_postal_code` varchar(10) NOT NULL,
+  `business_unit_phone_number` varchar(20) NOT NULL,
+  `business_unit_mobile_number` varchar(20) NOT NULL,
+  `business_unit_about_info` varchar(255) NOT NULL,
+  `business_unit_business_unit` int(11) NOT NULL,
+  `business_unit_created_date` date NOT NULL,
+  `business_unit_created_by` int(11) NOT NULL,
+  `business_unit_updated_date` date NOT NULL,
+  `business_unit_updated_by` int(11) NOT NULL,
+  `business_unit_status` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `business_unit`
+--
+
+INSERT INTO `business_unit` (`business_unit_id`, `business_unit_name`, `business_unit_authorized_person`, `business_unit_email`, `business_unit_address_line1`, `business_unit_address_line2`, `business_unit_postal_code`, `business_unit_phone_number`, `business_unit_mobile_number`, `business_unit_about_info`, `business_unit_business_unit`, `business_unit_created_date`, `business_unit_created_by`, `business_unit_updated_date`, `business_unit_updated_by`, `business_unit_status`) VALUES
+(1, 'Business Unit 1', '', '', '', '', '', '', '', '', 0, '0000-00-00', 0, '0000-00-00', 0, 1),
+(2, 'Business Unit 2', '', '', '', '', '', '', '', '', 0, '0000-00-00', 0, '0000-00-00', 0, 1),
+(3, 'Business Unit 3', '', '', '', '', '', '', '', '', 0, '0000-00-00', 0, '0000-00-00', 0, 1);
+
+-- --------------------------------------------------------
+
+
+--
+-- Indexes for table `candidates`
+--
+ALTER TABLE `candidates`
+  ADD PRIMARY KEY (`candidate_id`);
+
+--
+-- Indexes for table `candidates1`
+--
+ALTER TABLE `candidates1`
+  ADD PRIMARY KEY (`candidate_id`);
+
+--
+-- Indexes for table `clients`
+--
+ALTER TABLE `clients`
+  ADD PRIMARY KEY (`client_id`);
+
+--
+-- Indexes for table `client_rate`
+--
+ALTER TABLE `client_rate`
+  ADD PRIMARY KEY (`client_rate_id`);
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`job_id`);
+
+--
+-- Indexes for table `lists`
+--
+ALTER TABLE `lists`
+  ADD PRIMARY KEY (`list_id`);
+
+--
+-- Indexes for table `list_items`
+--
+ALTER TABLE `list_items`
+  ADD PRIMARY KEY (`list_item_id`);
+
+--
+-- Indexes for table `staff_rate`
+--
+ALTER TABLE `staff_rate`
+  ADD PRIMARY KEY (`staff_rate_id`);
+
+--
+-- Indexes for table `vaccancy`
+--
+ALTER TABLE `vaccancy`
+  ADD PRIMARY KEY (`vaccancy_id`);
+
+--
+-- Indexes for table `vaccancy1`
+--
+ALTER TABLE `vaccancy1`
+  ADD PRIMARY KEY (`vaccancy_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `candidates`
+--
+ALTER TABLE `candidates`
+  MODIFY `candidate_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `candidates1`
+--
+ALTER TABLE `candidates1`
+  MODIFY `candidate_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `clients`
+--
+ALTER TABLE `clients`
+  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `client_rate`
+--
+ALTER TABLE `client_rate`
+  MODIFY `client_rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `lists`
+--
+ALTER TABLE `lists`
+  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `list_items`
+--
+ALTER TABLE `list_items`
+  MODIFY `list_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `staff_rate`
+--
+ALTER TABLE `staff_rate`
+  MODIFY `staff_rate_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `vaccancy`
+--
+ALTER TABLE `vaccancy`
+  MODIFY `vaccancy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+
+
+
+CREATE TABLE `countries` 
+( `country_id` INT(11) NOT NULL AUTO_INCREMENT , 
+`country_name` VARCHAR(255) NOT NULL ,
+ `country_iso_code` VARCHAR(10) NOT NULL ,
+ `country_code` VARCHAR(25) NOT NULL ,
+ PRIMARY KEY (`country_id`)) ENGINE = InnoDB;
+ 
+ INSERT INTO `countries` (country_name,country_code,country_iso_code) VALUES
+('Afghanistan','93','AFG'),
+('Albania','355','ALB'),
+('Algeria','213','DZA'),
+('American Samoa','1-684','ASM'),
+('Andorra','376','AND'),
+('Angola','244','AGO'),
+('Anguilla','1-264','AIA'),
+('Antarctica','672','ATA'),
+('Antigua and Barbuda','1-268','ATG'),
+('Argentina','54','ARG'),
+('Armenia','374','ARM'),
+('Aruba','297','ABW'),
+('Australia','61','AUS'),
+('Austria','43','AUT'),
+('Azerbaijan','994','AZE'),
+('Bahamas','1-242','BHS'),
+('Bahrain','973','BHR'),
+('Bangladesh','880','BGD'),
+('Barbados','1-246','BRB'),
+('Belarus','375','BLR'),
+('Belgium','32','BEL'),
+('Belize','501','BLZ'),
+('Benin','229','BEN'),
+('Bermuda','1-441','BMU'),
+('Bhutan','975','BTN'),
+('Bolivia','591','BOL'),
+('Bosnia and Herzegovina','387','BIH'),
+('Botswana','267','BWA'),
+('Brazil','55','BRA'),
+('British Indian Ocean Territory','246','IOT'),
+('British Virgin Islands','1-284','VGB'),
+('Brunei','673','BRN'),
+('Bulgaria','359','BGR'),
+('Burkina Faso','226','BFA'),
+('Burundi','257','BDI'),
+('Cambodia','855','KHM'),
+('Cameroon','237','CMR'),
+('Canada','1','CAN'),
+('Cape Verde','238','CPV'),
+('Cayman Islands','1-345','CYM'),
+('Central African Republic','236','CAF'),
+('Chad','235','TCD'),
+('Chile','56','CHL'),
+('China','86','CHN'),
+('Christmas Island','61','CXR'),
+('Cocos Islands','61','CCK'),
+('Colombia','57','COL'),
+('Comoros','269','COM'),
+('Cook Islands','682','COK'),
+('Costa Rica','506','CRI'),
+('Croatia','385','HRV'),
+('Cuba','53','CUB'),
+('Curacao','599','CUW'),
+('Cyprus','357','CYP'),
+('Czech Republic','420','CZE'),
+('Democratic Republic of the Congo','243','COD'),
+('Denmark','45','DNK'),
+('Djibouti','253','DJI'),
+('Dominica','1-767','DMA'),
+('Dominican Republic','1-809, 1-829, 1-849','DOM'),
+('East Timor','670','TLS'),
+('Ecuador','593','ECU'),
+('Egypt','20','EGY'),
+('El Salvador','503','SLV'),
+('Equatorial Guinea','240','GNQ'),
+('Eritrea','291','ERI'),
+('Estonia','372','EST'),
+('Ethiopia','251','ETH'),
+('Falkland Islands','500','FLK'),
+('Faroe Islands','298','FRO'),
+('Fiji','679','FJI'),
+('Finland','358','FIN'),
+('France','33','FRA'),
+('French Polynesia','689','PYF'),
+('Gabon','241','GAB'),
+('Gambia','220','GMB'),
+('Georgia','995','GEO'),
+('Germany','49','DEU'),
+('Ghana','233','GHA'),
+('Gibraltar','350','GIB'),
+('Greece','30','GRC'),
+('Greenland','299','GRL'),
+('Grenada','1-473','GRD'),
+('Guam','1-671','GUM'),
+('Guatemala','502','GTM'),
+('Guernsey','44-1481','GGY'),
+('Guinea','224','GIN'),
+('Guinea-Bissau','245','GNB'),
+('Guyana','592','GUY'),
+('Haiti','509','HTI'),
+('Honduras','504','HND'),
+('Hong Kong','852','HKG'),
+('Hungary','36','HUN'),
+('Iceland','354','ISL'),
+('India','91','IND'),
+('Indonesia','62','IDN'),
+('Iran','98','IRN'),
+('Iraq','964','IRQ'),
+('Ireland','353','IRL'),
+('Isle of Man','44-1624','IMN'),
+('Israel','972','ISR'),
+('Italy','39','ITA'),
+('Ivory Coast','225','CIV'),
+('Jamaica','1-876','JAM'),
+('Japan','81','JPN'),
+('Jersey','44-1534','JEY'),
+('Jordan','962','JOR'),
+('Kazakhstan','7','KAZ'),
+('Kenya','254','KEN'),
+('Kiribati','686','KIR'),
+('Kosovo','383','XKX'),
+('Kuwait','965','KWT'),
+('Kyrgyzstan','996','KGZ'),
+('Laos','856','LAO'),
+('Latvia','371','LVA'),
+('Lebanon','961','LBN'),
+('Lesotho','266','LSO'),
+('Liberia','231','LBR'),
+('Libya','218','LBY'),
+('Liechtenstein','423','LIE'),
+('Lithuania','370','LTU'),
+('Luxembourg','352','LUX'),
+('Macau','853','MAC'),
+('Macedonia','389','MKD'),
+('Madagascar','261','MDG'),
+('Malawi','265','MWI'),
+('Malaysia','60','MYS'),
+('Maldives','960','MDV'),
+('Mali','223','MLI'),
+('Malta','356','MLT'),
+('Marshall Islands','692','MHL'),
+('Mauritania','222','MRT'),
+('Mauritius','230','MUS'),
+('Mayotte','262','MYT'),
+('Mexico','52','MEX'),
+('Micronesia','691','FSM'),
+('Moldova','373','MDA'),
+('Monaco','377','MCO'),
+('Mongolia','976','MNG'),
+('Montenegro','382','MNE'),
+('Montserrat','1-664','MSR'),
+('Morocco','212','MAR'),
+('Mozambique','258','MOZ'),
+('Myanmar','95','MMR'),
+('Namibia','264','NAM'),
+('Nauru','674','NRU'),
+('Nepal','977','NPL'),
+('Netherlands','31','NLD'),
+('Netherlands Antilles','599','ANT'),
+('New Caledonia','687','NCL'),
+('New Zealand','64','NZL'),
+('Nicaragua','505','NIC'),
+('Niger','227','NER'),
+('Nigeria','234','NGA'),
+('Niue','683','NIU'),
+('North Korea','850','PRK'),
+('Northern Mariana Islands','1-670','MNP'),
+('Norway','47','NOR'),
+('Oman','968','OMN'),
+('Pakistan','92','PAK'),
+('Palau','680','PLW'),
+('Palestine','970','PSE'),
+('Panama','507','PAN'),
+('Papua New Guinea','675','PNG'),
+('Paraguay','595','PRY'),
+('Peru','51','PER'),
+('Philippines','63','PHL'),
+('Pitcairn','64','PCN'),
+('Poland','48','POL'),
+('Portugal','351','PRT'),
+('Puerto Rico','1-787, 1-939','PRI'),
+('Qatar','974','QAT'),
+('Republic of the Congo','242','COG'),
+('Reunion','262','REU'),
+('Romania','40','ROU'),
+('Russia','7','RUS'),
+('Rwanda','250','RWA'),
+('Saint Barthelemy','590','BLM'),
+('Saint Helena','290','SHN'),
+('Saint Kitts and Nevis','1-869','KNA'),
+('Saint Lucia','1-758','LCA'),
+('Saint Martin','590','MAF'),
+('Saint Pierre and Miquelon','508','SPM'),
+('Saint Vincent and the Grenadines','1-784','VCT'),
+('Samoa','685','WSM'),
+('San Marino','378','SMR'),
+('Sao Tome and Principe','239','STP'),
+('Saudi Arabia','966','SAU'),
+('Senegal','221','SEN'),
+('Serbia','381','SRB'),
+('Seychelles','248','SYC'),
+('Sierra Leone','232','SLE'),
+('Singapore','65','SGP'),
+('Sint Maarten','1-721','SXM'),
+('Slovakia','421','SVK'),
+('Slovenia','386','SVN'),
+('Solomon Islands','677','SLB'),
+('Somalia','252','SOM'),
+('South Africa','27','ZAF'),
+('South Korea','82','KOR'),
+('South Sudan','211','SSD'),
+('Spain','34','ESP'),
+('Sri Lanka','94','LKA'),
+('Sudan','249','SDN'),
+('Suriname','597','SUR'),
+('Svalbard and Jan Mayen','47','SJM'),
+('Swaziland','268','SWZ'),
+('Sweden','46','SWE'),
+('Switzerland','41','CHE'),
+('Syria','963','SYR'),
+('Taiwan','886','TWN'),
+('Tajikistan','992','TJK'),
+('Tanzania','255','TZA'),
+('Thailand','66','THA'),
+('Togo','228','TGO'),
+('Tokelau','690','TKL'),
+('Tonga','676','TON'),
+('Trinidad and Tobago','1-868','TTO'),
+('Tunisia','216','TUN'),
+('Turkey','90','TUR'),
+('Turkmenistan','993','TKM'),
+('Turks and Caicos Islands','1-649','TCA'),
+('Tuvalu','688','TUV'),
+('U.S. Virgin Islands','1-340','VIR'),
+('Uganda','256','UGA'),
+('Ukraine','380','UKR'),
+('United Arab Emirates','971','ARE'),
+('United Kingdom','44','GBR'),
+('United States','1','USA'),
+('Uruguay','598','URY'),
+('Uzbekistan','998','UZB'),
+('Vanuatu','678','VUT'),
+('Vatican','379','VAT'),
+('Venezuela','58','VEN'),
+('Vietnam','84','VNM'),
+('Wallis and Futuna','681','WLF'),
+('Western Sahara','212','ESH'),
+('Yemen','967','YEM'),
+('Zambia','260','ZMB'),
+('Zimbabwe','263','ZWE');
+

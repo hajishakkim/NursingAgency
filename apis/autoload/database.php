@@ -86,5 +86,11 @@ class Database
         $result = $this->query($sql,$params);
         return true;
     }
+    public function update($sql, $params = array())
+    {
+      $stmt = $this->prepareStatement($sql, $params);
+      $stmt->execute();
+      return $stmt;
+    }
 
 }
