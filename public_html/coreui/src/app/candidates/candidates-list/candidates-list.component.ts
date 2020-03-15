@@ -108,12 +108,14 @@ export class CandidatesListComponent implements OnInit {
     this.API.post('candidates.php',data)
     .subscribe(data => {
       if(data.status == "success") {
-        this.getCandidates({data:[]},this.page,this.row_per_page);  
+        this.getCandidates({data:[]},1,this.row_per_page);  
       }
     }); 
   }
   showAdvancedSearch(){
     this.advanced_filter_search = (this.advanced_filter_search) ? false: true;
   }
-  
+  resetForm(){
+    this.app_candidates_form.resetForm();  
+  }
 }
