@@ -233,7 +233,7 @@
         
         </div>
       </div>
-      <div class="table-footer">
+      <div class="table-footer" *ngIf="job_role_data.length>0">
         <div class="float-left results-text">Showing <span>{{((page-1)*row_per_page)+1}}-{{page*row_per_page < row_count ? page*row_per_page : row_count }}</span> of <span>{{row_count}}</span> results</div>
         <div class="float-right pagination-wrapper">
           <div class="form-group goto">

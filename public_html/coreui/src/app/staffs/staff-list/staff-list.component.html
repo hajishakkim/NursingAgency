@@ -219,6 +219,9 @@
         <div class="table-body">
           <table class="table">
             <tbody>
+              <tr *ngIf="staff_data.length==0">
+                <td colspan=12><span>No Records Found</span></td>
+              </tr>
               <tr *ngFor="let data of staff_data let rowIndex=index">
                 <td>{{rowIndex+1}}</td>
                 <td><span class="text">{{data.reference}}</span></td>
@@ -236,7 +239,7 @@
           
           </div>
         </div>
-        <div class="table-footer">
+        <div class="table-footer" *ngIf="staff_data.length>0">
           <div class="float-left results-text">Showing <span>01-10</span> of <span>10</span> results</div>
           <div class="float-right pagination-wrapper">
             <div class="form-group goto">
