@@ -8,6 +8,7 @@ class Common extends Database
         'client' => array('table'=>'clients','list_item'=>array('id'=>'client_id','label'=>'client_name')),
         'jobs' => array('table'=>'jobs','list_item'=>array('id'=>'job_id','label'=>'job_title')),
         'business_unit' => array('table'=>'business_unit','list_item'=>array('id'=>'business_unit_id','label'=>'business_unit_name')),
+        'countries' => array('table'=>'countries','list_item'=>array('id'=>'country_id','label'=>'country_name')),
     );
     function __construct()
     {
@@ -18,7 +19,7 @@ class Common extends Database
     }
     public function getListItems($data)
     {
-        $list_response = array('list_items'=>array(),'modules'=>array());
+        $list_response = array('list_items'=>array(),'modules'=>array(),'lists'=>array());
         if(isset($data['list_items'])){
             
             $binding_string = "";

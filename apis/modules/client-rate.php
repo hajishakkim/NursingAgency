@@ -100,7 +100,7 @@ if(file_get_contents("php://input")){
                                                 'public_hodliday_night' =>  $each_result['client_rate_public_holiday_night']
                                         );
                 }
-                $countSql = "SELECT FOUND_ROWS() as total";
+                $countSql = "SELECT count(client_rate_id) as total FROM `client_rate` WHERE `client_rate_activity` = 1";
                 $totalCntRes  = $common->select($countSql); 
                 $totalCnt     = $totalCntRes[0]['total'];  
                 $totalPages   = $totalCnt%$row_per_page==0 ?  $totalCnt/$row_per_page : ($totalCnt/$row_per_page)+1;

@@ -337,3 +337,37 @@
   <span><a href="">Care Bee</a> &copy; 2020 Team Alpha.</span>
   <span class="ml-auto">Powered by <a href="">Team Alpha</a></span>
 </app-footer>
+
+<div class="overlay" *ngIf="lockScreen">
+    <div class="container-fluid">
+        <div class="row">           
+          <div class="landingpage-wrap">
+            <div class="landing-inner-wrap">
+              <div class="landing-form-outer">
+              <div class="landing-form-wrapper">
+                <form>
+                  <div class="form-group">
+                    <input 
+                        type="password" 
+                        class="form-control" 
+                        id="password" 
+                        placeholder="Password"
+                        [(ngModel)] = "password" 
+                        required/>
+                    <span class="show-hide-password"><i class="far fa-eye-slash"></i></span>
+                  </div>
+                  <div class="form-group">
+                    <button 
+                        type="button" 
+                        (click)="onUnlockScreen()" 
+                        class="btn btn-primary btn-login">Login
+                    </button>
+                  </div>
+                  <div class="forgot-password"><a href="">Forgot Password?</a></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

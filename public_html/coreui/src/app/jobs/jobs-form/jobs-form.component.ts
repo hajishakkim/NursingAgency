@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {FormGroup, FormBuilder } from '@angular/forms';
 import {Jobs} from '../jobs.model';
 import * as $ from 'jquery';
+
 declare function refreshSelectpicker(): void;
 @Component({
   selector: 'app-jobs-form',
@@ -9,41 +10,37 @@ declare function refreshSelectpicker(): void;
   styleUrls: ['./jobs-form.component.css']
 })
 export class JobsFormComponent implements OnInit {
-  form: FormGroup;  
-  jobs : {};
-  
-  @Input('clients_list') clients_list; 
-  @Input('job_business_unit_list') job_business_unit_list;
+  form: FormGroup;
+  job = {};
   @Output() formData = new EventEmitter<Object>();
   constructor(builder: FormBuilder) {
-    this.jobs = new Jobs();
-    console.log(this.clients_list);
-    this.form = builder.group(this.jobs)
+    this.job = new Jobs();
+    this.form = builder.group(this.job)
   }
 
   ngOnInit() {
     refreshSelectpicker();
   }
   saveForm(){
-    this.formData.emit(this.jobs);
+    console.log(12345);
+    this.formData.emit(this.job);
   }
+
   editForm(data:any){
-    data.action = "edit";
-    this.jobs = data;
-    setTimeout( function(){ 
-      refreshSelectpicker(); 
-    },500);
+    this.resetForm();
+    data.action = 'edit';
+    this.job = data;
+    setTimeout( function(){
+      refreshSelectpicker();
+    },1000);
   }
-  deleteRow(data:any){
-    data.action = "delete";
-    this.jobs = data; 
-    this.saveForm();
-  }
+
   resetForm(){
-    this.jobs = {};
-   // this.form.reset();
-    setTimeout( function(){ 
-      refreshSelectpicker(); 
-    },500);
+    this.job = {
+      id :  '',
+      category :  '',
+      job_role :  '',
+      action: '',
+    };
   }
 }
