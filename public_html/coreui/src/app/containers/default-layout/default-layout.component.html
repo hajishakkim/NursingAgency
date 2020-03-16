@@ -5,28 +5,20 @@
   [navbarBrandMinimized]="{src: 'assets/images/collapsed-logo.png', width: 30, height: 30, alt: 'careBee Logo'}"
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="'lg'">
-  <ul class="nav navbar-nav d-md-down-none">
-    <li class="nav-item px-3">
-      <a class="nav-link" href="#">Dashboard</a>
-    </li>
-    <li class="nav-item px-3">
-      <a class="nav-link" href="#">Users</a>
-    </li>
-    <li class="nav-item px-3">
-      <a class="nav-link" href="#">Settings</a>
-    </li>
-  </ul>
-  <ul class="nav navbar-nav ml-auto">
-    <li class="nav-item d-md-down-none">
-      <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
-    </li>
-    <li class="nav-item d-md-down-none">
-      <a class="nav-link" href="#"><i class="icon-list"></i></a>
-    </li>
-    <li class="nav-item d-md-down-none">
-      <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
-    </li>
-    <li class="nav-item dropdown" dropdown placement="bottom right">
+  <div class="main-title"><h5>Dashboard</h5></div>
+  <div class="nav navbar-nav ml-auto">
+
+    <div class="d-flex d-md-down-none main-top-right">
+      <div class="form-group custom-search">
+          <input type="text" class="form-control" placeholder="Search" />
+      </div>
+      <div class="d-flex align-items-center icon-block">
+        <a href="javascript:void(0)" class="icon notification-icon" data-toggle="tooltip" data-placement="left" data-container="body" title="Notification"><i class="icon-bell"></i><span class="badge badge-pill"></span></a>
+        <a href="javascript:void(0)" (click)="showAdvancedSearch()" class="icon filter-icon" data-toggle="tooltip" data-placement="left" data-container="body" title="Advance Search"><i class="fas fa-filter"></i></a>
+      </div>
+      <a href="#!" class="btn btn-primary" #getModal data-toggle="modal" data-target="#addnew-modal">Add New</a>
+    </div>
+    <div class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
         <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com"/>
       </a>
@@ -43,8 +35,8 @@
         <a class="dropdown-item" (click)="onLockScreen()"><i class="fa fa-shield"></i> Lock account</a>
         <a class="dropdown-item" (click)="onLogout()"><i class="fa fa-lock"></i> Logout</a>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </app-header>
 <div class="app-body">
   <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized" (minimizedChange)="toggleMinimize($event)">

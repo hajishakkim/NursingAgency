@@ -40,10 +40,62 @@ html, body{
   overflow-y: auto;
   overflow-x:hidden;
 }
+.app-header.navbar{
+  padding:0;
+}
+.app-header .navbar-brand{
+  min-width:200px;
+  border-right: 1px solid #c8ced3;
+  background: #F7F5FF;
+}
+.app-header .main-title{
+  padding-left:10px;
+}
+.app-header .main-title h5{
+  color:#0054A5;
+  font-size:18px;
+}
+.app-header .main-top-right{
+  padding-right:10px;
+  border-right:1px solid #EDF0F1;
+}
+.app-header .main-top-right .form-group.custom-search{
+  margin-bottom:0;
+  width:200px;
+  height:31px;
+  margin-right: 10px;
+}
+.app-header .main-top-right .form-group.custom-search:after{
+  color: #AEB7BF;
+}
+.app-header .main-top-right .icon-block{
+  margin-right: 10px;
+}
+.app-header .main-top-right .btn{
+  width:88px;
+  height:31px;
+  -moz-border-radius:2px;
+  -webkit-border-radius:2px;
+  border-radius:2px;
+  font-size:12px;
+}
+.app-header .main-top-right .form-group.custom-search .form-control{
+  background: #F8F8F8;
+  border: 1px solid #EDF0F1;
+  -moz-border-radius:2px;
+  -webkit-border-radius:2px;
+  border-radius:2px;
+}
+
+.navbar-toggler{
+  display:none!important;
+}
 .main .main-top-head{
   margin-bottom: 0;
   border-radius: 0;
   padding:0;
+  background:none;
+  border :0;
 }
 .main .main-top-head .main-top-left{
   float: left;
