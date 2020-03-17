@@ -1,6 +1,16 @@
-<daypilot-scheduler [config]="config" [events]="events" #timesheet></daypilot-scheduler>
+<div class="toolbar">
+  <button (click)="previous()">Previous</button>
+  <button (click)="today()">Today</button>
+  <button (click)="next()">Next</button>
+</div>
 
-<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#event-modal"></a>
+<label class="c-switch c-switch-pill c-switch-dark">
+  <input type="checkbox" class="c-switch-input" (click)="onViewChage()">
+  <span class="c-switch-slider"></span>
+</label>
+
+<daypilot-scheduler [config]="config" [events]="events" (viewChange)="schedulerViewChanged($event)" #timesheet></daypilot-scheduler>
+
 <div class="modal fade custom-popup event-popup show" [ngStyle]="{display: (showPopUp ? 'block' : 'none')}" id="event-modal" role="dialog" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -93,4 +103,4 @@
             </div>
           </div>
         </div>
-      </div>
+</div>
