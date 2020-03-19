@@ -18,7 +18,7 @@
                             <div class="form-group">
                                 <label>Client</label>
                                 <select name="vaccancy_client" formControlName="vaccancy_client" [(ngModel)]="vaccancy.vaccancy_client" class="form-control selectpicker" data-container="body">
-                                   <option value="">Un Assigned</option>
+                                   <option value="">Unassigned</option>
                                    <option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
                                     {{client.label}}
                                    </option>
@@ -29,12 +29,10 @@
                             <div class="form-group">
                                 <label>Businees Unit</label>
                                 <select name="vaccancy_business_group" formControlName="vaccancy_business_group" [(ngModel)]="vaccancy.vaccancy_business_group" class="form-control selectpicker" data-container="body">
-                                   <option>Option1</option>
-                                   <option>Option2</option>
-                                   <option>Option3</option>
-                                   <option>Option4</option>
-                                   <option>Option5</option>
-                                   <option>Option6</option>
+                                   <option value="">Unassigned</option>
+                                   <option *ngFor="let business_unit of list_items_data['modules']['business_unit']" value={{business_unit.id}}>
+                                    {{business_unit.label}}
+                                   </option>
                                </select>
                             </div>
                        </div>
@@ -42,12 +40,10 @@
                         <div class="form-group">
                             <label>Shift Type</label>
                             <select name="vaccancy_shift_type" formControlName="vaccancy_shift_type" [(ngModel)]="vaccancy.vaccancy_shift_type" class="form-control selectpicker" data-container="body">
-                               <option>Option1</option>
-                               <option>Option2</option>
-                               <option>Option3</option>
-                               <option>Option4</option>
-                               <option>Option5</option>
-                               <option>Option6</option>
+                                <option value="">Unassigned</option>
+                                <option *ngFor="let shift_type of list_items_data['list_items']['shift_type']" value={{shift_type.list_item_id}}>
+                                    {{shift_type.list_item_title}}
+                                </option>
                            </select>
                         </div>
                        </div>
@@ -55,13 +51,11 @@
                         <div class="form-group">
                             <label>Job</label>
                             <select name="vaccancy_job" formControlName="vaccancy_job" [(ngModel)]="vaccancy.vaccancy_job" class="form-control selectpicker" data-container="body">
-                            <option>Option1</option>
-                            <option>Option2</option>
-                            <option>Option3</option>
-                            <option>Option4</option>
-                            <option>Option5</option>
-                            <option>Option6</option>
-                        </select>                            
+                                <option value="">Unassigned</option>
+                                <option *ngFor="let job of list_items_data['modules']['jobs']" value={{job.id}}>
+                                 {{job.label}}
+                                </option>
+                            </select>                            
                         </div>
                        </div>
                        <div class="col-4">

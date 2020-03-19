@@ -52,7 +52,7 @@
             <div class="col-2">
               <div class="form-group">
                 <label>Business Unit</label>
-                <select class="form-control selectpicker" formControlName="vaccancy_business_group" *ngIf="list_items_data['modules']" [(ngModel)]="vaccancy.vaccancy_business_group">
+                <select class="form-control selectpicker" formControlName="vaccancy_business_group" *ngIf="list_items_data['modules']" [(ngModel)]="vaccancy.vaccancy_business_unit">
                   <option value="">Unassigned</option>
                   <option *ngFor="let business_unit of list_items_data['modules']['business_unit']" value={{business_unit.id}}>
                     {{business_unit.label}}
@@ -212,15 +212,15 @@
           <table class="table">
             <tbody>
               <tr *ngIf="vacancy_data.length==0">
-                <td colspan=12><span>No Records Found</span></td>
+                <div class="empty-list"><span>No Records Found</span></div>
               </tr>
               <tr *ngFor="let data of vacancy_data let rowIndex=index">
                 <td>{{((page-1)*row_per_page)+(rowIndex+1)}}</td>
                 <td><span class="text">{{data.vaccancy_ref_number}}</span></td>
                 <td><span class="text">{{data.vaccancy_date}}</span></td>
-                <td><span class="text">{{data.vaccancy_cilent}}</span></td>
-                <td><span class="text">{{data.vaccancy_business}}</span></td>
-                <td><span class="text">{{data.vaccancy_staff_shift}}</span></td>
+                <td><span class="text">{{showClientName(data.vaccancy_client)}}</span></td>
+                <td><span class="text">{{data.vaccancy_business_unit}}</span></td>
+                <td><span class="text">{{data.vaccancy_shift_type}}</span></td>
                 <td><span class="text">{{data.vaccancy_job}}</span></td>
                 <td><span class="text">{{data.vaccancy_break_time}}</span></td>
                 <td><span class="text">{{data.vaccancy_space}}</span></td>

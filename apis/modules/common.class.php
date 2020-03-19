@@ -6,7 +6,7 @@ class Common extends Database
     public $pagination_limit = 25;
     public $module_list_items = array(
         'client' => array('table'=>'clients','list_item'=>array('id'=>'client_id','label'=>'client_name')),
-        'jobs' => array('table'=>'jobs','list_item'=>array('id'=>'job_id','label'=>'job_title')),
+        'jobs' => array('table'=>'jobs','list_item'=>array('id'=>'jobs_id','label'=>'jobs_title')),
         'business_unit' => array('table'=>'business_unit','list_item'=>array('id'=>'business_unit_id','label'=>'business_unit_name')),
         'countries' => array('table'=>'countries','list_item'=>array('id'=>'country_id','label'=>'country_name')),
     );
@@ -30,7 +30,7 @@ class Common extends Database
             }
             $list_items_sql = "SELECT 
                                 list_items.list_item_id, lists.list_type, list_items.list_item_title
-                               FROM list_items JOIN lists ON lists.list_id = list_items.list_id 
+                               FROM list_items JOIN lists ON lists.list_id = list_items.list_item_list_id 
                                WHERE lists.list_type IN({$binding_string})";
             $list_items = $this->select($list_items_sql,$binding_params);
             if(!empty($list_items)){
@@ -54,7 +54,7 @@ class Common extends Database
                             FROM {$list_module['table']}";
                 
             }
-            if($list_sql){
+            if($list_sql){                
                 $list_items = $this->select($list_sql);
                 if(!empty($list_items)){                
                     foreach($list_items as $key=>$item){
