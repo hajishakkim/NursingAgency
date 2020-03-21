@@ -10,3 +10,18 @@
     align-items: center;
     margin-left: 5px;
 }
+
+.toolbar {
+    margin: 10px 0px;
+}
+
+.toolbar button {
+    background-color: #f3f3f3;
+    border: 1px solid #c0c0c0;
+    color: #333;
+    padding: 8px 0px;
+    width: 100px;
+    border-radius: 2px;
+    cursor: pointer;  
+    margin-right: 5px;
+}
