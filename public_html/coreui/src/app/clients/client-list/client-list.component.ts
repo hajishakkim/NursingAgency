@@ -135,4 +135,8 @@ export class ClientListComponent implements OnInit {
     this.getClient({data:[]},this.page,this.row_per_page);
   }
 
+  resetForm(){
+    this.app_client_form.resetForm();
+  }
+
 }
