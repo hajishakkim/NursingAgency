@@ -21,7 +21,7 @@ export class Vaccancies {
     vaccancy_ref_number: string = '';
     vaccancy_date: string = '';
     vaccancy_client: string = '';
-    vaccancy_business_group: string = '';
+    vaccancy_business_unit: string = '';
     vaccancy_shift_type: string = '';
     vaccancy_job: string = '';
     vaccancy_break_time: string = '';

@@ -28,7 +28,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label>Businees Unit</label>
-                                <select name="vaccancy_business_group" formControlName="vaccancy_business_group" [(ngModel)]="vaccancy.vaccancy_business_group" class="form-control selectpicker" data-container="body">
+                                <select name="vaccancy_business_unit" formControlName="vaccancy_business_unit" [(ngModel)]="vaccancy.vaccancy_business_unit" class="form-control selectpicker" data-container="body">
                                    <option value="">Unassigned</option>
                                    <option *ngFor="let business_unit of list_items_data['modules']['business_unit']" value={{business_unit.id}}>
                                     {{business_unit.label}}

@@ -10,7 +10,7 @@ $filters = array('value' => array('vaccancy_id',
             'vaccancy_location',
             'vaccancy_details'),
     'ref' => array('vaccancy_client',
-            'vaccancy_business_group',
+            'vaccancy_business_unit',
             'vaccancy_shift_type',
             'vaccancy_shift_type',
             'vaccancy_job'));
@@ -38,25 +38,31 @@ if(file_get_contents("php://input")){
             }catch(\Exception $e){}
             if(count($data)>0 && $action == "save"){
                 
+                $where_sql = "";
                 if(trim($data['vaccancy_id']) == ""){
+                    $sql = "INSERT INTO ";
+                }
+                if(trim($data['vaccancy_id']) != ""){
+                    $sql = "UPDATE ";
+                    $where_sql = " WHERE vaccancy_id = ? ";
+                }
+                    $sql .= "`vaccancy` SET
+                    `vaccancy_ref_number`       = ?, 
+                    `vaccancy_date`             = ?, 
+                    `vaccancy_client`           = ?, 
+                    `vaccancy_business_unit`    = ?, 
+                    `vaccancy_shift_type`       = ?, 
+                    `vaccancy_job`              = ?, 
+                    `vaccancy_break_time`       = ?, 
+                    `vaccancy_space`            = ?, 
+                    `vaccancy_location`         = ?, 
+                    `vaccancy_details`          = ?, 
+                    `vaccancy_created_time`     = NOW(), 
+                    `vaccancy_updated_time`     = NOW(), 
+                    `vaccancy_created_by`       = 1, 
+                    `vaccancy_updated_by`       = 1, 
+                    `vaccancy_active`           = 1 {$where_sql}";
                     
-                    $sql = "INSERT INTO `vaccancy` 
-                    (`vaccancy_ref_number`, 
-                    `vaccancy_date`, 
-                    `vaccancy_client`, 
-                    `vaccancy_business_unit`, 
-                    `vaccancy_shift_type`, 
-                    `vaccancy_job`, 
-                    `vaccancy_break_time`, 
-                    `vaccancy_space`, 
-                    `vaccancy_location`, 
-                    `vaccancy_details`, 
-                    `vaccancy_created_time`, 
-                    `vaccancy_updated_time`, 
-                    `vaccancy_created_by`, 
-                    `vaccancy_updated_by`, 
-                    `vaccancy_active`) VALUES 
-                    (?,?,?,?,?,?,?,?,?,?,NOW(),NOW(),1,1,1)";
                     $params = array($data['vaccancy_ref_number'],
                     $data['vaccancy_date'],
                     $data['vaccancy_client'],
@@ -67,18 +73,22 @@ if(file_get_contents("php://input")){
                     $data['vaccancy_space'],
                     $data['vaccancy_location'],
                     $data['vaccancy_details']);   
-                    $common->add($sql, $params); 
+                    
+                    if($where_sql != "") {
+                        array_push($params,$data['vaccancy_id']);
+                        $common->update($sql, $params);
+                    }else{
+                        $common->add($sql, $params);
+                    }
+
                     echo json_encode(array("status"=>"success"));
-                }
+            }
+            if(count($data)>0 && $action == "delete"){
+                
                 if(trim($data['vaccancy_id']) != ""){
-        
-                    if($data['action'] == "edit"){
-                    
-                    }
-                    if($data['action'] == "delete"){
-                    
-                    }
-        
+                    $sql = "DELETE FROM vaccancy WHERE vaccancy_id = ?";
+                    $common->delete($sql, array($data['vaccancy_id']));
+                    return true;
                 }
             }
             else{              

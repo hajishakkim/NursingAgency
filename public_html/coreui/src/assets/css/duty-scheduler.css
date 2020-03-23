@@ -853,7 +853,10 @@ border-radius: 4px;
 }
 
 /*--- Event popup styles ---*/
-
+.custom-dialog{
+  width: 300px;
+  margin: 200px auto;
+}
 .event-popup .modal-dialog{
   width: 80%;
 }

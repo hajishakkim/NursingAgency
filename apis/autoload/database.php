@@ -87,5 +87,15 @@ class Database
         $result = $this->query($sql,$params);
         return true;
     }
+    public function update($sql, $params = array())
+    {
+        $result = $this->query($sql,$params);
+        return true;
+    }
+    public function delete($sql, $params = array())
+    {
+        $result = $this->query($sql,$params);
+        return true;
+    }    
 
 }

@@ -9,6 +9,10 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { BnNgIdleService } from 'bn-ng-idle';
 
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -62,16 +66,19 @@ import { AuthInterceptorService } from './auth/auth-intercepeters.service';
     ChartsModule,
     HttpClientModule,
     FormsModule,
-    NgSelectModule
+    NgSelectModule,
+    NgbModalModule
   ],
+  entryComponents: [ ConfirmationDialogComponent ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
-  ],
+    RegisterComponent,
+    ConfirmationDialogComponent
+  ], 
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
@@ -80,7 +87,8 @@ import { AuthInterceptorService } from './auth/auth-intercepeters.service';
     useClass : AuthInterceptorService,
     multi : true
   },
-  BnNgIdleService],
+  BnNgIdleService,
+  ConfirmationDialogService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

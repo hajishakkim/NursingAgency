@@ -1,4 +1,4 @@
-    <div class="breadcrumb main-top-head">
+<div class="breadcrumb main-top-head">
       <div class="main-top-left">
         <div class="breadcrumb-item" ng-reflect-klass="breadcrumb-item">
           <a ng-reflect-router-link="/" href="#/">Home</a>
@@ -52,7 +52,7 @@
             <div class="col-2">
               <div class="form-group">
                 <label>Business Unit</label>
-                <select class="form-control selectpicker" formControlName="vaccancy_business_group" *ngIf="list_items_data['modules']" [(ngModel)]="vaccancy.vaccancy_business_unit">
+                <select class="form-control selectpicker" formControlName="vaccancy_business_unit" *ngIf="list_items_data['modules']" [(ngModel)]="vaccancy.vaccancy_business_unit">
                   <option value="">Unassigned</option>
                   <option *ngFor="let business_unit of list_items_data['modules']['business_unit']" value={{business_unit.id}}>
                     {{business_unit.label}}
@@ -218,17 +218,17 @@
                 <td>{{((page-1)*row_per_page)+(rowIndex+1)}}</td>
                 <td><span class="text">{{data.vaccancy_ref_number}}</span></td>
                 <td><span class="text">{{data.vaccancy_date}}</span></td>
-                <td><span class="text">{{showClientName(data.vaccancy_client)}}</span></td>
-                <td><span class="text">{{data.vaccancy_business_unit}}</span></td>
-                <td><span class="text">{{data.vaccancy_shift_type}}</span></td>
-                <td><span class="text">{{data.vaccancy_job}}</span></td>
+                <td><span class="text">{{showListLabel(data.vaccancy_client,'modules','client')}}</span></td>
+                <td><span class="text">{{showListLabel(data.vaccancy_business_unit,'modules','business_unit')}}</span></td>
+                <td><span class="text">{{showListLabel(data.vaccancy_shift_type,'list_items','shift_type')}}</span></td>
+                <td><span class="text">{{showListLabel(data.vaccancy_job,'modules','jobs')}}</span></td>
                 <td><span class="text">{{data.vaccancy_break_time}}</span></td>
                 <td><span class="text">{{data.vaccancy_space}}</span></td>
                 <td><span class="text">{{data.vaccancy_location}}</span></td>
                 <td><span class="text">{{data.vaccancy_details}}</span></td>
                 <td class="actions-td">
                   <a href="javascript:void(0)" (click)="editItem(data)" data-toggle="modal" data-target="#addnew-modal"><i class="far fa-pencil"></i></a>
-                  <a href="javascript:void(0)" (click)="removeItem(data)"><i class="far fa-trash-alt"></i></a>
+                  <a href="javascript:void(0)" (click)="removeItem(rowIndex,data)"><i class="far fa-trash-alt"></i></a>
                 </td>
               </tr>
             </tbody>
@@ -283,7 +283,7 @@
             <app-vacancies-form #app_vacancies_form (formData)="saveForm($event)" [list_items_data]="list_items_data"></app-vacancies-form>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-normal" type="button" data-dismiss="modal" (click)="revertChanges()">Cancel</button>
             <button class="btn btn-primary" type="button" data-dismiss="modal" (click)="formSubmit()">Save</button>
           </div>
         </div>
