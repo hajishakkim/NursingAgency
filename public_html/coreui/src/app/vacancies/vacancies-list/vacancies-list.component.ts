@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import {FormGroup, FormBuilder } from '@angular/forms';
 import { VacanciesFormComponent } from '../vacancies-form/vacancies-form.component';
 import { ApiService } from '../../services/api.service'
 import {Vaccancies} from '../vaccancies.model';
-import { Observable, of } from 'rxjs';
+import { ConfirmationDialogService } from '../../confirmation-dialog/confirmation-dialog.service';
 import * as $ from 'jquery';
 
 declare function setDataTable(options:any,table: string): void;
@@ -27,7 +28,14 @@ export class VacanciesListComponent implements OnInit {
   log: any;
   advanced_filter_search : boolean = false;
   list_items_data : [];
-  constructor(public API: ApiService) {}
+  form: FormGroup;  
+  vaccancy : {};
+  item_before_modified : any;
+  constructor(public API: ApiService,builder: FormBuilder, private confirmationDialogService: ConfirmationDialogService) {
+      this.vaccancy = new Vaccancies();
+      //console.log(this.vaccancy);
+      this.form = builder.group(this.vaccancy)
+  }
 
   ngOnInit() {
       var data = [];
@@ -38,12 +46,13 @@ export class VacanciesListComponent implements OnInit {
   
   ngAfterContentInit(){  
   }  
+
   showSearch(){    
     this.advanced_filter_search = (this.advanced_filter_search) ? false : true;
     return;
   }
   saveForm(formData: Vaccancies) {
-    this.API.post('vaccancies.php',{data:formData})
+    this.API.post('vaccancies.php',{data:formData,'action':'save'})
     .subscribe(data => {
       if(data.status == "success") {
         this.vacancy_data.push(formData);   
@@ -78,48 +87,78 @@ export class VacanciesListComponent implements OnInit {
       this.page = page_no;
       this.row_per_page = row_per_page;
       this.totalPagesArr = data.totalPagesArr; 
-    });
-    setTimeout( function(){
       fixedHeaderTable($('.listing-table-wrapper'));
-    },1000);
+    });    
   }
   
   getCurrentPage(rows: 0,from=''){
      this.page = from == "rpp" ? 1 : rows;
      this.row_per_page = from == "rpp" ?  rows : this.row_per_page;
-     this.getVaccanies({data:[]},this.page,this.row_per_page);
-    }  
-  // saveForm(formData: Vaccancies) {
-  //   console.log(formData)
-  //   //this.vacancy_data.push(formData);   
-  //   this.API.post(formData,'http://localhost/nursingAgency/apis/index.php')
-  //   .subscribe(resp => {
-  //     const keys = resp.headers.keys();
-  //     this.headers = keys.map(key =>
-  //       `${key}: ${resp.headers.get(key)}`);
-  
-  //     for (const data of resp.body) {
-  //       //console.log(data)
-  //       this.vacancy_data.push(data);
-  //     }
-      
-  //     setTimeout( function(){ 
-  //       fixedHeaderTable($('.listing-table-wrapper'));  
-  //     },1000); 
-  //   }); 
-  // }
+     this.getVaccanies({data:this.vaccancy,action:'search'},this.page,this.row_per_page);
+  }
+
   formSubmit(){
     this.app_vacancies_form.saveForm();
   }
+
+  revertChanges(){
+    this.vacancy_data = JSON.parse(this.item_before_modified);
+  }
+
   editItem(item:any){    
+    this.item_before_modified = JSON.stringify(this.vacancy_data);
     this.app_vacancies_form.editItem(item);
   }
+
   showAdvancedSearch(){
     this.advanced_filter_search = (this.advanced_filter_search) ? false: true;
   }
+
   filterSearch(){
-   // alert(123);
-    //console.log(this.params);
-    //this.getVaccanies({data:[]},this.page,this.row_per_page);
+    this.getVaccanies({data:this.vaccancy,action:'search'},1,this.row_per_page);
+  }
+
+  clearSearch(){
+    this.form.reset();
+    refreshSelectpicker();
+  }
+
+  showListLabel(list_id:any,type:any,list_item:any){    
+    if(typeof(list_id) == 'undefined') return '';
+    var _list_item = [];
+    _list_item = this.list_items_data[type][list_item];
+    var list = _list_item.filter(function (items) { if(type == 'modules') {
+      return items.id == list_id
+     }else if(type == 'list_items') {
+      return items.list_item_id == list_id
+     }
+     });
+    var item = list[0];
+    if(typeof(item) == 'undefined' && list_item == 'business_unit'){
+      list = _list_item.filter(function (items) {
+      return items.id == list_id
+     });
+    }
+    if(typeof(item) != 'undefined'){
+      if(type == 'modules') {
+        return item.label;
+       }else if(type == 'list_items') {
+        return item.list_item_title;
+       }      
+    }else{
+      return '--';
+    }    
+  }
+  public deleteItem(idx:any,item:any) {
+    this.API.post('vaccancies.php',{data:item,'action':'delete'})
+      .subscribe(data => {
+        this.vacancy_data.splice(idx,1);
+        fixedHeaderTable($('.listing-table-wrapper'));
+      });   
+  }
+  public removeItem(idx:any,item:any) {
+    this.confirmationDialogService.confirm('Delete','Do you really want to delete ?')
+    .then((confirmed) => (confirmed) ? this.deleteItem(idx,item) : '')
+    .catch(() => console.log(''));
   }
 }

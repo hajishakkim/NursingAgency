@@ -267,9 +267,14 @@ function refreshSelectpicker(){
   $('.selectpicker').selectpicker('refresh');
   $('.custom-datepicker input').datepicker();
 }
+function fixedHeaderTable(ths) {
+  setTimeout( function(){
+    _fixedHeaderTable(ths);
+  },50);
+}
 
 // Fixed Table Header
-function fixedHeaderTable(ths) {
+function _fixedHeaderTable(ths) {
   var widthArray = [];
   ths.find('.table').css('width', '');
   

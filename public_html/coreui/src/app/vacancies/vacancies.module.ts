@@ -6,14 +6,12 @@ import { VacanciesListComponent } from './vacancies-list/vacancies-list.componen
 import { VacanciesFormComponent } from './vacancies-form/vacancies-form.component';
 import { VacancyRoutingModule } from '../vacancies/vacancies-rounting.module';
 
-
-
 @NgModule({
-  declarations: [VacanciesListComponent, VacanciesFormComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    VacancyRoutingModule
-  ]
+    VacancyRoutingModule,
+  ],
+  declarations: [VacanciesListComponent, VacanciesFormComponent],
 })
 export class VacanciesModule { }

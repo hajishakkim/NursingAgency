@@ -60,6 +60,7 @@ class Database
     public function select($sql, $params = array())
     {
         $stmt = $this->query($sql,$params);
+        //echo $this->getQuery($sql,$params);
         return $this->getQueryResult($stmt);
         //$result -> free_result();
     }
@@ -88,9 +89,13 @@ class Database
     }
     public function update($sql, $params = array())
     {
-      $stmt = $this->prepareStatement($sql, $params);
-      $stmt->execute();
-      return $stmt;
+        $result = $this->query($sql,$params);
+        return true;
     }
+    public function delete($sql, $params = array())
+    {
+        $result = $this->query($sql,$params);
+        return true;
+    }    
 
 }
