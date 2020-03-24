@@ -29,6 +29,9 @@ export class ShedulerComponent implements AfterViewInit{
   comment : string;
   isUpdateEvent : boolean;
   viewType = "client";
+  resourceTitle = "Client";
+  curesponseTitle = "Resource";
+
   public resourceFilter : any[];
   
   config: SchedulerPropsAndEvents = {
@@ -151,8 +154,12 @@ export class ShedulerComponent implements AfterViewInit{
   {
     if(this.viewType == "client"){
       this.viewType = "resource";
+      this.resourceTitle = "Resource";
+      this.curesponseTitle = "Client";
     }else{
       this.viewType = "client";
+      this.resourceTitle = "Client";
+      this.curesponseTitle = "Resource";
     }
 
     this.renderEvent();
