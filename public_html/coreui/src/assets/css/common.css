@@ -206,7 +206,7 @@ submit, buttom, label, input {
   border-color: #1a4f85;
 }
 .btn-primary {
-  color:#fff;
+  color:#fff!important;
   background: #1D78CF;
   border: 1px solid #1D78CF;
 }

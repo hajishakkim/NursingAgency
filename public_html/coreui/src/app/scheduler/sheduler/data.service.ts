@@ -14,14 +14,18 @@ export class DataService {
       start: DayPilot.Date.today().addHours(9),
       end: DayPilot.Date.today().addHours(11),
       resource : "rr1",
-      text: "1pm -5pm Client 1"
+      curesponse : "C1",
+      text: "1pm -5pm Client 1",
+      comment : "comment 2"
     },
     {
       id: 2,
       start: DayPilot.Date.today().addHours(12),
       end: DayPilot.Date.today().addHours(15),
       resource : "rr2",
-      text: "1pm -5pm Client 2"
+      curesponse : "C3",
+      text: "1pm -5pm Client 2",
+      comment : "comment 4"
     }
   ];
 
@@ -31,14 +35,18 @@ export class DataService {
       start: DayPilot.Date.today().addHours(9),
       end: DayPilot.Date.today().addHours(11),
       resource : "c1",
-      text: "1pm -5pm Shyju"
+      curesponse : "rr1",
+      text: "1pm -5pm Shyju",
+      comment : "comment 1"
     },
     {
       id: 2,
       start: DayPilot.Date.today().addHours(12),
       end: DayPilot.Date.today().addHours(15),
       resource : "c2",
-      text: "1pm -5pm Ajeesh"
+      curesponse : "rr3",
+      text: "1pm -5pm Ajeesh",
+      comment : "comment 2"
     }
   ];
 
@@ -81,6 +89,18 @@ export class DataService {
           ob.next(this.resource);
         }else{
           ob.next(this.clients);
+        }
+      }, 200);
+    })
+  };
+
+  getCuresponse(viewType = "resource") : Observable<any[]> {
+    return new Observable(ob => {
+      setTimeout(() => {
+        if(viewType == "resource"){
+          ob.next(this.clients);
+        }else{
+          ob.next(this.resource);
         }
       }, 200);
     })

@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     const data = new LoginModel(this.agency,this.userIdentity,this.password);
     this.authService.onlogin(data).subscribe(
       resDate => {
-        this.router.navigate(['vacancies']);
+        this.router.navigate(['timeline']);
       }
     )
 

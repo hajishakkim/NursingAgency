@@ -1,13 +1,41 @@
-<div class="toolbar">
-  <button (click)="previous()">Previous</button>
-  <button (click)="today()">Today</button>
-  <button (click)="next()">Next</button>
+<div class="top-header">
+  <div class="top-left toolbar">
+    <button (click)="previous()">Previous</button>
+    <button (click)="today()">Today</button>
+    <button (click)="next()">Next</button>
+  </div>  
+  <div class="top-right">
+    <label class="switch">
+      <input 
+        type="checkbox" 
+        id="togBtn"
+        (click)="onViewChage()">
+      <div class="slider round">
+        <span class="on">Resource</span>
+        <span class="off">Client</span>
+      </div>
+    </label>
+  </div>
 </div>
 
-<label class="c-switch c-switch-pill c-switch-dark">
-  <input type="checkbox" class="c-switch-input" (click)="onViewChage()">
-  <span class="c-switch-slider"></span>
-</label>
+<div class="filetr-row row">
+  <div class="col-md-6">
+    <ng-select 
+      [items]="resource"
+      bindLabel="name"
+      bindValue="id"
+      placeholder="Resource"
+      [(ngModel)]="resourceFilter"
+      [multiple]="true"
+      style="width: 300px;">
+    </ng-select>
+  </div>
+  <div class="col-md-3">
+    <div class="toolbar">
+      <button (click)="resourceFilterChange($event)">Filter</button>
+    </div>
+  </div>
+</div>
 
 <daypilot-scheduler [config]="config" [events]="events" (viewChange)="schedulerViewChanged($event)" #timesheet></daypilot-scheduler>
 
@@ -26,67 +54,67 @@
             </div>
             <div class="modal-body">
               <div class="col-12">
-                  <div class="row">
-                      <div class="col-2">
-                          <div class="form-group">
-                              <label>Event Title</label>
-                              <input 
-                                type="text" 
-                                class="form-control"
-                                [(ngModel)] = "eventTitle"/>
-                          </div>
+                <div class="row">
+                  <div class="col-2">
+                      <div class="form-group">
+                          <label>Event Title</label>
+                          <input 
+                            type="text" 
+                            class="form-control"
+                            [(ngModel)] = "eventTitle"/>
                       </div>
-                      <div class="col-2">
+                  </div>
+                  <div class="col-2">
+                    <div class="form-group">
+                        <label>Start Time</label>
+                        <input 
+                          type="text" 
+                          class="form-control" 
+                          [(ngModel)] = "startTime"/>
+                    </div>
+                  </div>
+                    <div class="col-2">
                         <div class="form-group">
-                            <label>Start Time</label>
+                            <label>End Time</label>
                             <input 
                               type="text" 
                               class="form-control" 
-                              [(ngModel)] = "startTime"/>
+                              [(ngModel)] = "endTime"/>
                         </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-group">
+                          <label>{{ resourceTitle }}</label>
+                          <ng-select 
+                            [items]="resource"
+                            bindLabel="name"
+                            bindValue="id"
+                            placeholder="Resource"
+                            [(ngModel)]="resourceId">
+                          </ng-select>
                       </div>
-                        <div class="col-2">
-                            <div class="form-group">
-                                <label>End Time</label>
-                                <input 
-                                  type="text" 
-                                  class="form-control" 
-                                  [(ngModel)] = "endTime"/>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                                <div class="form-group">
-                                    <label>Resource</label>
-                                    <select 
-                                      class="form-control selectpicker"
-                                      [(ngModel)] = "resourceId" >
-                                        <option *ngFor="let res of resource" value={{res.id}}>
-                                            {{res.name}}
-                                        </option>
-                                    </select>
-
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                    <div class="form-group">
-                                        <label>Client</label>
-                                        <select class="form-control selectpicker">
-                                            <option>Option 1</option>
-                                            <option>Option 2</option>
-                                            <option>Option 3</option>
-                                            </select>
-    
-                                    </div>
-                                </div>
-                  </div>
-                  <div class="row">
-                        <div class="col-12">
-                                <div class="form-group">
-                                    <label>Comment</label>
-                                    <textarea class="form-control"></textarea>
-                                </div>
-                            </div>
-                  </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-group">
+                        <label>{{ curesponseTitle }}</label>
+                        <ng-select 
+                          [items]="curesponse"
+                          bindLabel="name"
+                          bindValue="id"
+                          placeholder="Resource"
+                          [(ngModel)]="curesponseId">
+                        </ng-select>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Comment</label>
+                        <textarea class="form-control"></textarea>
+                      </div>
+                    </div>
+                </div>
               </div>
             </div>
             <div class="modal-footer">
@@ -97,9 +125,15 @@
                 (click)="showPopUp = false"
                 >Cancel</button>
               <button 
+                *ngIf="!isUpdateEvent"
                 class="btn btn-primary" 
                 type="button"
                 (click)="addEvent()">Save</button>
+              <button 
+                *ngIf="isUpdateEvent"
+                class="btn btn-primary" 
+                type="button"
+                (click)="updateEvent()">Update</button>
             </div>
           </div>
         </div>

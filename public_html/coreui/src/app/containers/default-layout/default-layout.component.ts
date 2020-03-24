@@ -27,7 +27,7 @@ export class DefaultLayoutComponent {
     private bnIdle : BnNgIdleService,
     private router: Router
   ){
-    this.bnIdle.startWatching(30).subscribe((res) => {
+    this.bnIdle.startWatching(300).subscribe((res) => {
       if(res) {
         this.onLockScreen();
       }
