@@ -9,7 +9,7 @@
       </div>
       <div class="breadcrumb-menu d-md-down-none main-top-right">
           <div class="form-group custom-search">
-              <input type="text" class="form-control" placeholder="Search" />
+              <input type="text" class="form-control" placeholder="Search" #tablesearch />
           </div>
           
           <div class="icon-block">
@@ -214,7 +214,7 @@
               <tr *ngIf="vacancy_data.length==0">
                 <div class="empty-list"><span>No Records Found</span></div>
               </tr>
-              <tr *ngFor="let data of vacancy_data let rowIndex=index">
+              <tr *ngFor="let data of vacancy_data let rowIndex=index | tableSearch:data">
                 <td>{{((page-1)*row_per_page)+(rowIndex+1)}}</td>
                 <td><span class="text">{{data.vaccancy_ref_number}}</span></td>
                 <td><span class="text">{{data.vaccancy_date}}</span></td>
