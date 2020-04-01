@@ -88,7 +88,7 @@ if(file_get_contents("php://input")){
                                                 'mobile'                =>  $each_result['client_mobile_number']
                                         );
                 }
-                $countSql = "SELECT count(client_id) as total from clients";
+                $countSql = "SELECT count(client_id) as total from clients WHERE `client_status` = 1";
                 $totalCntRes  = $common->select($countSql); 
                 $totalCnt     = $totalCntRes[0]['total'];  
                 $totalPages   = $totalCnt%$row_per_page==0 ?  $totalCnt/$row_per_page : ($totalCnt/$row_per_page)+1;

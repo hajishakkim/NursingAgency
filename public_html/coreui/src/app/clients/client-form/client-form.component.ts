@@ -41,9 +41,9 @@ export class ClientFormComponent implements OnInit {
 
   ngOnInit() {
     refreshSelectpicker();
+    this.resetForm();
   }
   saveForm(){
-    console.log(12345);
     this.formData.emit(this.client);
   }
 
