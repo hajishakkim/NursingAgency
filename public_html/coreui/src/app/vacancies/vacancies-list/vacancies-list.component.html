@@ -20,7 +20,7 @@
     </div> 
     
     <div class="col-12 page-wrapper">
-      <div class="col-12 p-0 d-flex flex-column advanced-filter-search"  [ngClass]="{'hidden':advanced_filter_search == false}">
+      <div *ngIf = "vaccancy.vaccancy_ref_number" class="col-12 p-0 d-flex flex-column advanced-filter-search"  [ngClass]="{'hidden':advanced_filter_search == false}">
         <form [formGroup]="form">
             <div class="row m-0 form first-row">
             <div class="col-2">
@@ -192,7 +192,11 @@
               <thead>
                 <tr>
                   <th class="w-xs no-sort"><span>Sl No</span></th>
-                  <th class="sorting"><span class="texts">Referance no</span></th>
+                  
+                  <th class="sorting" *ngFor="let data of vacancy_data let rowIndex=index">
+                    <span class="texts">Referance no</span>
+                  </th>
+                  <!--<th class="sorting"><span class="texts">Referance no</span></th>
                   <th class="sorting"><span class="texts">Date</span></th>
                   <th class="sorting"><span class="texts">Client</span></th>
                   <th class="sorting"><span class="texts">Buisiness Unit</span></th>
@@ -201,7 +205,7 @@
                   <th class="sorting"><span class="texts">Break Time</span></th>
                   <th class="sorting"><span class="texts">Space</span></th>
                   <th class="sorting"><span class="texts">Location</span></th>
-                  <th class="sorting"><span class="texts">Details</span></th>
+                  <th class="sorting"><span class="texts">Details</span></th> -->
                   <th class="no-sort actions-th"><span>Actions</span></th>
                 </tr>
               </thead>
@@ -210,11 +214,11 @@
         </div>
         <div class="table-body">
           <table class="table">
-            <tbody>
+            <tbody *ngIf="list_items_data">
               <tr *ngIf="vacancy_data.length==0">
                 <div class="empty-list"><span>No Records Found</span></div>
               </tr>
-              <tr *ngFor="let data of vacancy_data let rowIndex=index | tableSearch:data">
+              <tr *ngFor="let data of vacancy_data let rowIndex=index">
                 <td>{{((page-1)*row_per_page)+(rowIndex+1)}}</td>
                 <td><span class="text">{{data.vaccancy_ref_number}}</span></td>
                 <td><span class="text">{{data.vaccancy_date}}</span></td>

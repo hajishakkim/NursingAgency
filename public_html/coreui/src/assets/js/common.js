@@ -34,7 +34,7 @@ $(document).ready(function() {
   //});
 
   //Bootstrap jQuery ScrollingTab
-  $('.tab-light-blue .nav-tabs , .tab-white .nav-tabs').scrollingTabs();
+  //$('.tab-light-blue .nav-tabs , .tab-white .nav-tabs').scrollingTabs();
 
   //jQuery UI Datepicker
   $(".custom-datepicker .form-control").datepicker({
@@ -45,11 +45,11 @@ $(document).ready(function() {
   });
 
   //jQuery UI Timepicker
-  $(".custom-timepicker .form-control").timepicker({
+  /*$(".custom-timepicker .form-control").timepicker({
     timeFormat: 'hh:mm:ss',
     container: 'body',
     interval: 15
-  });
+  });*/
 
   //jQuery UI Date-timepicker
   /* $(".custom-timepicker .form-control").datetimepicker({
@@ -58,7 +58,7 @@ $(document).ready(function() {
 
   //dataTable initialize function
   setTimeout(function() {
-    dataTableDraw();
+    //dataTableDraw();
   });
 
   //Multiple dropdown functionalities

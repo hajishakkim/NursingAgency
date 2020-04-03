@@ -67,8 +67,17 @@ class Common extends Database
             }  
 
         }
-        return $list_response;       
-
+        if(isset($data['workbench'])){
+            $list_sql = "SELECT * FROM `module_list_preference` 
+                    WHERE list_module = ? 
+                    AND list_user_id = ?";
+            $binding_params = array($data['workbench'],1);                        
+            if($list_sql){            
+                $list_items = $this->select($list_sql, $binding_params);
+                $list_response['workbench'] = $list_items;
+            }              
+        }
+        return $list_response;
     }
     public function setCORS()
     {

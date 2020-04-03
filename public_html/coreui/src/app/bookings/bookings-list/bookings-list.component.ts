@@ -10,7 +10,7 @@ export class BookingsListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    setDataTable(null,'');
+    //setDataTable(null,'');
   }
 
 }

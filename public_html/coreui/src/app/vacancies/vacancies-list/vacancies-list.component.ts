@@ -40,7 +40,7 @@ export class VacanciesListComponent implements OnInit {
   ngOnInit() {
       var data = [];
       this.getVaccanies({data:[]},1,10);
-      this.getListItems();
+      this.getListItems();        
       //setDataTable(null,'');
   }
   
@@ -66,15 +66,23 @@ export class VacanciesListComponent implements OnInit {
       'request_items': {
         'list_items': ['shift_type'],
         'modules': ['client','business_unit','jobs'],
+        'workbench': 'vaccancy'
       }
     };
     this.API.post('vaccancies.php',data)
     .subscribe(data => {
       this.list_items_data = data;
+      this.setListPreference();
       setTimeout(function(){
-        refreshSelectpicker();
+        refreshSelectpicker();        
       },1000)
     });
+  }    
+  setListPreference(){    
+   
+  }
+  objectKeys(obj) {
+    return Object.keys(obj);
   }
   getVaccanies(data:any,page_no=0,row_per_page=0) {
     data.page = page_no;
