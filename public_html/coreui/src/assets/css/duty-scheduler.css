@@ -921,6 +921,10 @@ border-radius: 4px;
     text-align: center;
     padding: 10% 25% 0 25%;
 }
+.checkbox.disabled{
+  pointer-events: none;
+  opacity: .5;
+}
 /* .advanced-filter-search.active{
   display: flex!important;
 } */

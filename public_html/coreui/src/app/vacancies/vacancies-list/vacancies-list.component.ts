@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormGroup, FormBuilder } from '@angular/forms';
 import { VacanciesFormComponent } from '../vacancies-form/vacancies-form.component';
 import { ApiService } from '../../services/api.service'
-import {Vaccancies} from '../vaccancies.model';
+import {VaccancyGridManager, Vaccancies, VaccanciesLabels} from '../vaccancies.model';
 import { ConfirmationDialogService } from '../../confirmation-dialog/confirmation-dialog.service';
 import * as $ from 'jquery';
 
@@ -31,9 +31,13 @@ export class VacanciesListComponent implements OnInit {
   form: FormGroup;  
   vaccancy : {};
   item_before_modified : any;
+  formLabels :{};
+  module_list_arr : any = [];
+  grid_show_items_count : number = 0;
+  grid_show_items_limit : number = 2;
   constructor(public API: ApiService,builder: FormBuilder, private confirmationDialogService: ConfirmationDialogService) {
       this.vaccancy = new Vaccancies();
-      //console.log(this.vaccancy);
+      this.formLabels = new VaccancyGridManager();
       this.form = builder.group(this.vaccancy)
   }
 
@@ -79,7 +83,15 @@ export class VacanciesListComponent implements OnInit {
     });
   }    
   setListPreference(){    
-   
+    let module_list_obj = new Vaccancies();
+    this.module_list_arr = Object.keys(module_list_obj);
+    this.list_items_data['workbench']['list_preference_data'] = JSON.parse(JSON.stringify(this.list_items_data['workbench']['list_preference_data']));
+    //console.log(module_list_arr);
+    for ( let model_item of this.module_list_arr ) {
+      this.formLabels[model_item]['show_current'] = (this.list_items_data['workbench']['list_preference_data'].includes(model_item) || this.formLabels[model_item]['show_default'] == 0) ? 0 : 1;
+      if(this.formLabels[model_item]['show_current'] == 1) this.grid_show_items_count++;
+    }    
+    console.log(this.list_items_data['workbench_list_view'])
   }
   objectKeys(obj) {
     return Object.keys(obj);
@@ -168,5 +180,14 @@ export class VacanciesListComponent implements OnInit {
     this.confirmationDialogService.confirm('Delete','Do you really want to delete ?')
     .then((confirmed) => (confirmed) ? this.deleteItem(idx,item) : '')
     .catch(() => console.log(''));
+  }
+  public listViewUpdate(e:any,list_item){
+    let select_state = (this.formLabels[list_item]['show_current'] == 1) ? 0 : 1;
+    if(select_state) this.grid_show_items_count++;
+    if(!select_state && this.grid_show_items_count > 0) this.grid_show_items_count--;
+    this.formLabels[list_item]['show_current'] = (this.formLabels[list_item]['show_current'] == 1) ? 0 : 1;
+    setTimeout(function(){
+      fixedHeaderTable($('.listing-table-wrapper'));
+    },100)
   }
 }

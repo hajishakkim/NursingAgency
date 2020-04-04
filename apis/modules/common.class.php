@@ -74,7 +74,7 @@ class Common extends Database
             $binding_params = array($data['workbench'],1);                        
             if($list_sql){            
                 $list_items = $this->select($list_sql, $binding_params);
-                $list_response['workbench'] = $list_items;
+                $list_response['workbench'] = $list_items[0];
             }              
         }
         return $list_response;

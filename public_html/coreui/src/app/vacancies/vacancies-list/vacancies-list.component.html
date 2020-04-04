@@ -110,80 +110,20 @@
           <a href="javascript:void(0)" class="customisation-btn"></a>
           <div class="customisation-dropdown animated fadeIn">
             <ul class="handles list ui-sortable">
-              <li>
+              <li *ngFor="let list_item of module_list_arr; let colIndex=index" [hidden]="formLabels[list_item]['show_default'] == 0">
                 <span class="drag-icon"></span>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    <span class="text">Sl No</span>
+                <div class="checkbox" [ngClass]="{'disabled' : grid_show_items_count <= grid_show_items_limit && formLabels[list_item]['show_current'] == 1}">
+                  <label>                    
+                    <input type="checkbox" [checked]="formLabels[list_item]['show_current']" (click)="listViewUpdate($event,list_item)">
+                    <span class="text">{{formLabels[list_item]['label']}}</span>
                   </label>
                 </div>
-              </li>
-              <li>
-                <span class="drag-icon"></span>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    <span class="text">Reference</span>
-                  </label>
-                </div>
-              </li>
-              <li>
-                <span class="drag-icon"></span>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    <span class="text">Client</span>
-                  </label>
-                </div>
-              </li>
-              <li>
-                <span class="drag-icon"></span>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    <span class="text">Break Time</span>
-                  </label>
-                </div>
-              </li>
-              <li>
-                <span class="drag-icon"></span>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    <span class="text">Space</span>
-                  </label>
-                </div>
-              </li>
-              <li>
-                <span class="drag-icon"></span>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    <span class="text">Location</span>
-                  </label>
-                </div>
-              </li>
-              <li>
-                <span class="drag-icon"></span>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    <span class="text">Details</span>
-                  </label>
-                </div>
-              </li>
-              <li>
-                <span class="drag-icon"></span>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    <span class="text">Actions</span>
-                  </label>
-                </div>
-              </li>
+              </li>              
             </ul>
-          </div>
+            <div class="btn-group" [ngStyle]="{'width':'100%','padding':'0 0 0 75px'}">
+                <a (click)="saveListView()" class="btn btn-default">Update this View</a>
+            </div>
+          </div>          
         </div>
         <div class="table-wrapper-inner">
         <div class="table-header">
@@ -191,21 +131,10 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th class="w-xs no-sort"><span>Sl No</span></th>
-                  
-                  <th class="sorting" *ngFor="let data of vacancy_data let rowIndex=index">
-                    <span class="texts">Referance no</span>
+                  <th class="w-xs no-sort"><span>Sl No</span></th>                  
+                  <th class="sorting" *ngFor="let list_item of module_list_arr; let colIndex=index" [hidden]="formLabels[list_item]['show_current'] == 0">
+                    <span class="texts">{{formLabels[list_item]['label']}}</span>
                   </th>
-                  <!--<th class="sorting"><span class="texts">Referance no</span></th>
-                  <th class="sorting"><span class="texts">Date</span></th>
-                  <th class="sorting"><span class="texts">Client</span></th>
-                  <th class="sorting"><span class="texts">Buisiness Unit</span></th>
-                  <th class="sorting"><span class="texts">Shift Type</span></th>
-                  <th class="sorting"><span class="texts">Job</span></th>
-                  <th class="sorting"><span class="texts">Break Time</span></th>
-                  <th class="sorting"><span class="texts">Space</span></th>
-                  <th class="sorting"><span class="texts">Location</span></th>
-                  <th class="sorting"><span class="texts">Details</span></th> -->
                   <th class="no-sort actions-th"><span>Actions</span></th>
                 </tr>
               </thead>
@@ -220,17 +149,25 @@
               </tr>
               <tr *ngFor="let data of vacancy_data let rowIndex=index">
                 <td>{{((page-1)*row_per_page)+(rowIndex+1)}}</td>
-                <td><span class="text">{{data.vaccancy_ref_number}}</span></td>
-                <td><span class="text">{{data.vaccancy_date}}</span></td>
-                <td><span class="text">{{showListLabel(data.vaccancy_client,'modules','client')}}</span></td>
-                <td><span class="text">{{showListLabel(data.vaccancy_business_unit,'modules','business_unit')}}</span></td>
-                <td><span class="text">{{showListLabel(data.vaccancy_shift_type,'list_items','shift_type')}}</span></td>
-                <td><span class="text">{{showListLabel(data.vaccancy_job,'modules','jobs')}}</span></td>
-                <td><span class="text">{{data.vaccancy_break_time}}</span></td>
-                <td><span class="text">{{data.vaccancy_space}}</span></td>
-                <td><span class="text">{{data.vaccancy_location}}</span></td>
-                <td><span class="text">{{data.vaccancy_details}}</span></td>
-                <td class="actions-td">
+
+                <td [hidden] = "formLabels['vaccancy_id']['show_current'] == 0"><span class="text">{{data.vaccancy_id}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_ref_number']['show_current'] == 0"><span class="text">{{data.vaccancy_ref_number}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_date']['show_current'] == 0"><span class="text">{{data.vaccancy_date}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_client']['show_current'] == 0"><span class="text">{{showListLabel(data.vaccancy_client,'modules','client')}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_business_unit']['show_current'] == 0"><span class="text">{{showListLabel(data.vaccancy_business_unit,'modules','business_unit')}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_shift_type']['show_current'] == 0"><span class="text">{{showListLabel(data.vaccancy_shift_type,'list_items','shift_type')}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_job']['show_current'] == 0"><span class="text">{{showListLabel(data.vaccancy_job,'modules','jobs')}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_break_time']['show_current'] == 0"><span class="text">{{data.vaccancy_break_time}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_space']['show_current'] == 0"><span class="text">{{data.vaccancy_space}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_location']['show_current'] == 0"><span class="text">{{data.vaccancy_location}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_details']['show_current'] == 0"><span class="text">{{data.vaccancy_details}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_created_time']['show_current'] == 0"><span class="text">{{data.vaccancy_created_time}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_updated_time']['show_current'] == 0"><span class="text">{{data.vaccancy_updated_time}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_created_by']['show_current'] == 0"><span class="text">{{data.vaccancy_created_by}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_updated_by']['show_current'] == 0"><span class="text">{{data.vaccancy_updated_by}}</span></td>
+                <td [hidden] = "formLabels['vaccancy_active']['show_current'] == 0"><span class="text">{{data.vaccancy_active}}</span></td>
+
+                <td class="actions-td">  
                   <a href="javascript:void(0)" (click)="editItem(data)" data-toggle="modal" data-target="#addnew-modal"><i class="far fa-pencil"></i></a>
                   <a href="javascript:void(0)" (click)="removeItem(rowIndex,data)"><i class="far fa-trash-alt"></i></a>
                 </td>
