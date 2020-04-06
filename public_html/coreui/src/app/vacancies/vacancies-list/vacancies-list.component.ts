@@ -85,13 +85,11 @@ export class VacanciesListComponent implements OnInit {
   setListPreference(){    
     let module_list_obj = new Vaccancies();
     this.module_list_arr = Object.keys(module_list_obj);
-    this.list_items_data['workbench']['list_preference_data'] = JSON.parse(JSON.stringify(this.list_items_data['workbench']['list_preference_data']));
-    //console.log(module_list_arr);
+    this.list_items_data['workbench']['list_preference_data'] = this.list_items_data['workbench']['list_preference_data'].split(',');
     for ( let model_item of this.module_list_arr ) {
-      this.formLabels[model_item]['show_current'] = (this.list_items_data['workbench']['list_preference_data'].includes(model_item) || this.formLabels[model_item]['show_default'] == 0) ? 0 : 1;
+      this.formLabels[model_item]['show_current'] = (this.list_items_data['workbench']['list_preference_data'].indexOf(model_item) >=0 || this.formLabels[model_item]['show_default'] == 0) ? 0 : 1;
       if(this.formLabels[model_item]['show_current'] == 1) this.grid_show_items_count++;
-    }    
-    console.log(this.list_items_data['workbench_list_view'])
+    } 
   }
   objectKeys(obj) {
     return Object.keys(obj);
@@ -183,11 +181,30 @@ export class VacanciesListComponent implements OnInit {
   }
   public listViewUpdate(e:any,list_item){
     let select_state = (this.formLabels[list_item]['show_current'] == 1) ? 0 : 1;
-    if(select_state) this.grid_show_items_count++;
-    if(!select_state && this.grid_show_items_count > 0) this.grid_show_items_count--;
+    if(select_state) {
+      this.grid_show_items_count++;
+      this.list_items_data['workbench']['list_preference_data'].splice(this.list_items_data['workbench']['list_preference_data'].indexOf(list_item),1);            
+    }
+    if(!select_state && this.grid_show_items_count > 0) { 
+      if(this.list_items_data['workbench']['list_preference_data'].indexOf(list_item) < 0){
+        this.list_items_data['workbench']['list_preference_data'].push(list_item);
+      }
+      this.grid_show_items_count--;      
+    }
     this.formLabels[list_item]['show_current'] = (this.formLabels[list_item]['show_current'] == 1) ? 0 : 1;
     setTimeout(function(){
       fixedHeaderTable($('.listing-table-wrapper'));
     },100)
+  }
+  public saveListView() {
+    let data = {
+      'module': 'vaccancy',
+      'action':'save_grid',
+      'list_preference_data' : this.list_items_data['workbench']['list_preference_data'].join(',')
+    }
+    this.API.post('vaccancies.php',{'action':data})
+      .subscribe(data => {
+        
+      });   
   }
 }
