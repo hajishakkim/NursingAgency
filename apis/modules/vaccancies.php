@@ -35,8 +35,14 @@ if(file_get_contents("php://input")){
                     $page = $request->page ? $request->page : 1;
                     $row_per_page = $request->row_per_page ? $request->row_per_page : 10;
                 }
-            }catch(\Exception $e){}
-            if(count($data)>0 && $action == "save"){
+            }catch(\Exception $e){}           
+            if(count($data)>0 && $action == "save_grid"){
+                $sql = "INSERT INTO `module_list_preference`
+                    (list_user_id, list_module, list_preference_data) 
+                    VALUES(?,?,?) ON DUPLICATE KEY UPDATE list_preference_data = ?";
+                $params = array('1','vaccancy',$data['list_preference_data'],$data['list_preference_data']);
+                $common->update($sql, $params);
+            }else if(count($data)>0 && $action == "save"){
                 
                 $where_sql = "";
                 if(trim($data['vaccancy_id']) == ""){
@@ -81,7 +87,7 @@ if(file_get_contents("php://input")){
                         $common->add($sql, $params);
                     }
 
-                    echo json_encode(array("status"=>"success"));
+                    //echo json_encode(array("status"=>"success"));
             }
             if(count($data)>0 && $action == "delete"){
                 

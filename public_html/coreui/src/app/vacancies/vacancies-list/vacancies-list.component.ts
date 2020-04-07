@@ -199,10 +199,9 @@ export class VacanciesListComponent implements OnInit {
   public saveListView() {
     let data = {
       'module': 'vaccancy',
-      'action':'save_grid',
       'list_preference_data' : this.list_items_data['workbench']['list_preference_data'].join(',')
     }
-    this.API.post('vaccancies.php',{'action':data})
+    this.API.post('vaccancies.php',{'data':data,'action':'save_grid'})
       .subscribe(data => {
         
       });   
