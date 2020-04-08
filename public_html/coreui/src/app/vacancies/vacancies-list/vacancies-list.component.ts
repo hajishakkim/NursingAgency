@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import {FormGroup, FormBuilder } from '@angular/forms';
 import { VacanciesFormComponent } from '../vacancies-form/vacancies-form.component';
 import { ApiService } from '../../services/api.service'
@@ -26,7 +26,7 @@ export class VacanciesListComponent implements OnInit {
   totalPagesArr : [];
   @ViewChild('app_vacancies_form', {static: false}) app_vacancies_form:VacanciesFormComponent;
   log: any;
-  advanced_filter_search : boolean = false;
+  @Input() advanced_filter_search: boolean = false;
   list_items_data : [];
   form: FormGroup;  
   vaccancy : {};

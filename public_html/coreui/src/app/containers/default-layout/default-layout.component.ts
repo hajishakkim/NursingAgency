@@ -17,6 +17,7 @@ export class DefaultLayoutComponent {
   private password: string;
   public sidebarMinimized = false;
   public navItems = navItems;
+  advanced_filter_search : boolean = false;
 
   toggleMinimize(e) {
     this.sidebarMinimized = e;
@@ -56,5 +57,10 @@ export class DefaultLayoutComponent {
 
     const data = new LoginModel(this.agency,this.userName,this.password);
     this.authService.onlogin(data).subscribe();
+  }
+
+  showAdvancedSearch()
+  {
+    this.advanced_filter_search = (this.advanced_filter_search) ? false: true;
   }
 }

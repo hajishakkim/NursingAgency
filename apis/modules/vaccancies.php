@@ -87,7 +87,8 @@ if(file_get_contents("php://input")){
                         $common->add($sql, $params);
                     }
 
-                    //echo json_encode(array("status"=>"success"));
+                    echo json_encode(array("status"=>"success"));
+                    exit;
             }
             if(count($data)>0 && $action == "delete"){
                 
