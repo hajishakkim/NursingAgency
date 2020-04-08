@@ -213,8 +213,8 @@
       <div class="table-body">
         <table class="table">
           <tbody>
-            <tr *ngIf="client_rate_data.length==0">
-              <td colspan=12><span>No Records Found</span></td>
+            <tr *ngIf="client_rate_data.length==0" class="no-data-tr">
+              <td colspan=12 class="no-data"><h4>No Records Found</h4></td>
             </tr>
             <tr *ngFor="let data of client_rate_data let rowIndex=index">
               <td><span class="text">{{((page-1)*row_per_page)+1+rowIndex}}</span></td>

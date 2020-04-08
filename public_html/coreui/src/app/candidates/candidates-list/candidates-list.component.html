@@ -7,7 +7,7 @@
           <span tabindex="0" ng-reflect-router-link="//dashboard/">Candidate</span>
         </div>
       </div>
-      <div class="breadcrumb-menu d-md-down-none main-top-right">
+      <!-- <div class="breadcrumb-menu d-md-down-none main-top-right">
           <div class="form-group custom-search">
               <input type="text" class="form-control" placeholder="Search" />
           </div>
@@ -16,7 +16,7 @@
             <a href="javascript:void(0)" class="icon filter-icon" (click)="showAdvancedSearch()" data-toggle="tooltip" data-placement="left" data-container="body" title="Advance Search"><i class="fas fa-filter"></i></a>
           </div>
           <a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal" (click)="resetForm()">Add New</a>
-      </div>     
+      </div>      -->
     </div> 
     
     <div class="col-12 page-wrapper">
@@ -217,7 +217,6 @@
                   <th class="sorting"><span class="texts">Payroll ID</span></th>
                   <th class="sorting"><span class="texts">Email Address</span></th>
                   <th class="sorting"><span class="texts">Pin Number</span></th>
-
                   <th class="sorting"><span class="texts">Pin Expiry Date</span></th>
                   <th class="sorting"><span class="texts">Phone Number</span></th>
                   <th class="sorting"><span class="texts">Mobile Number</span></th>
@@ -236,8 +235,8 @@
         <div class="table-body">
           <table class="table">
             <tbody>
-              <tr *ngIf="candidates_data.length==0">
-                <td colspan="24">No Records Found</td>
+              <tr *ngIf="candidates_data.length==0" class="no-data-tr">
+                <td colspan="24" class="no-data"><h4>No Records Found</h4></td>
               </tr>
               <tr *ngFor="let data of candidates_data let rowIndex=index">
                 <td>{{((page-1)*row_per_page)+(rowIndex+1)}}</td>
