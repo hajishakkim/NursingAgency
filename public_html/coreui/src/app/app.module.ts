@@ -49,7 +49,6 @@ import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptorService } from './auth/auth-intercepeters.service';
-import { TableSearchPipe } from './pipes/table-search.pipe';
 
 @NgModule({
   imports: [
@@ -79,7 +78,6 @@ import { TableSearchPipe } from './pipes/table-search.pipe';
     LoginComponent,
     RegisterComponent,
     ConfirmationDialogComponent,
-    TableSearchPipe
   ], 
   providers: [{
     provide: LocationStrategy,

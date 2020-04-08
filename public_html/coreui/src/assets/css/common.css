@@ -2249,4 +2249,13 @@ table.ui-timepicker {
   margin-bottom: 8px;
   position: static;
 }
+.no-data h4{
+  font-size: 13px;
+  color: #000;
+  margin-top:5px;
+}
 /*no data styles end*/
+.no-data-tr .no-data{
+  height: 200px!important;
+  padding: 55px 0!important;
+}

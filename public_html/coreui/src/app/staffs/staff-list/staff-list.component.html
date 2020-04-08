@@ -9,7 +9,7 @@
           <span tabindex="0" ng-reflect-router-link="//dashboard/">Super Admin</span>
         </div>
       </div>
-      <div class="breadcrumb-menu d-md-down-none main-top-right">
+      <!-- <div class="breadcrumb-menu d-md-down-none main-top-right">
           <div class="form-group custom-search">
               <input type="text" class="form-control" placeholder="Search" />
           </div>
@@ -18,7 +18,7 @@
             <a href="#!" class="icon filter-icon" data-toggle="tooltip" data-placement="left" data-container="body" title="Advance Search"><i class="fas fa-filter"></i></a>
           </div>
           <a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a>
-      </div>     
+      </div>      -->
     </div>
 
 
@@ -219,8 +219,8 @@
         <div class="table-body">
           <table class="table">
             <tbody>
-              <tr *ngIf="staff_data.length==0">
-                <td colspan=12><span>No Records Found</span></td>
+              <tr *ngIf="staff_data.length==0" class="no-data-tr">
+                <td colspan=12 class="no-data"><h4>No Records Found</h4></td>
               </tr>
               <tr *ngFor="let data of staff_data let rowIndex=index">
                 <td>{{rowIndex+1}}</td>
