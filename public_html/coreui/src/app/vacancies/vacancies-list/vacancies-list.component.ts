@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, ElementRef } from '@angular/core';
 import {FormGroup, FormBuilder } from '@angular/forms';
 import { VacanciesFormComponent } from '../vacancies-form/vacancies-form.component';
 import { ApiService } from '../../services/api.service'
 import {VaccancyGridManager, Vaccancies, VaccanciesLabels} from '../vaccancies.model';
 import { ConfirmationDialogService } from '../../confirmation-dialog/confirmation-dialog.service';
+import { CommonService } from '../../services/common.service';
 import * as $ from 'jquery';
 
 declare function setDataTable(options:any,table: string): void;
@@ -25,8 +26,11 @@ export class VacanciesListComponent implements OnInit {
   totalPages :number;
   totalPagesArr : [];
   @ViewChild('app_vacancies_form', {static: false}) app_vacancies_form:VacanciesFormComponent;
+  //@ViewChild('module_form', {static: false}) module_form: ElementRef<HTMLElement>;
+  @ViewChild('module_form') module_form: ElementRef;
   log: any;
-  @Input() advanced_filter_search: boolean = false;
+  advanced_filter_search: boolean = false;
+  show_form: boolean = false;
   list_items_data : [];
   form: FormGroup;  
   vaccancy : {};
@@ -35,11 +39,27 @@ export class VacanciesListComponent implements OnInit {
   module_list_arr : any = [];
   grid_show_items_count : number = 0;
   grid_show_items_limit : number = 2;
-  constructor(public API: ApiService,builder: FormBuilder, private confirmationDialogService: ConfirmationDialogService) {
+  constructor(public API: ApiService,builder: FormBuilder, private confirmationDialogService: ConfirmationDialogService, private commonService : CommonService) {
       this.vaccancy = new Vaccancies();
       this.formLabels = new VaccancyGridManager();
-      this.form = builder.group(this.vaccancy)
+      this.form = builder.group(this.vaccancy);
+
+      commonService.module_advanced_search$.subscribe(data => {
+        this.advanced_filter_search = data;
+      })
+
+      commonService.module_form$.subscribe(data => {
+        
+        this.show_form = data;
+        
+        let inputElement: HTMLElement = this.module_form.nativeElement as HTMLElement;
+        console.log(inputElement)
+        inputElement.click();
+
+      })
   }
+
+
 
   ngOnInit() {
       var data = [];

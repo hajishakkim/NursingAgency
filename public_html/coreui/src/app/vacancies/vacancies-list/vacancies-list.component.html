@@ -1,5 +1,4 @@
-** {{advanced_filter_search}} **
-<div class="breadcrumb main-top-head">
+<!-- <div class="breadcrumb main-top-head">
       <div class="main-top-left">
         <div class="breadcrumb-item" ng-reflect-klass="breadcrumb-item">
           <a ng-reflect-router-link="/" href="#/">Home</a>
@@ -8,7 +7,7 @@
           <span tabindex="0" ng-reflect-router-link="//dashboard/">Vacancies</span>
         </div>
       </div>
-      <!-- <div class="breadcrumb-menu d-md-down-none main-top-right">
+       <div class="breadcrumb-menu d-md-down-none main-top-right">
           <div class="form-group custom-search">
               <input type="text" class="form-control" placeholder="Search" #tablesearch />
           </div>
@@ -17,9 +16,9 @@
             <a href="javascript:void(0)" (click)="showAdvancedSearch()" class="icon filter-icon"   title="Advance Search"><i class="fas fa-filter"></i></a>
           </div>
           <a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a>
-      </div>      -->
-    </div> 
-    
+      </div>      
+    </div> -->
+    <a href="#!" class="btn btn-primary" style="display:none" data-toggle="modal" data-target="#addnew-modal"  #module_form>Add New</a>
     <div class="col-12 page-wrapper">
       <div class="col-12 p-0 d-flex flex-column advanced-filter-search"  [ngClass]="{'hidden':advanced_filter_search == false}">
         <form [formGroup]="form">

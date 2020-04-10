@@ -4,6 +4,7 @@ import { AuthService } from '../../auth/auth.service';
 import { BnNgIdleService } from 'bn-ng-idle';
 import { Router } from '@angular/router';
 import { LoginModel } from '../../auth/login.model';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +19,7 @@ export class DefaultLayoutComponent {
   public sidebarMinimized = false;
   public navItems = navItems;
   advanced_filter_search : boolean = false;
+  module_form : boolean = false;
 
   toggleMinimize(e) {
     this.sidebarMinimized = e;
@@ -26,7 +28,8 @@ export class DefaultLayoutComponent {
   constructor(
     private authService : AuthService,
     private bnIdle : BnNgIdleService,
-    private router: Router
+    private router: Router,
+    private commonService : CommonService
   ){
     this.bnIdle.startWatching(300).subscribe((res) => {
       if(res) {
@@ -62,5 +65,11 @@ export class DefaultLayoutComponent {
   showAdvancedSearch()
   {
     this.advanced_filter_search = (this.advanced_filter_search) ? false: true;
+    this.commonService.showModuleSearch(this.advanced_filter_search);
+  }
+  showModuleForm()
+  {
+    this.module_form = (this.module_form) ? false: true;
+    this.commonService.showModuleForm(this.module_form);
   }
 }
