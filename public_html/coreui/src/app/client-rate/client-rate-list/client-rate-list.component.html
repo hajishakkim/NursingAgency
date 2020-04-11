@@ -16,104 +16,121 @@
           <div class="icon-block">
             <a href="javascript:void(0)" (click)="showAdvancedSearch()" class="icon filter-icon" data-toggle="tooltip" data-placement="left" data-container="body" title="Advance Search"><i class="fas fa-filter"></i></a>
           </div>
-          <a href="#!" class="btn btn-primary" #getModal data-toggle="modal" data-target="#addnew-modal">Add New</a>
+          <a href="javascript:void(0)" (click)="clearSearch()" class="btn btn-primary" #getModal data-toggle="modal" data-target="#addnew-modal">Add New</a>
       </div>     
     </div>
 
     <div class="col-12 page-wrapper">
      <div class="col-12 p-0 d-flex flex-column advanced-filter-search"  [ngClass]="{'hidden':advanced_filter_search == false}">
-         <div class="row m-0 form first-row">
-        <div class="col-2">
-          <div class="form-group">
-            <label>Referance no</label>
-            <input type="text" class="form-control" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label>Date</label>
-            <div class="custom-datepicker">
-              <input type="text" class="form-control" />
-            </div>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label>Client</label>
-            <select class="form-control selectpicker">
-              <option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
-               {{client.label}}
-              </option>
-            </select>
-
-             <!-- <ng-select [items]="list_items_data['modules'].client"
-              bindLabel="label"
-              bindValue="id"
-              [(ngModel)]="selectedPersonId">
-              </ng-select> -->
-
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label>Business Unit</label>
-            <select class="form-control selectpicker">
-              <option>option 1</option>
-              <option>option 2</option>
-              <option>option 3</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label>Shift Type</label>
-            <select class="form-control selectpicker">
-              <option value="">Un Assigned</option>
-              <option *ngFor="let shift_type of list_items_data['list_items']['shift_type']" value={{shift_type.list_item_id}}>
-                {{shift_type.list_item_title}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label>Job</label>
-            <select class="form-control selectpicker">
-              <option>option 1</option>
-              <option>option 2</option>
-              <option>option 3</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row m-0 form">
-        <div class="col-2">
-          <div class="form-group">
-            <label>Break Time</label>
-            <input type="text" class="form-control" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label>Space</label>
-            <input type="text" class="form-control" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label>Location</label>
-            <input type="text" class="form-control" />
-          </div>
-        </div>
-      </div>
+	   <form [formGroup]="form">
+                 <div class="col-12 form-wrapper">
+                     <div class="row">
+                         <div class="col-4">
+                             <div class="form-group">
+                                 <label>Select Client</label>
+                                 <select class="form-control selectpicker"  name="client"  formControlName="client" [(ngModel)]="ClientRate.client"data-selected-text-format="count > 3" data-container="body">
+                                    <option value="">Unassigned</option>
+                                   <option *ngFor="let client of list_items_data['modules']['client']" value="{{client.id}}">
+                                    {{client.label}}
+                                   </option>
+                                </select>
+                             </div>
+                         </div>
+                         <div class="col-4">
+                             <div class="form-group">
+                                 <label>Select Business Unit</label>
+                                 <select class="form-control selectpicker"  name="business_unit"  formControlName="business_unit" [(ngModel)]="ClientRate.business_unit" data-selected-text-format="count > 3" data-container="body">
+                                    <option value="">Unassigned</option>
+                                   <option *ngFor="let business_unit of list_items_data['modules']['business_unit']" value="{{business_unit.id}}">
+                                    {{business_unit.label}}
+                                   </option>
+                                </select>
+                             </div>
+                         </div>
+                         <div class="col-4">
+                             <div class="form-group">
+                                 <label>select Job</label>
+                                <select class="form-control selectpicker"  name="job" formControlName="job" [(ngModel)]="ClientRate.job" data-selected-text-format="count > 3" data-container="body">
+                                  <option value="">Unassigned</option>
+                                   <option *ngFor="let job of list_items_data['modules']['jobs']" value="{{job.id}}">
+                                    {{job.label}}
+                                   </option>
+								</select>
+                                 
+                             </div>
+                         </div>
+                     </div>
+                     <div class="row">
+                         <div class="col-4">
+                             <div class="form-group">
+                                 <label>week Days</label>
+                                 <input type="text"  name="week_days"  formControlName="week_days" [(ngModel)]="ClientRate.week_days" class="form-control" />
+                             </div>
+                         </div>
+                         <div class="col-4">
+                             <div class="form-group">
+                                <label>Night Time</label>
+                                <input type="text"  name="night_time" formControlName="night_time" [(ngModel)]="ClientRate.night_time" class="form-control" />
+                             </div>
+                         </div>
+                         <div class="col-4">
+                             <div class="form-group">
+                                 <label>Friday Night</label>
+                                 <input type="text" name="friday_night" formControlName="friday_night" [(ngModel)]="ClientRate.friday_night" class="form-control" />
+                             </div>
+                         </div>
+                     </div>
+                     <div class="row">
+                         <div class="col-4">
+                            <div class="form-group">
+                                <label>Saturday Day</label>
+                                <input type="text"  name="saturday_day" formControlName="saturday_day" [(ngModel)]="ClientRate.saturday_day" class="form-control" />
+                            </div>
+                         </div>
+                         <div class="col-4">
+                             <div class="form-group">
+                                <label>Saturday Night</label>
+                                <input type="text"  name="saturday_night"  formControlName="saturday_night" [(ngModel)]="ClientRate.saturday_night" class="form-control" />
+                             </div>
+                         </div>
+                         <div class="col-4">
+                            <div class="form-group">
+                               <label>Sunday Day</label>
+                               <input type="text"  name="sunday_day" formControlName="sunday_day" [(ngModel)]="ClientRate.sunday_day" class="form-control" />
+                            </div>
+                        </div>
+                     </div>
+                        <div class="row">
+                            <div class="col-4">
+                               <div class="form-group">
+                                   <label>Sunday Night</label>
+                                   <input type="text"  name="sunday_night"  formControlName="sunday_night" [(ngModel)]="ClientRate.sunday_night" class="form-control" />
+                               </div>
+                            </div> 
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>Public Holiday Day</label>
+                                    <input type="text"   name="public_holiday_day" formControlName="public_holiday_day" [(ngModel)]="ClientRate.public_holiday_day" class="form-control" />
+                                </div>
+                             </div> 
+                             <div class="col-4">
+                                <div class="form-group">
+                                    <label>Public Holiday Night</label>
+                                    <input type="text" name="public_holiday_night" formControlName="public_holiday_night" [(ngModel)]="ClientRate.public_holiday_night" class="form-control" />
+                                </div>
+                             </div> 
+                        </div>
+                    
+                 </div>
       <div class="row">
         <div class="col-12 filter-footer">
           <div class="btn-group">
-            <a href="#" class="btn btn-default">Reset</a>
-            <a href="#" class="btn btn-primary">Search</a>
+            <a (click)="clearSearchFilter()" class="btn btn-default">Reset</a>
+            <a (click)="filterSearch()" class="btn btn-primary">Search</a>
           </div>
         </div>
       </div>
+	  </form>
       </div>
     <div class="col-12 p-0 table-wrapper listing-table-wrapper">
       <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
@@ -228,9 +245,9 @@
             </tr>
             <tr *ngFor="let data of client_rate_data let rowIndex=index">
               <td><span class="text">{{((page-1)*row_per_page)+1+rowIndex}}</span></td>
-              <td><span class="text">{{data.client}}</span></td>
-              <td><span class="text">{{data.business_unit}}</span></td>
-              <td><span class="text">{{data.job}}</span></td>
+              <td><span class="text">{{showListLabel(data.client,'modules','client')}}</span></td>
+              <td><span class="text">{{showListLabel(data.business_unit,'modules','business_unit')}}</span></td>
+              <td><span class="text">{{showListLabel(data.job,'modules','jobs')}}</span></td>
               <td><span class="text">{{data.week_days}}</span></td>
               <td><span class="text">{{data.night_time}}</span></td>
               <td><span class="text">{{data.friday_night}}</span></td>
@@ -241,8 +258,8 @@
               <td><span class="text">{{data.public_hodliday_day}}</span></td>
               <td><span class="text">{{data.public_hodliday_night}}</span></td>
               <td>
-                <a href="javascript:void(0)" (click)="editClientRate(data)"><i class="far fa-pencil"></i></a>
-                <a href="javascript:void(0)" (click)="deleteClientRate(data.id)"><i class="far fa-trash-alt"></i></a>
+                <a href="javascript:void(0)" (click)="editClientRate(data)" data-toggle="modal" data-target="#addnew-modal"><i class="far fa-pencil"></i></a>
+                <a href="javascript:void(0)" (click)="removeItem(rowIndex,data)"><i class="far fa-trash-alt"></i></a>
               </td>
             </tr>
           </tbody>
@@ -295,10 +312,10 @@
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
           </div>
           <div class="modal-body">
-            <app-client-rate-form #app_client_rate_form (formData)="saveForm($event)"></app-client-rate-form>
+            <app-client-rate-form #app_client_rate_form (formData)="saveForm($event)" [list_items_data]="list_items_data"></app-client-rate-form>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-normal" type="button" data-dismiss="modal" (click)="revertChanges()">Cancel</button>
             <button class="btn btn-primary" type="button" data-dismiss="modal" (click)="formSubmit()">Save</button>
           </div>
         </div>
@@ -320,7 +337,7 @@
             Are you sure ?
           </div>
           <div class="modal-footer">
-            <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-normal" type="button" data-dismiss="modal" >Cancel</button>
             <button class="btn btn-primary" type="button" data-dismiss="modal" (click)="confirmDelete()">Yes</button>
           </div>
         </div>

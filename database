@@ -43,7 +43,7 @@ CREATE TABLE `candidates`(
     `candidate_ni_number` INT(15) NULL DEFAULT '0',
     `candidate_passport_number` varchar(25) NULL,
     `candidate_issueing_country` CHAR(25) NULL,
-    `candidate_visit_type` varchar(25) NULL,
+    `candidate_visa_type` varchar(25) NULL,
 	`candidate_activity` TINYINT(1) NULL DEFAULT '1',
     `created_date` TIMESTAMP NULL,
     PRIMARY KEY(`candidate_id`)
@@ -62,8 +62,8 @@ CREATE TABLE `staffs` (
   `staff_details` varchar(255) DEFAULT NULL,
   `staff_activity` tinyint(1)  DEFAULT 1,
   `staff_created_by` int(10) DEFAULT 0,
-  `staff_created_date` date NOT NULL,
-  `staff_updated_date` date NOT NULL,
+  `staff_created_date` date  NULL,
+  `staff_updated_date` date  NULL,
   `staff_updated_by` int(11) DEFAULT 0,
    PRIMARY KEY(`staff_id`)
 ) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
@@ -114,33 +114,33 @@ CREATE TABLE `client_rate` (
   DROP TABLE IF EXISTS `document_categories`;
   CREATE TABLE `document_categories` ( 
   `dc_id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `dc_category_id` INT(5) NOT NULL DEFAULT '0' ,
-  `dc_doc_type_id` INT(10) NOT NULL DEFAULT '0' , 
+  `dc_category_id` INT(5)  NULL DEFAULT '0' ,
+  `dc_doc_type_id` INT(10)  NULL DEFAULT '0' , 
   `dc_created_by` int(10) DEFAULT 0,
-  `dc_created_date` date NOT NULL,
-  `dc_updated_date` date NOT NULL,
+  `dc_created_date` date  NULL,
+  `dc_updated_date` date  NULL,
   `dc_updated_by` int(11) DEFAULT 0,
-  `dc_activity` TINYINT(1) NOT NULL DEFAULT '1' ,
+  `dc_activity` TINYINT(1)  NULL DEFAULT '1' ,
    PRIMARY KEY (`dc_id`)
    ) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `clients`;
 CREATE TABLE `clients` (
  `client_id` int(11) NOT NULL AUTO_INCREMENT,
- `client_name` varchar(255) NOT NULL,
- `client_mapped_agency_id` int(11) NOT NULL, 
- `client_authorized_person` varchar(255) NOT NULL,
- `client_email` varchar(100) NOT NULL,
- `client_address_line1` varchar(255) NOT NULL,
- `client_address_line2` varchar(255) NOT NULL,
- `client_postal_code` varchar(10) NOT NULL,
- `client_phone_number` varchar(20) NOT NULL,
- `client_mobile_number` varchar(20) NOT NULL,
- `client_about_info` varchar(255) NOT NULL,
- `client_created_date` date NOT NULL,
- `client_created_by` int(11) NOT NULL,
- `client_updated_date` date NOT NULL,
- `client_updated_by` int(11) NOT NULL,
+ `client_name` varchar(255)  NULL,
+ `client_mapped_agency_id` int(11)  NULL, 
+ `client_authorized_person` varchar(255)  NULL,
+ `client_email` varchar(100)  NULL,
+ `client_address_line1` varchar(255)  NULL,
+ `client_address_line2` varchar(255)  NULL,
+ `client_postal_code` varchar(10)  NULL,
+ `client_phone_number` varchar(20)  NULL,
+ `client_mobile_number` varchar(20)  NULL,
+ `client_about_info` varchar(255)  NULL,
+ `client_created_date` date  NULL,
+ `client_created_by` int(11)  NULL,
+ `client_updated_date` date  NULL,
+ `client_updated_by` int(11)  NULL,
  `client_status` TINYINT(1) NULL DEFAULT '1',
 PRIMARY KEY (`client_id`)) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
 
@@ -158,20 +158,20 @@ INSERT INTO `clients` (`client_id`, `client_name`, `client_authorized_person`, `
 DROP TABLE IF EXISTS `vaccancy`;
 CREATE TABLE `vaccancy` (
   `vaccancy_id` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY (`vaccancy_id`),
-  `vaccancy_ref_number` int(11) NOT NULL,
-  `vaccancy_date` date NOT NULL,
-  `vaccancy_client` int(11) NOT NULL,
-  `vaccancy_business_group` int(11) NOT NULL,
-  `vaccancy_shift_type` int(11) NOT NULL,
-  `vaccancy_job` int(11) NOT NULL,
-  `vaccancy_break_time` date NOT NULL,
-  `vaccancy_space` varchar(255) NOT NULL,
-  `vaccancy_location` varchar(255) NOT NULL,
-  `vaccancy_details` varchar(255) NOT NULL,
-  `vaccancy_created_time` date NOT NULL,
-  `vaccancy_updated_time` date NOT NULL,
-  `vaccancy_created_by` int(11) NOT NULL,
-  `vaccancy_updated_by` date NOT NULL,
+  `vaccancy_ref_number` int(11)  NULL,
+  `vaccancy_date` date  NULL,
+  `vaccancy_client` int(11)  NULL,
+  `vaccancy_business_unit` int(11)  NULL,
+  `vaccancy_shift_type` int(11)  NULL,
+  `vaccancy_job` int(11)  NULL,
+  `vaccancy_break_time` date  NULL,
+  `vaccancy_space` varchar(255)  NULL,
+  `vaccancy_location` varchar(255)  NULL,
+  `vaccancy_details` varchar(255)  NULL,
+  `vaccancy_created_time` date  NULL,
+  `vaccancy_updated_time` date  NULL,
+  `vaccancy_created_by` int(11)  NULL,
+  `vaccancy_updated_by` date  NULL,
   `vaccancy_active` TINYINT(1) NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -196,13 +196,15 @@ CREATE TABLE `agencies` (
   PRIMARY KEY (`agency_id`)
 ) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS lists
+DROP TABLE IF EXISTS lists;
 CREATE TABLE `lists`
  ( `list_id` INT(11) NOT NULL AUTO_INCREMENT ,
   `list_title` VARCHAR(255) NULL ,
   `list_created_date` DATE  NULL , 
   `list_created_by` INT(10) NULL ,
-  `list_activity` TINYINT(1) NULL DEFAULT '1' ,
+  `list_type` VARCHAR(100) NULL,
+   `list_description` VARCHAR(250) NULL,
+  `list_active` TINYINT(1) NULL DEFAULT '1' ,
   PRIMARY KEY (`list_id`)
   ) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
   
@@ -217,27 +219,32 @@ INSERT INTO `lists` (`list_id`, `list_type`, `list_title`, `list_description`, `
 (2, 'gender', 'Gender', '', 1);
 INSERT INTO `lists` (`list_id`, `list_type`, `list_title`, `list_description`, `list_active`) VALUES
 (3, 'countries', 'Countries', '', 1);
+INSERT INTO `lists` (`list_id`, `list_type`, `list_title`, `list_description`, `list_active`) VALUES
+(4, 'employee_type', 'Employee Type', '', 1);
 
 -- --------------------------------------------------------
 
   
 DROP TABLE IF EXISTS `list_items`;
 CREATE TABLE `list_items`
- ( `list_items_id` INT(11)  NOT NULL AUTO_INCREMENT ,
+ ( `list_item_id` INT(11)  NOT NULL AUTO_INCREMENT ,
   `list_item_list_id` INT(11) NOT NULL,
   `list_item_title` VARCHAR(255) NULL ,
+  `list_item_description` VARCHAR(252) NULL,
   `list_item_created_date` DATE  NULL , 
   `list_item_created_by` INT(10) NULL ,
-  `list_item_activity` TINYINT(1) NULL DEFAULT '1' ,
-  PRIMARY KEY (`list_items_id`)
+  `list_item_active` TINYINT(1) NULL DEFAULT '1' ,
+  PRIMARY KEY (`list_item_id`)
   ) ENGINE = MyISAM DEFAULT CHARSET=utf8mb4;
   
-  INSERT INTO `list_items` (`list_item_id`, `list_id`, `list_item_title`, `list_item_description`, `list_item_active`) VALUES
+  INSERT INTO `list_items` (`list_item_id`, `list_item_list_id`, `list_item_title`, `list_item_description`, `list_item_active`) VALUES
 (1, 1, 'Day Time', '', 1),
 (2, 1, 'Night ', '', 1),
 (3, 2, 'Male', '', 1),
-(4, 2, 'Female', '', 1);
-
+(4, 2, 'Female', '', 1),
+(5, 4, 'Full Time', '', 1),
+(6, 4, 'Part Time', '', 1)
+;
 
 DROP TABLE IF EXISTS `client_rate`;
 CREATE TABLE `client_rate`(

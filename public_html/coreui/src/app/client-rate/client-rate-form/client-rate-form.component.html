@@ -4,40 +4,34 @@
                          <div class="col-4">
                              <div class="form-group">
                                  <label>Select Client</label>
-                                 <select class="form-control selectpicker"  formControlName="client" [(ngModel)]="clientRate.client"data-selected-text-format="count > 3" data-container="body">
-                                    <option>Option1</option>
-                                    <option>Option2</option>
-                                    <option>Option3</option>
-                                    <option>Option4</option>
-                                    <option>Option5</option>
-                                    <option>Option6</option>
+                                 <select class="form-control selectpicker"  name="client"  formControlName="client" [(ngModel)]="ClientRate.client"data-selected-text-format="count > 3" data-container="body">
+                                    <option value="">Unassigned</option>
+                                   <option *ngFor="let client of list_items_data['modules']['client']" value="{{client.id}}">
+                                    {{client.label}}
+                                   </option>"
                                 </select>
                              </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group">
                                  <label>Select Business Unit</label>
-                                 <select class="form-control selectpicker"  formControlName="business_unit" [(ngModel)]="clientRate.business_unit" data-selected-text-format="count > 3" data-container="body">
-                                    <option>Option1</option>
-                                    <option>Option2</option>
-                                    <option>Option3</option>
-                                    <option>Option4</option>
-                                    <option>Option5</option>
-                                    <option>Option6</option>
+                                 <select class="form-control selectpicker"  name="business_unit"  formControlName="business_unit" [(ngModel)]="ClientRate.business_unit" data-selected-text-format="count > 3" data-container="body">
+                                    <option value="">Unassigned</option>
+                                   <option *ngFor="let business_unit of list_items_data['modules']['business_unit']" value="{{business_unit.id}}">
+                                    {{business_unit.label}}
+                                   </option>
                                 </select>
                              </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group">
                                  <label>select Job</label>
-                                 <select class="form-control selectpicker"  formControlName="job" [(ngModel)]="clientRate.job" data-selected-text-format="count > 3" data-container="body">
-                                 <option>Option1</option>
-                                 <option>Option2</option>
-                                 <option>Option3</option>
-                                 <option>Option4</option>
-                                 <option>Option5</option>
-                                 <option>Option6</option>
-                             </select>
+                                <select class="form-control selectpicker"  name="job" formControlName="job" [(ngModel)]="ClientRate.job" data-selected-text-format="count > 3" data-container="body">
+                                  <option value="">Unassigned</option>
+                                   <option *ngFor="let job of list_items_data['modules']['jobs']" value="{{job.id}}">
+                                    {{job.label}}
+                                   </option>
+								</select>
                                  
                              </div>
                          </div>
@@ -46,19 +40,19 @@
                          <div class="col-4">
                              <div class="form-group">
                                  <label>week Days</label>
-                                 <input type="text" formControlName="week_days" [(ngModel)]="clientRate.week_days" class="form-control" />
+                                 <input type="text"  name="week_days"  formControlName="week_days" [(ngModel)]="ClientRate.week_days" class="form-control" />
                              </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group">
                                 <label>Night Time</label>
-                                <input type="text" formControlName="night_time" [(ngModel)]="clientRate.night_time" class="form-control" />
+                                <input type="text"  name="night_time" formControlName="night_time" [(ngModel)]="ClientRate.night_time" class="form-control" />
                              </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group">
                                  <label>Friday Night</label>
-                                 <input type="text" formControlName="friday_night" [(ngModel)]="clientRate.friday_night" class="form-control" />
+                                 <input type="text" name="friday_night" formControlName="friday_night" [(ngModel)]="ClientRate.friday_night" class="form-control" />
                              </div>
                          </div>
                      </div>
@@ -66,19 +60,19 @@
                          <div class="col-4">
                             <div class="form-group">
                                 <label>Saturday Day</label>
-                                <input type="text" formControlName="saturday_day" [(ngModel)]="clientRate.saturday_day" class="form-control" />
+                                <input type="text"  name="saturday_day" formControlName="saturday_day" [(ngModel)]="ClientRate.saturday_day" class="form-control" />
                             </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group">
                                 <label>Saturday Night</label>
-                                <input type="text" formControlName="saturday_night" [(ngModel)]="clientRate.saturday_night" class="form-control" />
+                                <input type="text"  name="saturday_night"  formControlName="saturday_night" [(ngModel)]="ClientRate.saturday_night" class="form-control" />
                              </div>
                          </div>
                          <div class="col-4">
                             <div class="form-group">
                                <label>Sunday Day</label>
-                               <input type="text" formControlName="sunday_day" [(ngModel)]="clientRate.sunday_day" class="form-control" />
+                               <input type="text"  name="sunday_day" formControlName="sunday_day" [(ngModel)]="ClientRate.sunday_day" class="form-control" />
                             </div>
                         </div>
                      </div>
@@ -86,19 +80,19 @@
                             <div class="col-4">
                                <div class="form-group">
                                    <label>Sunday Night</label>
-                                   <input type="text" formControlName="sunday_night" [(ngModel)]="clientRate.sunday_night" class="form-control" />
+                                   <input type="text"  name="sunday_night"  formControlName="sunday_night" [(ngModel)]="ClientRate.sunday_night" class="form-control" />
                                </div>
                             </div> 
                             <div class="col-4">
                                 <div class="form-group">
                                     <label>Public Holiday Day</label>
-                                    <input type="text" formControlName="public_hodliday_day" [(ngModel)]="clientRate.public_hodliday_day" class="form-control" />
+                                    <input type="text"   name="public_holiday_day" formControlName="public_holiday_day" [(ngModel)]="ClientRate.public_holiday_day" class="form-control" />
                                 </div>
                              </div> 
                              <div class="col-4">
                                 <div class="form-group">
                                     <label>Public Holiday Night</label>
-                                    <input type="text" formControlName="public_hodliday_night" [(ngModel)]="clientRate.public_hodliday_night" class="form-control" />
+                                    <input type="text" name="public_holiday_night" formControlName="public_holiday_night" [(ngModel)]="ClientRate.public_holiday_night" class="form-control" />
                                 </div>
                              </div> 
                         </div>

@@ -4,29 +4,30 @@
                          <div class="col-4">
                              <div class="form-group">
                                  <label>Select client</label>
-                                 <select class="form-control selectpicker" name="client" formControlName="client" [(ngModel)]="job.client"  data-selected-text-format="count > 3" data-container="body">
-                                     <option>op1</option>
-                                     <option>op2</option>
-                                     <option>op3</option>
-                                    <!-- <option *ngFor="let client of clients_list;"  value="{{ client.job_client_id }}">{{ client.name }}</option> -->
-                                 </select>
+                                 <select class="form-control selectpicker" name="jobs_client" formControlName="jobs_client" [(ngModel)]="job.jobs_client"  data-selected-text-format="count > 3" data-container="body">
+                                   <option value="">Unassigned</option>
+                                   <option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
+                                    {{client.label}}
+                                   </option>
+                               </select> 
                              </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group">
                                  <label>Select Business Unit</label>
-                                 <select class="form-control selectpicker"  name="business_unit" formControlName="business_unit" [(ngModel)]="job.business_unit"  data-selected-text-format="count > 3" data-container="body">
-                                    <option>op1</option>
-                                    <option>op2</option>
-                                    <option>op3</option>
-                                    <!-- <option *ngFor="let unit of job_business_unit_list;"  value="{{ unit.id }}">{{ unit.name }}</option> -->
+                                 <select class="form-control selectpicker"  name="jobs_business_unit" formControlName="jobs_business_unit" [(ngModel)]="job.jobs_business_unit"  data-selected-text-format="count > 3" data-container="body">
+                                 
+                                   <option value="">Unassigned</option>
+                                   <option *ngFor="let business_unit of list_items_data['modules']['business_unit']" value={{business_unit.id}}>
+                                    {{business_unit.label}}
+                                   </option>
                                  </select>
                              </div>
                          </div>
                          <div class="col-4">
                              <div class="form-group" >
                                  <label>Job Title</label>
-                                 <input type="text" class="form-control" name="job_title" formControlName="job_title" [(ngModel)]="job.job_title"/>
+                                 <input type="text" class="form-control" name="jobs_title" formControlName="jobs_title" [(ngModel)]="job.jobs_title"/>
                                  <!-- <input type="text" class="form-control" name="job_title" formControlName="job_title" [(ngModel)]="jobs.job_title" /> -->
                              </div>
                          </div>

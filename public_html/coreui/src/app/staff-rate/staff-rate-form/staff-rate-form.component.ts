@@ -1,5 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output,Input, EventEmitter } from '@angular/core';
 import {FormGroup, FormBuilder } from '@angular/forms';
+import { ApiService } from '../../services/api.service'
+import { StaffRate } from '../staff-rate.model';
 import * as $ from 'jquery';
 declare function refreshSelectpicker(): void;
 @Component({
@@ -9,45 +11,13 @@ declare function refreshSelectpicker(): void;
 })
 export class StaffRateFormComponent implements OnInit {
   form: FormGroup;
-  staffRate = {
-    id:'',
-    client: '',
-    business_unit:'',
-    job:'',
-    employee_type:'',
-    week_days:'',
-    night_time:'',
-    friday_night:'',
-    saturday_day:'',
-    saturday_night : '',
-    sunday_day:'',
-    sunday_night:'',
-    public_hodliday_day:'',
-    public_hodliday_night:'',
-    action:'',
-
-  };
+  staffRate = {};
   @Output() formData = new EventEmitter<Object>();
-  constructor(builder: FormBuilder) {
-    this.form = builder.group({
-      id:'',
-      client: '',
-      business_unit:'',
-      job:'',
-      employee_type:'',
-      week_days:'',
-      night_time:'',
-      friday_night:'',
-      saturday_day:'',
-      saturday_night : '',
-      sunday_day:'',
-      sunday_night:'',
-      public_hodliday_day:'',
-      public_hodliday_night:'',
-      action:'',
-    })
+  @Input('list_items_data') list_items_data: any;
+ constructor(builder: FormBuilder) {
+    this.staffRate = new StaffRate();
+    this.form = builder.group(this.staffRate)
   }
-
   ngOnInit() {
     refreshSelectpicker();
   }
@@ -57,8 +27,12 @@ export class StaffRateFormComponent implements OnInit {
 
   editForm(data:any){
     this.resetForm();
+	data.action = 'edit';
     this.staffRate = data;
-    this.staffRate.action = 'edit';
+  }
+  clearForm(){
+	this.form.reset();
+	refreshSelectpicker();
   }
 
   resetForm(){

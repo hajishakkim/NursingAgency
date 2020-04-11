@@ -6,9 +6,10 @@ if(file_get_contents("php://input")){
     $request  = json_decode($postdata);
     $data     = (array)$request;
     try{
-        if(isset($data['request_items']))
+       if(isset($request->request_items))
         {
-            $result = $common->getListItems($data);
+			 $params = (array)$request->request_items;
+            $result = $common->getListItems($params);
             echo json_encode($result);
             exit;
         }else{
@@ -19,11 +20,12 @@ if(file_get_contents("php://input")){
                 if($request) 
                 {
                     $data = (array)$request->data;
+					$action = isset($request->action) ? $request->action : 'index';
                     $page = $request->page ? $request->page : 1;
                     $row_per_page = $request->row_per_page ? $request->row_per_page : 10;
                 }
             }catch(\Exception $e){}
-			if(count($data)>0){
+			if(count($data)>0 && $action !="search"){
 				if($data['action'] != 'delete'){
 					$set = "`staff_rate_client`                = ?,
 							`staff_rate_business_unit`         = ?,
@@ -87,8 +89,22 @@ if(file_get_contents("php://input")){
 			else{
 				$start_limit = ($page-1)*$row_per_page;
 				$end_limit   = $row_per_page;
-				$sql = "SELECT * FROM `staff_rate` WHERE `staff_rate_activity` = 1 LIMIT $start_limit,$end_limit";
-				$result  = $common->select($sql);
+				$search_condition = " `staff_rate_activity` = 1";
+                  $params = array();
+                    foreach($data as $item => $value){
+						$item = 'staff_rate_'.$item;
+                        if(trim($value) == "") continue;
+                        if(in_array($item, $filters['value']) === false) {
+                            $search_condition .= ($search_condition) ? " AND " .$item . " = ? " : $item . " = ? ";
+                        } else {
+                            $search_condition .= ($search_condition) ? " AND " . $item . " LIKE CONCAT( '%',?,'%')" : $item . " LIKE  CONCAT( '%',?,'%')";
+                        }
+                        
+                        array_push($params,$value);
+                    }
+                    $search_condition = ($search_condition) ? " WHERE ". $search_condition : '';
+				$sql = "SELECT * FROM `staff_rate` {$search_condition} LIMIT $start_limit,$end_limit";
+				$result  = $common->select($sql,$params);
 				$formatted_result = array();
 				foreach($result as $each_result){
 					$formatted_result[] = array('id'                    =>  $each_result['staff_rate_id'],
@@ -107,8 +123,8 @@ if(file_get_contents("php://input")){
 												'public_hodliday_night' =>  $each_result['staff_rate_public_holiday_night']
 										);
 				}
-				$countSql = "SELECT count(staff_rate_id) as total FROM `staff_rate` WHERE `staff_rate_activity` = 1";
-				$totalCntRes  = $common->select($countSql); 
+				$countSql = "SELECT count(staff_rate_id) as total FROM `staff_rate` {$search_condition}";
+				$totalCntRes  = $common->select($countSql,$params); 
 				$totalCnt     = $totalCntRes[0]['total'];  
 				$totalPages   = $totalCnt%$row_per_page==0 ?  $totalCnt/$row_per_page : ($totalCnt/$row_per_page)+1;
 				$totalPagesArr = array();

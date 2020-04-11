@@ -34,7 +34,7 @@ export class VacanciesListComponent implements OnInit {
   constructor(public API: ApiService,builder: FormBuilder, private confirmationDialogService: ConfirmationDialogService) {
       this.vaccancy = new Vaccancies();
       //console.log(this.vaccancy);
-      this.form = builder.group(this.vaccancy)
+      this.form = builder.group(this.vaccancy);
   }
 
   ngOnInit() {
@@ -108,6 +108,7 @@ export class VacanciesListComponent implements OnInit {
   editItem(item:any){    
     this.item_before_modified = JSON.stringify(this.vacancy_data);
     this.app_vacancies_form.editItem(item);
+	setTimeout(refreshSelectpicker, 500);
   }
 
   showAdvancedSearch(){
@@ -121,6 +122,10 @@ export class VacanciesListComponent implements OnInit {
   clearSearch(){
     this.form.reset();
     refreshSelectpicker();
+  }
+  clearForm(){
+	this.app_vacancies_form.clearForm();  
+	  
   }
 
   showListLabel(list_id:any,type:any,list_item:any){    
@@ -153,6 +158,7 @@ export class VacanciesListComponent implements OnInit {
     this.API.post('vaccancies.php',{data:item,'action':'delete'})
       .subscribe(data => {
         this.vacancy_data.splice(idx,1);
+		this.getVaccanies({data:[]},this.page,this.row_per_page);
         fixedHeaderTable($('.listing-table-wrapper'));
       });   
   }

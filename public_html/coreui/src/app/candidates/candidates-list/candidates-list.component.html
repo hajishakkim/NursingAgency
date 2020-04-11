@@ -21,101 +21,157 @@
     
     <div class="col-12 page-wrapper">
       <div class="col-12 p-0 d-flex flex-column advanced-filter-search"  [ngClass]="{'hidden':advanced_filter_search == false}">
-        <div class="row m-0 form first-row">
-       <div class="col-2">
-         <div class="form-group">
-           <label>Name</label>
-           <input type="text" class="form-control" />
-         </div>
-       </div>
-       <div class="col-2">
-         <div class="form-group">
-           <label>DOB</label>
-           <div class="custom-datepicker">
-             <input type="text" class="form-control" />
-           </div>
-         </div>
-       </div>
-       <div class="col-2">
-         <div class="form-group">
-           <label>Gender</label>
-           <select class="form-control selectpicker" *ngIf="list_items_data['list_items']">
-               <option value="">Unassigned</option>
-               <option *ngFor="let gender of list_items_data['list_items']['gender']" value={{gender.list_item_id}}>
-               {{gender.list_item_title}}
-               </option>
-           </select>
-
-           <!-- <ng-select [items]="list_items_data['modules'].client"
-             bindLabel="label"
-             bindValue="id"
-             [(ngModel)]="selectedPersonId">
-             </ng-select> -->
-
-         </div>
-       </div>
-       <div class="col-2">
-         <div class="form-group">
-           <label>Business Unit</label>
-           <select class="form-control selectpicker"  *ngIf="list_items_data['modules']">
-             <option value="">Un Assigned</option>
-             <option *ngFor="let business_unit of list_items_data['modules']['business_unit']" value={{business_unit.id}}>
-               {{business_unit.label}}
-             </option>
-             </select>
-         </div>
-       </div>
-       <div class="col-2">
-         <div class="form-group">
-           <label>Shift Type</label>
-           <select class="form-control selectpicker" *ngIf="list_items_data['list_items']">
-             <option value="">Unassigned</option>
-             <option *ngFor="let shift_type of list_items_data['list_items']['shift_type']" value={{shift_type.list_item_id}}>
-               {{shift_type.list_item_title}}
-             </option>
-           </select>
-         </div>
-       </div>
-       <div class="col-2">
-         <div class="form-group">
-           <label>Job</label>
-           <select class="form-control selectpicker" *ngIf="list_items_data['list_items']">
-             <option value="">Un Assigned</option>
-             <option *ngFor="let jobs of list_items_data['modules']['jobs']" value={{jobs.id}}>
-               {{jobs.label}}
-             </option>
-           </select>
-         </div>
-       </div>
-     </div>
-     <div class="row m-0 form">
-       <div class="col-2">
-         <div class="form-group">
-           <label>Break Time</label>
-           <input type="text" class="form-control" />
-         </div>
-       </div>
-       <div class="col-2">
-         <div class="form-group">
-           <label>Space</label>
-           <input type="text" class="form-control" />
-         </div>
-       </div>
-       <div class="col-2">
-         <div class="form-group">
-           <label>Location</label>
-           <input type="text" class="form-control" />
-         </div>
-       </div>
-     </div>
+	  <form [formGroup]="form">
+	  <div class="col-12 form-wrapper">
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text"  class="form-control" formControlName="candidate_fname" [(ngModel)]="candidate.candidate_fname"/>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Middle Name</label>
+                    <input type="text"  class="form-control" formControlName="candidate_lname" [(ngModel)]="candidate.candidate_lname"/>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Sur Name</label>
+                    <input type="text"  class="form-control" formControlName="candidate_title" [(ngModel)]="candidate.candidate_title"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="candidate_gender" [(ngModel)]="candidate.candidate_gender" *ngIf="list_items_data['list_items']">
+                        <option value="">Unassigned</option>
+                        <option *ngFor="let gender of list_items_data['list_items']['gender']" value="{{gender.list_item_id}}">
+                         {{gender.list_item_title}}
+                        </option>
+                   </select>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Date of Birth</label>
+                    <div class="custom-datepicker">
+                        <input type="text" class="form-control datepicker" placeholder="dd/mm/yyyy" formControlName="candidate_dob" [(ngModel)]="candidate.candidate_dob" />
+                    </div>
+                </div>
+            </div>
+           <div class="col-4">
+               <div class="form-group">
+                    <label>Country</label>
+                    <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="candidate_country" [(ngModel)]="candidate.candidate_country" *ngIf="list_items_data['modules']">
+                        <option>Unassigned</option>
+                        <option *ngFor="let country of list_items_data['modules']['countries']" value="{{country.id}}">
+                            {{country.label}}</option>
+                    </select>
+               </div>
+            </div>
+        </div>
+        <div class="row">    
+            <div class="col-4">
+                <div class="form-group">
+                     <label>Designation</label>
+                     <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="candidate_designation" [(ngModel)]="candidate.candidate_designation">
+                         <option>Unassigned</option>
+                         <option *ngFor="let country of list_items_data['modules']['countries']" value="{{country.id}}">
+                            {{country.label}}
+							</option>
+							</select>
+                </div>
+            </div>  
+            <div class="col-4">
+                <div class="form-group">
+                   <label>Staff ID</label>
+                   <input type="text"  class="form-control" formControlName="candidate_staff_id" [(ngModel)]="candidate.candidate_staff_id"/>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                   <label>Payroll ID</label>
+                   <input type="text"  class="form-control" formControlName="candidate_payroll_id" [(ngModel)]="candidate.candidate_payroll_id"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">    
+            <div class="col-4">
+                <div class="form-group">
+                   <label>Email Address</label>
+                   <input type="text"  class="form-control" formControlName="candidate_email" [(ngModel)]="candidate.candidate_email"/>
+                </div>
+            </div>   
+            <div class="col-4">
+                <div class="form-group">
+                   <label>Phone Number</label>
+                   <input type="text"  class="form-control" formControlName="candidate_phone_number" [(ngModel)]="candidate.candidate_phone_number"/>
+                </div>
+            </div>
+			<div class="col-4">
+                <div class="form-group">
+                   <label>Mobile Number</label>
+                   <input type="text"  class="form-control" formControlName="candidate_mobile_phone_number" [(ngModel)]="candidate.candidate_mobile_phone_number"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">    
+            
+            <div class="col-4">
+                <div class="form-group">
+                   <label>Employment Type</label>
+                   <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="candidate_employment_type" [(ngModel)]="candidate.candidate_employment_type">
+                        <option>Unassigned</option>
+						<option *ngFor="let employee_type of list_items_data['list_items']['employee_type']" value="{{employee_type.list_item_id}}">
+                         {{employee_type.list_item_title}}
+                        </option>
+                       
+                    </select>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                   <label>Passport Number</label>
+                   <input type="text"  class="form-control" formControlName="candidate_passport_number" [(ngModel)]="candidate.candidate_passport_number"/>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                   <label>Issueing Country</label>
+                   <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="candidate_issueing_country" [(ngModel)]="candidate.candidate_issueing_country">
+                        <option>Unassigned</option>
+                        <option *ngFor="let country of list_items_data['modules']['countries']" value="{{country.id}}">
+                            {{country.label}}</option>
+                    </select>
+                </div>
+            </div>
+			</div>
+			<div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                   <label>Visa Type</label>
+                   <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="candidate_visa_type" [(ngModel)]="candidate.candidate_visa_type">
+                        <option value="">Unassigned</option>
+                        <option value="Citizen">Citizen</option>
+                        <option value="Tourist">Tourist</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
      <div class="row">
        <div class="col-12 filter-footer">
          <div class="btn-group">
-           <a href="#" class="btn btn-default">Reset</a>
+           <a (click)="clearSearchFilter()" class="btn btn-default">Reset</a>
            <a  class="btn btn-primary" (click)="filterSearch()" >Search</a>
          </div>
        </div>
      </div>
+	 </form>
      </div>
       <div class="col-12 p-0 table-wrapper listing-table-wrapper">
         <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
@@ -242,12 +298,12 @@
               <tr *ngFor="let data of candidates_data let rowIndex=index">
                 <td>{{((page-1)*row_per_page)+(rowIndex+1)}}</td>
                 <td><span class="text">{{data.candidate_title}} {{data.candidate_fname}} {{data.candidate_lname}}</span></td>
-                <td><span class="text">{{data.list_item_title}}</span></td>
+                <td><span class="text">{{showListLabel(data.candidate_gender,'list_items','gender')}}</span></td>
                 <td><span class="text">{{data.candidate_dob}}</span></td>
-                <td><span class="text">{{data.candidate_address1}},{{data.candidate_address2}},{{data.candidate_address3}}</span></td>
-                <td><span class="text">{{data.country_name}}</span></td>
+                <td><span class="text">{{data.candidate_address1}} {{data.candidate_address2}} {{data.candidate_address3}}</span></td>
+                <td><span class="text">{{showListLabel(data.candidate_country,'modules','countries')}}</span></td>
                 <td><span class="text">{{data.candidate_postcode}}</span></td>
-                <td><span class="text">{{data.designation}}</span></td>
+                <td><span class="text">{{showListLabel(data.candidate_designation,'modules','countries')}}</span></td>
                 <td><span class="text">{{data.candidate_dbs_pvg_number}}</span></td>
                 <td><span class="text">{{data.candidate_dbs_pvg_issue_date}}</span></td>
                 <td><span class="text">{{data.candidate_staff_id}}</span></td>
@@ -265,7 +321,7 @@
                 <td><span class="text">{{data.candidate_visa_type}}</span></td>
                 <td>
                   <a href="javascript:void(0)" (click)="editItem(data)" data-toggle="modal" data-target="#addnew-modal"><i class="far fa-pencil"></i></a>
-                  <a href="javascript:void(0)" (click)="deleteRow(data)"><i class="far fa-trash-alt"></i></a>
+                  <a href="javascript:void(0)" (click)="removeItem(rowIndex,data)"><i class="far fa-trash-alt"></i></a>
                 </td>
               </tr>
             </tbody>
@@ -320,7 +376,7 @@
               <app-candidates-form #app_candidates_form (formData)="saveForm($event)" [list_items_data]="list_items_data"></app-candidates-form>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
+              <button class="btn btn-normal" type="button"(click)="revertChanges()"  data-dismiss="modal">Cancel</button>
               <button class="btn btn-primary" type="button" data-dismiss="modal" (click)="formSubmit()">Save</button>
             </div>
           </div>

@@ -15,7 +15,6 @@ export class VacanciesFormComponent implements OnInit {
   @Input('list_items_data') list_items_data: any;
   constructor(builder: FormBuilder) {
     this.vaccancy = new Vaccancies();
-    //console.log(this.vaccancy);
     this.form = builder.group(this.vaccancy)
   }
 
@@ -27,5 +26,9 @@ export class VacanciesFormComponent implements OnInit {
   }
   editItem(item:any){
     this.vaccancy = item;
+  }
+	clearForm(){
+	this.form.reset();
+	refreshSelectpicker();
   }
 }

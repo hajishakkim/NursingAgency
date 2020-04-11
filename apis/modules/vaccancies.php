@@ -82,6 +82,7 @@ if(file_get_contents("php://input")){
                     }
 
                     echo json_encode(array("status"=>"success"));
+					exit;
             }
             if(count($data)>0 && $action == "delete"){
                 
