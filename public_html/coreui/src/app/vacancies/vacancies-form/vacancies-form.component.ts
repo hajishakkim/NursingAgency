@@ -20,7 +20,7 @@ export class VacanciesFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    refreshSelectpicker();
+    //refreshSelectpicker();
   }
   saveForm(){
     this.formData.emit(this.vaccancy);

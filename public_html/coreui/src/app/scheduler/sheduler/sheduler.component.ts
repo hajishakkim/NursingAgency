@@ -86,7 +86,7 @@ export class ShedulerComponent implements AfterViewInit{
 
   ngAfterViewInit(): void {
     this.renderEvent();
-    $("div:contains(DEMO)")[5].css('dispaly','none');
+    //$("div:contains(DEMO)")[5].css('dispaly','none');
   }
 
   previous(): void {

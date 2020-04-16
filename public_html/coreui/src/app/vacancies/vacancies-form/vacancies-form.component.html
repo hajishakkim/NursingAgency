@@ -16,8 +16,8 @@
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label>Client</label>
-                                <select name="vaccancy_client" formControlName="vaccancy_client" [(ngModel)]="vaccancy.vaccancy_client" class="form-control selectpicker" data-container="body">
+                                <label>Client2</label>
+                                <select name="vaccancy_client" formControlName="vaccancy_client" [(ngModel)]="vaccancy.vaccancy_client" class="form-control" data-container="body">
                                    <option value="">Unassigned</option>
                                    <option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
                                     {{client.label}}

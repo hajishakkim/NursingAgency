@@ -26,8 +26,8 @@ export class VacanciesListComponent implements OnInit {
   totalPages :number;
   totalPagesArr : [];
   @ViewChild('app_vacancies_form', {static: false}) app_vacancies_form:VacanciesFormComponent;
-  //@ViewChild('module_form', {static: false}) module_form: ElementRef<HTMLElement>;
-  @ViewChild('module_form') module_form: ElementRef;
+  //@ViewChild('module_list', {static: false}) module_list: VacanciesListComponent;
+  //@ViewChild('module_form') module_form: ElementRef;
   log: any;
   advanced_filter_search: boolean = false;
   show_form: boolean = false;
@@ -49,13 +49,12 @@ export class VacanciesListComponent implements OnInit {
       })
 
       commonService.module_form$.subscribe(data => {
-        
-        this.show_form = data;
-        
-        let inputElement: HTMLElement = this.module_form.nativeElement as HTMLElement;
-        console.log(inputElement)
-        inputElement.click();
-
+        try{
+        document.getElementById('module_form').click();
+          setTimeout(function(){
+            refreshSelectpicker()  
+          },500)
+        }catch(e){}        
       })
   }
 
