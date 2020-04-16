@@ -105,10 +105,10 @@ export const routes: Routes = [
         path: 'staff-rate',
         loadChildren: () => import('./staff-rate/staff-rate.module').then(m => m.StaffRateModule)
       },
-      {
-        path: 'timeline',
-        loadChildren: () => import('./scheduler/scheduler.module').then(m => m.SchedulerModule)
-      },
+      // {
+      //   path: 'timeline',
+      //   loadChildren: () => import('./scheduler/scheduler.module').then(m => m.SchedulerModule)
+      // },
       {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
