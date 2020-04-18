@@ -274,26 +274,72 @@ function fixedHeaderTable(ths) {
 }
 
 // Fixed Table Header
+// function fixedHeaderTable(ths){
+//   var widthArray = [], bodyHgt = 0, bodyTableHgt = 0, bodyWdth = 0, clonedHead = '';
+//   ths.find('.table-body thead').remove();
+//   ths.find('.table-header, .table, .table-header .table th, .table-body .table td, td .ellipsis-contents').removeAttr('style');
+//   clonedHead = ths.find('.table-header thead').clone();
+//   ths.find('.table-body table').prepend(clonedHead);
+//   bodyHgt = $(window).height() - tophdrhght - tablehdrhght - tablefooterhght - 125; 
+
+//     ths.find('.table-body thead tr th').each(function(){
+//       widthArray.push($(this).outerWidth());
+//     });
+//     ths.find('.table-header .table th').each(function(e) {
+//       $(this).css({ 'width': widthArray[e], 'min-width': widthArray[e] });
+//     });
+//     ths.find('.table-body .table th').each(function(e) {
+//       $(this).css({ 'width': widthArray[e], 'min-width': widthArray[e] });
+//     });
+//     ths.find('.table-body tbody tr').not('.blank-tr').each(function() {
+//       $(this).find('td').each(function(e) {
+//         $(this).find('.ellipsis-contents').css('max-width', (widthArray[e]-22));
+//       });
+//     });
+//     ths.find('.table-body').css('max-height', bodyHgt);
+//     bodyWdth = ths.find('.table-body .table').outerWidth();
+//     ths.find('.table-header .table, .table-body .table').outerWidth(bodyWdth);
+//     bodyTableHgt = ths.find('.table-body .table').outerHeight();
+//     if(ths.find('.table-body')[0].clientHeight < bodyTableHgt) {
+//       var scrollBarwdth = ths.find('.table-body')[0].offsetWidth - ths.find('.table-body')[0].clientWidth;
+//       ths.find('.table-header').css('padding-right', scrollBarwdth);
+//     } else {
+//       ths.find('.table-header').css('padding-right', '');
+//     }
+//     ths.find('.table-body').scrollLeft(0);
+//     ths.find('.table-header-inner').scrollLeft(ths.find('.table-body').scrollLeft());
+//     ths.find('.table-body').scroll(function(e) {
+//       ths.find('.table-header-inner').scrollLeft(e.target.scrollLeft);
+//     });
+//     ths.find('.table-header-inner').scroll(function(e) {
+//       ths.find('.table-body').scrollLeft(e.target.scrollLeft);
+//     });
+// }
+
+
+
+
+// Fixed Table Header
 function _fixedHeaderTable(ths) {
   var widthArray = [];
   ths.find('.table').css('width', '');
   
   ths.find('.table-header').css('padding-right', '');
 
-  ths.find('.table-body .table tr:first td').each(function() {
+  ths.find('.table-body .table tr:last td').each(function() {
     widthArray.push($(this).outerWidth());
   });
   ths.find('.table-header .table th').each(function(e) {
     widthArray[e] = ($(this).outerWidth() < widthArray[e]) ? widthArray[e] :$(this).outerWidth();
     $(this).css({
       'width': widthArray[e],
-      'min-width': widthArray[e]
+      //'min-width': widthArray[e]
     });
   });
   ths.find('.table-body .table tr:first td').each(function(e) {
     $(this).css({
       'width': widthArray[e],
-      'min-width': widthArray[e]
+      //'min-width': widthArray[e]
     });
   });
   var bodyWdth = ths.find('.table-body .table').outerWidth();

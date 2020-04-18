@@ -224,16 +224,16 @@
               <td colspan=12 class="no-data"><h4>No Records Found</h4></td>
             </tr>
             <tr *ngFor="let data of client_data let rowIndex=index">
-              <td><span class="text">{{((page-1)*row_per_page)+1+rowIndex}}</span></td>
+              <td class="w-xs"><span class="text">{{((page-1)*row_per_page)+1+rowIndex}}</span></td>
               <td><span class="text">{{data.agency}}</span></td>
               <td><span class="text">{{data.authorized_person}}</span></td>
-              <td><span class="text">{{data.email}}</span></td>
+              <td class="w-sm"><span class="text">{{data.email}}</span></td>
               <td><span class="text">{{data.address1}}</span></td>
               <td><span class="text">{{data.address2}}</span></td>
-              <td><span class="text">{{data.post_code}}</span></td>
-              <td><span class="text">{{data.phone}}</span></td>
-              <td><span class="text">{{data.mobile}}</span></td>
-              <td>
+              <td class="w-xs"><span class="text">{{data.post_code}}</span></td>
+              <td class="w-sm"><span class="text">{{data.phone}}</span></td>
+              <td class="w-sm"><span class="text">{{data.mobile}}</span></td>
+              <td class="w-sm">
                 <a href="javascript:void(0)" (click)="editClient(data)"><i class="far fa-pencil"></i></a>
                 <a href="javascript:void(0)" (click)="deleteClient(data.id)"><i class="far fa-trash-alt"></i></a>
               </td>
