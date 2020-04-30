@@ -21,7 +21,7 @@
     "@angular/router": "~8.2.14",
     "@types/jquery": "^3.3.31",
     "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-angular8-datatable": "^0.9.11",
     "rxjs": "~6.4.0",
     "save": "^2.4.0",
