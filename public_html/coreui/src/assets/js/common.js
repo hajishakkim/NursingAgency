@@ -264,7 +264,11 @@ function setDataTableInit(table){
   $(table).DataTable();
 }
 function refreshSelectpicker(){
-  $('.selectpicker').selectpicker('refresh');
+  try{
+    $('.selectpicker').selectpicker({
+      container: 'body'
+    });
+  }catch(e){}
   $('.custom-datepicker input').datepicker();
 }
 function fixedHeaderTable(ths) {

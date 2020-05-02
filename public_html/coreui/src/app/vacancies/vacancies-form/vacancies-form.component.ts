@@ -13,14 +13,14 @@ export class VacanciesFormComponent implements OnInit {
   vaccancy : {};
   @Output() formData = new EventEmitter<Object>();
   @Input('list_items_data') list_items_data: any;
+  @Input('form_state') form_state: any;  
   constructor(builder: FormBuilder) {
     this.vaccancy = new Vaccancies();
-    //console.log(this.vaccancy);
     this.form = builder.group(this.vaccancy)
   }
 
   ngOnInit() {
-    //refreshSelectpicker();
+    refreshSelectpicker();
   }
   saveForm(){
     this.formData.emit(this.vaccancy);

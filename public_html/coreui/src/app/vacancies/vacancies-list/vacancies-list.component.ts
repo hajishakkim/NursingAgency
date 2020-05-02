@@ -30,6 +30,7 @@ export class VacanciesListComponent implements OnInit {
   //@ViewChild('module_form') module_form: ElementRef;
   log: any;
   advanced_filter_search: boolean = false;
+  form_state: boolean = false;
   show_form: boolean = false;
   list_items_data : [];
   form: FormGroup;  
@@ -96,6 +97,7 @@ export class VacanciesListComponent implements OnInit {
     .subscribe(data => {
       this.list_items_data = data;
       this.setListPreference();
+      this.form_state = true;
       setTimeout(function(){
         refreshSelectpicker();        
       },1000)

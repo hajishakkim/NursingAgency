@@ -1,4 +1,4 @@
-<form [formGroup]="form" *ngIf = "vaccancy && list_items_data">
+<form [formGroup]="form" *ngIf = "vaccancy && list_items_data && form_state">
     <input name="vaccancy_id" formControlName="vaccancy_id" [(ngModel)]="vaccancy.vaccancy_id" type="hidden" class="form-control" />
                  <div class="col-12 form-wrapper">
                      <div class="row">
@@ -17,7 +17,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label>Client2</label>
-                                <select name="vaccancy_client" formControlName="vaccancy_client" [(ngModel)]="vaccancy.vaccancy_client" class="form-control" data-container="body">
+                                <select name="vaccancy_client" formControlName="vaccancy_client" [(ngModel)]="vaccancy.vaccancy_client" class="form-control selectpicker">
                                    <option value="">Unassigned</option>
                                    <option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
                                     {{client.label}}
@@ -28,7 +28,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label>Businees Unit</label>
-                                <select name="vaccancy_business_unit" formControlName="vaccancy_business_unit" [(ngModel)]="vaccancy.vaccancy_business_unit" class="form-control selectpicker" data-container="body">
+                                <select name="vaccancy_business_unit" formControlName="vaccancy_business_unit" [(ngModel)]="vaccancy.vaccancy_business_unit" class="form-control selectpicker">
                                    <option value="">Unassigned</option>
                                    <option *ngFor="let business_unit of list_items_data['modules']['business_unit']" value={{business_unit.id}}>
                                     {{business_unit.label}}
@@ -39,7 +39,7 @@
                        <div class="col-4">
                         <div class="form-group">
                             <label>Shift Type</label>
-                            <select name="vaccancy_shift_type" formControlName="vaccancy_shift_type" [(ngModel)]="vaccancy.vaccancy_shift_type" class="form-control selectpicker" data-container="body">
+                            <select name="vaccancy_shift_type" formControlName="vaccancy_shift_type" [(ngModel)]="vaccancy.vaccancy_shift_type" class="form-control selectpicker">
                                 <option value="">Unassigned</option>
                                 <option *ngFor="let shift_type of list_items_data['list_items']['shift_type']" value={{shift_type.list_item_id}}>
                                     {{shift_type.list_item_title}}
@@ -50,7 +50,7 @@
                        <div class="col-4">
                         <div class="form-group">
                             <label>Job</label>
-                            <select name="vaccancy_job" formControlName="vaccancy_job" [(ngModel)]="vaccancy.vaccancy_job" class="form-control selectpicker" data-container="body">
+                            <select name="vaccancy_job" formControlName="vaccancy_job" [(ngModel)]="vaccancy.vaccancy_job" class="form-control selectpicker">
                                 <option value="">Unassigned</option>
                                 <option *ngFor="let job of list_items_data['modules']['jobs']" value={{job.id}}>
                                  {{job.label}}
