@@ -38,9 +38,12 @@ html, body{
 }
 .main .dashboard-wrapper{
   padding: 10px;
-  height:calc(100vh - 157px);
+  height:calc(100vh - 105px);
   overflow-y: auto;
   overflow-x:hidden;
+}
+.dashboard-wrapper .card{
+  margin-bottom: 0;
 }
 .app-header.navbar{
   padding:0;
@@ -131,6 +134,16 @@ html, body{
 .page-wrapper{
   padding: 10px;
   position: relative;
+}
+.sidebar .nav-link{
+  height: 50px;
+  padding: 15px 10px;
+}
+.sidebar .nav-link .nav-icon{
+  float: left;
+  color: #fff;
+  font-size: 18px;
+  margin-right: 10px;
 }
 .sidebar .nav-link.active{
   color: #fff;
@@ -296,13 +309,13 @@ html, body{
 }
 
 /* The slider */
-.sidebar-expanded .sidebar-toggle{
+/* .sidebar-fixed .sidebar-minimizer .sidebar-toggle{
   position: absolute;
     bottom: 20px;
     left: 15px;
     text-align: center;
 }
-.sidebar-collapsed .sidebar-toggle{
+.sidebar-fixed.sidebar-minimized .sidebar-minimizer .sidebar-toggle{
   position: absolute;
     bottom: 20px;
   right: 0;
@@ -353,7 +366,7 @@ html, body{
   -webkit-transform: translateX(11px);
   -ms-transform: translateX(11px);
   transform: translateX(11px);
-}
+} */
 
 
 .main-content-wrapper{
@@ -1028,7 +1041,98 @@ border-radius: 4px;
   padding: 10px;
   padding-top: 0;
 }
+
+/* .sidebar .sidebar-minimizer{
+  background: #0054a6!important;
+} */
+
+
+
+.custom-dialog .modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  width: 400px;
+}
+
+.custom-dialog .modal-content {
+  width: 100%;
+  float: left;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+}
+.custom-dialog .modal-header {
+  padding: 0;
+  min-height: 36px;
+  border-bottom: 1px solid #dbe2e8;
+}
+.custom-dialog .modal-title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 25px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 5px 10px;
+}
+.custom-dialog .modal-header .close {
+  opacity: 1;
+  padding: 0;
+  margin: 9px 12px 8px;
+  text-align: center;
+  color: #000;
+}
+.custom-dialog .modal-header .close:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.custom-dialog .modal-header .close:focus {
+  outline: none;
+}
+.custom-dialog .modal-body{
+  text-align: center;
+  padding: 10px;
+}
+.custom-dialog .modal-footer {
+  width: 100%;
+  float: left;
+  padding: 7px 10px;
+  background: #f4f8fb;
+  border-top: 1px solid #dbe2e8;
+}
+.custom-dialog .modal-footer .btn {
+  height: 25px;
+  padding: 3px 10px;
+  padding-bottom: 7px;
+  min-width: 80px;
+}
+
+
+
+
 /* Media Queries */
+
+
+@media (max-width: 991.98px){
+  .app-body {
+    margin-top: 0;
+  }
+  .app-header .navbar-brand {
+    position: absolute;
+    top: 0;
+    left: 50px;
+    margin-left: 0;
+    height: 54px;
+    border-right: 0;
+  }
+  .app-header .navbar-toggler:first-child{
+    display: block!important;
+  }
+  .main-title{
+    display: none;
+  }
+}
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 992px) {

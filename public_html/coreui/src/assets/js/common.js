@@ -333,13 +333,13 @@ function _fixedHeaderTable(ths) {
     widthArray[e] = ($(this).outerWidth() < widthArray[e]) ? widthArray[e] :$(this).outerWidth();
     $(this).css({
       'width': widthArray[e],
-      //'min-width': widthArray[e]
+      'min-width': widthArray[e]
     });
   });
   ths.find('.table-body .table tr:first td').each(function(e) {
     $(this).css({
       'width': widthArray[e],
-      //'min-width': widthArray[e]
+      'min-width': widthArray[e]
     });
   });
   var bodyWdth = ths.find('.table-body .table').outerWidth();
