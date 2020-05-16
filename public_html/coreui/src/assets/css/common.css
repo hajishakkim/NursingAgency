@@ -2110,6 +2110,19 @@ table.ui-timepicker {
   color: #8b959e;
 }
 
+.table-wrapper .table-body .table>thead>tr>th, 
+.table-wrapper .table-body .table>thead>tr>th span {
+  height: 0;
+  line-height: 0;
+  overflow: hidden;
+  border-bottom: 0;
+  border-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 /* Right Pop-up */
 .common-right-popup *{
   -moz-box-sizing: border-box;
