@@ -79,7 +79,7 @@ export class VacanciesListComponent implements OnInit {
     this.API.post('vaccancies.php',{data:formData,'action':'save'})
     .subscribe(data => {
       if(data.status == "success") {
-        this.vacancy_data.push(formData);   
+        if(this.vacancy_data.length < this.row_per_page) this.vacancy_data.push(formData);           
       }else{
 
       }
