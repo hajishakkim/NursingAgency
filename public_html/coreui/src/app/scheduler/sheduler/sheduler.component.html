@@ -25,6 +25,14 @@
           [(ngModel)]="resourceFilter"
           [multiple]="true"
           class="form-control">
+          <ng-template ng-header-tmp>
+            <div>
+              <button class="btn btn-link"
+                      (click)="onSelectAll()">Select All</button>
+              <button class="btn btn-link"
+                      (click)="onClearAll()">Clear All</button>
+            </div>      
+          </ng-template>
         </ng-select>
       </div>
       <div class="block-icon">
@@ -64,19 +72,19 @@
                   <div class="col-2">
                     <div class="form-group">
                         <label>Start Time</label>
-                        <input 
-                          type="text" 
-                          class="form-control" 
-                          [(ngModel)] = "startTime"/>
+                        <angular2-date-picker 
+                          [(ngModel)]="startTime" 
+                          [settings]="settings">
+                        </angular2-date-picker>
                     </div>
                   </div>
                     <div class="col-2">
                         <div class="form-group">
                             <label>End Time</label>
-                            <input 
-                              type="text" 
-                              class="form-control" 
-                              [(ngModel)] = "endTime"/>
+                            <angular2-date-picker 
+                              [(ngModel)]="endTime" 
+                              [settings]="settings">
+                            </angular2-date-picker>
                         </div>
                     </div>
                     <div class="col-3">
