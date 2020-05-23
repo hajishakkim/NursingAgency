@@ -4,6 +4,7 @@ import { StaffList } from '../staffs.model';
 import {FormGroup, FormBuilder } from '@angular/forms';
 import { StaffFormComponent } from '../staff-form/staff-form.component';
 import { ConfirmationDialogService } from '../../confirmation-dialog/confirmation-dialog.service';
+import { CommonService } from '../../services/common.service';
 import { Observable, of } from 'rxjs';
 import * as $ from 'jquery';
 declare function setDataTable(options:any,table: string): void;
@@ -30,9 +31,22 @@ export class StaffListComponent implements OnInit {
   stafflist = {};
   item_before_modified : any;
   advanced_filter_search : boolean = false;
- constructor(public API: ApiService,builder: FormBuilder,private confirmationDialogService: ConfirmationDialogService) {
+  constructor(public API: ApiService,builder: FormBuilder, private confirmationDialogService: ConfirmationDialogService, private commonService : CommonService) {
 	  this.stafflist = new StaffList();
-      this.form = builder.group(this.stafflist)
+    this.form = builder.group(this.stafflist);
+    
+    commonService.module_advanced_search$.subscribe(data => {
+      this.advanced_filter_search = data;
+    })
+
+    commonService.module_form$.subscribe(data => {
+      try{
+      document.getElementById('module_form').click();
+        setTimeout(function(){
+          refreshSelectpicker()  
+        },500)
+      }catch(e){}        
+    })
   }
 
   @ViewChild('app_staff_form', {static: false}) app_staff_form:StaffFormComponent;
