@@ -31,6 +31,12 @@ export class ShedulerComponent implements AfterViewInit{
   viewType = "client";
   resourceTitle = "Client";
   curesponseTitle = "Resource";
+  settings = {
+        bigBanner: true,
+        timePicker: true,
+        format: 'yyyy-mm-dd hh:mm',
+        defaultOpen: false,
+    };
 
   public resourceFilter : any[];
   
@@ -119,9 +125,14 @@ export class ShedulerComponent implements AfterViewInit{
   addEvent()
   {
     const dp = this.timesheet.control;
+
+    if(!this.eventTitle){
+      this.createEventTitle();
+    }
+
     dp.events.add(new DayPilot.Event({
-      start: this.startTime,
-      end: this.endTime,
+      start: this.formateDate(this.startTime),
+      end: this.formateDate(this.endTime),
       id: this.eventId,
       resource: this.resourceId,
       text: this.eventTitle
@@ -140,8 +151,8 @@ export class ShedulerComponent implements AfterViewInit{
     const dp      = this.timesheet.control;
     var e         = dp.events.find(this.eventId);
     e.data.text   = this.eventTitle;
-    e.data.start  = this.startTime;
-    e.data.end    = this.endTime;
+    e.data.start  = this.formateDate(this.startTime);
+    e.data.end    = this.formateDate(this.endTime);
     e.data.resource   = this.resourceId;
     e.data.curesponse = this.curesponseId;
     e.data.comment    = this.comment;
@@ -191,5 +202,38 @@ export class ShedulerComponent implements AfterViewInit{
     this.timesheet.control.rows.filter({});
   }
 
+  onSelectAll() {
+    const selected = this.resource.map(item => item.id);
+    this.resourceFilter = selected;
+  }
+
+  onClearAll() {
+    this.resourceFilter = [];
+  }
+
+  formateDate(date)  {
+    const dateObj = new Date(date);
+    var DaydateObj = new DayPilot.Date(dateObj);
+    return DaydateObj;
+  }
+
+  createEventTitle() {
+    const startDateObj = new Date(this.startTime);
+    const endtDateObj = new Date(this.endTime);
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    };
+
+    const start = new Intl.DateTimeFormat('en-US', options).format(startDateObj);
+    const end = new Intl.DateTimeFormat('en-US', options).format(startDateObj);
+    const curesponseId = this.curesponseId;
+    const SelectedCuresponse = this.curesponse.filter(function(item) {
+          return item.id == curesponseId;
+        });
+
+    this.eventTitle = start + '-' + end + ' ' + SelectedCuresponse['0']['name'];
+  }
 
 }

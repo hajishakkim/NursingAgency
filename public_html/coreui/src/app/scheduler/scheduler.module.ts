@@ -7,6 +7,7 @@ import { ShedulerComponent } from './sheduler/sheduler.component';
 import { ShedulerRoutingModule } from './scheduler.routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 
 
 
@@ -17,7 +18,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ShedulerRoutingModule,
     FormsModule,
     DayPilotModule,
-    NgSelectModule
+    NgSelectModule,
+    AngularDateTimePickerModule
   ]
 })
 export class SchedulerModule { }
