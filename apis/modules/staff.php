@@ -1,94 +1,116 @@
 <?php
-include '../autoload/database.php';
-$db = new Database();
-if($db){
+include './common.class.php';
+$common = new Common();
+if(file_get_contents("php://input")){
     $postdata = file_get_contents("php://input");
-    $request = json_decode($postdata);
-    $data = array();
-    $page = 1;
-    $row_per_page = 10;
+    $request  = json_decode($postdata);
+    $data     = (array)$request;
     try{
-        if($request) $data = (array)$request->data;
-        $page = $request->page ? $request->page : 1;
-        $row_per_page = $request->row_per_page ? $request->row_per_page : 10;
-    }catch(\Exception $e){}
-    if(count($data)>0){
-        
-        if(trim($data['staff_id']) == ""){
-            
-            $sql = "INSERT INTO `staffs` 
-			( `staff_ref_id`, 
-			`staff_client_id`,
-			`staff_doj`,
-			`staff_shift_type`,
-			`staff_business_unit_id`,
-			`staff_space`,
-			`staff_location`,
-			`staff_details`,
-			`date`,
-			`staff_activity`,
-			`created_by`)
-			VALUES (?, ?, ?, ?, ?,?, ?, ?, NOW(),?, ?)";
-			//VALUES (12, 12, 2020-03-21, "Night", 23,"120SQFT", "EKM", "GOOD", NOW(),'1', 14)";
-            //print_r($data);
-            $params = array($data['first_name'],
-            $data['middle_name'],
-            $data['sur_name'],
-            $data['gender'],
-            $data['dob'],
-            $data['address1'],
-            $data['address2'],
-            $data['address3'],
-            $data['country'],
-            $data['postcode'],
-            $data['designation'],
-            $data['dbs_pvg_number'],
-            $data['dbs_pvg_issue_date'],
-            $data['staff_id'],
-            $data['payroll_id'],
-            $data['email'],
-            $data['pin'],
-            $data['pin_expire_date'],
-            $data['phone_country_code'],
-            $data['phone'],
-            $data['mobile_country_code'],
-            $data['mobile'],
-            $data['employment_type'],
-            $data['cand_status'],
-            $data['ni_number'],
-            $data['passport_number'],
-            $data['issuing_country'],
-            $data['visa_type']);
-            $db->add($sql, $params); 
-            echo json_encode(array("status"=>"success"));
-        }
-        if(trim($data['vaccancy_id']) != ""){
+       if(isset($request->request_items))
+        {
+			 $params = (array)$request->request_items;
+            $result = $common->getListItems($params);
+            echo json_encode($result);
+            exit;
+        }else{
+            $data = array();
+            $page = 1;
+            $row_per_page = 10;
+            try{
+                if($request) 
+                {
+                    $data = (array)$request->data;
+					$action = isset($request->action) ? $request->action : 'index';
+                    $page = $request->page ? $request->page : 1;
+                    $row_per_page = $request->row_per_page ? $request->row_per_page : 10;
+                }
+            }catch(\Exception $e){}
+			if(count($data)>0 && $action !="search"){
+				if($data['action'] != 'delete'){
+					$set = "    `staff_ref_id` = ?, 
+								`staff_client_id` = ?,
+								`staff_doj` = ?,
+								`staff_shift_type` = ?,
+								`staff_business_unit_id` = ?,
+								`staff_space` = ?,
+								`staff_location` = ?,
+								`staff_details` = ?,
+								`staff_created_date` = NOW(),
+								`staff_activity` = ?";
 
-            if($data['action'] == "edit"){
-            
-            }
-            if($data['action'] == "delete"){
-            
-            }
+					$params  =  array(  $data['staff_ref_id'],
+										$data['staff_client_id'],
+										$data['staff_doj'],
+										$data['staff_shift_type'],
+										$data['staff_business_unit_id'],
+										$data['staff_space'],
+										$data['staff_location'],
+										$data['staff_details'],
+										1
+										
+					);
+				}
+				if(trim($data['staff_id']) == ""){
+					
+					$sql = "INSERT INTO `staffs` 
+							SET ".$set;
+							$common->add($sql, $params); 
+					echo json_encode(array("status"=>"success"));
+				}
+				if(trim($data['staff_id']) != ""){
 
-        }
-    }
-    else{
-        $start_limit = ($page-1)*$row_per_page;
-        $end_limit   = $row_per_page;
-        $sql = "SELECT SQL_CALC_FOUND_ROWS  * FROM `staffs` LIMIT $start_limit,$end_limit";
-        $result  = $db->select($sql); 
-        $countSql = "SELECT FOUND_ROWS() as total";
-        $totalCntRes  = $db->select($countSql); 
-        $totalCnt     = $totalCntRes[0]['total'];  
-        $totalPages   = $totalCnt%$row_per_page==0 ?  $totalCnt/$row_per_page : ($totalCnt/$row_per_page)+1;
-        $totalPagesArr = array();
-        for($i=1;$i<=$totalPages;$i++){
-            array_push($totalPagesArr,$i);    
-        }
-        $totalPagesArrEncoded = json_encode($totalPagesArr);
-        echo json_encode(array('data'=>$result,'totalCnt'=>$totalCnt ,'totalPagesArr' => $totalPagesArr));
+					if($data['action'] == "edit"){
+						array_push($params,$data['staff_id']);
+						$sql = "UPDATE `staffs` 
+							SET ".$set."
+								,`staff_updated_date` = NOW() WHERE staff_id = ? ";  
+						$common->UPDATE($sql, $params); 
+						echo json_encode(array("status"=>"success"));
 
-    }
+					}
+					if($action == "delete"){
+						$sql = "UPDATE `staffs` SET staff_activity = ?, `staff_updated_date` = NOW() WHERE staff_id = ? ";
+						$params = array(0,$data['staff_id']);
+						$common->UPDATE($sql, $params); 
+						echo json_encode(array("status"=>"success"));
+					}
+
+				}
+			}
+			else{
+				$start_limit = ($page-1)*$row_per_page;
+				$end_limit   = $row_per_page;
+				$search_condition = " `staff_activity` = 1";
+                  $params = array();
+                    foreach($data as $item => $value){
+                        if(trim($value) == "") continue;
+                        if(in_array($item, $filters['value']) === false) {
+                            $search_condition .= ($search_condition) ? " AND " .$item . " = ? " : $item . " = ? ";
+                        } else {
+                            $search_condition .= ($search_condition) ? " AND " . $item . " LIKE CONCAT( '%',?,'%')" : $item . " LIKE  CONCAT( '%',?,'%')";
+                        }
+                        
+                        array_push($params,$value);
+                    }
+                    $search_condition = ($search_condition) ? " WHERE ". $search_condition : '';
+				$sql = "SELECT * FROM `staffs` {$search_condition} LIMIT $start_limit,$end_limit";
+				$result  = $common->select($sql,$params);
+				$formatted_result = array();
+				foreach($result as $each_result){
+					$formatted_result[] = $each_result ;
+				}
+				$countSql = "SELECT count(staff_id) as total FROM `staffs` {$search_condition}";
+				$totalCntRes  = $common->select($countSql,$params); 
+				$totalCnt     = $totalCntRes[0]['total'];  
+				$totalPages   = $totalCnt%$row_per_page==0 ?  $totalCnt/$row_per_page : ($totalCnt/$row_per_page)+1;
+				$totalPagesArr = array();
+				for($i=1;$i<=$totalPages;$i++){
+					array_push($totalPagesArr,$i);    
+				}
+				$totalPagesArrEncoded = json_encode($totalPagesArr);
+				echo json_encode(array('data'=>$formatted_result,'totalCnt'=>$totalCnt ,'totalPagesArr' => $totalPagesArr));
+			}
+        }
+    }catch(\Exception $e){echo $e;}
 }
 ?>

@@ -28,4 +28,8 @@ export class VacanciesFormComponent implements OnInit {
   editItem(item:any){
     this.vaccancy = item;
   }
+	clearForm(){
+	this.form.reset();
+	refreshSelectpicker();
+  }
 }

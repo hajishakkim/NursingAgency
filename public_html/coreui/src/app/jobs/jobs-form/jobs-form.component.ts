@@ -13,16 +13,16 @@ export class JobsFormComponent implements OnInit {
   form: FormGroup;
   job = {};
   @Output() formData = new EventEmitter<Object>();
+  @Input('list_items_data') list_items_data: any;
   constructor(builder: FormBuilder) {
     this.job = new Jobs();
-    this.form = builder.group(this.job)
+    this.form = builder.group(this.job);
   }
 
   ngOnInit() {
     refreshSelectpicker();
   }
   saveForm(){
-    console.log(12345);
     this.formData.emit(this.job);
   }
 
@@ -37,9 +37,10 @@ export class JobsFormComponent implements OnInit {
 
   resetForm(){
     this.job = {
-      id :  '',
-      category :  '',
-      job_role :  '',
+      jobs_id :  '',
+	  jobs_title: '',
+      jobs_client :  '',
+	  jobs_business_unit:'',
       action: '',
     };
   }

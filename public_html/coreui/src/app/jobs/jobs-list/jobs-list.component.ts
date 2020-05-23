@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { JobsFormComponent } from '../jobs-form/jobs-form.component';
 import { ApiService } from '../../services/api.service'
+import {FormGroup, FormBuilder } from '@angular/forms';
+import { ConfirmationDialogService } from '../../confirmation-dialog/confirmation-dialog.service';
 import {Jobs} from '../jobs.model';
 import { Observable, of } from 'rxjs';
 import * as $ from 'jquery';
@@ -27,7 +29,7 @@ export class JobsListComponent implements OnInit {
   totalPages :number;
   id:number;
   totalPagesArr : [];
-
+  form: FormGroup;  
   @ViewChild('app_jobs_form', {static: false}) app_jobs_form:JobsFormComponent;
   @ViewChild('getModal') getModal: ElementRef<HTMLElement>;  
   @ViewChild('getModalDelete') getModalDelete: ElementRef<HTMLElement>; 
@@ -36,11 +38,16 @@ export class JobsListComponent implements OnInit {
   advanced_filter_search : boolean = false;
   params: {};
   list_items_data : [];
-  constructor(public API: ApiService) {}
+  job : {};
+   constructor(public API: ApiService,builder: FormBuilder,private confirmationDialogService: ConfirmationDialogService) {
+	  this.job = new Jobs();
+      this.form = builder.group(this.job)
+  }
+
 
   ngOnInit() {
     var data = [];
-    this.getJobs({data:[]},1,10);
+    this.getJobs({data:[],action:'search'},1,10);
     this.getListItems();
   }
 
@@ -75,7 +82,7 @@ export class JobsListComponent implements OnInit {
   getCurrentPage(rows: 0,from=''){
     this.page = from == "rpp" ? 1 : rows;
     this.row_per_page = from == "rpp" ?  rows : this.row_per_page;
-    this.getJobs({data:[]},this.page,this.row_per_page);
+    this.getJobs({data:[],action:'search'},this.page,this.row_per_page);
    }
  
  
@@ -91,29 +98,45 @@ export class JobsListComponent implements OnInit {
     el.click();
   }
 
-  confirmDelete(){
-    this.params = {'id':this.id,'action':'delete'};
-    this.deleteJobData(this.params);
-  }
 
-  deleteJobData(params: any) {
+
+  deleteJobData(params: any,rdx:any) {
     this.API.post('jobs.php',{data:params})
     .subscribe(data => {
       if(data.status == "success") {
-        this.getJobs({data:[]},this.page,this.row_per_page);  
+			this.getJobs({data:[]},1,this.row_per_page); 
       }
     }); 
   }
-
+  /* public deleteItem(idx:any,item:any) {
+    this.API.post('jobs.php',{data:item,'action':'delete'})
+      .subscribe(data => {
+        this.vacancy_data.splice(idx,1);
+        fixedHeaderTable($('.listing-table-wrapper'));
+      });   
+  }
+*/
   showAdvancedSearch(){
-    alert(1);
     this.advanced_filter_search = (this.advanced_filter_search) ? false: true;
     setTimeout(function(){
       refreshSelectpicker();
     },1000)
 
   }
-
+  clearSearch(){
+    this.app_jobs_form.resetForm();
+    setTimeout(function(){
+		refreshSelectpicker();
+      },500)
+  }
+  
+  filterSearch(){
+    this.getJobs({data:this.job,action:'search'},1,this.row_per_page);
+  }
+  clearSearchFilter(){
+    this.form.reset();
+    refreshSelectpicker();
+  }
   getListItems(){
     var data = {
       'request_items': {
@@ -137,6 +160,37 @@ export class JobsListComponent implements OnInit {
   cancelSave(){
     this.getJobs({data:[]},this.page,this.row_per_page);
   }
-  
+  showListLabel(list_id:any,type:any,list_item:any){    
+    if(typeof(list_id) == 'undefined') return '';
+    var _list_item = [];
+    _list_item = this.list_items_data[type][list_item];
+    var list = _list_item.filter(function (items) { if(type == 'modules') {
+      return items.id == list_id
+     }else if(type == 'list_items') {
+      return items.list_item_id == list_id
+     }
+     });
+    var item = list[0];
+    if(typeof(item) == 'undefined' && list_item == 'business_unit'){
+      list = _list_item.filter(function (items) {
+      return items.id == list_id
+     });
+    }
+    if(typeof(item) != 'undefined'){
+      if(type == 'modules') {
+        return item.label;
+       }else if(type == 'list_items') {
+        return item.list_item_title;
+       }      
+    }else{
+      return '--';
+    }    
+  }
+   public removeItem(idx:any,rdx:any) {
+	this.params = {'jobs_id':idx,'action':'delete'};
+    this.confirmationDialogService.confirm('Delete','Do you really want to delete ?')
+    .then((confirmed) => (confirmed) ? this.deleteJobData(this.params,rdx) : '')
+    .catch(() => console.log(''));
+  }
 }
   

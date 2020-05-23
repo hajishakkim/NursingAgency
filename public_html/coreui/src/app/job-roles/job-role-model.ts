@@ -1,7 +1,7 @@
 export class JobRole {
-  id : string = '';
-  category : string = '';
-  job_role : string = '';
+  job_role_id : string = '';
+  job_role_category : string = '';
+  job_role_job_role : string = '';
   action:string = '';
 }
 

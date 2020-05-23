@@ -6,7 +6,7 @@
           <a ng-reflect-router-link="/" href="#/">Home</a>
         </div>
         <div class="breadcrumb-item active" ng-reflect-klass="breadcrumb-item">
-          <span tabindex="0" ng-reflect-router-link="//dashboard/">Super Admin</span>
+          <span tabindex="0" ng-reflect-router-link="//dashboard/">Staff</span>
         </div>
       </div>
       <!-- <div class="breadcrumb-menu d-md-down-none main-top-right">
@@ -15,9 +15,9 @@
           </div>
           
           <div class="icon-block">
-            <a href="#!" class="icon filter-icon" data-toggle="tooltip" data-placement="left" data-container="body" title="Advance Search"><i class="fas fa-filter"></i></a>
+            <a href="javascript:void(0)"  (click)="showAdvancedSearch()" class="icon filter-icon" data-toggle="tooltip" data-placement="left" data-container="body" title="Advance Search"><i class="fas fa-filter"></i></a>
           </div>
-          <a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal">Add New</a>
+          <a href="javascript:void(0)"  class="btn btn-primary" data-toggle="modal" data-target="#addnew-modal" (click)="resetForm()">Add New</a>
       </div>      -->
     </div>
 
@@ -25,98 +25,87 @@
 
     <div class="col-12 page-wrapper">
        <div class="col-12 p-0 d-flex flex-column advanced-filter-search"  [ngClass]="{'hidden':advanced_filter_search == false}">
-         <div class="row m-0 form first-row">
-        <div class="col-2">
-          <div class="form-group">
-            <label>Referance no</label>
-            <input type="text" class="form-control" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label>Date</label>
-            <div class="custom-datepicker">
-              <input type="text" class="form-control" />
-            </div>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label>Client</label>
-            <select class="form-control selectpicker">
-              <option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
-               {{client.label}}
-              </option>
-            </select>
-
-             <ng-select [items]="list_items_data['modules'].client"
-              bindLabel="label"
-              bindValue="id"
-              [(ngModel)]="selectedPersonId">
-              </ng-select> 
-
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label>Business Unit</label>
-            <select class="form-control selectpicker">
-              <option>option 1</option>
-              <option>option 2</option>
-              <option>option 3</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label>Shift Type</label>
-            <select class="form-control selectpicker">
-              <option value="">Un Assigned</option>
-              <option *ngFor="let shift_type of list_items_data['list_items']['shift_type']" value={{shift_type.list_item_id}}>
-                {{shift_type.list_item_title}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label>Job</label>
-            <select class="form-control selectpicker">
-              <option>option 1</option>
-              <option>option 2</option>
-              <option>option 3</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row m-0 form">
-        <div class="col-2">
-          <div class="form-group">
-            <label>Break Time</label>
-            <input type="text" class="form-control" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label>Space</label>
-            <input type="text" class="form-control" />
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label>Location</label>
-            <input type="text" class="form-control" />
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 filter-footer">
-          <div class="btn-group">
-            <a href="#" class="btn btn-default">Reset</a>
-            <a href="#" class="btn btn-primary">Search</a>
-          </div>
-        </div>
-      </div>
+ <form [formGroup]="form">
+				<div class="col-12 form-wrapper">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label>Referance</label>
+                                <input type="text" class="form-control" formControlName="staff_ref_id" [(ngModel)]="stafflist.staff_ref_id" />
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label>Client</label>
+								<select class="form-control selectpicker" formControlName="staff_client_id" *ngIf="list_items_data['modules']" [(ngModel)]="stafflist.staff_client_id">
+								<option value="">Unassigned</option>
+								<option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
+								{{client.label}}
+								</option>
+								</select>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label>DOJ</label>
+                                <div class="custom-datepicker">
+                                    <input type="text" class="form-control datepicker" placeholder="dd/mm/yyyy"  formControlName="staff_doj" [(ngModel)]="stafflist.staff_doj" />
+                                </div>
+                            </div>
+                        </div>
+						
+                    </div>
+                    <div class="row">
+					<div class="col-4">
+                            <div class="form-group">
+                                <label>Shift Type</label>
+                                <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="staff_shift_type" [(ngModel)]="stafflist.staff_shift_type">
+									  <option value="">Unassigned</option>
+									  <option *ngFor="let shift_type of list_items_data['list_items']['shift_type']" value={{shift_type.list_item_id}}>
+										{{shift_type.list_item_title}}
+									  </option>
+                                </select>
+                            </div>
+                        </div>
+					<div class="col-4">
+                            <div class="form-group">
+                                <label>Business Unit</label>
+                                <select class="form-control selectpicker" data-selected-text-format="count > 3" data-container="body" formControlName="staff_business_unit_id" [(ngModel)]="stafflist.staff_business_unit_id">
+                                    <option value="">Unassigned</option>
+								  <option *ngFor="let business_unit of list_items_data['modules']['business_unit']" value={{business_unit.id}}>
+									{{business_unit.label}}
+								  </option>
+                                </select>
+                            </div>
+                        </div>
+						<div class="col-4">
+                            <div class="form-group">
+                                <label>Space</label>
+                                <input type="text" class="form-control" formControlName="staff_space" [(ngModel)]="stafflist.staff_space"/>
+                            </div>
+                        </div>
+						
+                    </div>
+                </div>
+				<div class="row">
+				<div class="col-4">
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" class="form-control" formControlName="staff_location" [(ngModel)]="stafflist.staff_location" />
+                            </div>
+                        </div>
+				</div>
+		<div class="row">
+			<div class="col-12 filter-footer">
+			  <div class="btn-group">
+				 <a (click)="clearSearchFilter()" class="btn btn-default">Reset</a>
+           <a  class="btn btn-primary" (click)="filterSearch()" >Search</a>
+			  </div>
+			</div>
+		</div>
+    </form>
+      
+     
       </div>
       <div class="col-12 p-0 table-wrapper listing-table-wrapper">
         <div class="customisation-btn-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Customize Columns">
@@ -207,7 +196,8 @@
                   <th class="no-sort"><span>Sl No</span></th>
                   <th class="sorting"><span class="texts">Reference</span></th>
                   <th class="sorting"><span class="texts">Client</span></th>
-                  <th class="sorting"><span class="texts">Break Time</span></th>
+                  <th class="sorting"><span class="texts">Shift Type</span></th>
+				   <th class="sorting"><span class="texts">Business Unit</span></th>
                   <th class="sorting"><span class="texts">Space</span></th>
                   <th class="sorting"><span class="texts">Location</span></th>
                   <th class="no-sort actions-th text-right"><span>Actions</span></th>
@@ -224,14 +214,15 @@
               </tr>
               <tr *ngFor="let data of staff_data let rowIndex=index">
                 <td>{{rowIndex+1}}</td>
-                <td><span class="text">{{data.reference}}</span></td>
-                <td><span class="text">{{data.client}}</span></td>
-                <td><span class="text">{{data.break_time}}</span></td>
-                <td><span class="text">{{data.space}}</span></td>
-                <td><span class="text">{{data.location}}</span></td>
+                <td><span class="text">{{data.staff_ref_id}}</span></td>
+                <td><span class="text">{{showListLabel(data.staff_client_id,'modules','client')}}</span></td>
+                <td><span class="text">{{showListLabel(data.staff_shift_type,'list_items','shift_type')}}</span></td>
+				<td><span class="text">{{showListLabel(data.staff_business_unit_id,'modules','business_unit')}}</span></td>
+                <td><span class="text">{{data.staff_space}}</span></td>
+                <td><span class="text">{{data.staff_location}}</span></td>
                 <td class="actions-td text-right">
-                  <a href="#!"><i class="far fa-pencil" data-toggle="tooltip" data-placement="top" data-container="body" title="Edit"></i></a>
-                  <a href="#!"><i class="far fa-trash-alt" data-toggle="tooltip" data-placement="top" data-container="body" title="Delete"></i></a>
+                   <a href="javascript:void(0)" (click)="editItem(data)" data-toggle="modal" data-target="#addnew-modal"><i class="far fa-pencil"></i></a>
+                   <a href="javascript:void(0)" (click)="removeItem(rowIndex,data)"><i class="far fa-trash-alt"></i></a>
                 </td>
               </tr>
             </tbody>
@@ -240,34 +231,31 @@
           </div>
         </div>
         <div class="table-footer" *ngIf="staff_data.length>0">
-          <div class="float-left results-text">Showing <span>01-10</span> of <span>10</span> results</div>
+          <div class="float-left results-text">Showing <span>{{((page-1)*row_per_page)+1}}-{{page*row_per_page < row_count ? page*row_per_page : row_count }}</span> of <span>{{row_count}}</span> results</div>
           <div class="float-right pagination-wrapper">
             <div class="form-group goto">
               <label>Go to page</label>
-              <input type="text" class="form-control" value="01">
+              <input type="text" class="form-control" (blur)="getCurrentPage($event.target.value,'page')" >
             </div>
             <div class="pagination">
               <nav>
                 <ul>
-                  <li><a href="javascript:void(0)" class="first"> &lt;&lt; </a></li>
-                  <li><a href="javascript:void(0)" class="prev">First</a></li>
-                  <li><a href="javascript:void(0)" class="page">01</a></li>
-                  <li><a href="javascript:void(0)" class="page">02</a></li>
-                  <li><a href="javascript:void(0)" class="page active">03</a></li>
-                  <li><a href="javascript:void(0)" class="page">04</a></li>
-                  <li><a href="javascript:void(0)" class="page">05</a></li>
-                  <li><a href="javascript:void(0)" class="prev">Last</a></li>
-                  <li><a href="javascript:void(0)" class="first"> &gt;&gt; </a></li>
+                  <li ><a href="javascript:void(0)" class="first" (click)="getCurrentPage(page >1 ? page-1 : 1,'page')"> &lt;&lt; </a></li>
+                  <li><a href="javascript:void(0)" [ngClass]="{'active' : page === 1}" class="prev" (click)="getCurrentPage(1,'page')">First</a></li>
+                  
+                  <li *ngFor="let pg of totalPagesArr"><a  href="javascript:void(0)" (click)="getCurrentPage(pg,'page')" [ngClass]="{'active' : page === pg}" class="page">{{pg}}</a></li>
+                  <li><a href="javascript:void(0)" class="prev" (click)="getCurrentPage(totalPagesArr.length,'page')">Last</a></li>
+                  <li><a href="javascript:void(0)" class="first" (click)="getCurrentPage(page < totalPagesArr.length ? page+1 : totalPagesArr.length,'page')"> &gt;&gt; </a></li>
                 </ul>
               </nav>
             </div>
             <div class="form-group result-per">
               <label>Results Per Page</label>
-              <select class="form-control selectpicker">
-                <option>10</option>
-                <option>20</option>
-                <option>50</option>
-                <option>100</option>
+              <select class="form-control selectpicker" (change)="getCurrentPage($event.target.value,'rpp')" >
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
               </select>
             </div>
     
@@ -292,15 +280,15 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Add super admin</h4>
+            <h4 class="modal-title">Add new staff</h4>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
           </div>
           <div class="modal-body">
-            <app-staff-form></app-staff-form>
+            <app-staff-form #app_staff_form (formData)="saveForm($event)" [list_items_data]="list_items_data"></app-staff-form>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-normal" type="button" data-dismiss="modal">Cancel</button>
-            <button class="btn btn-primary" type="button">Save</button>
+            <button class="btn btn-normal" type="button" (click)="revertChanges()"  data-dismiss="modal">Cancel</button>
+            <button class="btn btn-primary" type="button"  data-dismiss="modal" (click)="formSubmit()">Save</button>
           </div>
         </div>
       </div>

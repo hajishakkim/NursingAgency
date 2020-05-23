@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {FormGroup, FormBuilder } from '@angular/forms';
 import { ClientFormComponent} from '../client-form/client-form.component';
 import { ApiService } from '../../services/api.service'
-import { Client } from './client-list';
+import { Client } from '../client.model';
+import { ConfirmationDialogService } from '../../confirmation-dialog/confirmation-dialog.service';
 import * as $ from 'jquery';
 
 declare function setDataTable(options:any,table: string): void;
@@ -32,8 +34,13 @@ export class ClientListComponent implements OnInit {
   advanced_filter_search : boolean = false;
   params: {};
   list_items_data : [];
-  constructor(public API: ApiService) {}
-
+  client : {};
+  item_before_modified : any;
+  form: FormGroup;  
+  constructor(public API: ApiService,builder: FormBuilder, private confirmationDialogService: ConfirmationDialogService) {
+	   this.client = new Client();
+      this.form = builder.group(this.client)
+  }
   ngOnInit() {
     var data = [];
     this.getClient({data:[]},1,10);
@@ -41,7 +48,6 @@ export class ClientListComponent implements OnInit {
   }
 
   saveForm(formData: Client) {
-    console.log(formData);
     this.API.post('client.php',{data:formData})
     .subscribe(data => {
       if(data.status == "success") {
@@ -74,27 +80,39 @@ export class ClientListComponent implements OnInit {
     this.row_per_page = from == "rpp" ?  rows : this.row_per_page;
     this.getClient({data:[]},this.page,this.row_per_page);
    }
+   filterSearch(){
+    this.getClient({data:this.client,action:'search'},1,this.row_per_page);
+  }
+
  
- 
+  clearSearch(){
+	   this.app_client_form.resetForm();
+  }
   editClient(data:any) {
-    let el: HTMLElement = this.getModal.nativeElement;
-    el.click();
-    this.app_client_form.editForm(data);
+	 this.item_before_modified = JSON.stringify(this.client_data);
+     this.app_client_form.editForm(data);
+	 setTimeout(refreshSelectpicker, 500);
   }
- 
+    clearSearchFilter(){
+    this.form.reset();
+    refreshSelectpicker();
+  }
+   revertChanges(){
+    this.client_data = JSON.parse(this.item_before_modified);
+  }
   deleteClient(id:any){
-    this.id = id;
+	 this.confirmationDialogService.confirm('Delete','Do you really want to delete ?')
+    .then((confirmed) => (confirmed) ? this.deleteClientData(id) : '')
+    .catch(() => console.log(''));
+   /* this.id = id;
     let el: HTMLElement = this.getModalDelete.nativeElement;
-    el.click();
+    el.click(); */
   }
 
-  confirmDelete(){
-    this.params = {'id':this.id,'action':'delete'};
-    this.deleteClientData(this.params);
-  }
-
-  deleteClientData(params: any) {
-    this.API.post('client.php',{data:params})
+  deleteClientData(idx: any) {
+	this.params = {'id':idx,'action':'delete'};
+	
+    this.API.post('client.php',{data:this.params})
     .subscribe(data => {
       if(data.status == "success") {
         this.getClient({data:[]},this.page,this.row_per_page);  
@@ -103,7 +121,6 @@ export class ClientListComponent implements OnInit {
   }
 
   showAdvancedSearch(){
-    alert(1);
     this.advanced_filter_search = (this.advanced_filter_search) ? false: true;
     setTimeout(function(){
       refreshSelectpicker();

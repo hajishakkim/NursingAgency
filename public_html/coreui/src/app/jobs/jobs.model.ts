@@ -1,7 +1,7 @@
 export class Jobs {
-  id: string = '';
-  job_title: string = '';
-  client: string = '';
-  business_unit: string = '';
+  jobs_id: string = '';
+  jobs_title: string = '';
+  jobs_client: string = '';
+  jobs_business_unit: string = '';
   action: string = '';
   }

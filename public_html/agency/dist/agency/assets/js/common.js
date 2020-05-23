@@ -302,6 +302,7 @@ function refreshSelectpicker(){
   $('.selectpicker').selectpicker('refresh');
   $('.custom-datepicker input').datepicker();
 }
+
 // Fixed Table Header
 function fixedHeaderTable(ths) {
   var widthArray = [];
