@@ -12,6 +12,8 @@ declare function refreshSelectpicker(): void;
 export class StaffFormComponent implements OnInit {
   form: FormGroup;
   stafflist = {};
+  usernamePassworShow : boolean = false;
+  usernamePasswordSection : boolean = true;
   @Input('list_items_data') list_items_data: any;
   @Output() formData = new EventEmitter<Object>();
   constructor(builder: FormBuilder) {
@@ -26,8 +28,11 @@ export class StaffFormComponent implements OnInit {
 	  
     this.formData.emit(this.stafflist);
   }
+
   editItem(item:any){
-	  item.action = "edit";
+    item.action = "edit";
+    this.usernamePasswordSection = false;
+    this.usernamePassworShow = false;
     this.stafflist = item;
     setTimeout( function(){ 
       refreshSelectpicker(); 
@@ -38,6 +43,10 @@ export class StaffFormComponent implements OnInit {
     setTimeout( function(){ 
       refreshSelectpicker(); 
     },500);
+  }
+
+  showHideCredentialDiv(){
+    this.usernamePassworShow = (this.usernamePassworShow) ? false: true;
   }
 
 }

@@ -726,3 +726,7 @@ CREATE TABLE `countries`
 ('Zambia','260','ZMB'),
 ('Zimbabwe','263','ZWE');
 
+
+ALTER TABLE `staffs` ADD `staff_user_name` VARCHAR(255) NOT NULL;
+ALTER TABLE `staffs` ADD `staff_password` VARCHAR(255) NOT NULL AFTER `staff_user_name`;
+ALTER TABLE `staffs` ADD `staff_salt` VARCHAR(255) NOT NULL AFTER `staff_password`;

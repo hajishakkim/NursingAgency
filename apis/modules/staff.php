@@ -1,6 +1,7 @@
 <?php
 include './common.class.php';
 $common = new Common();
+$staff  = new Staff();
 if(file_get_contents("php://input")){
     $postdata = file_get_contents("php://input");
     $request  = json_decode($postdata);
@@ -51,6 +52,13 @@ if(file_get_contents("php://input")){
 					);
 				}
 				if(trim($data['staff_id']) == ""){
+					
+					if($data['staff_username'] && $data['staff_password']){
+						$saltStr = $staff->saltGenarator();
+						$encryptedPassword = $staff->encryptPassword($data['staff_password'],$saltStr);
+						$set    .= ", staff_user_name = ?, staff_password = ?, staff_salt = ?";
+						array_push($params, $data['staff_username'], $encryptedPassword, $saltStr);
+					}
 					
 					$sql = "INSERT INTO `staffs` 
 							SET ".$set;
@@ -112,5 +120,34 @@ if(file_get_contents("php://input")){
 			}
         }
     }catch(\Exception $e){echo $e;}
+}
+
+class Staff
+{
+	/**
+	*saltGenarator
+	*/
+	public function saltGenarator(){
+		$charString = "1234567890abcdefghijklmnopqrstuvwxyz";
+		$totLength  = 35;
+		$sltLength  = 21;
+		$sltStr     = "";
+		for($i = 0; $i < $sltLength; $i++){
+			$sltStr .=  $charString[mt_rand(0,$totLength)];
+		}
+		$algo       = '6';
+		$rounds     = '5042';
+		$cryptSalt  = '$'.$algo.'$rounds='.$rounds.'$'.$sltStr;
+		return $cryptSalt;
+	}
+	
+	/**
+	*encryptPassword
+	*/
+	public function encryptPassword($password = '', $salt = ''){
+		$sha1Password   = sha1($password);
+		$encryptPssword = crypt($sha1Password,$salt);
+		return $encryptPssword;
+	}
 }
 ?>

@@ -9,4 +9,6 @@ export class StaffList {
   staff_space: string = '';
   staff_location : string ='';
   staff_details : string = '';
+  staff_username : string = '';
+  staff_password : string = '';
 }

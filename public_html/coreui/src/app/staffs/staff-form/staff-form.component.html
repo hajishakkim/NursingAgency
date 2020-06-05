@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label>DOJ</label>
+                                <label>DOB</label>
                                 <div class="custom-datepicker">
                                     <input type="text" class="form-control datepicker" placeholder="dd/mm/yyyy"  formControlName="staff_doj" [(ngModel)]="stafflist.staff_doj" />
                                 </div>
@@ -73,5 +73,28 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row" *ngIf="usernamePasswordSection == true" >
+                        <label for="chkPassport">
+                            <input type="checkbox" id="chkPassport" (click)="showHideCredentialDiv()"/>
+                            Add User Credential
+                        </label>
+                    </div>
+                    <hr *ngIf="usernamePasswordSection == true">
+                    <div class="row" *ngIf="usernamePassworShow == true">
+						<div class="col-4">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="email" class="form-control" formControlName="staff_username" [(ngModel)]="stafflist.staff_username" autocomplete="off"/>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" formControlName="staff_password" [(ngModel)]="stafflist.staff_password"/>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
     </form>
