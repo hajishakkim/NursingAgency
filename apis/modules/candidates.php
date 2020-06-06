@@ -3,6 +3,7 @@ include './common.class.php';
 $common = new Common();
 if(file_get_contents("php://input")){
     $postdata = file_get_contents("php://input");
+	
     $request = json_decode($postdata);
     $data = (array)$request;
     $page = 1;
@@ -28,7 +29,7 @@ if(file_get_contents("php://input")){
                 }
             }
     catch(\Exception $e){}
-     	$timestamp             = strtotime( $data['candidate_dob']);
+     	$timestamp             = trim($data['candidate_dob'])!='' ? strtotime($data['candidate_dob']) :'';
 	    $data['candidate_dob'] = date("yyyy-mm-dd", $timestamp);	
         if(count($data)>0 &&  $action == "save"){
             $where_sql = "";
@@ -133,6 +134,7 @@ if(file_get_contents("php://input")){
         $sql = "SELECT * FROM candidates c 
         {$search_condition} 
          LIMIT $start_limit,$end_limit"; 
+		 
 		 $result  = $common->select($sql,$params); 
 
         $countSql = "SELECT count(candidate_id) as total FROM candidates {$search_condition} ";

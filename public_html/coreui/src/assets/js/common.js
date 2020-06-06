@@ -5,7 +5,7 @@
  */
 
 $(document).ready(function() {
-  var dateFormat = "mm/dd/yy";
+  var dateFormat = "yyyy-mm-dd";
 
   //bootstrap colorpicker initialization
  // $('.colorpicker-component').colorpicker({

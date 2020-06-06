@@ -6,7 +6,8 @@ import { ConfirmationDialogService } from '../../confirmation-dialog/confirmatio
 import {Jobs} from '../jobs.model';
 import { Observable, of } from 'rxjs';
 import * as $ from 'jquery';
-
+import { CommonService } from '../../services/common.service';
+declare function setDataTable(options:any,table: string): void;
 declare function setDataTable(options:any,table: string): void;
 declare function fixedHeaderTable(ele:any): void;
 declare function refreshSelectpicker(): void;
@@ -29,6 +30,7 @@ export class JobsListComponent implements OnInit {
   totalPages :number;
   id:number;
   totalPagesArr : [];
+  item_before_modified : any;
   form: FormGroup;  
   @ViewChild('app_jobs_form', {static: false}) app_jobs_form:JobsFormComponent;
   @ViewChild('getModal') getModal: ElementRef<HTMLElement>;  
@@ -39,9 +41,22 @@ export class JobsListComponent implements OnInit {
   params: {};
   list_items_data : [];
   job : {};
-   constructor(public API: ApiService,builder: FormBuilder,private confirmationDialogService: ConfirmationDialogService) {
+   constructor(public API: ApiService,builder: FormBuilder,private confirmationDialogService: ConfirmationDialogService, private commonService : CommonService) {
 	  this.job = new Jobs();
-      this.form = builder.group(this.job)
+      this.form = builder.group(this.job);
+	  commonService.module_advanced_search$.subscribe(data => {
+        this.advanced_filter_search = data;
+      })
+
+      commonService.module_form$.subscribe(data => {
+        try{
+        document.getElementById('module_form').click();
+          setTimeout(function(){
+			this.vaccancy = [];
+            refreshSelectpicker()  
+          },500)
+        }catch(e){}        
+      });
   }
 
 
@@ -85,11 +100,10 @@ export class JobsListComponent implements OnInit {
     this.getJobs({data:[],action:'search'},this.page,this.row_per_page);
    }
  
- 
   editJob(data:any) {
-    let el: HTMLElement = this.getModal.nativeElement;
-    el.click();
+    this.item_before_modified = JSON.stringify(this.jobs_data);
     this.app_jobs_form.editForm(data);
+	 
   }
  
   deleteJob(id:any){

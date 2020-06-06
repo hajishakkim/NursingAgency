@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl : 'http://localhost/33/nursingAgency',
-  APIUrl : 'http://localhost/33/nursingAgency/apis/modules'
+  baseUrl : 'http://localhost/nursingAgency',
+  APIUrl : 'http://localhost/nursingAgency/apis/modules'
 };
 
 /*

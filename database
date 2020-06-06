@@ -726,3 +726,12 @@ CREATE TABLE `countries`
 ('Zambia','260','ZMB'),
 ('Zimbabwe','263','ZWE');
 
+DROP TABLE IF EXISTS `module_list_preference`;
+CREATE TABLE `module_list_preference` (
+ `list_preference_id` int(11) NOT NULL,
+ `list_user_id` int(11) NOT NULL,
+ `list_module` varchar(50) NOT NULL,
+ `list_preference_data` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `module_list_preference` (`list_preference_id`, `list_user_id`, `list_module`, `list_preference_data`) VALUES
+(1, 1, 'vaccancy', 'vaccancy_business_unit,vaccancy_date,vaccancy_break_time');

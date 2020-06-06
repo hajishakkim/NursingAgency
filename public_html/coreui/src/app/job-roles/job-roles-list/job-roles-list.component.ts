@@ -5,8 +5,7 @@ import { ApiService } from '../../services/api.service'
 import { JobRole } from '../job-role-model';
 import { ConfirmationDialogService } from '../../confirmation-dialog/confirmation-dialog.service';
 import * as $ from 'jquery';
-
-
+import { CommonService } from '../../services/common.service';
 declare function setDataTable(options:any,table: string): void;
 declare function fixedHeaderTable(ele:any): void;
 declare function refreshSelectpicker(): void;
@@ -38,13 +37,27 @@ export class JobRolesListComponent implements OnInit {
   advanced_filter_search : boolean = false;
   params: {};
   list_items_data : [];
-  constructor(public API: ApiService,builder: FormBuilder,private confirmationDialogService: ConfirmationDialogService) {
+  constructor(public API: ApiService,builder: FormBuilder,private confirmationDialogService: ConfirmationDialogService, private commonService : CommonService) {
 	  this.JobRoles = new JobRole();
-      this.form = builder.group(this.JobRoles)
+      this.form = builder.group(this.JobRoles);
+	  commonService.module_advanced_search$.subscribe(data => {
+        this.advanced_filter_search = data;
+      })
+
+      commonService.module_form$.subscribe(data => {
+        try{
+        document.getElementById('module_form').click();
+          setTimeout(function(){
+			this.vaccancy = [];
+            refreshSelectpicker()  
+          },500)
+        }catch(e){}        
+      });
   }
 
   ngOnInit() {
     var data = [];
+	this.advanced_filter_search = false;
     this.getJobRole({data:[],action:'search'},1,10);
     this.getListItems();
   }

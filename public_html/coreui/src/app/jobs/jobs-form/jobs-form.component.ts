@@ -32,7 +32,7 @@ export class JobsFormComponent implements OnInit {
     this.job = data;
     setTimeout( function(){
       refreshSelectpicker();
-    },1000);
+    },500);
   }
 
   resetForm(){

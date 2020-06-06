@@ -5,7 +5,7 @@ import { ApiService } from '../../services/api.service'
 import { ClientRate } from '../client-rate.model';
 import { ConfirmationDialogService } from '../../confirmation-dialog/confirmation-dialog.service';
 import * as $ from 'jquery';
-
+import { CommonService } from '../../services/common.service';
 declare function setDataTable(options:any,table: string): void;
 declare function fixedHeaderTable(ele:any): void;
 declare function refreshSelectpicker(): void;
@@ -35,9 +35,22 @@ export class ClientRateListComponent implements OnInit {
   list_items_data : [];
   ClientRate : {};
   form: FormGroup;  
-  constructor(public API: ApiService,builder: FormBuilder, private confirmationDialogService: ConfirmationDialogService) {
-	   this.ClientRate = new ClientRate();
-      this.form = builder.group(this.ClientRate)
+  constructor(public API: ApiService,builder: FormBuilder, private confirmationDialogService: ConfirmationDialogService, private commonService : CommonService) {
+	  this.ClientRate = new ClientRate();
+      this.form = builder.group(this.ClientRate);
+	  commonService.module_advanced_search$.subscribe(data => {
+        this.advanced_filter_search = data;
+      })
+
+      commonService.module_form$.subscribe(data => {
+        try{
+        document.getElementById('module_form').click();
+          setTimeout(function(){
+			this.vaccancy = [];
+            refreshSelectpicker()  
+          },500)
+        }catch(e){}        
+      })
   }
 
   ngOnInit() {

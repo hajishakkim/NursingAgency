@@ -5,7 +5,7 @@ import { ApiService } from '../../services/api.service'
 import { StaffRate } from '../staff-rate.model';
 import { ConfirmationDialogService } from '../../confirmation-dialog/confirmation-dialog.service';
 import * as $ from 'jquery';
-
+import { CommonService } from '../../services/common.service';
 declare function setDataTable(options:any,table: string): void;
 declare function fixedHeaderTable(ele:any): void;
 declare function refreshSelectpicker(): void;
@@ -35,20 +35,32 @@ export class StaffRateListComponent implements OnInit {
   @ViewChild('getModalDelete') getModalDelete: ElementRef<HTMLElement>;  
   log: any;
   params: {};
-  constructor(public API: ApiService,builder: FormBuilder, private confirmationDialogService: ConfirmationDialogService) {
+  constructor(public API: ApiService,builder: FormBuilder, private confirmationDialogService: ConfirmationDialogService, private commonService : CommonService) {
 	   this.staffRate = new StaffRate();
-	   console.log(this.staffRate);
-      this.form = builder.group(this.staffRate);
+       this.form = builder.group(this.staffRate);
+	    commonService.module_advanced_search$.subscribe(data => {
+        this.advanced_filter_search = data;
+      })
+
+      commonService.module_form$.subscribe(data => {
+        try{
+        document.getElementById('module_form').click();
+          setTimeout(function(){
+			this.vaccancy = [];
+            refreshSelectpicker()  
+          },500)
+        }catch(e){}        
+      });
   }
 
   ngOnInit() {
     var data = [];
+	this.advanced_filter_search = false;
     this.getStaffRate({data:[]},1,10);
 	this.getListItems();
   }
 
   saveForm(formData: StaffRate) {
-    console.log(formData);
     this.API.post('staff-rate.php',{data:formData})
     .subscribe(data => {
       if(data.status == "success") {

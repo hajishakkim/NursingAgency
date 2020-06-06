@@ -6,7 +6,6 @@ import {VaccancyGridManager, Vaccancies, VaccanciesLabels} from '../vaccancies.m
 import { ConfirmationDialogService } from '../../confirmation-dialog/confirmation-dialog.service';
 import { CommonService } from '../../services/common.service';
 import * as $ from 'jquery';
-
 declare function setDataTable(options:any,table: string): void;
 declare function fixedHeaderTable(ele:any): void;
 declare function refreshSelectpicker(): void;
@@ -53,6 +52,7 @@ export class VacanciesListComponent implements OnInit {
         try{
         document.getElementById('module_form').click();
           setTimeout(function(){
+			this.vaccancy = [];
             refreshSelectpicker()  
           },500)
         }catch(e){}        

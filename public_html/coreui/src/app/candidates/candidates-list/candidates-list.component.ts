@@ -4,6 +4,7 @@ import {FormGroup, FormBuilder } from '@angular/forms';
 import { CandidatesFormComponent } from '../candidates-form/candidates-form.component';
 import { ConfirmationDialogService } from '../../confirmation-dialog/confirmation-dialog.service';
 import { Candidates } from '../candidates.model';
+import { CommonService } from '../../services/common.service';
 import * as $ from 'jquery';
 
 declare function setDataTable(options:any,table: string): void;
@@ -30,9 +31,21 @@ export class CandidatesListComponent implements OnInit {
   item_before_modified : any;
   candidate : {};
   params: { 'id': any; 'action': string; };
-  constructor(public API: ApiService,builder: FormBuilder,private confirmationDialogService: ConfirmationDialogService) {
+  constructor(public API: ApiService,builder: FormBuilder,private confirmationDialogService: ConfirmationDialogService, private commonService : CommonService) {
 	  this.candidate = new Candidates();
-      this.form = builder.group(this.candidate)
+      this.form = builder.group(this.candidate);
+	  commonService.module_advanced_search$.subscribe(data => {
+		this.advanced_filter_search = data;
+	})
+
+    commonService.module_form$.subscribe(data => {
+      try{
+      document.getElementById('module_form').click();
+        setTimeout(function(){
+          refreshSelectpicker()  
+        },500)
+      }catch(e){}        
+    })
   }
 
   @ViewChild('app_candidates_form', {static: false}) app_candidates_form:CandidatesFormComponent;

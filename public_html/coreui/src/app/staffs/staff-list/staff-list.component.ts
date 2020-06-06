@@ -52,6 +52,7 @@ export class StaffListComponent implements OnInit {
   @ViewChild('app_staff_form', {static: false}) app_staff_form:StaffFormComponent;
   ngOnInit() {
     var data = [];
+	advanced_filter_search :false;
     this.getStaffData({data:[]},1,10);
 	 this.getListItems();
     
