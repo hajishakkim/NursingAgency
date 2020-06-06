@@ -368,3 +368,11 @@ function _fixedHeaderTable(ths) {
   });
   
 };
+
+function initValidation(form){  
+  $('document').formvalidation_init(form);
+}
+
+function checkValidation(form){
+  return  $('document').validation(form);
+}

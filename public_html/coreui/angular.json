@@ -49,7 +49,9 @@
               "src/assets/js/Chart.min.js",
               "src/assets/js/duty-scheduler.js", 
               "src/assets/js/jquery.sortable.min.js",
-              "src/assets/js/common.js"
+              "src/assets/js/form-validation.js",
+              "src/assets/js/common.js",
+              
             ]
           },
           "configurations": {

@@ -3,6 +3,8 @@ import {FormGroup, FormBuilder } from '@angular/forms';
 import {Vaccancies} from '../vaccancies.model';
 import * as $ from 'jquery';
 declare function refreshSelectpicker(): void;
+declare function initValidation(form:any): boolean;
+declare function checkValidation(form:any): boolean;
 @Component({
   selector: 'app-vacancies-form',
   templateUrl: './vacancies-form.component.html',
@@ -21,9 +23,17 @@ export class VacanciesFormComponent implements OnInit {
 
   ngOnInit() {
     refreshSelectpicker();
+    initValidation('#vaccancy-form');
   }
-  saveForm(){
-    this.formData.emit(this.vaccancy);
+  saveForm(){        
+    if(checkValidation('#vaccancy-form')){
+      this.formData.emit(this.vaccancy);
+      return true;
+    }else{
+      
+    }
+    return false;
+    
   }
   editItem(item:any){
     this.vaccancy = item;

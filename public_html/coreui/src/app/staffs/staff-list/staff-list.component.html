@@ -1,6 +1,6 @@
 <a href="#!" id="module_form" class="btn btn-primary" style="display:none" data-toggle="modal" data-target="#addnew-modal"  #module_form>Add New</a>
-    <div class="col-12 page-wrapper">
-       <div class="col-12 p-0 d-flex flex-column advanced-filter-search"  [ngClass]="{'hidden':advanced_filter_search == false}">
+    <div class="col-12 page-wrapper" *ngIf="list_items_data['modules']">
+       <div class="col-12 p-0 d-flex flex-column advanced-filter-search" *ngIf="form_state"  [ngClass]="{'hidden':advanced_filter_search == false}">
  <form [formGroup]="form">
 				<div class="col-12 form-wrapper">
                     <div class="row">
@@ -260,7 +260,7 @@
             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
           </div>
           <div class="modal-body">
-            <app-staff-form #app_staff_form (formData)="saveForm($event)" [list_items_data]="list_items_data"></app-staff-form>
+            <app-staff-form #app_staff_form (formData)="saveForm($event)" [list_items_data]="list_items_data" [form_state]="form_state"></app-staff-form>
           </div>
           <div class="modal-footer">
             <button class="btn btn-normal" type="button" (click)="revertChanges()"  data-dismiss="modal">Cancel</button>

@@ -1167,3 +1167,14 @@ border-radius: 4px;
 .sidebar .nav-link .badge{
   display: none;
 }
+
+.form-group.has-error .form-control.input-error{
+  background-image: url(../images/dirty.gif);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+.form-group.has-error .btn.dropdown-toggle{
+  background-image: url(../images/dirty.gif);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}

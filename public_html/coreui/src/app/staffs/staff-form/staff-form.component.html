@@ -1,4 +1,5 @@
-<form [formGroup]="form">
+{{form_state}}<form [formGroup]="form" id="staff-form" *ngIf = "stafflist && list_items_data && form_state">
+    <input name="staff_id" formControlName="staff_id" [(ngModel)]="stafflist.staff_id" type="hidden" class="form-control" />
 				<div class="col-12 form-wrapper">
                     <div class="row">
                         <div class="col-4">

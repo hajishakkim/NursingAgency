@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild , ElementRef} from '@angular/core';
 import { ApiService } from '../../services/api.service'
-import { StaffList } from '../staffs.model';
+import { StaffGridManager,Staffs,StaffLabels } from '../staffs.model';
 import {FormGroup, FormBuilder } from '@angular/forms';
 import { StaffFormComponent } from '../staff-form/staff-form.component';
 import { ConfirmationDialogService } from '../../confirmation-dialog/confirmation-dialog.service';
@@ -17,7 +17,7 @@ declare function refreshSelectpicker(): void;
 })
 export class StaffListComponent implements OnInit {
 
-  staff_data: StaffList[] = [];
+  staff_data: Staffs[] = [];
   headers: string[];
   row_count   : 0;
   row_per_page : number;
@@ -30,9 +30,15 @@ export class StaffListComponent implements OnInit {
   form: FormGroup;
   stafflist = {};
   item_before_modified : any;
+  formLabels :{};
+  module_list_arr : any = [];
+  grid_show_items_count : number = 0;
+  grid_show_items_limit : number = 2;
   advanced_filter_search : boolean = false;
+  form_state: boolean = false;
   constructor(public API: ApiService,builder: FormBuilder, private confirmationDialogService: ConfirmationDialogService, private commonService : CommonService) {
-	  this.stafflist = new StaffList();
+    this.stafflist = new Staffs();
+    this.formLabels = new StaffGridManager();
     this.form = builder.group(this.stafflist);
     
     commonService.module_advanced_search$.subscribe(data => {
@@ -66,7 +72,21 @@ export class StaffListComponent implements OnInit {
     this.API.post('staff.php',data)
     .subscribe(data => {
       this.list_items_data = data;
+      this.setListPreference();
+      this.form_state = true;
     });
+  }
+  setListPreference(){    
+    let module_list_obj = new Staffs();
+    this.module_list_arr = Object.keys(module_list_obj);
+    this.list_items_data['workbench']['list_preference_data'] = this.list_items_data['workbench']['list_preference_data'].split(',');
+    for ( let model_item of this.module_list_arr ) {
+      this.formLabels[model_item]['show_current'] = (this.list_items_data['workbench']['list_preference_data'].indexOf(model_item) >=0 || this.formLabels[model_item]['show_default'] == 0) ? 0 : 1;
+      if(this.formLabels[model_item]['show_current'] == 1) this.grid_show_items_count++;
+    } 
+  }
+  objectKeys(obj) {
+    return Object.keys(obj);
   }
   resetForm(){
 	 this.app_staff_form.resetForm();  
@@ -77,7 +97,7 @@ export class StaffListComponent implements OnInit {
     this.app_staff_form.editItem(item);
   }
   
-  saveForm(formData: StaffList) {
+  saveForm(formData: Staffs) {
     this.API.post('staff.php',{data:formData})
     .subscribe(data => {
       if(data.status == "success") {

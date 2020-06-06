@@ -1,17 +1,18 @@
-<form [formGroup]="form" *ngIf = "vaccancy && list_items_data && form_state">
+<form [formGroup]="form" id="vaccancy-form" *ngIf = "vaccancy && list_items_data && form_state">
     <input name="vaccancy_id" formControlName="vaccancy_id" [(ngModel)]="vaccancy.vaccancy_id" type="hidden" class="form-control" />
                  <div class="col-12 form-wrapper">
                      <div class="row">
                         <div class="col-4">
                             <div class="form-group">
                                 <label>Referance no</label>
-                                <input name="vaccancy_ref_number" formControlName="vaccancy_ref_number" [(ngModel)]="vaccancy.vaccancy_ref_number" type="text" class="form-control" />
+                                <input required data-vtype="number" name="vaccancy_ref_number" formControlName="vaccancy_ref_number" [(ngModel)]="vaccancy.vaccancy_ref_number" type="text" class="form-control" />
+                                <span></span>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group custom-datepicker">
                                 <label>Date</label>
-                                <input name="vaccancy_date" formControlName="vaccancy_date" [(ngModel)]="vaccancy.vaccancy_date" type="text" class="form-control" />
+                                <input required data-vtype="date" name="vaccancy_date" formControlName="vaccancy_date" [(ngModel)]="vaccancy.vaccancy_date" type="text" class="form-control" />
                             </div>
                         </div>
                         <div class="col-4">
@@ -28,7 +29,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label>Businees Unit</label>
-                                <select name="vaccancy_business_unit" formControlName="vaccancy_business_unit" [(ngModel)]="vaccancy.vaccancy_business_unit" class="form-control selectpicker">
+                                <select  required data-vtype="input" name="vaccancy_business_unit" formControlName="vaccancy_business_unit" [(ngModel)]="vaccancy.vaccancy_business_unit" class="form-control selectpicker">
                                    <option value="">Unassigned</option>
                                    <option *ngFor="let business_unit of list_items_data['modules']['business_unit']" value={{business_unit.id}}>
                                     {{business_unit.label}}

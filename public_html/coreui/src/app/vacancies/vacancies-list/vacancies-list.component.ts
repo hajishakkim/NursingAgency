@@ -137,7 +137,10 @@ export class VacanciesListComponent implements OnInit {
   }
 
   formSubmit(){
-    this.app_vacancies_form.saveForm();
+    if(this.app_vacancies_form.saveForm()){
+      
+    }
+    //vaccancy-form
   }
 
   revertChanges(){

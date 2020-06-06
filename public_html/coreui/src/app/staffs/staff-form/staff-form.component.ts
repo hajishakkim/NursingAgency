@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import {FormGroup, FormBuilder } from '@angular/forms';
 import { ApiService } from '../../services/api.service'
-import { StaffList } from '../staffs.model';
+import { StaffGridManager,Staffs,StaffLabels } from '../staffs.model';
 import * as $ from 'jquery';
 declare function refreshSelectpicker(): void;
 @Component({
@@ -13,9 +13,10 @@ export class StaffFormComponent implements OnInit {
   form: FormGroup;
   stafflist = {};
   @Input('list_items_data') list_items_data: any;
+  @Input('form_state') form_state: any; 
   @Output() formData = new EventEmitter<Object>();
   constructor(builder: FormBuilder) {
-	this.stafflist = new StaffList();
+	this.stafflist = new Staffs();
     this.form = builder.group(this.stafflist)
   }
 
