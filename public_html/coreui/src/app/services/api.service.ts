@@ -13,6 +13,7 @@ export class ApiService {
   get(url:any) {
     return this.http.get(url);
   }
+  
   post(url:any,post_data: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -23,6 +24,18 @@ export class ApiService {
     url = environment.APIUrl + '/' + url;
     return this.http.post<any>(url, post_data, httpOptions);
   }
+
+  put(url:any,post_data: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/html',
+        'Authorization': 'jwt-token'
+      })
+    };
+    url = environment.APIUrl + '/' + url;
+    return this.http.put<any>(url, post_data, httpOptions);
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

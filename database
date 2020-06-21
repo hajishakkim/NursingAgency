@@ -730,3 +730,13 @@ CREATE TABLE `countries`
 ALTER TABLE `staffs` ADD `staff_user_name` VARCHAR(255) NOT NULL;
 ALTER TABLE `staffs` ADD `staff_password` VARCHAR(255) NOT NULL AFTER `staff_user_name`;
 ALTER TABLE `staffs` ADD `staff_salt` VARCHAR(255) NOT NULL AFTER `staff_password`;
+
+CREATE TABLE `agency`.`events` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `event_title` VARCHAR(100) NULL,
+  `start_time` DATETIME NULL,
+  `end_time` DATETIME NULL,
+  `client_id` VARCHAR(45) NULL,
+  `candidate_id` VARCHAR(45) NULL,
+  `comments` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));

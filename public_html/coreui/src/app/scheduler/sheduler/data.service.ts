@@ -1,110 +1,34 @@
 import {Injectable} from "@angular/core";
 import {Observable, observable} from "rxjs";
 import {DayPilot} from "daypilot-pro-angular";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {environment} from '../../../environments/environment';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
-  ResourceEvents: any[] = [
-    {
-      id: 1,
-      start: DayPilot.Date.today().addHours(9),
-      end: DayPilot.Date.today().addHours(11),
-      resource : "rr1",
-      curesponse : "C1",
-      text: "1pm -5pm Client 1",
-      comment : "comment 2"
-    },
-    {
-      id: 2,
-      start: DayPilot.Date.today().addHours(12),
-      end: DayPilot.Date.today().addHours(15),
-      resource : "rr2",
-      curesponse : "C3",
-      text: "1pm -5pm Client 2",
-      comment : "comment 4"
-    }
-  ];
-
-  ClientEvents: any[] = [
-    {
-      id: 1,
-      start: DayPilot.Date.today().addHours(9),
-      end: DayPilot.Date.today().addHours(11),
-      resource : "c1",
-      curesponse : "rr1",
-      text: "1pm -5pm Shyju",
-      comment : "comment 1"
-    },
-    {
-      id: 2,
-      start: DayPilot.Date.today().addHours(12),
-      end: DayPilot.Date.today().addHours(15),
-      resource : "c2",
-      curesponse : "rr3",
-      text: "1pm -5pm Ajeesh",
-      comment : "comment 2"
-    }
-  ];
-
-  resource : any[] = [
-    {id:"rr1", name: "Shyju"},
-    {id:"rr2", name: "Ajeesh"},
-    {id:"rr3", name: "Ajo"},
-    {id: "rr4", name: "Hajis"}
-  ];
-
-  clients : any[] = [
-    {id:"c1", name: "careBee 1"},
-    {id:"c2", name: "careBee 2"},
-    {id:"c4", name: "careBee 3"},
-  ]
-
   constructor(private http : HttpClient){
   }
 
-  getEvents(from: DayPilot.Date, to: DayPilot.Date, viewType = "resource"): Observable<any[]> {
+  getEvents(from, to, viewType = "resource") {
+    var url = environment.APIUrl + '/timesheet.php/events?viewType=' + viewType + "&from=" + from.toString() + "&to=" + to.toString();
 
-    // simulating an HTTP request
-    return new Observable(observer => {
-      setTimeout(() => {
-        if(viewType == "resource"){
-          observer.next(this.ResourceEvents);
-        }else{
-          observer.next(this.ClientEvents);
-        }
-      }, 200);
-    });
-
-    // return this.http.get("/api/events?from=" + from.toString() + "&to=" + to.toString());
+    return this.http.get<any[]>(url).pipe(
+      tap(resData => {
+        console.log(resData);
+      })
+    );
   }
 
-  getResource(viewType = "resource") : Observable<any[]> {
-    return new Observable(ob => {
-      setTimeout(() => {
-        if(viewType == "resource"){
-          ob.next(this.resource);
-        }else{
-          ob.next(this.clients);
-        }
-      }, 200);
-    })
-  };
+  getResource(viewType = "resource") {
+    var url = environment.APIUrl + '/timesheet.php/resource?viewType=' + viewType;
 
-  getCuresponse(viewType = "resource") : Observable<any[]> {
-    return new Observable(ob => {
-      setTimeout(() => {
-        if(viewType == "resource"){
-          ob.next(this.clients);
-        }else{
-          ob.next(this.resource);
-        }
-      }, 200);
-    })
+    return this.http.get<any[]>(url).pipe(
+      tap(resData => {
+        console.log(resData);
+      })
+    );
   }
-
-
 }

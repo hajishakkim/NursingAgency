@@ -1,11 +1,13 @@
 <?php
-error_reporting(0);
+ini_set( 'error_reporting', 0 );
+
+
 class Database
 {
 
     public $db_host = "localhost";
     public $db_user = "root";
-    public $db_pass = "";
+    public $db_pass = "pass";
     public $db_name = "agency";
 
     public $mysql_connection = null;

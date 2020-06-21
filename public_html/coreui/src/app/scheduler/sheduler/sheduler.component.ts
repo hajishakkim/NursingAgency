@@ -2,7 +2,10 @@ import {Component, ViewChild, AfterViewInit, OnInit} from "@angular/core";
 import {DayPilot, DayPilotSchedulerComponent} from "daypilot-pro-angular";
 import {DataService} from "./data.service";
 import SchedulerPropsAndEvents = DayPilot.SchedulerPropsAndEvents;
-import * as $ from 'jquery';
+
+import { ApiService } from '../../services/api.service';
+import { EventModel } from './event.model';
+import {environment} from '../../../environments/environment';
 
 declare function refreshSelectpicker(): void;
 
@@ -86,7 +89,7 @@ export class ShedulerComponent implements AfterViewInit{
     },
   };
 
-  constructor(private ds: DataService) {
+  constructor(private ds: DataService, private apiService : ApiService) {
     
   }
 
@@ -114,11 +117,11 @@ export class ShedulerComponent implements AfterViewInit{
     if (args.visibleRangeChanged) {
       const from = this.timesheet.control.visibleStart();
       const to = this.timesheet.control.visibleEnd();
+      
       this.ds.getEvents(from, to, this.viewType).subscribe(result => {
+        this.timesheet.control.update({resources: this.resource});
         this.events = result;
       });
-
-      this.timesheet.control.update({resources: this.resource})
     }
   }
 
@@ -129,6 +132,23 @@ export class ShedulerComponent implements AfterViewInit{
     if(!this.eventTitle){
       this.createEventTitle();
     }
+
+    let url = 'timesheet.php/';
+    let client = (this.viewType == 'client' ) ? this.resourceId : this.curesponseId;
+    let candidate = (this.viewType == 'client' ) ? this.curesponseId : this.resourceId;
+    let postData = new EventModel(
+      this.eventTitle, 
+      this.startTime, 
+      this.endTime, 
+      client, 
+      candidate,
+      this.comment
+    );
+
+    this.apiService.post(url, postData).subscribe(result => {
+      console.log('id' + result);
+      this.eventId = result;
+    });
 
     dp.events.add(new DayPilot.Event({
       start: this.formateDate(this.startTime),
@@ -159,6 +179,23 @@ export class ShedulerComponent implements AfterViewInit{
     
     dp.events.update(e);
     this.showPopUp = false;
+
+    let url = 'timesheet.php/';
+    let client = (this.viewType == 'client' ) ? this.resourceId : this.curesponseId;
+    let candidate = (this.viewType == 'client' ) ? this.curesponseId : this.resourceId;
+    let postData = new EventModel(
+      this.eventTitle, 
+      this.startTime, 
+      this.endTime, 
+      client, 
+      candidate,
+      this.comment,
+      this.eventId
+    );
+
+    this.apiService.put(url, postData).subscribe(result => {
+      console.log('id' + result);
+    });
   }
 
   onViewChage()
@@ -179,23 +216,30 @@ export class ShedulerComponent implements AfterViewInit{
   renderEvent()
   {
     var from = this.timesheet.control.visibleStart();
-    var to = this.timesheet.control.visibleEnd();
-
-    this.ds.getEvents(from, to, this.viewType).subscribe(result => {
-      this.events = result;
-    });
+    var to = this.timesheet.control.visibleEnd(); 
+    let url = environment.APIUrl + '/timesheet.php/resource?viewType=' + this.viewType;
 
     this.ds.getResource(this.viewType).subscribe(result => {
-      this.resource = result;
-      refreshSelectpicker();
-      this.timesheet.control.update({resources: this.resource})
-    });
+      this.resource = result['resource'];
+      this.curesponse = result['curesponse'];
 
-    this.ds.getCuresponse(this.viewType).subscribe(result => {
-      this.curesponse = result;
-      refreshSelectpicker();
-      this.timesheet.control.update({resources: this.resource})
-    })
+      this.ds.getEvents(from, to, this.viewType).subscribe(result => {
+        let self:any = this;
+        let data =  result.map((value) => {
+          let startDateObj = self.formateDate(value['start']);
+          let endDateObj  = self.formateDate(value['end']);
+          value['start']  = startDateObj;
+          value['end']    = endDateObj;
+  
+          return value;
+        });
+  
+        this.events = data;
+
+        refreshSelectpicker();
+        this.timesheet.control.update({resources: this.resource});
+      });
+    });
   }
 
   resourceFilterChange(ev): void {

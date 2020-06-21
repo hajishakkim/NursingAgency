@@ -9,12 +9,14 @@ class Common extends Database
         'jobs' => array('table'=>'jobs','list_item'=>array('id'=>'jobs_id','label'=>'jobs_title')),
         'business_unit' => array('table'=>'business_unit','list_item'=>array('id'=>'business_unit_id','label'=>'business_unit_name')),
         'countries' => array('table'=>'countries','list_item'=>array('id'=>'country_id','label'=>'country_name')),
+        'candidates' => array('table'=>'candidates','list_item'=>array('id'=>'candidate_id','label'=>'candidate_fname')),
     );
     function __construct()
     {
         //$this->mysql_connection = super::mysql_connection;
         self::setCORS();
         session_start();
+        parent::__construct();
 
     }
     public function getListItems($data)
@@ -54,8 +56,10 @@ class Common extends Database
                             FROM {$list_module['table']}";
                 
             }
-            if($list_sql){                
+             
+            if($list_sql){    
                 $list_items = $this->select($list_sql);
+                
                 if(!empty($list_items)){                
                     foreach($list_items as $key=>$item){
                         $module = $item['module'];
