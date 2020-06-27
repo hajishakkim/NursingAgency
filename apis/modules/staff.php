@@ -55,7 +55,18 @@ if(file_get_contents("php://input")){
 					$sql = "INSERT INTO `staffs` 
 							SET ".$set;
 							$common->add($sql, $params); 
+				  $cnd_sql = "SELECT staff_id,staff_doj FROM staffs order by staff_id desc limit 1"; 
+				  $result  = $common->select($cnd_sql); 
+				  if(count($result)>0){
+					  $user_mail = $result[0]['staff_doj'] ;
+					if($user_mail !=''){
+						$user_id   = $result[0]['staff_id'] ;
+						$usrData   = array('user_mail' => $user_mail,'user_id' => $user_id,'user_role'=> 1);
+						$result    = $common->InsertUserSecureData($usrData);
+					}
+				  }	
 					echo json_encode(array("status"=>"success"));
+					exit();
 				}
 				if(trim($data['staff_id']) != ""){
 
@@ -64,8 +75,11 @@ if(file_get_contents("php://input")){
 						$sql = "UPDATE `staffs` 
 							SET ".$set."
 								,`staff_updated_date` = NOW() WHERE staff_id = ? ";  
+							//	echo $common->getQuery($sql, $params); 
 						$common->UPDATE($sql, $params); 
+						
 						echo json_encode(array("status"=>"success"));
+						exit();
 
 					}
 					if($action == "delete"){
@@ -73,6 +87,7 @@ if(file_get_contents("php://input")){
 						$params = array(0,$data['staff_id']);
 						$common->UPDATE($sql, $params); 
 						echo json_encode(array("status"=>"success"));
+						exit();
 					}
 
 				}

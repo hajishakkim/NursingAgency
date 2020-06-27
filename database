@@ -54,9 +54,9 @@ CREATE TABLE `staffs` (
   `staff_id` int(11) NOT NULL AUTO_INCREMENT,
   `staff_ref_id` varchar(50)  DEFAULT NULL,
   `staff_client_id` int(11) DEFAULT NULL,
-  `staff_doj` date DEFAULT NULL,
-  `staff_shift_type` int(10) DEFAULT NULL,
-  `staff_business_unit_id` int(10) DEFAULT NULL,
+  `staff_doj` VARCHAR(50) NULL DEFAULT NULL,
+  `staff_shift_type` int(20) DEFAULT NULL,
+  `staff_business_unit_id` int(20) DEFAULT NULL,
   `staff_space` varchar(255) DEFAULT NULL,
   `staff_location` varchar(255) DEFAULT NULL,
   `staff_details` varchar(255) DEFAULT NULL,
@@ -735,3 +735,11 @@ CREATE TABLE `module_list_preference` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 INSERT INTO `module_list_preference` (`list_preference_id`, `list_user_id`, `list_module`, `list_preference_data`) VALUES
 (1, 1, 'vaccancy', 'vaccancy_business_unit,vaccancy_date,vaccancy_break_time');
+
+DROP TABLE IF EXISTS `users_secure`;
+CREATE TABLE `users_secure` ( `id` INT(11) NOT NULL AUTO_INCREMENT ,
+ `user_id` INT(11) NOT NULL , `user_name` VARCHAR(50) NOT NULL ,
+ `user_password` VARCHAR(50) NOT NULL , 
+ `user_role` INT(1) NOT NULL DEFAULT '0' COMMENT '1-staff,2-candidates'
+ , PRIMARY KEY (`id`))
+ ENGINE = InnoDB;

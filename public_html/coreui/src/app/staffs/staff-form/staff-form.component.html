@@ -1,16 +1,10 @@
 <form [formGroup]="form">
 				<div class="col-12 form-wrapper">
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label>Referance</label>
-                                <input type="text" class="form-control" formControlName="staff_ref_id" [(ngModel)]="stafflist.staff_ref_id" />
-                            </div>
-                        </div>
+                   <div class="row">
                         <div class="col-4">
                             <div class="form-group">
                                 <label>Client</label>
-                               <select class="form-control selectpicker" formControlName="staff_client_id" *ngIf="list_items_data['modules']" [(ngModel)]="stafflist.staff_client_id">
+								<select class="form-control selectpicker" formControlName="staff_client_id" *ngIf="list_items_data['modules']" [(ngModel)]="stafflist.staff_client_id">
 								<option value="">Unassigned</option>
 								<option *ngFor="let client of list_items_data['modules']['client']" value={{client.id}}>
 								{{client.label}}
@@ -18,60 +12,52 @@
 								</select>
                             </div>
                         </div>
+						<div class="col-4">
+                            <div class="form-group">
+                                <label>Name of Authorised Person</label>
+                                <input type="text" class="form-control" formControlName="staff_ref_id" [(ngModel)]="stafflist.staff_ref_id" />
+                            </div>
+                        </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label>DOJ</label>
-                                <div class="custom-datepicker">
-                                    <input type="text" class="form-control datepicker" placeholder="dd/mm/yyyy"  formControlName="staff_doj" [(ngModel)]="stafflist.staff_doj" />
+                                <label>Email</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control " placeholder="E-mail ID"  formControlName="staff_doj" [(ngModel)]="stafflist.staff_doj" />
                                 </div>
                             </div>
                         </div>
+						
                     </div>
-                    <div class="row">
-                        <div class="col-4">
+                            <div class="row">
+					<div class="col-4">
                             <div class="form-group">
-                                <label>Shift Type</label>
-                                <select class="form-control selectpicker"  data-selected-text-format="count > 3" data-container="body" formControlName="staff_shift_type" [(ngModel)]="stafflist.staff_shift_type">
-									  <option value="">Unassigned</option>
-									  <option *ngFor="let shift_type of list_items_data['list_items']['shift_type']" value={{shift_type.list_item_id}}>
-										{{shift_type.list_item_title}}
-									  </option>
-                                </select>
+                                <label>Phone Number</label>
+								 <input type="text" class="form-control" placeholder="Address"  formControlName="staff_shift_type" [(ngModel)]="stafflist.staff_shift_type" />
+                            </div>
+                        </div>
+					<div class="col-4">
+                            <div class="form-group">
+                                <label>Mobile Number</label>
+								<input type="text" class="form-control" placeholder="Address"  formControlName="staff_business_unit_id" [(ngModel)]="stafflist.staff_business_unit_id" />
+                               
                             </div>
                         </div>
 						<div class="col-4">
                             <div class="form-group">
-                                <label>Business Unit</label>
-                                <select class="form-control selectpicker" data-selected-text-format="count > 3" data-container="body" formControlName="staff_business_unit_id" [(ngModel)]="stafflist.staff_business_unit_id">
-                                    <option value="">Unassigned</option>
-								  <option *ngFor="let business_unit of list_items_data['modules']['business_unit']" value={{business_unit.id}}>
-									{{business_unit.label}}
-								  </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-						<div class="col-4">
-                            <div class="form-group">
-                                <label>Space</label>
+                                <label>Address 1</label>
                                 <input type="text" class="form-control" formControlName="staff_space" [(ngModel)]="stafflist.staff_space"/>
                             </div>
                         </div>
-						<div class="col-4">
+						
+                    </div>
+					
+					<div class="row">
+				<div class="col-4">
                             <div class="form-group">
-                                <label>Location</label>
+                                <label>Address 2</label>
                                 <input type="text" class="form-control" formControlName="staff_location" [(ngModel)]="stafflist.staff_location" />
                             </div>
                         </div>
-                    </div>
-					<div class="row">
-						<div class="col-4">
-                            <div class="form-group">
-                                <label>Detail</label>
-                                <input type="text" class="form-control" formControlName="staff_details" [(ngModel)]="stafflist.staff_details"/>
-                            </div>
-                        </div>
-                    </div>
+				</div>
                 </div>
     </form>

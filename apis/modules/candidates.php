@@ -97,8 +97,18 @@ if(file_get_contents("php://input")){
 			array_push($params,$data['candidate_id']);
 			$common->update($sql, $params);
 			}else{
-		//	echo $common->getQuery($sql, $params);exit;
 				$common->add($sql, $params);
+				
+				  $cnd_sql = "SELECT candidate_id,candidate_email FROM candidates order by candidate_id desc limit 1"; 
+				  $result  = $common->select($cnd_sql); 
+				  if(count($result)>0){
+					  $user_mail = $result[0]['candidate_email'] ;
+					if($user_mail !=''){
+						$user_id   = $result[0]['candidate_id'] ;
+						$usrData   = array('user_mail' => $user_mail,'user_id' => $user_id,'user_role'=> 2);
+						$result    = $common->InsertUserSecureData($usrData);
+					}
+				  }	
 			}
 			echo json_encode(array("status"=>"success"));
 			exit;

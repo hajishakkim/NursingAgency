@@ -79,6 +79,16 @@ class Common extends Database
         }
         return $list_response;
     }
+	public function InsertUserSecureData($data=array()){
+					$randompassword = "";
+					$pw_str = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+					$randompassword = substr(str_shuffle($pw_str), 0, 7); 
+					$user_id   = $data['user_id'];
+					$user_mail = $data['user_mail'];
+					$user_role = $data['user_role'];
+					$user_sql = "INSERT INTO users_secure SET user_id = ? ,user_name = ?,user_password =?,user_role=?";
+					$this->add($user_sql,array($user_id,$user_mail,$randompassword,$user_role));
+	}
     public function setCORS()
     {
        // Allow from any origin
