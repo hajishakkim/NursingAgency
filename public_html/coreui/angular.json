@@ -34,6 +34,7 @@
               "src/assets/css/common.css",
               "src/assets/css/duty-scheduler.css"
             ],
+            
             "stylePreprocessorOptions": {
               "includePaths": [
                 "./node_modules"
@@ -50,8 +51,7 @@
               "src/assets/js/duty-scheduler.js", 
               "src/assets/js/jquery.sortable.min.js",
               "src/assets/js/form-validation.js",
-              "src/assets/js/common.js",
-              
+              "src/assets/js/common.js"
             ]
           },
           "configurations": {
