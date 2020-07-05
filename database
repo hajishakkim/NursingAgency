@@ -158,7 +158,7 @@ INSERT INTO `clients` (`client_id`, `client_name`, `client_authorized_person`, `
 DROP TABLE IF EXISTS `vaccancy`;
 CREATE TABLE `vaccancy` (
   `vaccancy_id` int(11) NOT NULL AUTO_INCREMENT,PRIMARY KEY (`vaccancy_id`),
-  `vaccancy_ref_number` int(11)  NULL,
+  `vaccancy_ref_number` VARCHAR(25)  NULL,
   `vaccancy_date` date  NULL,
   `vaccancy_client` int(11)  NULL,
   `vaccancy_business_unit` int(11)  NULL,
@@ -168,6 +168,8 @@ CREATE TABLE `vaccancy` (
   `vaccancy_space` varchar(255)  NULL,
   `vaccancy_location` varchar(255)  NULL,
   `vaccancy_details` varchar(255)  NULL,
+  `vaccancy_candidate_id`  int(11)  NULL,
+  `vaccancy_acceptance`int(11)  NULL,
   `vaccancy_created_time` date  NULL,
   `vaccancy_updated_time` date  NULL,
   `vaccancy_created_by` int(11)  NULL,

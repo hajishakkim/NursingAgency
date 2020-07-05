@@ -8,11 +8,12 @@ $filters = array('value' => array('vaccancy_id',
             'vaccancy_break_time',
             'vaccancy_space',
             'vaccancy_location',
+			
             'vaccancy_details'),
     'ref' => array('vaccancy_client',
             'vaccancy_business_unit',
             'vaccancy_shift_type',
-            'vaccancy_shift_type',
+            'vaccancy_candidate_id',
             'vaccancy_job'));
    
 if(file_get_contents("php://input")){
@@ -61,6 +62,7 @@ if(file_get_contents("php://input")){
                     `vaccancy_job`              = ?, 
                     `vaccancy_break_time`       = ?, 
                     `vaccancy_space`            = ?, 
+					`vaccancy_candidate_id`        = ?,
                     `vaccancy_location`         = ?, 
                     `vaccancy_details`          = ?, 
                     `vaccancy_created_time`     = NOW(), 
@@ -77,6 +79,7 @@ if(file_get_contents("php://input")){
                     $data['vaccancy_job'],
                     $data['vaccancy_break_time'],
                     $data['vaccancy_space'],
+					$data['vaccancy_candidate_id'],
                     $data['vaccancy_location'],
                     $data['vaccancy_details']);   
                     

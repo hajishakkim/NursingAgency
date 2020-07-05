@@ -82,6 +82,17 @@
                 </select>
               </div>
             </div>
+			<div class="col-4">
+                        <div class="form-group">
+                            <label>Candidate</label>
+                            <select name="vaccancy_candidate_id" formControlName="vaccancy_candidate_id" [(ngModel)]="vaccancy.vaccancy_candidate_id" class="form-control selectpicker">
+                                <option value="">Unassigned</option>
+                                <option *ngFor="let candidates of list_items_data['modules']['candidates']" value={{candidates.id}}>
+                                 {{candidates.label}}
+                                </option>
+                            </select>                            
+                        </div>
+                       </div>
           </div>
           <div class="row m-0 form">
             <div class="col-2">
@@ -158,6 +169,7 @@
                 <td [hidden] = "formLabels['vaccancy_shift_type']['show_current'] == 0"><span class="text">{{showListLabel(data.vaccancy_shift_type,'list_items','shift_type')}}</span></td>
                 <td [hidden] = "formLabels['vaccancy_job']['show_current'] == 0"><span class="text">{{showListLabel(data.vaccancy_job,'modules','jobs')}}</span></td>
                 <td [hidden] = "formLabels['vaccancy_break_time']['show_current'] == 0"><span class="text">{{data.vaccancy_break_time}}</span></td>
+				<td [hidden] = "formLabels['vaccancy_candidate_id']['show_current'] == 0"><span class="text">{{showListLabel(data.vaccancy_candidate_id,'modules','candidates')}}</span></td>
                 <td [hidden] = "formLabels['vaccancy_space']['show_current'] == 0"><span class="text">{{data.vaccancy_space}}</span></td>
                 <td [hidden] = "formLabels['vaccancy_location']['show_current'] == 0"><span class="text">{{data.vaccancy_location}}</span></td>
                 <td [hidden] = "formLabels['vaccancy_details']['show_current'] == 0"><span class="text">{{data.vaccancy_details}}</span></td>
@@ -165,8 +177,8 @@
                 <td [hidden] = "formLabels['vaccancy_updated_time']['show_current'] == 0"><span class="text">{{data.vaccancy_updated_time}}</span></td>
                 <td [hidden] = "formLabels['vaccancy_created_by']['show_current'] == 0"><span class="text">{{data.vaccancy_created_by}}</span></td>
                 <td [hidden] = "formLabels['vaccancy_updated_by']['show_current'] == 0"><span class="text">{{data.vaccancy_updated_by}}</span></td>
-                <td [hidden] = "formLabels['vaccancy_active']['show_current'] == 0"><span class="text">{{data.vaccancy_active}}</span></td>
 
+                <td [hidden] = "formLabels['vaccancy_active']['show_current'] == 0"><span class="text">{{data.vaccancy_active}}</span></td>
                 <td class="actions-td">  
                   <a href="javascript:void(0)" (click)="editItem(data)" data-toggle="modal" data-target="#addnew-modal"><i class="far fa-pencil"></i></a>
                   <a href="javascript:void(0)" (click)="removeItem(rowIndex,data)"><i class="far fa-trash-alt"></i></a>

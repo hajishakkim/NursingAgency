@@ -99,13 +99,14 @@ if(file_get_contents("php://input")){
 			}else{
 				$common->add($sql, $params);
 				
-				  $cnd_sql = "SELECT candidate_id,candidate_email FROM candidates order by candidate_id desc limit 1"; 
+				  $cnd_sql = "SELECT candidate_id,candidate_email,candidate_fname,candidate_lname FROM candidates order by candidate_id desc limit 1"; 
 				  $result  = $common->select($cnd_sql); 
 				  if(count($result)>0){
 					  $user_mail = $result[0]['candidate_email'] ;
 					if($user_mail !=''){
 						$user_id   = $result[0]['candidate_id'] ;
-						$usrData   = array('user_mail' => $user_mail,'user_id' => $user_id,'user_role'=> 2);
+						$user_name  = $result[0]['candidate_fname'].' '.$result[0]['candidate_lname'];
+						$usrData   = array('user_mail' => $user_mail,'user_id' => $user_id,'user_role'=> 2,'user_name' => $user_name );
 						$result    = $common->InsertUserSecureData($usrData);
 					}
 				  }	

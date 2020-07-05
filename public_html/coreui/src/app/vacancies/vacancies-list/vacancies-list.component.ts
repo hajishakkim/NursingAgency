@@ -89,7 +89,7 @@ export class VacanciesListComponent implements OnInit {
     var data = {
       'request_items': {
         'list_items': ['shift_type'],
-        'modules': ['client','business_unit','jobs'],
+        'modules': ['client','business_unit','jobs','candidates'],
         'workbench': 'vaccancy'
       }
     };

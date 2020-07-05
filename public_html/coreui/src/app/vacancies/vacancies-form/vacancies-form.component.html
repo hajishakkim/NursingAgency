@@ -58,6 +58,17 @@
                             </select>                            
                         </div>
                        </div>
+					   <div class="col-4">
+                        <div class="form-group">
+                            <label>Candidate</label>
+                            <select name="vaccancy_candidate_id" formControlName="vaccancy_candidate_id" [(ngModel)]="vaccancy.vaccancy_candidate_id" class="form-control selectpicker">
+                                <option value="">Unassigned</option>
+                                <option *ngFor="let candidates of list_items_data['modules']['candidates']" value={{candidates.id}}>
+                                 {{candidates.label}}
+                                </option>
+                            </select>                            
+                        </div>
+                       </div>
                        <div class="col-4">
                             <div class="form-group">
                             <label>Break Time</label>

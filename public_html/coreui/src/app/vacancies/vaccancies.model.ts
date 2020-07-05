@@ -15,6 +15,7 @@ export class Vaccancies {
     vaccancy_created_by: string = '';
     vaccancy_updated_by: string = '';
     vaccancy_active: string = '';
+	vaccancy_candidate_id: string = '';
   }
   export class VaccanciesLabels {
     vaccancy_id: string = 'Vaccancy ID';
@@ -33,6 +34,7 @@ export class Vaccancies {
     vaccancy_created_by: string = 'Created By';
     vaccancy_updated_by: string = 'Updated BY';
     vaccancy_active: string = 'Active';
+	vaccancy_candidate_id: string = "Candidate Name";
   }
   export class VaccancyGridManager {
     vaccancy_id : any = {
@@ -80,6 +82,12 @@ export class Vaccancies {
     vaccancy_break_time : any = {
       value : '', 
       label : 'Break Time',
+      show_default:1,
+      show_current:1
+    };
+	vaccancy_candidate_id: any = {
+      value : '', 
+      label : 'Candidate Name',
       show_default:1,
       show_current:1
     };
@@ -132,4 +140,5 @@ export class Vaccancies {
       show_default:0,
       show_current:0
     };
+
   }
